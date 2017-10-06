@@ -1,7 +1,6 @@
 # MasterMind
 
 ## Repartición de clases
-------
 - [ ] **Ranking:** Sergi
 - [ ] **Registre:** Mati
 - [ ] **Jugador:** Raulin
