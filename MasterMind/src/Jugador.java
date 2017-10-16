@@ -2,7 +2,7 @@
 public class Jugador {
 	String idJugador;
 	String nomJugador;
-	int partidesJugades;
+	int partueno idesJugades;
 	int partidesGuanyades;
 	
 	public class Jugador(String idJugador, String nomJugador, int partidesJugades, int partidesGuanyades) {
