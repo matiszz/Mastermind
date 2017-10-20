@@ -3,7 +3,7 @@
 ## Repartición de clases
 - [ ] **Ranking:** Sergi
 - [x] **Registre:** Mati
-- [ ] **Jugador:** Raulin
+- [x] **Jugador:** Raulin
   - [ ] **CodeBreaker:** Sergi
     - [ ] **Persona:** Sergi
     - [ ] **CPU:** Sergi
@@ -15,5 +15,5 @@
 - [x] **Partida:** Mati
 - [x] **Resultat:** Mati
 - [x] **Tauler:** Mati
-- [ ] **GeneradorPartides:** Raulin
+- [x] **GeneradorPartides:** Raulin
 - [x] **Clock:** Mati
