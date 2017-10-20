@@ -1,8 +1,13 @@
+import Jugador;
+
 public class Registre {
     String idJugador;
+    ArrayList<*Jugador> jugadors;
 
     public void registrar(String idJugador) {
-        // Afegir al vector un new Jugador (idJugador)
+        jugadors = new ArrayList<*Jugadors>;
+        Jugador nou = new Jugador(idJugador, 0, 0);
+        jugadors.add()
     }
 
     public String getIdJugador() {

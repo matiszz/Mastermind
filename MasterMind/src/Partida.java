@@ -1,3 +1,5 @@
+import Jugada;
+
 public class Partida {
     int idPartida;
     String mode;
@@ -5,6 +7,7 @@ public class Partida {
     int numJugades;
     int puntuacio;
     boolean estat;
+    ArrayList<*Jugada> jugades;
 
     public Partida(int idPartida, String mode, int temps, int numJugades, int puntuacio, boolean estat) {
         this.idPartida = idPartida;
@@ -14,8 +17,6 @@ public class Partida {
         this.puntuacio = puntuacio;
         this.estat = estat;
     }
-
-    // jugarParida(idPartida);
 
     public void guardarPartida() {
 
