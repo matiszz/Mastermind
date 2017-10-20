@@ -14,8 +14,14 @@ public class Partida {
         this.puntuacio = puntuacio;
         this.estat = estat;
     }
+
     // jugarParida(idPartida);
 
+    public void guardarPartida() {
+
+    }
+
+    /* ############################# Getters i Setters #############################*/
     public int getIdPartida() {
         return idPartida;
     }

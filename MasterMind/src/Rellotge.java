@@ -1,24 +1,25 @@
 public class Rellotge{
-    int hores;
-    int minuts;
-    int segons;
-    int milisegons;
+    int begin;
+    int end;
 
-    void iniciar_rellotge() {
-        // start chrono
+    public void iniciar_rellotge() {
+        begin = System.currentTimeMillis();
     }
 
-    void continuar_rellotge(int hores, int minuts, int segons, int milisegons) {
-        // continuar rellotge
+    public void continuar_rellotge(int time) {
+        begin = time;
     }
 
-    String aturar_rellotge() {
-        // stop chrono
-        return ""+hores+':'+minuts+':'+segons+':'+milisegons;
+    public String aturar_rellotge() {
+        end = System.currentTimeMillis();
+        int ellapsed = end - begin;
+        int milliseconds, seconds, minutes, hours;
+
+        hours = ellapsed/3600000.0;
     }
 
 
-    String getTime() {
+    public String getTime() {
         return ""+hores+':'+minuts+':'+segons+':'+milisegons;
     }
 }
