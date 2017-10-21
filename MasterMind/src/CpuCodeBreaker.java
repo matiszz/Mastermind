@@ -1,9 +1,9 @@
 
 
-public class Cpu {
+public class CpuCodeBreaker extends CodeBreaker {
 		Algorisme algorisme;
 		
-		public Cpu(Algorisme algorisme) {
+		public CpuCodeBreaker(Algorisme algorisme) {
 			this.algorisme=algorisme;
 		}
 		
