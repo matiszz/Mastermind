@@ -4,6 +4,8 @@ public class Jugada {
 	int codiProposat[];
 	int codiRespost[];
 	boolean encert;
+	Jugador jugador;
+	Partida partida;
 	
 	public Jugada(int numJugada, int codiProposat[], int codiRespost[], boolean encert) {
 		this.numJugada = numJugada;
@@ -29,6 +31,14 @@ public class Jugada {
 		this.encert = encert;
 	}
 	
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
+	}
+	
+	public void setPartida(Partida partida) {	
+		this.partida = partida;
+	}
+	
 	//Getters
 	
 	public int getnumJugada() {
@@ -47,4 +57,10 @@ public class Jugada {
 		return encert;
 	}
 	
+	public Jugador getJugador() {
+		return this.jugador;
+	}
+	public Partida getPartida() {	
+		 return this.partida;
+	}
 }
