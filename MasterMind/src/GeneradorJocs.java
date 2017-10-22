@@ -1,4 +1,5 @@
-package com.raulvalverde.MasterMind;
+package com.prop.domini;
+
 
 public class GeneradorJocs {
 	int numFiles;
