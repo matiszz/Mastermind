@@ -1,4 +1,7 @@
 /* Clase hecha por Mati */
+package com.prop.domini;
+
+import java.lang.System.*;
 
 public class Rellotge{
     int begin;

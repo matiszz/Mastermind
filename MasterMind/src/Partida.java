@@ -1,7 +1,8 @@
 /* Clase hecha por Mati */
+package com.prop.domini;
 
 import Jugada;
-
+import java.util.*;
 
 public class Partida {
     int idPartida;

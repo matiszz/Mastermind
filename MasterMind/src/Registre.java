@@ -1,6 +1,8 @@
 /* Clase hecha por Mati */
+package com.prop.domini;
 
 import Jugador;
+import java.util.*;
 
 public class Registre {
     String idJugador;
