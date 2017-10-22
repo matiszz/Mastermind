@@ -1,20 +1,31 @@
+/* Clase hecha por Mati */
+
 import Jugador;
 
 public class Registre {
     String idJugador;
-    ArrayList<*Jugador> jugadors;
+    ArrayList<*Jugador> jugadors = new ArrayList<*Jugadors>;;
 
-    public void registrar(String idJugador) {
-        jugadors = new ArrayList<*Jugadors>;
-        Jugador nou = new Jugador(idJugador, 0, 0);
-        jugadors.add()
+    /*
+        Registra un jugador. Si existeix, retorna tots els jugadors.
+        -> String idJugador
+        <- Es crea el jugador i es retorna un ArrayList de *jugadors. Si ja existia, no es crea.
+     */
+    public ArrayList<*Jugador> registrar(String idJugador) {
+        for (int i = 0; i < jugadors.size(); i++) {
+
+            Jugador tmp = jugadors.get(i);
+            if (Jugador.getIdJugador() == idJugador)
+                return jugadors;
+            else {
+                Jugador nou = new Jugador(idJugador, 0, 0);
+                jugadors.add(nou);
+                return jugdors;
+            }
+        }
     }
 
-    public String getIdJugador() {
-        return idJugador;
-    }
-
-    public void setIdJugador(String idJugador) {
-        this.idJugador = idJugador;
+    public ArrayList<*Jugador> getJugadors() {
+        return jugadors;
     }
 }

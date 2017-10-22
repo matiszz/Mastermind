@@ -1,3 +1,5 @@
+/* Clase hecha por Mati */
+
 public class Rellotge{
     int begin;
     int end;
@@ -5,7 +7,7 @@ public class Rellotge{
 
     /*
         Inicia el rellotge.
-        < Retorna 1 per indicar que ha sigut correcte.
+        <- Retorna 1 per indicar que ha sigut correcte.
      */
     public void iniciar_rellotge() {
         begin = System.currentTimeMillis();
@@ -14,8 +16,8 @@ public class Rellotge{
 
     /*
         Continua el rellotge.
-        > Se li passa com a paràmetre el temps en millisegons.
-        < Retorna 1 per indicar que ha sigut correcte.
+        -> Se li passa com a paràmetre el temps en millisegons.
+        <- Retorna 1 per indicar que ha sigut correcte.
      */
     public void continuar_rellotge(int time) {
         begin = time;
@@ -24,7 +26,7 @@ public class Rellotge{
 
     /*
         Atura el rellotge.
-        < Retorna el temps en millisegons.
+        <- Retorna el temps en millisegons.
      */
     public String aturar_rellotge() {
         end = System.currentTimeMillis();
@@ -34,7 +36,7 @@ public class Rellotge{
 
     /*
         Retorna el temps guardat.
-        < El retorna un string amb el temps en format hh:mm:ss
+        <- El retorna un string amb el temps en format hh:mm:ss
      */
     public String getTime() {
         String hhmmss = String.format("%02d:%02d:%02d",

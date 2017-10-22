@@ -11,8 +11,12 @@ public class Jugador {
 		this.partidesJugades = partidesJugades;
 		this.partidesGuanyades = partidesGuanyades;
 	}
-	
-	public int getPartidesJugades() {
+
+    public String getIdJugador() {
+        return idJugador;
+    }
+
+    public int getPartidesJugades() {
 		return partidesJugades;
 	}
 	
