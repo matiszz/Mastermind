@@ -8,9 +8,9 @@
     - [x] **Persona:** Sergi
     - [x] **CPU:** Sergi
       - [ ] **Algorisme:** 
-  - [ ] **CodeMaker:** Raulin
-    - [ ] **Persona:** Raulin
-    - [ ] **CPU:** Raulin
+  - [x] **CodeMaker:** Raulin
+    - [x] **Persona:** Raulin
+    - [x] **CPU:** Raulin
 - [x] **Jugada:** Sergi
 - [x] **Partida:** Mati
 - [x] **Resultat:** Mati
