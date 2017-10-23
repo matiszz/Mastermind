@@ -3,18 +3,18 @@
 ## Repartición de clases
 - [x] **Ranking:** Sergi
 - [x] **Registre:** Mati
-- [x] **Jugador:** Raulin
+- [x] **Jugador:** Raul
   - [x] **CodeBreaker:** Sergi
     - [x] **Persona:** Sergi
     - [x] **CPU:** Sergi
       - [ ] **Algorisme:** 
-  - [x] **CodeMaker:** Raulin
-    - [x] **Persona:** Raulin
+  - [x] **CodeMaker:** Raul
+    - [x] **Persona:** Raul
     - [x] **CPU:** Raulin
 - [x] **Jugada:** Sergi
 - [x] **Partida:** Mati
 - [x] **Resultat:** Mati
 - [x] **Tauler:** Mati
-- [x] **GeneradorPartides:** Raulin
+- [x] **GeneradorPartides:** Raul
 - [x] **Clock:** Mati
 - [ ] **ControladorDeDomin:**
