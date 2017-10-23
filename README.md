@@ -10,7 +10,7 @@
       - [ ] **Algorisme:** 
   - [x] **CodeMaker:** Raul
     - [x] **Persona:** Raul
-    - [x] **CPU:** Raulin
+    - [x] **CPU:** Raul
 - [x] **Jugada:** Sergi
 - [x] **Partida:** Mati
 - [x] **Resultat:** Mati
