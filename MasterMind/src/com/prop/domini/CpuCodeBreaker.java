@@ -1,5 +1,4 @@
-
-
+package com.prop.domini;
 public class CpuCodeBreaker extends CodeBreaker {
 		Algorisme algorisme;
 		

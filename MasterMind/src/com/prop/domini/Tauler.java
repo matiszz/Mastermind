@@ -1,5 +1,6 @@
-/* Clase hecha por Mati */
 package com.prop.domini;
+/* Clase hecha por Mati */
+
 
 import java.lang.System.*;
 

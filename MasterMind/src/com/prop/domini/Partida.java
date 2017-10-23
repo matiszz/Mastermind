@@ -1,10 +1,14 @@
-/* Clase hecha por Mati */
 package com.prop.domini;
+/* Clase hecha por Mati */
 
-import Jugada;
+
 import java.util.*;
+import Jugada;
+import com.prop.domini;
 
 public class Partida {
+
+
     int idPartida;
     String mode;
     int temps;

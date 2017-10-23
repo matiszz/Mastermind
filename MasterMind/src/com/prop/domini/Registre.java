@@ -1,10 +1,11 @@
-/* Clase hecha por Mati */
 package com.prop.domini;
+/* Clase hecha por Mati */
 
-import Jugador;
+
 import java.util.*;
 
-public class Registre {
+impimport Jugador;
+ort com.prop.domini{
     String idJugador;
     ArrayList<*Jugador> jugadors = new ArrayList<*Jugadors>;;
 

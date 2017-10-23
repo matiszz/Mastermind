@@ -1,8 +1,3 @@
-/Algorisme.class
-/Driver1.class
-/Driver2.class
-/Driver3.class
-/GeneradorJocs.class
-/ControladorDeDomini.class
-/CpuCodeBreaker.class
-/PersonaCodeBreaker.class
+/com/
+/domini/
+/persistencia/

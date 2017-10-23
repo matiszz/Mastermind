@@ -1,3 +1,5 @@
+package com.prop.domini;
+
 
 public class FilaRanking {
 	int punts;

@@ -1,6 +1,7 @@
 package com.prop.domini;
 
 
+
 public class GeneradorJocs {
 	int numFiles;
 	int longCodi;

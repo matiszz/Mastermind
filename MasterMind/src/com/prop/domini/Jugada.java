@@ -1,3 +1,6 @@
+package com.prop.domini;
+
+import com.prop.domini.Partida;
 
 public class Jugada {
 	int numJugada;

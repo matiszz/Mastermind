@@ -1,5 +1,6 @@
 package com.prop.domini;
 
+
 import com.prop.persistencia.Database;
 
 public class Driver1 {
