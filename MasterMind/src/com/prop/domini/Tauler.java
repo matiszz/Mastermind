@@ -1,7 +1,6 @@
 package com.prop.domini;
 /* Clase hecha por Mati */
 
-
 import java.lang.System.*;
 
 public class Tauler {

@@ -1,7 +1,6 @@
 package com.prop.domini;
 /* Clase hecha por Mati */
 
-
 import java.lang.System.*;
 
 public class Rellotge{
@@ -9,11 +8,15 @@ public class Rellotge{
     int end;
     int ellapsed;
 
+    public Rellotge() {
+        iniciar_rellotge();
+    }
+
     /*
-        Inicia el rellotge.
-        <- Retorna 1 per indicar que ha sigut correcte.
-     */
-    public void iniciar_rellotge() {
+            Inicia el rellotge.
+            <- Retorna 1 per indicar que ha sigut correcte.
+         */
+    public void iniciarRellotge() {
         begin = System.currentTimeMillis();
         return 1;
     }
@@ -23,7 +26,7 @@ public class Rellotge{
         -> Se li passa com a paràmetre el temps en millisegons.
         <- Retorna 1 per indicar que ha sigut correcte.
      */
-    public void continuar_rellotge(int time) {
+    public void continuarRellotge(int time) {
         begin = time;
         return 1;
     }
@@ -32,7 +35,7 @@ public class Rellotge{
         Atura el rellotge.
         <- Retorna el temps en millisegons.
      */
-    public String aturar_rellotge() {
+    public int aturarRellotge() {
         end = System.currentTimeMillis();
         ellapsed = end - begin;
         return ellapsed;

@@ -1,13 +1,11 @@
 package com.prop.domini;
 /* Clase hecha por Mati */
 
-
 import java.util.*;
-import Jugada;
-import com.prop.domini;
+import com.prop.domini.*;
+import com.prop.persistencia.*;
 
 public class Partida {
-
 
     int idPartida;
     String mode;
@@ -16,6 +14,7 @@ public class Partida {
     int puntuacio;
     boolean estat;
     ArrayList<*Jugada> jugades;
+    Rellotge clock;
 
     public Partida(int idPartida, String mode, int temps, int numJugades, int puntuacio, boolean estat) {
         this.idPartida = idPartida;
@@ -24,11 +23,18 @@ public class Partida {
         this.numJugades = numJugades;
         this.puntuacio = puntuacio;
         this.estat = estat;
+        clock = new Rellotge();
     }
 
     public void guardarPartida() {
-
+        temps = clock.aturarRellotge();
     }
+
+    public void iniciarPartida() {
+        clock.iniciarRellotge();
+    }
+
+
 
     /* ############################################################################# */
     /* ############################# Getters i Setters ############################# */
