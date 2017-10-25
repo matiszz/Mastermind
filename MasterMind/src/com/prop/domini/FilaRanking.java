@@ -2,20 +2,25 @@ package com.prop.domini;
 
 
 public class FilaRanking {
-	int punts;
+	int intents;
 	String jugador;
 	
-	public FilaRanking(int punts, String jugador) {
-		this.punts = punts;
+	public FilaRanking() {
+		this.intents = 0;
+		this.jugador = "Posicio no ocupada";
+	}
+	
+	public FilaRanking(int intents, String jugador) {
+		this.intents = intents;
 		this.jugador = jugador;
 	}
 	
-	public int getpunts() {
-		return punts;
+	public int getintents() {
+		return intents;
 	}
 	
-	public void setpunts(int punts) {
-		this.punts = punts;
+	public void setintents(int intents) {
+		this.intents = intents;
 	}
 	
 	public String getjugador() {
