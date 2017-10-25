@@ -34,7 +34,9 @@ public class Partida {
         clock.iniciarRellotge();
     }
 
-
+    public void reanudaPartida() {
+        clock.continuarRellotge(temps);
+    }
 
     /* ############################################################################# */
     /* ############################# Getters i Setters ############################# */
