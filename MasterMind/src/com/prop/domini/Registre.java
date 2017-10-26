@@ -1,37 +1,37 @@
 package com.prop.domini;
-/* Clase hecha por Mati */
 
+import java.util.ArrayList;
 
-import java.util.*;
-import com.prop.domini.*;
+public class Registre {
+	 ArrayList<Jugador> jugadors;
 
-public class Registre{
-    ArrayList<Jugador> jugadors;
+	    public Registre() {
+	        jugadors = new ArrayList<Jugador>();
+	    }
 
-    public Registre() {
-        jugadors = new ArrayList<Jugador>();
-    }
-
-    /*
-    Registra un jugador. Si existeix, retorna tots els jugadors.
-        -> String idJugador
-        <- Es crea el jugador i es retorna un ArrayList de *jugadors. Si ja existia, no es crea.
-     */
-    public ArrayList<Jugador> registrar(String idJugador) {
-        for (int i = 0; i < jugadors.size(); ++i) {
-
-            Jugador tmp = jugadors.get(i);
-            if (tmp.getIdJugador() == idJugador)
-                return jugadors;
-            else {
-                Jugador nou = new Jugador(idJugador, "juan", 0, 0);
+	    /*
+	    Registra un jugador. Si existeix, retorna tots els jugadors.
+	        -> String idJugador
+	        <- Es crea el jugador i es retorna un ArrayList de *jugadors. Si ja existia, no es crea.
+	     */
+	    public ArrayList<Jugador> registrar(String idJugador) {
+	    	boolean trobat = false;
+	        for (int i = 0; i < jugadors.size() && !trobat; ++i) {
+	            Jugador tmp = jugadors.get(i);
+	            if (tmp.getIdJugador().equals(idJugador)) {
+	            	trobat = true;
+	            }
+	        }
+	        if (trobat) 
+	        	return jugadors;
+	        else {
+	        	Jugador nou = new Jugador(idJugador, "juan", 0, 0);
                 jugadors.add(nou);
                 return jugadors;
             }
-        }
-    }
+	    }
 
-    public ArrayList<Jugador> getJugadors() {
-        return jugadors;
-    }
+	    public ArrayList<Jugador> getJugadors() {
+	        return jugadors;
+	}
 }
