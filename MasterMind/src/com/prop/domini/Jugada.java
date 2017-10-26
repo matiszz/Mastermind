@@ -1,20 +1,32 @@
 package com.prop.domini;
 
+import java.util.ArrayList;
+
 import com.prop.domini.Partida;
 
 public class Jugada {
 	int numJugada;
-	int codiProposat[];
-	int codiRespost[];
+	ArrayList<String> codiProposat;
+	ArrayList<String> codiRespost;
 	boolean encert;
 	Jugador jugador;
 	Partida partida;
 	
-	public Jugada(int numJugada, int codiProposat[], int codiRespost[], boolean encert) {
+	public Jugada (Partida p, Jugador j) {
+		this.numJugada = 0 ;
+		this.encert = false;
+		this.jugador = j;
+		this.partida = p;
+		
+	}
+	
+	public Jugada(int numJugada,ArrayList<String> codiProposat, ArrayList<String> codiRespost, boolean encert, Jugador jugador, Partida partida) {
 		this.numJugada = numJugada;
 		this.codiProposat = codiProposat;
 		this.codiRespost = codiRespost;
 		this.encert = encert;
+		this.jugador = jugador;
+		this.partida = partida;
 	}
 	
 	//Setters
@@ -22,11 +34,11 @@ public class Jugada {
 		this.numJugada = numJugada;
 	}
 	
-	public void setcodiProposat(int codiProposat[]) {	
+	public void setcodiProposat(ArrayList<String> codiProposat) {	
 		this.codiProposat = codiProposat;
 	}
 	
-	public void setcodiRespost(int codiRespost[]) {	
+	public void setcodiRespost(ArrayList<String> codiRespost) {	
 		this.codiRespost = codiRespost;
 	}
 	
@@ -48,11 +60,11 @@ public class Jugada {
 		return numJugada;
 	}
 	
-	public int[] getcodiProposat() {
+	public ArrayList<String> getcodiProposat() {
 		return codiProposat;
 	}
 
-	public int[] getcodiRespost() {
+	public ArrayList<String> getcodiRespost() {
 		return codiRespost;
 	}
 
