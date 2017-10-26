@@ -1,8 +1,6 @@
 package com.prop.domini;
 /* Clase hecha por Mati */
 
-import java.lang.System.*;
-
 public class Tauler {
     int numFiles;
     int numColumnes;
@@ -18,16 +16,16 @@ public class Tauler {
     }
 
     /*
-        Afegeix una combinació al tauler.
+    Afegeix una combinació al tauler.
         -> Li passem el número de fila (coemnçant per 0) i un vector de chars amb la combinació.
         <- Retorna 0 si la entrada no és la esperada, 1 si el tauler està ple.
            Si no hi ha errors, retorna el tauler amb la nova fila afegida.
-     */
+    */
     public char[][] afegirCombinacio(int fila, char[] combinacio) {
-        if (combinacio.size() != numColumnes) // Si la entrada no és la esperada
+        /*if (combinacio.length != numColumnes) // Si la entrada no és la esperada
             return 0;
         if (fila > numFiles) // Si ja hem ocupat totes les files
-            return  1;
+            return  1; */
 
         for (int i = 0; i < numColumnes; i++) {
             tauler[fila][i] = combinacio[i];
@@ -37,16 +35,16 @@ public class Tauler {
     }
 
     /*
-        Indica quantes files queden lliures
+    Indica quantes files queden lliures
         <- Retorna el número de files que queden vuides.
-     */
+    */
     public int quantesQueden() {
         return numFiles-ultimaPlena;
     }
 
     /*
-        Imprimeix l'estat actual del tauler.
-     */
+    Imprimeix l'estat actual del tauler.
+    */
     public void printTauler() {
         for (int i = 0; i < numFiles; i++) {
             for (int j = 0; j < numColumnes; j++) {

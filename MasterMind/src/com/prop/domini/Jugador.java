@@ -21,6 +21,10 @@ public class Jugador {
         this.CPU = CPU;
     }
 
+    public String getIdJugador() {
+        return idJugador;
+    }
+
     public String getNomJugador(String idJugador) {
         return nomJugador;
     }

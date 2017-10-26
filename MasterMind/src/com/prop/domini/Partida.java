@@ -9,11 +9,11 @@ public class Partida {
 
     int idPartida;
     String mode;
-    int temps;
+    long temps;
     int numJugades;
     int puntuacio;
     boolean estat;
-    ArrayList<*Jugada> jugades;
+    ArrayList<Jugada> jugades;
     Rellotge clock;
 
     public Partida(int idPartida, String mode, int temps, int numJugades, int puntuacio, boolean estat) {
@@ -58,7 +58,7 @@ public class Partida {
         this.mode = mode;
     }
 
-    public int getTemps() {
+    public long getTemps() {
         return temps;
     }
 

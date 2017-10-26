@@ -1,9 +1,7 @@
 package com.prop.domini;
 
-import java.util.ArrayList;
-
+import java.util.*;
 import com.prop.domini.*;
-
 
 public class Driver2 {
 	//Driver para las clases Jugador,Registre,Ranking
@@ -19,48 +17,65 @@ public class Driver2 {
 	 */
 	
 	public static void main (String args[]) {
-			System.out.println("Benvingut a Mastermind! Selecciona una de les següents opcions:");
-			System.out.println("1. Registrar un Jugador");
-			System.out.println("2. Crear un Registre");
-			System.out.println("3. Consultar informació d'un jugador");
-			System.out.println("4. Crear un Ranking");
-			System.out.println("5. Consultar el Ranking");
-			System.out.println("6. Actualitzar el Ranking");
-			 
-		StringBuffer str=new StringBuffer();
+        System.out.println("Benvingut a Mastermind! Selecciona una de les següents opcions:");
+        System.out.println(" 0. Sortir del menú");
+        System.out.println(" 1. Registrar un Jugador");
+        System.out.println(" 2. Crear un Registre");
+        System.out.println(" 3. Consultar informació d'un jugador");
+        System.out.println(" 4. Crear un Ranking");
+        System.out.println(" 5. Consultar el Ranking");
+        System.out.println(" 6. Actualitzar el Ranking");
+        
+        StringBuffer str = new StringBuffer();
+        Scanner lector = new Scanner(System.in);
+		Registre reg;
 		char c;
-		try{
+
+		try {
 			Ranking r = new Ranking();
-			while ((c=(char)System.in.read()) != '0' ){
-				
-			        	switch(c) {
-			        		case '4': 
-			        			r = new Ranking();
-			        		break;
-			        		case '5':
-			        			
-			        			if(r.ranking_buit(1)) System.out.println("Ranking fácil vacio, añade primero algun record");
-			        			else r.mostra_ranking(1);
-			        			if(r.ranking_buit(2)) System.out.println("Ranking medio vacio, añade primero algun record");
-			        			else r.mostra_ranking(2);
-			        			if(r.ranking_buit(2)) System.out.println("Ranking difícil vacio, añade primero algun record");
-			        			else r.mostra_ranking(3);
-			        		break;
-			        		case '6':
-			        			FilaRanking f = new FilaRanking(20,"Pepito");
-			        			r.afegeix_fila(f, 1);
-			        			FilaRanking f2 = new FilaRanking(1,"Pepito");
-			        			r.afegeix_fila(f2, 1);
-			        			FilaRanking f3 = new FilaRanking(10,"Marc");
-			        			r.afegeix_fila(f3, 1);
-			        		break;
-			        	}
+			while ((c = (char)System.in.read()) != '0' ) {
+                switch(c) {
+                    case '1':
+                        if (reg == null) System.out.println("No has creat cap Registre");
+                        else {
+                            System.out.print("Nom d'usuari del jugador: ");
+                            String id = lector.nextLine();
+                            ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
+                            jugadors = reg.registrar(id);
+                            System.out.println("Aquests son tots els jugadors registrats:");
+                            for (int i = 0; i < jugadors.size(); i++) System.out.println("  " + jugadors.get(i).getIdJugador()
+                        }
+                        break;
+                    case '2':
+                        if (reg != null) System.out.println("Ja has creat un Registre");
+                        else reg = new Registre();
+                        break;
+                    case '3':
+                        break;
+                    case '4':
+                        r = new Ranking();
+                    break;
+                    case '5':
+                        if(r.ranking_buit(1)) System.out.println("Ranking fácil vacio, añade primero algun record");
+                        else r.mostra_ranking(1);
+                        if(r.ranking_buit(2)) System.out.println("Ranking medio vacio, añade primero algun record");
+                        else r.mostra_ranking(2);
+                        if(r.ranking_buit(2)) System.out.println("Ranking difícil vacio, añade primero algun record");
+                        else r.mostra_ranking(3);
+                    break;
+                    case '6':
+                        FilaRanking f = new FilaRanking(20,"Pepito");
+                        r.afegeix_fila(f, 1);
+                        FilaRanking f2 = new FilaRanking(1,"Pepito");
+                        r.afegeix_fila(f2, 1);
+                        FilaRanking f3 = new FilaRanking(10,"Marc");
+                        r.afegeix_fila(f3, 1);
+                    break;
+                }
 			}            
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-	
-			   
 	}
 }

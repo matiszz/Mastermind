@@ -3,32 +3,35 @@ package com.prop.domini;
 
 
 import java.util.*;
+import com.prop.domini.*;
 
-impimport Jugador;
-ort com.prop.domini{
-    String idJugador;
-    ArrayList<*Jugador> jugadors = new ArrayList<*Jugadors>;;
+public class Registre{
+    ArrayList<Jugador> jugadors;
+
+    public Registre() {
+        jugadors = new ArrayList<Jugador>();
+    }
 
     /*
-        Registra un jugador. Si existeix, retorna tots els jugadors.
+    Registra un jugador. Si existeix, retorna tots els jugadors.
         -> String idJugador
         <- Es crea el jugador i es retorna un ArrayList de *jugadors. Si ja existia, no es crea.
      */
-    public ArrayList<*Jugador> registrar(String idJugador) {
-        for (int i = 0; i < jugadors.size(); i++) {
+    public ArrayList<Jugador> registrar(String idJugador) {
+        for (int i = 0; i < jugadors.size(); ++i) {
 
             Jugador tmp = jugadors.get(i);
-            if (Jugador.getIdJugador() == idJugador)
+            if (tmp.getIdJugador() == idJugador)
                 return jugadors;
             else {
-                Jugador nou = new Jugador(idJugador, 0, 0);
+                Jugador nou = new Jugador(idJugador, "juan", 0, 0);
                 jugadors.add(nou);
-                return jugdors;
+                return jugadors;
             }
         }
     }
 
-    public ArrayList<*Jugador> getJugadors() {
+    public ArrayList<Jugador> getJugadors() {
         return jugadors;
     }
 }
