@@ -21,6 +21,7 @@ public class Driver1 {
 	
 	public static void main (String args[]) {
 		System.out.println("Benvingut a Mastermind! Selecciona una de les següents opcions:");
+		System.out.println("0. Sortir del Driver");
 		System.out.println("1. Crear generador de jocs");
 		System.out.println("2. Crear joc per defecte");
 		System.out.println("3. Crear joc personalitzat");
@@ -35,11 +36,14 @@ public class Driver1 {
 		
 		StringBuffer str=new StringBuffer();
 		char c;
-		try{
+		try {
 			Ranking r = new Ranking();
 			while ((c=(char)System.in.read()) != '0' ){
 				
 				switch(c) {
+					case '6':
+						System.out.println();
+					break;
 					case '7': 
 						Jugada jug = new Jugada(); //Jugada necesita de jugador i partida mínimo para crearse
 					break;

@@ -4,15 +4,13 @@ package com.prop.domini;
 
 public class Jugador {
     String idJugador; //identificador de la clase
-    String nomJugador;
     int partidesJugades;
     int partidesGuanyades;
 
     boolean CPU;
 
-    public Jugador(String idJugador, String nomJugador, int partidesJugades, int partidesGuanyades) {
+    public Jugador(String idJugador, int partidesJugades, int partidesGuanyades) {
         this.idJugador = idJugador;
-        this.nomJugador = nomJugador;
         this.partidesJugades = partidesJugades;
         this.partidesGuanyades = partidesGuanyades;
     }
@@ -23,14 +21,6 @@ public class Jugador {
 
     public String getIdJugador() {
         return idJugador;
-    }
-
-    public String getNomJugador(String idJugador) {
-        return nomJugador;
-    }
-
-    public void setNomJugador(String nomJugador) {
-        this.nomJugador = nomJugador;
     }
 
     public int getPartidesJugades() {

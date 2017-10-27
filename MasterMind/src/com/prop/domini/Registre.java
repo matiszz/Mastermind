@@ -25,7 +25,7 @@ public class Registre {
 		if (trobat) 
 			return jugadors;
 		else {
-			Jugador nou = new Jugador(idJugador, "juan", 0, 0);
+			Jugador nou = new Jugador(idJugador, 0, 0);
 			jugadors.add(nou);
 			return jugadors;
 		}
@@ -45,11 +45,16 @@ public class Registre {
 		<- Retorna el jugador amb identificador idJugador
 	*/
 	public Jugador getJugador(String idJugador) {
-		for (int i = 0; i < jugadors.size(); ++i) {
-			Jugador tmp = jugadors.get(i);
+		boolean trobat = false;
+		Jugador tmp;
+		for (int i = 0; i < jugadors.size() && !trobat; ++i) {
+			tmp = jugadors.get(i);
 			if (tmp.getIdJugador().equals(idJugador)) {
-				return tmp;
+				trobat = true;
 			}
 		}
+		if (trobat) return tmp;
+		else tmp = new Jugador(idJugador, 0, 0);
+		return tmp;
 	}
 }

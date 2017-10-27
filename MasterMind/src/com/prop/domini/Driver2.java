@@ -28,7 +28,7 @@ public class Driver2 {
         
         StringBuffer str = new StringBuffer();
         Scanner lector = new Scanner(System.in);
-		Registre reg;
+		Registre reg = null;
 		char c;
 
 		try {
@@ -39,7 +39,7 @@ public class Driver2 {
                         if (reg == null) System.out.println("No has creat cap Registre");
                         else {
                             System.out.print("Nom d'usuari del jugador: ");
-                            String id = lector.nextLine();
+                            String id = lector.next();
                             ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
                             jugadors = reg.registrar(id);
                             System.out.println("Aquests son tots els jugadors registrats:");
@@ -48,11 +48,14 @@ public class Driver2 {
                         break;
                     case '2':
                         if (reg != null) System.out.println("Ja has creat un Registre");
-                        else reg = new Registre();
+                        else {
+                        	reg = new Registre();
+                        	System.out.println("Registre creat.");
+                        }
                         break;
                     case '3':
                         System.out.print("Nom d'usuari del jugador: ");
-                        String idJugador = lector.nextLine();
+                        String idJugador = lector.next();
                         Jugador jug = reg.getJugador(idJugador);
                         // Este es de raul
                         break;
