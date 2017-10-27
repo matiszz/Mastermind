@@ -4,6 +4,8 @@ package com.prop.domini;
 public class ControladorDeDomini {
 		GeneradorJocs generador;
 		Ranking ranking;
+		Partida partida;
+		Jugador jugador;
 		
 		//Creadora 
 		public ControladorDeDomini(GeneradorJocs generador, Ranking ranking) {
@@ -73,6 +75,9 @@ public class ControladorDeDomini {
 			 b)torna a generar un nou joc
 			 Atura el clock
 			 */
+			int dificultat = generador.getDificultat();
+			FilaRanking f = new FilaRanking(partida.jugades.size(),jugador.getIdJugador());
+			ranking.afegeix_fila(f, dificultat);
 		}
 		
 		public void continuar_partida() {
@@ -85,15 +90,16 @@ public class ControladorDeDomini {
 			/*
 			 Evalua el codi proposat comparant-lo amb la solució i retorna el resultat segons les regles
 			 del joc. (Blanc color i la posició correcte, Negre si color correcte, posició incorrecte, 0 si
-			 no hi ha res bé)
+			 no hi ha res bé).
 			 Anotación: 0 o cualquier otro valor, la idea es señalizar un espacio en blanco
 			 */
+			
 		}
 		public void consultar_ranking() {
-			/*
-			 Crida a la funcion de ranking que retorna el ranking actual. 
-			 */
-		}
+			/* Crida a la funcion de ranking que retorna el ranking actual. */
+			for(int i = 1; i <=3;++i)
+					ranking.mostra_ranking(i);
+		}	
 		
 		
 }
