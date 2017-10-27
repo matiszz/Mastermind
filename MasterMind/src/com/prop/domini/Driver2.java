@@ -4,7 +4,7 @@ import java.util.*;
 import com.prop.domini.*;
 
 public class Driver2 {
-	//Driver para las clases Jugador,Registre,Ranking
+	//Driver para las clases Jugador,Registre,Ranking,Fila Ranking
 	
 	/*
 	Opciones del menú
@@ -14,6 +14,7 @@ public class Driver2 {
 	4. Crear Ranking
 	5. ConsultarRanking
 	6. ActualitzarRanking
+	7. Crea una FilaRanking
 	 */
 	
 	public static void main (String args[]) {
@@ -25,14 +26,16 @@ public class Driver2 {
         System.out.println(" 4. Crear un Ranking");
         System.out.println(" 5. Consultar el Ranking");
         System.out.println(" 6. Actualitzar el Ranking");
+        System.out.println(" 7. Crea una FilaRanking");
         
         StringBuffer str = new StringBuffer();
         Scanner lector = new Scanner(System.in);
 		Registre reg = null;
 		char c;
-
+		Ranking r = null;
+		FilaRanking f = null;
+		
 		try {
-			Ranking r = new Ranking();
 			while ((c = (char)System.in.read()) != '0' ) {
                 switch(c) {
                     case '1':
@@ -60,24 +63,41 @@ public class Driver2 {
                         // Este es de raul
                         break;
                     case '4':
-                        r = new Ranking();
+                       if(r != null) System.out.println("Ja existeix un Ranking");
+                       else r = new Ranking();
                     break;
                     case '5':
-                        if(r.ranking_buit(1)) System.out.println("Ranking fácil vacio, añade primero algun record");
-                        else r.mostra_ranking(1);
-                        if(r.ranking_buit(2)) System.out.println("Ranking medio vacio, añade primero algun record");
-                        else r.mostra_ranking(2);
-                        if(r.ranking_buit(2)) System.out.println("Ranking difícil vacio, añade primero algun record");
-                        else r.mostra_ranking(3);
+                    		if(r == null) System.out.println("Primer has de crear un Ranking");
+                    		else {
+                    			if(r.ranking_buit(1)) System.out.println("Ranking fácil vacio, añade primero algun record");
+                    			else r.mostra_ranking(1);
+                             if(r.ranking_buit(2)) System.out.println("Ranking medio vacio, añade primero algun record");
+                             else r.mostra_ranking(2);
+                             if(r.ranking_buit(2)) System.out.println("Ranking difícil vacio, añade primero algun record");
+                             else r.mostra_ranking(3);
+                             System.out.println("Ranking actualitzat correctament");
+                    		}
+                        
                     break;
                     case '6':
-                        FilaRanking f = new FilaRanking(20,"Pepito");
-                        r.afegeix_fila(f, 1);
-                        FilaRanking f2 = new FilaRanking(1,"Pepito");
-                        r.afegeix_fila(f2, 1);
-                        FilaRanking f3 = new FilaRanking(10,"Marc");
-                        r.afegeix_fila(f3, 1);
+                    	if(r == null) System.out.println("Primer has de crear un Ranking");
+                		else {
+                			if(f == null) System.out.println("Primer has de crear una fila Ranking");
+                			else {
+                				System.out.println("Escriu la dificultat entre 1(minima) y 3(maxima)");
+                        		int dif = lector.nextInt(); 
+                				r.afegeix_fila(f,dif);
+                				System.out.println("FilaRanking creada Correctament");
+                			}
+                       }
                     break;
+                    case '7':
+                    		System.out.println("Escriu la puntuació entre 1 y 25");
+                    		int puntuacio = lector.nextInt();
+                    		System.out.println("Escriu el nom del jugador");
+                    		String nom = lector.next();
+                    		f = new FilaRanking(puntuacio,nom);
+                    	break;
                 }
 			}            
 		}
