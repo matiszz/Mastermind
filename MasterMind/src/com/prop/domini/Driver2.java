@@ -43,7 +43,7 @@ public class Driver2 {
                             ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
                             jugadors = reg.registrar(id);
                             System.out.println("Aquests son tots els jugadors registrats:");
-                            for (int i = 0; i < jugadors.size(); i++) System.out.println("  " + jugadors.get(i).getIdJugador()
+                            for (int i = 0; i < jugadors.size(); i++) System.out.println("  " + jugadors.get(i).getIdJugador());
                         }
                         break;
                     case '2':
@@ -51,6 +51,10 @@ public class Driver2 {
                         else reg = new Registre();
                         break;
                     case '3':
+                        System.out.print("Nom d'usuari del jugador: ");
+                        String idJugador = lector.nextLine();
+                        Jugador jug = reg.getJugador(idJugador);
+                        // Este es de raul
                         break;
                     case '4':
                         r = new Ranking();

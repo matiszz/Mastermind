@@ -27,8 +27,8 @@ public class Driver1 {
 		System.out.println("4. Crear partida");
 		System.out.println("5. Jugar partida nova");
 		System.out.println("6. Continuar partida guardada");
-		System.out.println("7.Crear Jugada");
-		System.out.println("8 .Fer Jugada");
+		System.out.println("7. Crear Jugada");
+		System.out.println("8. Fer Jugada");
 		
 		db = new Database("MasterMind-Database.txt");
 		db.createDatabase();
@@ -39,17 +39,15 @@ public class Driver1 {
 			Ranking r = new Ranking();
 			while ((c=(char)System.in.read()) != '0' ){
 				
-			        	switch(c) {
-			        		case '7': 
-			        			Jugada jug = new Jugada(); //Jugada necesita de jugador i partida mínimo para crearse
-			        		break;
-			        	}
+				switch(c) {
+					case '7': 
+						Jugada jug = new Jugada(); //Jugada necesita de jugador i partida mínimo para crearse
+					break;
+				}
 			}            
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-	
-		
 	}
 }
