@@ -1,13 +1,14 @@
 package com.prop.domini;
 
+
 public class GeneradorJocs {
 	int numFiles;
 	int longCodi;
 	int numColors;
-	boolean mostraCodi;
-	String dificultat;
+	boolean mostraCodi; //que hace mostraCodi?¿
+	int dificultat;
 	
-	public GeneradorJocs(int numFiles, int longCodi, int numColors, boolean mostraCodi, String dificultat) {
+	public GeneradorJocs(int numFiles, int longCodi, int numColors, boolean mostraCodi, int dificultat) {
 		this.numFiles = numFiles;
 		this.longCodi = longCodi;
 		this.numColors = numColors;
@@ -47,15 +48,11 @@ public class GeneradorJocs {
 		this.mostraCodi = mostraCodi;
 	}
 
-	public String getDificultat() {
+	public int getDificultat() {
 		return dificultat;
 	}
 
-	public void setDificultat(String dificultat) {
+	public void setDificultat(int dificultat) {
 		this.dificultat = dificultat;
 	}
-	
-	
-	
-	
 }
