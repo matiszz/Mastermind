@@ -3,39 +3,65 @@ package com.prop.domini;
 import java.util.ArrayList;
 
 public class Algorisme {
+	ArrayList<String> posibilitats;
+	ArrayList<Character> jugat;
 	
-		public Algorisme() {};
+		public Algorisme() {
+			posibilitats = new ArrayList<String>();
+			jugat = new ArrayList<Character>();
+		};
 	
-		public void printa(ArrayList<Character> r) {
-			for(int i = 0; i < r.size(); i+=3) {
-				char c1,c2,c3;
-				c1 = r.get(i);
-				c2 = r.get(i+1);
-				c3 = r.get(i+2);
-				System.out.print(c1);
-				System.out.print(c2);
-				System.out.println(c3);
+		public void printa(ArrayList<String> r) {
+			for(String s : r) {
+				System.out.println(s);
 			}
 		}
 		
-		public void basic_backtrack(int pos,int columnes, ArrayList<Character> colors, ArrayList<Character> resultat){
-			if(pos == columnes) printa(resultat);
+		public void genera(int pos,int columnes, ArrayList<Character> colors, ArrayList<Character> resultat){
+			if(pos == columnes) {
+				String e = new String();
+				for(int i = 0; i < columnes;++i) {
+					e += resultat.get(i);
+				}
+				posibilitats.add(e);
+			}
 			else {
 				for(Character col:colors) {
 					resultat.add(col);
-					basic_backtrack(pos+1,columnes,colors,resultat);
+					genera(pos+1,columnes,colors,resultat);
 					resultat.remove(pos);
 				}
 			}
 		}
 		
-		public void basic(int columnes, ArrayList<Character>colors){ //Devuelve ArrayList<Character>
-			ArrayList<Character> resultat = new ArrayList<Character>();
-			ArrayList<String> codisgenerats = new ArrayList<String>();
+		public ArrayList<Character> genera_nova_jugada(ArrayList<Character> resposta){
+			//Analiza la respuesta para dar la siguiente jugada
+			ArrayList<Character> nova_jugada = new ArrayList<Character>();
+			for(Character c : resposta) {
+				if(c == B)
+					
+				else if( c == N)
+					
+				else {
+					
+				}
+			}
+			return resposta;
+		}
+		
+		public ArrayList<Character> basic(int primer,int columnes, ArrayList<Character>colors, ArrayList<Character> resposta){ 
+			//Devuelve ArrayList<Character>
+			
 			ArrayList<Character> intermedis = new ArrayList<Character>();
 			
-			basic_backtrack(0,columnes,colors,intermedis); 
-			
-			
+			if(primer == 1) {//Solo genera todas la soluciones una vez
+				genera(0,columnes,colors,intermedis); 
+				String jugada = posibilitats.get(0);
+				//Convertir String en arraylist<character>
+				return jugat;
+			}
+			else { //Hago otra jugada a partir de la respuesta
+				return genera_nova_jugada(resposta);
+			}
 		}
 }
