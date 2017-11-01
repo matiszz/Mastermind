@@ -30,10 +30,13 @@ public class Algorisme {
 			else {
 				ArrayList<Integer> copia = new ArrayList<Integer>();
 				copiar(intermig,copia);
+				int posn = pos+1;
 				for(int i = 0; i < colors; ++i) {
+					if(i != 0) copia.remove(pos);
 					copia.add(i);
-					genera_combinacions(pos+1,columnes, colors,copia);
-					copia.remove(pos);
+					
+					genera_combinacions(posn,columnes, colors,copia);
+					
 				}
 			}
 		}
@@ -42,6 +45,10 @@ public class Algorisme {
 			ArrayList<Integer> intermig = new ArrayList<Integer>();
 			if(resposta.isEmpty()) {
 				genera_combinacions(0,columnes,colors,intermig);
+				for(ArrayList<Integer> p : combinacions) {
+					printa(p);
+					System.out.println("");
+				}
 				return combinacions.get(0);
 			}
 			else {
