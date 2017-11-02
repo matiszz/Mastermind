@@ -1,7 +1,5 @@
 package com.prop.domini;
 
-
-
 public class Jugador {
     String idJugador; //identificador de la clase
     int partidesJugades;

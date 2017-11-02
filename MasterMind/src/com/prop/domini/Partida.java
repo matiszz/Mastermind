@@ -16,14 +16,15 @@ public class Partida {
     ArrayList<Jugada> jugades;
     Rellotge clock;
 
-    public Partida(int idPartida, String mode, int temps, int numJugades, int puntuacio, boolean estat) {
+    public Partida(int idPartida, String mode, boolean estat) {
         this.idPartida = idPartida;
         this.mode = mode;
-        this.temps = temps;
-        this.numJugades = numJugades;
-        this.puntuacio = puntuacio;
+        this.temps = 0;
+        this.numJugades = 0;
+        this.puntuacio = 0;
         this.estat = estat;
         clock = new Rellotge();
+        jugades = new ArrayList<Jugada>();
     }
 
     public void guardarPartida() {

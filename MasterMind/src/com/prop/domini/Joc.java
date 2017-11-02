@@ -1,36 +1,38 @@
 package com.prop.domini;
 
-import com.prop.domini.Joc;
+/* Classe creada por Mati */
 
-public class GeneradorJocs {
+import java.util.ArrayList;
+
+public class Joc {
 	int numFiles;
 	int longCodi;
 	int numColors;
-	boolean mostraCodi; //que hace mostraCodi?¿
+	boolean mostraCodi;
 	int dificultat;
-	Joc juego;
+	ArrayList<Partida> partides;
+	int lastId;
 	
-	public GeneradorJocs(int numFiles, int longCodi, int numColors, boolean mostraCodi, int dificultat) {
+	public Joc(int numFiles, int longCodi, int numColors, boolean mostraCodi, int dificultat) {
+		super();
 		this.numFiles = numFiles;
 		this.longCodi = longCodi;
 		this.numColors = numColors;
 		this.mostraCodi = mostraCodi;
 		this.dificultat = dificultat;
-		this.juego = null;
+		this.partides = new ArrayList<Partida>();
+		this.lastId = 0;
 	}
 	
-	public Joc generaJocDefault() {
-		juego = new Joc(numFiles, longCodi, numColors, mostraCodi, dificultat);
-		return juego;
-	}
-	
-	public Joc generaJocCustom(int numFiles, int longCodi, int numColors, boolean mostraCodi, int dificultat) {
-		juego = new Joc(numFiles, longCodi, numColors, mostraCodi, dificultat);
-		return juego;
+	public Partida crearPartida() {
+		Partida p = new Partida(lastId, "mode?", true);
+		lastId++;
+		partides.add(p);
+		return p;
 	}
 
-	public Joc getJoc() {
-		return juego;
+	public ArrayList<Partida> getPartides() {
+		return partides;
 	}
 	
 	public int getNumFiles() {
@@ -72,4 +74,6 @@ public class GeneradorJocs {
 	public void setDificultat(int dificultat) {
 		this.dificultat = dificultat;
 	}
+	
+	
 }
