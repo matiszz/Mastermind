@@ -46,7 +46,7 @@ public class Registre {
 	*/
 	public Jugador getJugador(String idJugador) {
 		boolean trobat = false;
-		Jugador tmp;
+		Jugador tmp = null;
 		for (int i = 0; i < jugadors.size() && !trobat; ++i) {
 			tmp = jugadors.get(i);
 			if (tmp.getIdJugador().equals(idJugador)) {

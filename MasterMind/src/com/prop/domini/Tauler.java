@@ -1,4 +1,7 @@
 package com.prop.domini;
+
+import java.util.Arrays;
+
 /* Clase hecha por Mati */
 
 public class Tauler {
@@ -13,6 +16,11 @@ public class Tauler {
         this.numColumnes = numColumnes;
         ultimaPlena = -1;
         tauler = new char[numFiles][numColumnes];
+        for (int i = 0; i < numFiles; i++) {
+			for (int j = 0; j < numColumnes; j++) {
+				tauler[i][j] = '-';
+			}
+		}
     }
 
     /*
@@ -48,7 +56,7 @@ public class Tauler {
     public void printTauler() {
         for (int i = 0; i < numFiles; i++) {
             for (int j = 0; j < numColumnes; j++) {
-                System.out.print(tauler[i][j] + ' ');
+                System.out.print(""+tauler[i][j] + ' ');
             }
             System.out.println();
         }
