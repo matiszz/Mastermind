@@ -47,15 +47,9 @@ public class Algorisme {
 			ArrayList<Integer> intermig = new ArrayList<Integer>();
 			if(resposta.isEmpty()) {
 				genera_combinacions(0,columnes,colors,intermig);
-				/*for(ArrayList<Integer> p : combinacions) {
-					printa(p);
-					System.out.println("");
-				}*/
-				return combinacions.get(0);
 			}
 			else {
-				for(int i = 0; i < resposta.size();++i) System.out.print(resposta.get(i));
-				/*for(int p = 0; p < columnes; ++p) {
+				for(int p = 0; p < columnes; ++p) {
 					int color = resposta.get(p);
 					if(color == 0 || color == 1) { //Tot malament o posicio malament
 						int incorrecte = jugat.get(p);
@@ -73,9 +67,11 @@ public class Algorisme {
 							if(comb.get(p) != correcte) combinacions.remove(p1);
 						}
 					}
-				}*/
-			return combinacions.get(0);
+				}
+			
 			}
+			jugat = combinacions.get(0);
+			return jugat;
 		}
 	
 }
