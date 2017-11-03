@@ -76,7 +76,6 @@ public class Driver2 {
 							System.out.println("Ranking difícil vacio, añade primero algun record");
 						else
 							r.mostra_ranking(3);
-						System.out.println("Ranking actualitzat correctament");
 					}
 
 					break;
@@ -90,7 +89,7 @@ public class Driver2 {
 							System.out.println("Escriu la dificultat entre 1(minima) y 3(maxima)");
 							int dif = lector.nextInt();
 							r.afegeix_fila(f, dif);
-							System.out.println("FilaRanking creada Correctament");
+							System.out.println("FilaRanking creada correctament");
 						}
 					}
 					break;
@@ -100,6 +99,7 @@ public class Driver2 {
 					System.out.println("Escriu el nom del jugador");
 					String nom = lector.next();
 					f = new FilaRanking(puntuacio, nom);
+					System.out.println("FilaRanking creada correctament");
 					break;
 				}
 			}
