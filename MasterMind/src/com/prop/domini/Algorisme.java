@@ -25,18 +25,20 @@ public class Algorisme {
 		}
 		
 		public void genera_combinacions(int pos, int columnes,int colors, ArrayList<Integer> intermig) {
-			if(pos == columnes)
-				combinacions.add(intermig);
+			if(pos == columnes) {
+				ArrayList<Integer> nou = new ArrayList<Integer>();
+				copiar(intermig,nou);
+				combinacions.add(nou);
+				
+			}
 			else {
 				ArrayList<Integer> copia = new ArrayList<Integer>();
 				copiar(intermig,copia);
 				int posn = pos+1;
 				for(int i = 0; i < colors; ++i) {
-					if(i != 0) copia.remove(pos);
+					if(i != 0) copia.remove(copia.size()-1);
 					copia.add(i);
-					
 					genera_combinacions(posn,columnes, colors,copia);
-					
 				}
 			}
 		}
@@ -45,11 +47,6 @@ public class Algorisme {
 			ArrayList<Integer> intermig = new ArrayList<Integer>();
 			if(resposta.isEmpty()) {
 				genera_combinacions(0,columnes,colors,intermig);
-				for(ArrayList<Integer> p : combinacions) {
-					printa(p);
-					System.out.println("");
-				}
-				return combinacions.get(0);
 			}
 			else {
 				for(int p = 0; p < columnes; ++p) {
@@ -71,8 +68,10 @@ public class Algorisme {
 						}
 					}
 				}
-			return combinacions.get(3);
+			
 			}
+			jugat = combinacions.get(0);
+			return jugat;
 		}
 	
 }
