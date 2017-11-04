@@ -64,7 +64,7 @@ public class Driver3 {
 						int k = 0;
 						while( k < 10 && !guanyat2) {
 								codiproposat = a2.five_guess(columnes2,colors2, resposta2);
-								for(int i = 0; i < codiproposat.size(); ++i) System.out.print(codiproposat.get(i));
+								for(int i = 0; i < codiproposat2.size(); ++i) System.out.print(codiproposat2.get(i));
 								resposta2.clear();
 								System.out.println("");
 								System.out.println("Fica la resposta al codi proposat");
