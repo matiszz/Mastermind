@@ -14,6 +14,8 @@ public class Driver3 {
 		System.out.println("3. Crea CodebreakerPersona");
 		System.out.println("4. Crear Algorisme");
 		System.out.println("5. Crea CodebreakerCpu");
+		System.out.println("6. Crea CodemakerCpu");
+		System.out.println("7. Crea CodebmakerPersona");
 		Scanner lector = new Scanner(System.in);
 		
 		Algorisme algor = null;
@@ -94,6 +96,12 @@ public class Driver3 {
 							CodeBreaker c3 = new CodeBreaker(true,algor);
 							System.out.println("Nou CodeBreaker Cpu creat correctament");
 						}
+					break;
+					case '6':
+						
+					break;
+					case '7':
+						
 					break;
 				}
 			}

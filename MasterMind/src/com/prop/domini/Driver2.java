@@ -16,6 +16,7 @@ public class Driver2 {
 		System.out.println(" 5. Consultar el Ranking");
 		System.out.println(" 6. Actualitzar el Ranking");
 		System.out.println(" 7. Crea una FilaRanking");
+		System.out.println(" 7. Crear Jugador");
 
 		StringBuffer str = new StringBuffer();
 		Scanner lector = new Scanner(System.in);
@@ -23,7 +24,8 @@ public class Driver2 {
 		char c;
 		Ranking r = null;
 		FilaRanking f = null;
-
+		Jugador j = null;
+		
 		try {
 			while ((c = (char) System.in.read()) != '0') {
 				switch (c) {

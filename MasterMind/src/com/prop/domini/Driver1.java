@@ -6,7 +6,7 @@ import java.util.Scanner;
 import com.prop.persistencia.Database;
 
 public class Driver1 {
-	// Driver para las clases GeneradorJoc,Joc,Partida,Tauler
+	// Driver para las clases GeneradorJoc,Jugada,Joc,Partida,Tauler
 	static Database db;
 
 	public static void main(String args[]) {
