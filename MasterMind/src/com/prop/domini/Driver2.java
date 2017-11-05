@@ -57,8 +57,10 @@ public class Driver2 {
 				case '4':
 					if (r != null)
 						System.out.println("Ja existeix un Ranking");
-					else
+					else {
 						r = new Ranking();
+						System.out.println("Ranking creat correctament");
+					}
 					break;
 				case '5':
 					if (r == null)
@@ -72,7 +74,7 @@ public class Driver2 {
 							System.out.println("Ranking medio vacio, añade primero algun record");
 						else
 							r.mostra_ranking(2);
-						if (r.ranking_buit(2))
+						if (r.ranking_buit(3))
 							System.out.println("Ranking difícil vacio, añade primero algun record");
 						else
 							r.mostra_ranking(3);
@@ -89,7 +91,7 @@ public class Driver2 {
 							System.out.println("Escriu la dificultat entre 1(minima) y 3(maxima)");
 							int dif = lector.nextInt();
 							r.afegeix_fila(f, dif);
-							System.out.println("FilaRanking creada correctament");
+							System.out.println("FilaRanking actualitzada correctament");
 						}
 					}
 					break;

@@ -26,9 +26,9 @@ public class Ranking {
 		r_dificil = dificil;
 	}
 	public boolean ranking_buit(int dificultat) {
-		if(dificultat == 1 && (r_facil.size() == 0) ) return true;
-		else if(dificultat == 2 && (r_medio.size() == 0) ) return true;
-		else if(dificultat == 3 && (r_facil.size() == 0) ) return true;
+		if(dificultat == 1 && (r_facil.isEmpty()) ) return true;
+		else if(dificultat == 2 && (r_medio.isEmpty()) ) return true;
+		else if(dificultat == 3 && (r_facil.isEmpty()) ) return true;
 		else return false;
 	}
 	
@@ -47,7 +47,7 @@ public class Ranking {
 				System.out.println("Ranking dificultat mitjana");
 				int i = 1;
 				for(FilaRanking fil:r_medio) {
-					System.out.println(i + ". alies: " + fil.jugador + "      intents: " + fil.jugador);
+					System.out.println(i + ". alies: " + fil.jugador + "      intents: " + fil.intents);
 					++i;
 				}
 			}
@@ -55,7 +55,7 @@ public class Ranking {
 				System.out.println("Ranking dificultat dificil");
 				int i = 1;
 				for(FilaRanking fil:r_dificil) {
-					System.out.println(i + ". alies: " + fil.jugador + "      intents: " + fil.jugador);
+					System.out.println(i + ". alies: " + fil.jugador + "      intents: " + fil.intents);
 					++i;
 				}
 			}
@@ -67,7 +67,7 @@ public class Ranking {
 		
 		if((dificultat < 1) || (dificultat > 3) ) return;
 		else if(dificultat == 1) {
-			if(r_facil.size() == 0) r_facil.add(f); 
+			if(r_facil.isEmpty()) r_facil.add(f); 
 			else { //Si no está buida
 				boolean trobat = false;
 				int i,pos;
@@ -87,37 +87,41 @@ public class Ranking {
 			}
 		}
 		else if (dificultat == 2) {
-			if(r_medio.size() == 0) r_medio.add(f); 
+			if(r_medio.isEmpty()) r_medio.add(f); 
 			else { //Si no está buida
 				boolean trobat = false;
-				int i;
+				int pos,i;
+				pos = 0;
 				for(i = 0; !trobat && i< r_medio.size();++i) {
 					FilaRanking fila = r_medio.get(i);
 					if(fila.intents > f.intents) {
 						trobat = true;
+						pos = i;
 					}
 				}
 				if(!trobat && (r_medio.size() <10) ) r_medio.add(f); //Añado al final
 				else if(trobat) { //Añado en medio
-					r_medio.add(i,f);
+					r_medio.add(pos,f);
 					if(r_medio.size() == 10) r_medio.remove(10);
 				}
 			}
 		}
 		else {
-			if(r_dificil.size() == 0) r_dificil.add(f); 
+			if(r_dificil.isEmpty())	r_dificil.add(f);
 			else { //Si no está buida
 				boolean trobat = false;
-				int i;
+				int pos, i;
+				pos = 0;
 				for(i = 0; !trobat && i< r_dificil.size();++i) {
 					FilaRanking fila = r_dificil.get(i);
 					if(fila.intents > f.intents) {
 						trobat = true;
+						pos = i;
 					}
 				}
 				if(!trobat && (r_dificil.size() <10) ) r_dificil.add(f); //Añado al final
 				else if(trobat) { //Añado en medio
-					r_dificil.add(i,f);
+					r_dificil.add(pos,f);
 					if(r_dificil.size() == 10) r_dificil.remove(10);
 				}
 			}

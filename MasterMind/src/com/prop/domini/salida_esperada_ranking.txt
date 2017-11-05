@@ -1,0 +1,14 @@
+Primer has de crear un Ranking
+Primer has de crear un Ranking
+Ranking creat correctament
+Primer has de crear una fila Ranking
+Ja existeix un Ranking
+Escriu la puntuació entre 1 y 25
+Escriu el nom del jugador
+FilaRanking creada correctament
+Escriu la dificultat entre 1(minima) y 3(maxima)
+FilaRanking actualitzada correctament
+Ranking fácil vacio, añade primero algun record
+Ranking dificultat mitjana
+1. alies: Pep      intents: 12
+Ranking difícil vacio, añade primero algun record
