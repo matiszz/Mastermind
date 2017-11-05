@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver3 {
-	//Driver clase Algorisme i Controlador de Domini
+	//Driver clase Algorisme, CodeBreaker i Controlador de Domini
 
 	public static void main (String args[]) {
 		System.out.println("Benvingut a Mastermind! Selecciona una de les següents opcions:");
 		System.out.println("0. Surt del driver");
 		System.out.println("1. Algorisme basic");
 		System.out.println("2. Algorisme five guess");
-		
+		System.out.println("3. Crea CodebreakerPersona");
+		System.out.println("4. Crear Algorisme");
+		System.out.println("5. Crea CodebreakerCpu");
 		Scanner lector = new Scanner(System.in);
+		
+		Algorisme algor = null;
 		
 		char c;
 		try{
@@ -62,8 +66,8 @@ public class Driver3 {
 						int k = 0;
 						while(!guanyat2 && k < 10) {
 							System.out.println("Iteracio " + k);
-							for(int s = 0; s < columnes2; ++s) System.out.print(codiproposat2.get(s));
 							codiproposat2 = a2.five_guess(columnes2,colors2, resposta2);
+							for(int s = 0; s < codiproposat2.size(); ++s) System.out.print(codiproposat2.get(s));
 							resposta2 = a2.aplica_logica(codisecret2, codiproposat2);
 							int negres2 = 0;
 							for(int r = 0; r < columnes2;++r) 
@@ -75,11 +79,23 @@ public class Driver3 {
 						
 						if(guanyat2) System.out.println("Has encertat");
 					break;
-					default:
-						lector.close();
+					case '3':
+						CodeBreaker c2 = new CodeBreaker(false);
+						System.out.println("Nou CodeBreaker Persona creat correctament");
+					break;
+					case '4':
+						algor = new Algorisme();
+						System.out.println("Algorisme creat correctament");
+						
+					break;
+					case '5':
+						if(algor == null) System.out.println("Primer has de crear un algorisme");
+						else {
+							CodeBreaker c3 = new CodeBreaker(true,algor);
+							System.out.println("Nou CodeBreaker Cpu creat correctament");
+						}
 					break;
 				}
-			
 			}
 		}
 		catch (Exception e) {
