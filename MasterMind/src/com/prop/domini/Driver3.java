@@ -28,26 +28,20 @@ public class Driver3 {
 						ArrayList<Integer> resposta = new ArrayList<Integer>();
 						ArrayList<Integer> codiproposat = new ArrayList<Integer>();
 						int j = 0;
-						
-						while(j < 10 && !guanyat) {
+						System.out.println("Introdueix la combinacio a endivinar");
+						ArrayList<Integer> codisecret = new ArrayList<Integer>();
+						for(int i = 0; i < columnes;++i) codisecret.add(lector.nextInt());
+						while(!guanyat && j < 10) {
+							System.out.println("Iteracio " + j);
 							codiproposat = a.calcula_jugada(columnes,colors, resposta);
 							for(int i = 0; i < codiproposat.size(); ++i) System.out.print(codiproposat.get(i));
-							resposta.clear();
 							System.out.println("");
-							System.out.println("Fica la resposta al codi proposat");
+							resposta = a.aplica_logica(codisecret, codiproposat);
 							int negres = 0;
-							for(int i = 0; i < columnes;++i) { //Lectura de la resposta de l'usuari.
-								int k = lector.nextInt();
-								if(k == 0) resposta.add(0);
-								if(k == 1) resposta.add(1);
-								if(k == 2) {
-									negres++;
-									resposta.add(2);
-								}
-							}
-							if(negres == columnes) guanyat = true;
+							for(int r = 0; r < columnes;++r) 
+								if(resposta.get(r) == 2) ++negres;
+							guanyat = (negres == columnes);	
 							++j;
-						
 						}
 						if(guanyat) System.out.println("Has encertat");
 						
@@ -59,34 +53,33 @@ public class Driver3 {
 						int columnes2 = lector.nextInt();
 						System.out.println("Introdueix el nombre de colors");
 						int colors2= lector.nextInt();
+						System.out.println("Introdueix la combinacio a endivinar");
+						ArrayList<Integer> codisecret2 = new ArrayList<Integer>();
+						for(int i = 0; i < columnes2;++i) codisecret2.add(lector.nextInt());
+						
 						ArrayList<Integer> resposta2 = new ArrayList<Integer>();
 						ArrayList<Integer> codiproposat2 = new ArrayList<Integer>();
 						int k = 0;
-						while( k < 10 && !guanyat2) {
-								codiproposat = a2.five_guess(columnes2,colors2, resposta2);
-								for(int i = 0; i < codiproposat2.size(); ++i) System.out.print(codiproposat2.get(i));
-								resposta2.clear();
-								System.out.println("");
-								System.out.println("Fica la resposta al codi proposat");
-								int negres = 0;
-								for(int i = 0; i < columnes2;++i) { //Lectura de la resposta de l'usuari.
-									int l = lector.nextInt();
-									if(l == 0) resposta2.add(0);
-									if(l == 1) resposta2.add(1);
-									if(l== 2) {
-										negres++;
-										resposta2.add(2);
-									}
-								}
-								if(negres == columnes2) guanyat2 = true;
-								++k;
+						while(!guanyat2 && k < 10) {
+							System.out.println("Iteracio " + k);
+							for(int s = 0; s < columnes2; ++s) System.out.print(codiproposat2.get(s));
+							codiproposat2 = a2.five_guess(columnes2,colors2, resposta2);
+							resposta2 = a2.aplica_logica(codisecret2, codiproposat2);
+							int negres2 = 0;
+							for(int r = 0; r < columnes2;++r) 
+								if(resposta2.get(r) == 2) ++negres2;
+							guanyat = (negres2 == columnes2);	
+							++k;
 							
 						}
 						
 						if(guanyat2) System.out.println("Has encertat");
 					break;
+					default:
+						lector.close();
+					break;
 				}
-			lector.close();
+			
 			}
 		}
 		catch (Exception e) {
