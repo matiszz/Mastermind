@@ -1,11 +1,63 @@
 package com.prop.domini;
 
 import java.util.*;
-import com.prop.domini.*;
 
 public class Driver2 {
 	// Driver para las clases Jugador,Registre,Ranking,Fila Ranking
+	
+	public static void case4(Ranking r) {
+		if (r != null)
+			System.out.println("Ja existeix un Ranking");
+		else {
+			r = new Ranking();
+			System.out.println("Ranking creat correctament");
+		}
+	}
+	
+	public static void case5(Ranking r) {
+		if (r == null)
+			System.out.println("Primer has de crear un Ranking");
+		else {
+			if (r.ranking_buit(1))
+				System.out.println("Ranking fácil vacio, añade primero algun record");
+			else
+				r.mostra_ranking(1);
+			if (r.ranking_buit(2))
+				System.out.println("Ranking medio vacio, añade primero algun record");
+			else
+				r.mostra_ranking(2);
+			if (r.ranking_buit(3))
+				System.out.println("Ranking difícil vacio, añade primero algun record");
+			else
+				r.mostra_ranking(3);
+		}
+	}
 
+	public static void case6(Scanner lector, Ranking r,FilaRanking f) {
+		if (r == null)
+			System.out.println("Primer has de crear un Ranking");
+		else {
+			if (f == null)
+				System.out.println("Primer has de crear una fila Ranking");
+			else {
+				System.out.println("Escriu la dificultat entre 1(minima) y 3(maxima)");
+				int dif = lector.nextInt();
+				r.afegeix_fila(f, dif);
+				System.out.println("FilaRanking actualitzada correctament");
+			}
+		}
+	}
+
+	public static void case7(Scanner lector, FilaRanking f) {
+		System.out.println("Escriu la puntuació entre 1 y 25");
+		int puntuacio = lector.nextInt();
+		System.out.println("Escriu el nom del jugador");
+		String nom = lector.next();
+		f = new FilaRanking(puntuacio, nom);
+		System.out.println("FilaRanking creada correctament");
+	}
+
+	
 	public static void main(String args[]) {
 		System.out.println("Benvingut a Mastermind! Selecciona una de les següents opcions:");
 		System.out.println(" 0. Sortir del menú");
@@ -16,15 +68,13 @@ public class Driver2 {
 		System.out.println(" 5. Consultar el Ranking");
 		System.out.println(" 6. Actualitzar el Ranking");
 		System.out.println(" 7. Crea una FilaRanking");
-		System.out.println(" 7. Crear Jugador");
 
-		StringBuffer str = new StringBuffer();
+		
 		Scanner lector = new Scanner(System.in);
 		Registre reg = null;
 		char c;
 		Ranking r = null;
 		FilaRanking f = null;
-		Jugador j = null;
 		
 		try {
 			while ((c = (char) System.in.read()) != '0') {
@@ -57,53 +107,16 @@ public class Driver2 {
 					// Este es de raul
 					break;
 				case '4':
-					if (r != null)
-						System.out.println("Ja existeix un Ranking");
-					else {
-						r = new Ranking();
-						System.out.println("Ranking creat correctament");
-					}
+					case4(r);
 					break;
 				case '5':
-					if (r == null)
-						System.out.println("Primer has de crear un Ranking");
-					else {
-						if (r.ranking_buit(1))
-							System.out.println("Ranking fácil vacio, añade primero algun record");
-						else
-							r.mostra_ranking(1);
-						if (r.ranking_buit(2))
-							System.out.println("Ranking medio vacio, añade primero algun record");
-						else
-							r.mostra_ranking(2);
-						if (r.ranking_buit(3))
-							System.out.println("Ranking difícil vacio, añade primero algun record");
-						else
-							r.mostra_ranking(3);
-					}
-
+					case5(r);
 					break;
 				case '6':
-					if (r == null)
-						System.out.println("Primer has de crear un Ranking");
-					else {
-						if (f == null)
-							System.out.println("Primer has de crear una fila Ranking");
-						else {
-							System.out.println("Escriu la dificultat entre 1(minima) y 3(maxima)");
-							int dif = lector.nextInt();
-							r.afegeix_fila(f, dif);
-							System.out.println("FilaRanking actualitzada correctament");
-						}
-					}
+					case6(lector,r,f);
 					break;
 				case '7':
-					System.out.println("Escriu la puntuació entre 1 y 25");
-					int puntuacio = lector.nextInt();
-					System.out.println("Escriu el nom del jugador");
-					String nom = lector.next();
-					f = new FilaRanking(puntuacio, nom);
-					System.out.println("FilaRanking creada correctament");
+					case7(lector,f);
 					break;
 				}
 			}
