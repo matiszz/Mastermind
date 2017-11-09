@@ -14,7 +14,7 @@ public class FilaRanking {
 		this.intents = intents;
 		this.jugador = jugador;
 	}
-	
+	/*
 	public int getintents() {
 		return intents;
 	}
@@ -30,4 +30,5 @@ public class FilaRanking {
 	public void setjugador(String jugador) {
 		this.jugador = jugador;
 	}
+	*/
 }
