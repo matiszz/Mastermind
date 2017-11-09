@@ -104,7 +104,9 @@ public class Driver2 {
 					System.out.print("Nom d'usuari del jugador: ");
 					String idJugador = lector.next();
 					Jugador jug = reg.getJugador(idJugador);
-					// Este es de raul
+					System.out.println("Nom Jugador: " + jug.getIdJugador());
+                    System.out.println("Partides jugades: " + jug.getPartidesJugades());
+                    System.out.println("Partides guanyades: " + jug.getPartidesGuanyades());
 					break;
 				case '4':
 					case4(r);
