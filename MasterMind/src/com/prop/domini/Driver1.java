@@ -8,7 +8,38 @@ import com.prop.persistencia.Database;
 public class Driver1 {
 	// Driver para las clases GeneradorJoc,Jugada,Joc,Partida,Tauler
 	static Database db;
-
+	
+	
+	public static void cas7(Partida partida,Jugador jugador,Jugada jugada) {
+		if (partida == null)
+			System.out.println("Primer has de crear una partida");
+		else if (jugador == null)
+			System.out.println("Primer has de crear un jugador");
+		else {
+			int numjugada = 0;
+			jugada = new Jugada(numjugada,partida, jugador);
+			System.out.println("Jugada creada correctament");
+		}
+	}
+	
+	public static void cas8(Jugada jugada, Scanner lector) {
+		ArrayList<Integer> cp = new ArrayList<Integer>();
+		ArrayList<Integer> cr = new ArrayList<Integer>();
+		if(jugada == null) System.out.println("Primer has de crear una jugada");
+		else {
+			System.out.println("Introdueix la mida del codi");
+			int mida = lector.nextInt();
+			System.out.println("Introdueix el codiproposat");
+			for(int i = 0; i < mida; ++i) cp.add(lector.nextInt());
+			System.out.println("Introdueix el codirespost");
+			jugada.setcodiProposat(cp);
+			System.out.println("S'ha establert correctament el codiproposat a la jugada creada");
+			for(int i = 0; i < mida; ++i) cr.add(lector.nextInt());
+			jugada.setcodiRespost(cr);
+			System.out.println("S'ha establert correctament el codirespost a la juada creada");
+		}
+	}
+	
 	public static void main(String args[]) {
 		System.out.println("Benvingut a Mastermind! Selecciona una de les següents opcions:");
 		System.out.println("1. Crear generador de jocs");
@@ -18,9 +49,10 @@ public class Driver1 {
 		System.out.println("5. Jugar partida nova");
 		System.out.println("6. Continuar partida guardada");
 		System.out.println("7. Crear Jugada");
-		System.out.println("8. Fer Jugada");
-		System.out.println("9. Mostrar tauler");
-		System.out.println("10. Crear jugador");
+		System.out.println("8. Asignar valors a una jugada creada");
+		System.out.println("9. Fer Jugada");
+		System.out.println("10. Mostrar tauler");
+		System.out.println("11. Crear jugador");
 
 		db = new Database("MasterMind-Database.txt");
 		db.createDatabase();
@@ -122,21 +154,17 @@ public class Driver1 {
 					break;
 
 				case "7": // Crear Jugada
-					if (partida == null)
-						System.out.println("Primer has de crear una partida");
-					else if (jugador == null)
-						System.out.println("Primer has de crear un jugador");
-					else {
-						jugada = new Jugada(partida, jugador);
-						System.out.println("Jugada creada correctament");
-					}
+					cas7(partida,jugador,jugada);
 					break;
-
-				case "8": // Fer Jugada
+				case "8": // Asignar codis a una jugada a una juagada
+					cas8(jugada,lector);
+					break;
+					
+				case "9": // Fer Jugada
 					
 					break;
 					
-				case "9":
+				case "10":
 					if (partida == null)
 						System.out.println("Primer has de crear una partida");
 					else if (jugador == null)
@@ -145,7 +173,7 @@ public class Driver1 {
 						partida.estatTauler();
 					break;
 					
-				case "10": // Crear jugador
+				case "11": // Crear jugador
 					Registre reg = new Registre();
 					System.out.println("Identificador del jugador: ");
 					String id = lector.nextLine();

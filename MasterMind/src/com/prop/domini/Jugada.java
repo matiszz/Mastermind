@@ -6,21 +6,22 @@ import com.prop.domini.Partida;
 
 public class Jugada {
 	int numJugada;
-	ArrayList<String> codiProposat;
-	ArrayList<String> codiRespost;
+	ArrayList<Integer> codiProposat;
+	ArrayList<Integer> codiRespost;
 	boolean encert;
 	Jugador jugador;
 	Partida partida;
 	
-	public Jugada (Partida p, Jugador j) {
-		this.numJugada = 0 ;
+	public Jugada (int numJugada, Partida p, Jugador j) {
+		this.numJugada = numJugada;
 		this.encert = false;
 		this.jugador = j;
 		this.partida = p;
-		
+		codiProposat = new ArrayList<Integer>();
+		codiRespost = new ArrayList<Integer>();
 	}
 	
-	public Jugada(int numJugada,ArrayList<String> codiProposat, ArrayList<String> codiRespost, boolean encert, Jugador jugador, Partida partida) {
+	public Jugada(int numJugada,ArrayList<Integer> codiProposat, ArrayList<Integer> codiRespost, boolean encert, Jugador jugador, Partida partida) {
 		this.numJugada = numJugada;
 		this.codiProposat = codiProposat;
 		this.codiRespost = codiRespost;
@@ -30,46 +31,26 @@ public class Jugada {
 	}
 	
 	//Setters
-	public void setnumJugada(int numJugada) {	
-		this.numJugada = numJugada;
-	}
 	
-	public void setcodiProposat(ArrayList<String> codiProposat) {	
+	public void setcodiProposat(ArrayList<Integer> codiProposat) {	
 		this.codiProposat = codiProposat;
 	}
 	
-	public void setcodiRespost(ArrayList<String> codiRespost) {	
+	public void setcodiRespost(ArrayList<Integer> codiRespost) {	
 		this.codiRespost = codiRespost;
 	}
-	
-	public void setencert(boolean encert) {
-		this.encert = encert;
-	}
-	
-	public void setJugador(Jugador jugador) {
-		this.jugador = jugador;
-	}
-	
-	public void setPartida(Partida partida) {	
-		this.partida = partida;
-	}
-	
 	//Getters
 	
-	public int getnumJugada() {
+	/*public int getnumJugada() {
 		return numJugada;
 	}
 	
-	public ArrayList<String> getcodiProposat() {
+	public ArrayList<Integer> getcodiProposat() {
 		return codiProposat;
 	}
 
-	public ArrayList<String> getcodiRespost() {
+	public ArrayList<Integer> getcodiRespost() {
 		return codiRespost;
-	}
-
-	public boolean getencert() {
-		return encert;
 	}
 	
 	public Jugador getJugador() {
@@ -78,4 +59,5 @@ public class Jugada {
 	public Partida getPartida() {	
 		 return this.partida;
 	}
+	*/
 }
