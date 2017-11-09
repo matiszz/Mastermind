@@ -89,6 +89,26 @@ public class Driver3 {
 			System.out.println("Nou CodeBreaker Cpu creat correctament");
 		}
 	}
+
+    public static void case6() {
+		    if(algor == null) System.out.println("Primer has de crear un algorisme");
+		    else {
+			    CodeMaker cMakerCPU = new CodeMaker(true);
+                cMakerCPU.setalgorisme(algor);
+			    System.out.println("Nou CodeMaker Cpu creat correctament");
+		    }
+	}
+
+    public static void case7() {
+		    if(algor == null) System.out.println("Primer has de crear un algorisme");
+		    else {
+			    CodeMaker cMakerPersona = new CodeMaker(false);
+                cMakerPersona.setalgorisme(algor);
+			    System.out.println("Nou CodeMaker Persona creat correctament");
+		    }
+	}
+
+    
 	
 	public static void main (String args[]) {
 		System.out.println("Benvingut a Mastermind! Selecciona una de les següents opcions:");
@@ -99,7 +119,7 @@ public class Driver3 {
 		System.out.println("4. Crear Algorisme");
 		System.out.println("5. Crea CodebreakerCpu");
 		System.out.println("6. Crea CodemakerCpu");
-		System.out.println("7. Crea CodebmakerPersona");
+		System.out.println("7. Crea CodemakerPersona");
 		lector = new Scanner(System.in);
 		
 		
