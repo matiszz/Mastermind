@@ -180,42 +180,33 @@ public class Driver1 {
 				case "1": // Crear Generador de Jocs
 					crearGeneradorJocs();
 					break;
-
 				case "2": // Crear Joc per defecte
 					crearJocDefecte();
 					break;
-
 				case "3": // CrearJoc personalitzat
 					crearJocPersonalitzat();
 					break;
-
 				case "4": // CrearPartida
 					crearPartida();
 					break;
-
 				case "5": // JugarPartida nova
 					jugarPartida();
 					break;
-
 				case "6": // JugarPartida guardada
 					continuarPartida();
 					break;
-
 				case "7": // Crear Jugada
 					crearJugada();
 					break;
 				case "8": // Asignar codis a una jugada a una juagada
 					asignarValorsJugada();
 					break;
-					
 				case "9": // Fer Jugada
 					ferJugada();
 					break;
-					
 				case "10": // Mostrar tauler
 					mostraTauler();
 					break;
-					
 				case "11": // Crear jugador
 					crearJugador();
 					break;
