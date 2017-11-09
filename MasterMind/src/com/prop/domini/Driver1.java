@@ -152,19 +152,73 @@ public class Driver1 {
 		System.out.println("Jugador creat");
 	}
 	
+	public static void iniciarPartida() {
+		if (partida == null)
+			System.out.println("Primer has de crear una partida");
+		else {
+			partida.iniciarPartida();
+			System.out.println("Partida iniciada.");
+		}
+	}
+	
+	public static void guardarPartida() {
+		if (partida == null)
+			System.out.println("Primer has de crear una partida");
+		else {
+			partida.guardarPartida();
+			System.out.println("Partida guardada.");
+		}
+	}
+	
+	public static void reanudarPartida() {
+		if (partida == null)
+			System.out.println("Primer has de crear una partida");
+		else {
+			partida.reanudaPartida();
+			System.out.println("Partida reanudada.");
+		}
+	}
+	
+	public static void veureTempsGuardat() {
+		if (partida == null)
+			System.out.println("Primer has de crear una partida");
+		else
+			System.out.println("Mil·lisegons totals: " + partida.getTemps());
+	}
+	
+	public static void veureTempsFormat() {
+		if (partida == null)
+			System.out.println("Primer has de crear una partida");
+		else
+			System.out.println("Temps passat: " + partida.clock.getTime());
+	}
+	
+	public static void usage() {
+		System.out.println("*********************************************************************");
+		System.out.println("* Benvingut a Mastermind! Selecciona una de les següents opcions:");
+		System.out.println("*	0. Sortir ");
+		System.out.println("*	1. Crear generador de jocs");
+		System.out.println("*	2. Crear joc per defecte");
+		System.out.println("*	3. Crear joc personalitzat");
+		System.out.println("*	4. Crear partida");
+		System.out.println("*	5. Jugar partida nova");
+		System.out.println("*	6. Continuar partida guardada");
+		System.out.println("*	7. Crear Jugada");
+		System.out.println("*	8. Asignar valors a una jugada creada");
+		System.out.println("*	9. Fer Jugada");
+		System.out.println("*	10. Mostrar tauler");
+		System.out.println("*	11. Crear jugador");
+		System.out.println("*	12. Iniciar partida (rellotge)");
+		System.out.println("*	13. Guardar partida (rellotge)");
+		System.out.println("*	14. Reanudar partida (rellotge)");
+		System.out.println("*	15. Veure temps guardat");
+		System.out.println("*	16. Veure temps amb format");
+		System.out.println("*");
+		System.out.println("*	h. Veure aquest menú");
+		System.out.println("*********************************************************************");
+	}
 	public static void main(String args[]) {
-		System.out.println("Benvingut a Mastermind! Selecciona una de les següents opcions:");
-		System.out.println("1. Crear generador de jocs");
-		System.out.println("2. Crear joc per defecte");
-		System.out.println("3. Crear joc personalitzat");
-		System.out.println("4. Crear partida");
-		System.out.println("5. Jugar partida nova");
-		System.out.println("6. Continuar partida guardada");
-		System.out.println("7. Crear Jugada");
-		System.out.println("8. Asignar valors a una jugada creada");
-		System.out.println("9. Fer Jugada");
-		System.out.println("10. Mostrar tauler");
-		System.out.println("11. Crear jugador");
+		usage();
 
 		db = new Database("MasterMind-Database.txt");
 		db.createDatabase();
@@ -209,6 +263,24 @@ public class Driver1 {
 					break;
 				case "11": // Crear jugador
 					crearJugador();
+					break;
+				case "12": // Iniciar partida
+					iniciarPartida();
+					break;
+				case "13": // Guardar partida
+					guardarPartida();
+					break;
+				case "14": // Reanudar partida
+					reanudarPartida();
+					break;
+				case "15": // Veure temps guardat
+					veureTempsGuardat();
+					break;
+				case "16": // Veure temps actual
+					veureTempsFormat();
+					break;
+				case "h":
+					usage();
 					break;
 				}
 			}

@@ -95,16 +95,22 @@ public class Driver2 {
 		System.out.println("FilaRanking creada correctament");
 	}
 	
+	public static void usage() {
+		System.out.println("*********************************************************************");
+		System.out.println("* Benvingut a Mastermind! Selecciona una de les següents opcions:");
+		System.out.println("*	0. Sortir del menú");
+		System.out.println("*	1. Registrar un Jugador");
+		System.out.println("*	2. Crear un Registre");
+		System.out.println("*	3. Consultar informació d'un jugador");
+		System.out.println("*	4. Crear un Ranking");
+		System.out.println("*	5. Consultar el Ranking");
+		System.out.println("*	6. Actualitzar el Ranking");
+		System.out.println("*	7. Crea una FilaRanking");
+		System.out.println("*********************************************************************");
+	}
+	
 	public static void main(String args[]) {
-		System.out.println("Benvingut a Mastermind! Selecciona una de les següents opcions:");
-		System.out.println(" 0. Sortir del menú");
-		System.out.println(" 1. Registrar un Jugador");
-		System.out.println(" 2. Crear un Registre");
-		System.out.println(" 3. Consultar informació d'un jugador");
-		System.out.println(" 4. Crear un Ranking");
-		System.out.println(" 5. Consultar el Ranking");
-		System.out.println(" 6. Actualitzar el Ranking");
-		System.out.println(" 7. Crea una FilaRanking");
+		usage();
 		
 		lector = new Scanner(System.in);
 		
@@ -131,6 +137,9 @@ public class Driver2 {
 					break;
 				case '7': // Crear una FilaRanking
 					crearFilaRanking();
+					break;
+				default:
+					if (c!='\n') usage();
 					break;
 				}
 			}
