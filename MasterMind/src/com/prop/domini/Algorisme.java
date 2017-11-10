@@ -1,6 +1,7 @@
 package com.prop.domini;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Algorisme {
 	ArrayList< ArrayList<Integer> > combinacions;
@@ -66,11 +67,13 @@ public class Algorisme {
 			ArrayList<Integer> minims = new ArrayList<Integer>();
 			for(int i = 0; i < matriu.size();++i) {
 				int elim = 0;
-				ArrayList< ArrayList<Integer> > f = matriu.get(i);
-				for(int j = 0; j < combinacions.size();++j) {
-					if(f.get(j) != resposta) ++elim;
+				if (valid.get(i) == 1) {
+					ArrayList< ArrayList<Integer> > f = matriu.get(i);
+					for(int j = 0; j < combinacions.size();++j) {
+						if(f.get(j) != resposta) ++elim;
+					}
+					minims.add(elim);
 				}
-				minims.add(elim);
 			}
 			return minims;
 		}
@@ -148,13 +151,21 @@ public class Algorisme {
 			return jugat;
 		}
 		
+		public ArrayList<Integer> genera_random(ArrayList< ArrayList<Integer> > combinacions) {
+			Random r = new Random();
+			ArrayList<Integer> random = combinacions.get(r.nextInt(combinacions.size()));
+			return random;
+		}
+
+		
 		public ArrayList<Integer> calcula_jugada(int columnes,int colors, ArrayList<Integer> resposta){
 			ArrayList<Integer> intermig = new ArrayList<Integer>();
 			if(resposta.isEmpty()) {
-				genera_combinacions(0,columnes,colors,intermig);
+				 genera_combinacions(0,columnes,colors,intermig);
+				 jugat = combinacions.get(0);
 			}
-			else elimina_incoherents(combinacions,resposta,columnes);
-			jugat = combinacions.get(0);
+			else jugat = genera_random(combinacions);
+			
 			return jugat;
 		}
 }
