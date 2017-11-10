@@ -9,7 +9,7 @@ public class Driver3 {
 	private static Algorisme algor = null;
 	private static Scanner lector;
 	
-	public static void case1() {
+	public static void basic() {
 		boolean guanyat =  false;
 		Algorisme a = new Algorisme();
 		System.out.println("Introdueix el nombre de columnes");
@@ -21,7 +21,14 @@ public class Driver3 {
 		int j = 0;
 		System.out.println("Introdueix la combinacio a endivinar");
 		ArrayList<Integer> codisecret = new ArrayList<Integer>();
-		for(int i = 0; i < columnes;++i) codisecret.add(lector.nextInt());
+		for(int i = 0; i < columnes;++i) {
+			int numerito = lector.nextInt();
+			if(numerito >= colors) {
+				System.out.println("Tots els valors han de ser menors que el numero de colors");
+				return;
+			}
+			codisecret.add(numerito);
+		}
 		while(!guanyat && j < 10) {
 			System.out.println("Iteracio " + j);
 			codiproposat = a.calcula_jugada(columnes,colors, resposta);
@@ -38,16 +45,27 @@ public class Driver3 {
 		
 	}
 	
-	public static void case2() {
+	public static void five() {
 		boolean guanyat2 =  false;
 		Algorisme a2 = new Algorisme();
 		System.out.println("Introdueix el nombre de columnes");
 		int columnes2 = lector.nextInt();
 		System.out.println("Introdueix el nombre de colors");
 		int colors2= lector.nextInt();
-		System.out.println("Introdueix la combinacio a endivinar");
+		if(columnes2 >=5 && colors2 >= 5) {
+			System.out.println("Masses combinacions!");
+			return;
+		}
+		System.out.println("Introdueix la combinacio a endivinar (el valors dels colors van [0,colors-1]");
 		ArrayList<Integer> codisecret2 = new ArrayList<Integer>();
-		for(int i = 0; i < columnes2;++i) codisecret2.add(lector.nextInt());
+		for(int i = 0; i < columnes2;++i) {
+			int numerito = lector.nextInt();
+			if(numerito >= colors2) {
+				System.out.println("Tots els valors han de ser menors que el numero de colors");
+				return;
+			}
+			codisecret2.add(numerito);
+		}
 		
 		ArrayList<Integer> resposta2 = new ArrayList<Integer>();
 		ArrayList<Integer> codiproposat2 = new ArrayList<Integer>();
@@ -66,22 +84,20 @@ public class Driver3 {
 		}
 		
 		if(guanyat2) System.out.println("Has encertat");
+		else System.out.println("T'has quedat sense intents, torna a començar");
 	}
 	
-	public static void case3() {
-		if(algor == null) System.out.println("Primer has de crear un algorisme");
-		else {
+	public static void codebreakerpersona() {
 			new CodeBreaker(false);
 			System.out.println("Nou CodeBreaker Persona creat correctament");
-		}
 	}
 	
-	public static void case4() {
+	public static void algorithm() {
 		algor = new Algorisme();
 		System.out.println("Algorisme creat correctament");
 	}
 	
-	public static void case5() {
+	public static void codebreakercpu() {
 		if(algor == null) System.out.println("Primer has de crear un algorisme");
 		else {
 			CodeBreaker c3 = new CodeBreaker(true);
@@ -90,18 +106,16 @@ public class Driver3 {
 		}
 	}
 
-    public static void case6() {
+    public static void codemakercpu() {
     		CodeMaker cMakerCPU = new CodeMaker(true);
 	    System.out.println("Nou CodeMaker Cpu creat correctament");
 	}
 
-    public static void case7() {
+    public static void codemakerpersona() {
     		CodeMaker cMakerPersona = new CodeMaker(false);
 		System.out.println("Nou CodeMaker Persona creat correctament");
 	}
 
-    
-	
 	public static void main (String args[]) {
 		System.out.println("Benvingut a Mastermind! Selecciona una de les següents opcions:");
 		System.out.println("0. Surt del driver");
@@ -121,25 +135,25 @@ public class Driver3 {
 			while ((c=(char)System.in.read()) != '0' ){
 				switch(c) {
 					case '1':
-						case1();
+						basic();
 					break;
 					case '2':
-						case2();
+						five();
 					break;
 					case '3':
-						case3();
+						codebreakerpersona();
 					break;
 					case '4':
-						case4();
+						algorithm();
 					break;
 					case '5':
-						case5();
+						codebreakercpu();
 					break;
 					case '6':
-						case6();
+						codemakercpu();
 					break;
 					case '7':
-						case7();
+						codemakerpersona();
 					break;
 				}
 			}
