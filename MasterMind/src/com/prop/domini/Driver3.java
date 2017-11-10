@@ -91,21 +91,13 @@ public class Driver3 {
 	}
 
     public static void case6() {
-		    if(algor == null) System.out.println("Primer has de crear un algorisme");
-		    else {
-			    CodeMaker cMakerCPU = new CodeMaker(true);
-                cMakerCPU.setalgorisme(algor);
-			    System.out.println("Nou CodeMaker Cpu creat correctament");
-		    }
+    		CodeMaker cMakerCPU = new CodeMaker(true);
+	    System.out.println("Nou CodeMaker Cpu creat correctament");
 	}
 
     public static void case7() {
-		    if(algor == null) System.out.println("Primer has de crear un algorisme");
-		    else {
-			    CodeMaker cMakerPersona = new CodeMaker(false);
-                cMakerPersona.setalgorisme(algor);
-			    System.out.println("Nou CodeMaker Persona creat correctament");
-		    }
+    		CodeMaker cMakerPersona = new CodeMaker(false);
+		System.out.println("Nou CodeMaker Persona creat correctament");
 	}
 
     
@@ -139,16 +131,15 @@ public class Driver3 {
 					break;
 					case '4':
 						case4();
-						
 					break;
 					case '5':
 						case5();
 					break;
 					case '6':
-						
+						case6();
 					break;
 					case '7':
-						
+						case7();
 					break;
 				}
 			}
