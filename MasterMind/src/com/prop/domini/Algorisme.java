@@ -6,12 +6,14 @@ public class Algorisme {
 	ArrayList< ArrayList<Integer> > combinacions;
 	ArrayList< ArrayList< ArrayList<Integer> > > matriu;
 	ArrayList<Integer> jugat;
-	
+	ArrayList<Integer> valid; //Per cada posició i, si valid[i]==1 llavors la fila matrix[i] es valida, si valid[i] == 0 matri[i] invalida
 		public Algorisme() {
 			combinacions = new ArrayList<ArrayList<Integer>>();
 			jugat = new ArrayList<Integer>();
 			matriu = new ArrayList< ArrayList< ArrayList<Integer> > >();
+			valid = new ArrayList<Integer>();
 		};
+		
 		public void printa(ArrayList<Integer> a) {
 			for(Integer k : a) {
 				System.out.print(k);
@@ -27,13 +29,10 @@ public class Algorisme {
 			}
 		}
 		
-		
 		public boolean busca_color(int color, ArrayList<Integer> vector) {
 			for(int i = 0; i < vector.size();++i) if(vector.get(i) == color) return true;
 			return false;
 		}
-		
-		
 		
 		public int calcula_max(ArrayList<Integer> a) {
 			//Calula el maiximo de las posiciones del array a
@@ -44,13 +43,12 @@ public class Algorisme {
 			return posmin;
 		}
 		
-		
 		public void genera_combinacions(int pos, int columnes,int colors, ArrayList<Integer> intermig) {
 			if(pos == columnes) {
 				ArrayList<Integer> nou = new ArrayList<Integer>();
 				copiar(intermig,nou);
 				combinacions.add(nou);
-				
+				valid.add(1);
 			}
 			else {
 				ArrayList<Integer> copia = new ArrayList<Integer>();
@@ -77,7 +75,6 @@ public class Algorisme {
 			return minims;
 		}
 		
-	
 		public void elimina_incoherents(ArrayList<ArrayList<Integer>>combinacions,ArrayList<Integer> resposta,int columnes) {
 			for(int p = 0; p < columnes; ++p) {
 				int color = resposta.get(p);
@@ -86,7 +83,10 @@ public class Algorisme {
 					for(int p1 = 0; p1 < combinacions.size(); ++p1) { 
 						ArrayList<Integer> comb  = combinacions.get(p1);
 						//Recorro i descarto si no la posibilitat te aquesta posicio igual
-						if(comb.get(p) == incorrecte) combinacions.remove(p1);
+						if(comb.get(p) == incorrecte) {
+							valid.set(p1, 0);
+							combinacions.remove(p1);
+						}
 					}
 				}
 				else { //Tot bé
@@ -94,13 +94,16 @@ public class Algorisme {
 					for(int p1 = 0; p1 < combinacions.size();++p1) { 
 						ArrayList<Integer> comb  = combinacions.get(p1);
 						//Recorro i descarto si no la posibilitat no te aquesta posicio igual
-						if(comb.get(p) != correcte) combinacions.remove(p1);
+						if(comb.get(p) != correcte) {
+							valid.set(p1, 0);
+							combinacions.remove(p1);
+						}
 					}
 				}
 			}
 		}
 		
-		
+		//CAMBIAR
 		public ArrayList<Integer> aplica_logica(ArrayList<Integer> codiamagat, ArrayList<Integer> codijugat) {
 			//Determina la respuesta obtenida si jugamos codijugat y la solucion es codiamagat
 			ArrayList<Integer> solucio = new ArrayList<Integer>();
