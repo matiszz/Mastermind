@@ -8,6 +8,7 @@ public class Algorisme {
 	ArrayList< ArrayList< ArrayList<Integer> > > matriu;
 	ArrayList<Integer> jugat;
 	ArrayList<Integer> valid; //Per cada posició i, si valid[i]==1 llavors la fila matrix[i] es valida, si valid[i] == 0 matri[i] invalida
+	
 		public Algorisme() {
 			combinacions = new ArrayList<ArrayList<Integer>>();
 			jugat = new ArrayList<Integer>();
@@ -106,7 +107,6 @@ public class Algorisme {
 			}
 		}
 		
-		//CAMBIAR
 		public ArrayList<Integer> aplica_logica(ArrayList<Integer> codiamagat, ArrayList<Integer> codijugat) {
 			//Determina la respuesta obtenida si jugamos codijugat y la solucion es codiamagat
 			ArrayList<Integer> solucio = new ArrayList<Integer>();
