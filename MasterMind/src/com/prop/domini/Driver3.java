@@ -14,12 +14,20 @@ public class Driver3 {
 		Algorisme a = new Algorisme();
 		System.out.println("Introdueix el nombre de columnes");
 		int columnes = lector.nextInt();
+		if(columnes <= 0) {
+			System.out.println("El nombre de columnes ha de ser >=1, torna a començar");
+			return;
+		}
 		System.out.println("Introdueix el nombre de colors");
 		int colors= lector.nextInt();
+		if(colors <= 0) {
+			System.out.println("El nombre de colors ha de ser >=1, torna a començar");
+			return;
+		}
 		ArrayList<Integer> resposta = new ArrayList<Integer>();
 		ArrayList<Integer> codiproposat = new ArrayList<Integer>();
 		int j = 0;
-		System.out.println("Introdueix la combinacio a endivinar");
+		System.out.println("Introdueix la combinacio a endivinar (el valors dels colors van [0,colors-1]");
 		ArrayList<Integer> codisecret = new ArrayList<Integer>();
 		for(int i = 0; i < columnes;++i) {
 			int numerito = lector.nextInt();
@@ -29,7 +37,7 @@ public class Driver3 {
 			}
 			codisecret.add(numerito);
 		}
-		while(!guanyat && j < 10) {
+		while(!guanyat && j <= 10) {
 			System.out.println("Iteracio " + j);
 			codiproposat = a.calcula_jugada(columnes,colors, resposta);
 			for(int i = 0; i < codiproposat.size(); ++i) System.out.print(codiproposat.get(i));
@@ -50,8 +58,16 @@ public class Driver3 {
 		Algorisme a2 = new Algorisme();
 		System.out.println("Introdueix el nombre de columnes");
 		int columnes2 = lector.nextInt();
+		if(columnes2 <= 0) {
+			System.out.println("El nombre de columnes ha de ser >=1, torna a començar");
+			return;
+		}
 		System.out.println("Introdueix el nombre de colors");
 		int colors2= lector.nextInt();
+		if(colors2 <= 0) {
+			System.out.println("El nombre de colors ha de ser >=1, torna a començar");
+			return;
+		}
 		if(columnes2 >=5 && colors2 >= 5) {
 			System.out.println("Masses combinacions!");
 			return;
@@ -70,7 +86,7 @@ public class Driver3 {
 		ArrayList<Integer> resposta2 = new ArrayList<Integer>();
 		ArrayList<Integer> codiproposat2 = new ArrayList<Integer>();
 		int k = 0;
-		while(!guanyat2 && k < 10) {
+		while(!guanyat2 && k <= 10) {
 			System.out.println("Iteracio " + k);
 			codiproposat2 = a2.five_guess(columnes2,colors2, resposta2);
 			for(int s = 0; s < codiproposat2.size(); ++s) System.out.print(codiproposat2.get(s));
