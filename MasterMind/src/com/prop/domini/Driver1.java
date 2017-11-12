@@ -92,11 +92,11 @@ public class Driver1 {
 	}
 	
 	public static void jugarPartida() {
-		
+		partida.iniciarPartida();
 	}	
 	
 	public static void continuarPartida() {
-		
+		partida.reanudaPartida();
 	}
 	
 	public static void crearJugada() {
@@ -130,7 +130,17 @@ public class Driver1 {
 	}
 	
 	public static void ferJugada() {
-		
+		if (jugada == null)
+            System.out.println("Primer has de crear una jugada");
+        else if (jugada.getCodiProposat().isEmpty())
+            System.out.println("Primer has d'establir valors a la jugada proposada");
+        else if (jugada.getRespost().isEmpty())
+            System.out.println("Primer has d'establir valors a la jugada resposta");
+        else {
+            Jugada tmp;
+            tmp = new Jugada(jugada.getNumJugada(),jugada.getCodiProposat(), jugada.getCodiRespost(), true, jugador, partida);
+            jugada = tmp;
+        }
 	}
 	
 	public static void mostraTauler() {

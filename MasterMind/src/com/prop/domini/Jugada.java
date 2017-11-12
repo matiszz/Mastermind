@@ -41,15 +41,15 @@ public class Jugada {
 	}
 	//Getters
 	
-	/*public int getnumJugada() {
+	public int getNumJugada() {
 		return numJugada;
 	}
 	
-	public ArrayList<Integer> getcodiProposat() {
+	public ArrayList<Integer> getCodiProposat() {
 		return codiProposat;
 	}
 
-	public ArrayList<Integer> getcodiRespost() {
+	public ArrayList<Integer> getCodiRespost() {
 		return codiRespost;
 	}
 	
@@ -59,5 +59,4 @@ public class Jugada {
 	public Partida getPartida() {	
 		 return this.partida;
 	}
-	*/
 }
