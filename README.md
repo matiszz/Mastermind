@@ -17,4 +17,5 @@
 - [x] **Tauler:** Mati
 - [x] **GeneradorPartides:** Raul
 - [x] **Clock:** Mati
+- [x] **Joc:** Mati
 - [ ] **ControladorDeDomin:**

@@ -32,6 +32,11 @@ public class Partida {
         jugades = new ArrayList<Jugada>();
         tauler = new Tauler(numFiles, longCodi);
     }
+    
+    public void ferJugada(Jugada j) {
+    	jugades.add(j);
+    	tauler.afegirCombinacio(j.codiProposat);
+    }
 
     public void guardarPartida() {
         temps = clock.aturarRellotge();

@@ -1,5 +1,6 @@
 package com.prop.domini;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /* Clase hecha por Mati */
@@ -8,18 +9,20 @@ public class Tauler {
     int numFiles;
     int numColumnes;
     int ultimaPlena;
-    char[][] tauler;
-    char[] codiSecret;
+    ArrayList<ArrayList<Integer>> tauler;
+    ArrayList<Integer> codiSecret;
 
     public Tauler(int numFiles, int numColumnes) {
         this.numFiles = numFiles;
         this.numColumnes = numColumnes;
-        ultimaPlena = -1;
-        tauler = new char[numFiles][numColumnes];
+        ultimaPlena = 0;
+        tauler = new ArrayList<ArrayList<Integer>>();
         for (int i = 0; i < numFiles; i++) {
+			ArrayList<Integer> tmp = new ArrayList<Integer>();
 			for (int j = 0; j < numColumnes; j++) {
-				tauler[i][j] = '-';
+				tmp.add(0);
 			}
+			tauler.add(tmp);
 		}
     }
 
@@ -29,15 +32,8 @@ public class Tauler {
         <- Retorna 0 si la entrada no és la esperada, 1 si el tauler està ple.
            Si no hi ha errors, retorna el tauler amb la nova fila afegida.
     */
-    public char[][] afegirCombinacio(int fila, char[] combinacio) {
-        /*if (combinacio.length != numColumnes) // Si la entrada no és la esperada
-            return 0;
-        if (fila > numFiles) // Si ja hem ocupat totes les files
-            return  1; */
-
-        for (int i = 0; i < numColumnes; i++) {
-            tauler[fila][i] = combinacio[i];
-        }
+    public ArrayList<ArrayList<Integer>> afegirCombinacio(ArrayList<Integer> combinacio) {
+    	tauler.set(ultimaPlena, combinacio);
         ultimaPlena++;
         return tauler;
     }
@@ -56,7 +52,7 @@ public class Tauler {
     public void printTauler() {
         for (int i = 0; i < numFiles; i++) {
             for (int j = 0; j < numColumnes; j++) {
-                System.out.print(""+tauler[i][j] + ' ');
+                System.out.print(""+ tauler.get(i).get(j) + ' ');
             }
             System.out.println();
         }
@@ -70,15 +66,15 @@ public class Tauler {
         return ultimaPlena;
     }
 
-    public char[] getCodiSecret() {
+    public ArrayList<Integer> getCodiSecret() {
         return codiSecret;
     }
 
-    public void setCodiSecret(char[] codiSecret) {
+    public void setCodiSecret(ArrayList<Integer> codiSecret) {
         this.codiSecret = codiSecret;
     }
 
-    public char[][] getTauler() {
+    public ArrayList<ArrayList<Integer>> getTauler() {
         return tauler;
     }
 

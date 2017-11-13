@@ -120,12 +120,12 @@ public class Driver1 {
 			int mida = lector.nextInt();
 			System.out.println("Introdueix el codiproposat");
 			for(int i = 0; i < mida; ++i) cp.add(lector.nextInt());
-			System.out.println("Introdueix el codirespost");
+			//System.out.println("Introdueix el codirespost");
 			jugada.setcodiProposat(cp);
 			System.out.println("S'ha establert correctament el codiproposat a la jugada creada");
-			for(int i = 0; i < mida; ++i) cr.add(lector.nextInt());
-			jugada.setcodiRespost(cr);
-			System.out.println("S'ha establert correctament el codirespost a la juada creada");
+			//for(int i = 0; i < mida; ++i) cr.add(lector.nextInt());
+			//jugada.setcodiRespost(cr);
+			//System.out.println("S'ha establert correctament el codirespost a la juada creada");
 		}
 	}
 	
@@ -134,12 +134,14 @@ public class Driver1 {
             System.out.println("Primer has de crear una jugada");
         else if (jugada.getCodiProposat().isEmpty())
             System.out.println("Primer has d'establir valors a la jugada proposada");
-        else if (jugada.getRespost().isEmpty())
-            System.out.println("Primer has d'establir valors a la jugada resposta");
+       // else if (jugada.getCodiRespost().isEmpty())
+         //   System.out.println("Primer has d'establir valors a la jugada resposta");
         else {
             Jugada tmp;
             tmp = new Jugada(jugada.getNumJugada(),jugada.getCodiProposat(), jugada.getCodiRespost(), true, jugador, partida);
             jugada = tmp;
+            partida.ferJugada(jugada);
+            System.out.println("Jugada feta");
         }
 	}
 	
@@ -230,8 +232,8 @@ public class Driver1 {
 	public static void main(String args[]) {
 		usage();
 
-		db = new Database("MasterMind-Database.txt");
-		db.createDatabase();
+		//db = new Database("MasterMind-Database.txt");
+		//db.createDatabase();
 		
 		lector = new Scanner(System.in);
 		
