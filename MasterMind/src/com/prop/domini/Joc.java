@@ -25,7 +25,7 @@ public class Joc {
 	}
 	
 	public Partida crearPartida() {
-		Partida p = new Partida(lastId, "mode?", true, numFiles, longCodi);
+		Partida p = new Partida(lastId, "mode?", false, numFiles, longCodi);
 		lastId++;
 		partides.add(p);
 		return p;

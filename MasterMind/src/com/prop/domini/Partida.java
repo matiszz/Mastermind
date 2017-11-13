@@ -14,18 +14,18 @@ public class Partida {
     int puntuacio;
     int numFiles;
     int longCodi;
-    boolean estat;
+    boolean finalitzada;
     ArrayList<Jugada> jugades;
     Rellotge clock;
     Tauler tauler;
 
-    public Partida(int idPartida, String mode, boolean estat, int numFiles, int longCodi) {
+    public Partida(int idPartida, String mode, boolean fin, int numFiles, int longCodi) {
         this.idPartida = idPartida;
         this.mode = mode;
         this.temps = 0;
         this.numJugades = 0;
         this.puntuacio = 0;
-        this.estat = estat;
+        this.finalitzada = fin;
         this.numFiles = numFiles;
         this.longCodi = longCodi;
         clock = new Rellotge();
@@ -36,6 +36,7 @@ public class Partida {
     public void ferJugada(Jugada j) {
     	jugades.add(j);
     	tauler.afegirCombinacio(j.codiProposat);
+    	puntuacio++;
     }
 
     public void guardarPartida() {
@@ -52,6 +53,11 @@ public class Partida {
     
     public void estatTauler() {
     	tauler.printTauler();
+    }
+    
+    public int finalitzarPartida() {
+    	finalitzada = true;
+    	return puntuacio;
     }
 
     /* ############################################################################# */
@@ -99,10 +105,10 @@ public class Partida {
     }
 
     public boolean getEstat() {
-        return estat;
+        return finalitzada;
     }
 
     public void setEstat(boolean estat) {
-        this.estat = estat;
+        this.finalitzada = estat;
     }
 }
