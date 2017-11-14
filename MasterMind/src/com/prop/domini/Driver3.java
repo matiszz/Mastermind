@@ -40,8 +40,8 @@ public class Driver3 {
 		while(!guanyat && j <= 10) {
 			System.out.println("Iteracio " + j);
 			codiproposat = a.calcula_jugada(columnes,colors, resposta);
-			for(int i = 0; i < codiproposat.size(); ++i) System.out.print(codiproposat.get(i));
-			System.out.println("");
+			//for(int i = 0; i < codiproposat.size(); ++i) System.out.print(codiproposat.get(i));
+			//System.out.println("");
 			resposta = a.aplica_logica(codisecret, codiproposat);
 			int negres = 0;
 			for(int r = 0; r < columnes;++r) 
@@ -50,6 +50,7 @@ public class Driver3 {
 			++j;
 		}
 		if(guanyat) System.out.println("Has encertat");
+		else System.out.println("T'has quedat sense intents, torna a començar");
 		
 	}
 	
@@ -89,7 +90,7 @@ public class Driver3 {
 		while(!guanyat2 && k <= 10) {
 			System.out.println("Iteracio " + k);
 			codiproposat2 = a2.five_guess(columnes2,colors2, resposta2);
-			for(int s = 0; s < codiproposat2.size(); ++s) System.out.print(codiproposat2.get(s));
+			//for(int s = 0; s < codiproposat2.size(); ++s) System.out.print(codiproposat2.get(s));
 			resposta2 = a2.aplica_logica(codisecret2, codiproposat2);
 			int negres2 = 0;
 			for(int r = 0; r < columnes2;++r) 
