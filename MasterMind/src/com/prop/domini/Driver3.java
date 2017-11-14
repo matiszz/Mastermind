@@ -31,7 +31,7 @@ public class Driver3 {
 		ArrayList<Integer> codisecret = new ArrayList<Integer>();
 		for(int i = 0; i < columnes;++i) {
 			int numerito = lector.nextInt();
-			if(numerito >= colors) {
+			if(numerito >= colors || numerito < 0) {
 				System.out.println("Tots els valors han de ser menors que el numero de colors");
 				return;
 			}
@@ -77,7 +77,7 @@ public class Driver3 {
 		ArrayList<Integer> codisecret2 = new ArrayList<Integer>();
 		for(int i = 0; i < columnes2;++i) {
 			int numerito = lector.nextInt();
-			if(numerito >= colors2) {
+			if(numerito >= colors2 || numerito < 0) {
 				System.out.println("Tots els valors han de ser menors que el numero de colors");
 				return;
 			}
@@ -144,8 +144,6 @@ public class Driver3 {
 		System.out.println("6. Crea CodemakerCpu");
 		System.out.println("7. Crea CodemakerPersona");
 		lector = new Scanner(System.in);
-		
-		
 		
 		char c;
 		try{

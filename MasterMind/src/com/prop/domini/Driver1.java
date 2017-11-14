@@ -27,7 +27,7 @@ public class Driver1 {
 			System.out.println("  3. Difícil");
 
 			int dif = lector.nextInt();
-
+			
 			if (dif == 1) {
 				System.out.println("Dificultat seleccionada: " + dif);
 				generadorJocs = new GeneradorJocs(20, 5, 3, false, dif);
@@ -37,6 +37,9 @@ public class Driver1 {
 			} else if (dif == 3) {
 				System.out.println("Dificultat seleccionada: " + dif);
 				generadorJocs = new GeneradorJocs(25, 7, 3, false, dif);
+			} else {
+				System.out.println("Entre 1 y 3");
+				return;
 			}
 			System.out.println("GeneradorJocs creat amb èxit");
 		}

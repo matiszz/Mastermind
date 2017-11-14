@@ -80,6 +80,10 @@ public class Driver2 {
 			else {
 				System.out.println("Escriu la dificultat entre 1(minima) y 3(maxima)");
 				int dif = lector.nextInt();
+				if(dif < 0 || dif > 3) {
+					System.out.println("Entre 1 y 3 si us plau");
+					return;
+				}
 				r.afegeix_fila(f, dif);
 				System.out.println("FilaRanking actualitzada correctament");
 			}
@@ -89,6 +93,10 @@ public class Driver2 {
 	public static void crearFilaRanking() {
 		System.out.println("Escriu la puntuació entre 1 y 25");
 		int puntuacio = lector.nextInt();
+		if(puntuacio <= 0 || puntuacio > 25) {
+			System.out.println("Entre 1 y 25 si us plau");
+			return;
+		}
 		System.out.println("Escriu el nom del jugador");
 		String nom = lector.next();
 		f = new FilaRanking(puntuacio, nom);
