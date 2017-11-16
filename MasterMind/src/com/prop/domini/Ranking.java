@@ -63,12 +63,12 @@ public class Ranking {
 	}
 	
 	public void afegeix_fila(FilaRanking f, int dificultat) { 
-		//Añade la fila al ranking correspondiente segun dificultad (1 = facil,2=medio,3=dificil)
+		//Afegeix la fila al ranking corresponent segons el paràmetre dificultat (1 = facil,2=mitjana,3=dificil)
 		
 		if((dificultat < 1) || (dificultat > 3) ) return;
 		else if(dificultat == 1) {
 			if(r_facil.isEmpty()) r_facil.add(f); 
-			else { //Si no está buida
+			else { //Si no està buida
 				boolean trobat = false;
 				int i,pos;
 				pos = 0;
@@ -79,8 +79,8 @@ public class Ranking {
 						pos = i;
 					}
 				}
-				if(!trobat && (r_facil.size() <10) ) r_facil.add(f); //Añado al final
-				else if(trobat) { //Añado en medio
+				if(!trobat && (r_facil.size() <10) ) r_facil.add(f); //Afegeix al final
+				else if(trobat) { //Aafageix al mig
 					r_facil.add(pos,f);
 					if(r_facil.size() == 10) r_facil.remove(10);
 				}
@@ -88,7 +88,7 @@ public class Ranking {
 		}
 		else if (dificultat == 2) {
 			if(r_medio.isEmpty()) r_medio.add(f); 
-			else { //Si no está buida
+			else { //Si no està buida
 				boolean trobat = false;
 				int pos,i;
 				pos = 0;
@@ -99,8 +99,8 @@ public class Ranking {
 						pos = i;
 					}
 				}
-				if(!trobat && (r_medio.size() <10) ) r_medio.add(f); //Añado al final
-				else if(trobat) { //Añado en medio
+				if(!trobat && (r_medio.size() <10) ) r_medio.add(f); //Afegeix al final
+				else if(trobat) { //Aafageix al mig
 					r_medio.add(pos,f);
 					if(r_medio.size() == 10) r_medio.remove(10);
 				}
@@ -108,7 +108,7 @@ public class Ranking {
 		}
 		else {
 			if(r_dificil.isEmpty())	r_dificil.add(f);
-			else { //Si no está buida
+			else { //Si no està buida
 				boolean trobat = false;
 				int pos, i;
 				pos = 0;
@@ -119,8 +119,8 @@ public class Ranking {
 						pos = i;
 					}
 				}
-				if(!trobat && (r_dificil.size() <10) ) r_dificil.add(f); //Añado al final
-				else if(trobat) { //Añado en medio
+				if(!trobat && (r_dificil.size() <10) ) r_dificil.add(f);  //Afegeix al final
+				else if(trobat) { //Aafageix al mig
 					r_dificil.add(pos,f);
 					if(r_dificil.size() == 10) r_dificil.remove(10);
 				}

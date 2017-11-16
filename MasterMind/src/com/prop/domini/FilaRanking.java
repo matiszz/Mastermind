@@ -14,21 +14,23 @@ public class FilaRanking {
 		this.intents = intents;
 		this.jugador = jugador;
 	}
-	/*
-	public int getintents() {
-		return intents;
-	}
 	
+	//Setters 
 	public void setintents(int intents) {
 		this.intents = intents;
+	}
+
+	public void setjugador(String jugador) {
+		this.jugador = jugador;
+	}
+	
+	//Getters
+	public int getintents() {
+		return intents;
 	}
 	
 	public String getjugador() {
 		return jugador;
 	}
-	
-	public void setjugador(String jugador) {
-		this.jugador = jugador;
-	}
-	*/
+
 }

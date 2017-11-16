@@ -37,7 +37,7 @@ public class Algorisme {
 		}
 		
 		public int calcula_max(ArrayList<Integer> a) {
-			//Calula el maiximo de las posiciones del array a
+			//Calula el màxim de les posicions de l'array a
 			int posmin = 0;
 			for(int i = 1; i < a.size();++i) {
 				if(a.get(i) < a.get(posmin) ) posmin = i;
@@ -86,7 +86,7 @@ public class Algorisme {
 					int incorrecte = jugat.get(p);
 					for(int p1 = 0; p1 < combinacions.size(); ++p1) { 
 						ArrayList<Integer> comb  = combinacions.get(p1);
-						//Recorro i descarto si no la posibilitat te aquesta posicio igual
+						//Recorro i descarto si la posibilitat te aquesta posicio igual
 						if(comb.get(p) == incorrecte) {
 							valid.set(p1, 0);
 							combinacions.remove(p1);
@@ -97,7 +97,7 @@ public class Algorisme {
 					int correcte = jugat.get(p);
 					for(int p1 = 0; p1 < combinacions.size();++p1) { 
 						ArrayList<Integer> comb  = combinacions.get(p1);
-						//Recorro i descarto si no la posibilitat no te aquesta posicio igual
+						//Recorro i descarto si la posibilitat no te aquesta posicio igual
 						if(comb.get(p) != correcte) {
 							valid.set(p1, 0);
 							combinacions.remove(p1);
@@ -108,12 +108,12 @@ public class Algorisme {
 		}
 		
 		public ArrayList<Integer> aplica_logica(ArrayList<Integer> codiamagat, ArrayList<Integer> codijugat) {
-			//Determina la respuesta obtenida si jugamos codijugat y la solucion es codiamagat
+			//Determina la resposta obtinguda si juguem codijugat y la solució és codiamagat
 			ArrayList<Integer> solucio = new ArrayList<Integer>();
 			for(int i = 0; i < codijugat.size();++i) {
 				int color = codijugat.get(i);
 				if(codiamagat.get(i) == codijugat.get(i)) solucio.add(i,2); //Espiga negra
-				else { //Mirem si el color esta a la solucio
+				else { //Mirem si el color hi és a la solució
 					if(busca_color(color,codiamagat)) solucio.add(i,1);
 					else solucio.add(i,0);
 				}
@@ -141,11 +141,11 @@ public class Algorisme {
 			}
 			else { //Five Guess
 				elimina_incoherents(combinacions,resposta,columnes);
-			//Por cada combinacion, suponer todos los posibles códigos oculotos y ver cuantas posibilidades te permite eliminar
+			//Por cada combinacion, soposar tots els possibles codis ocults i veure quantes possibilitats permet eliminar
 				ArrayList<Integer> min = calcula_eliminacion_minima(resposta);
-			//Seleccionar el mínimo de cada posibilidad
+			//Seleccionar el mínim de cada possibilitat
 				int pos = calcula_max(min);
-			//Seleccionar el máximo entre todas las posibilidades y hacer la jugada
+			//Seleccionar el màximo entre totes les possibilitats i jugar la possibilitat suposadament és adequeada
 				jugat = combinacions.get(pos);
 			}
 			return jugat;
