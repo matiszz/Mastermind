@@ -54,7 +54,6 @@ public class Registre {
 			}
 		}
 		if (trobat) return tmp;
-		else tmp = new Jugador(idJugador, 0, 0);
-		return tmp;
+		else return null;
 	}
 }
