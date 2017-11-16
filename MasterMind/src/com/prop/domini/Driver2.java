@@ -3,7 +3,7 @@ package com.prop.domini;
 import java.util.*;
 
 public class Driver2 {
-	// Driver para las clases Jugador,Registre,Ranking,Fila Ranking
+	/* Driver per a les classes Jugador, Registre, Ranking i FilaRanking */
 	
 	private static Scanner lector = new Scanner(System.in);
 	private static Registre reg = null;
@@ -13,24 +13,29 @@ public class Driver2 {
 	
 	public static void registrarJugador() {
 		if (reg == null)
-			System.out.println("No has creat cap Registre");
+			System.out.println("No has creat cap registre");
 		else {
 			System.out.print("Nom d'usuari del jugador: ");
 			String id = lector.next();
-			ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
-			jugadors = reg.registrar(id);
-			System.out.println("Aquests son tots els jugadors registrats:");
-			for (int i = 0; i < jugadors.size(); i++)
-				System.out.println("  " + jugadors.get(i).getIdJugador());
+			Jugador jug = reg.getJugador(id);
+			if (jug != null)
+				System.out.println("Ja existeix cap jugador amb el nom: " + id);
+			else {
+				ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
+				jugadors = reg.registrar(id);
+				System.out.println("Aquests son tots els jugadors registrats:");
+				for (int i = 0; i < jugadors.size(); i++)
+					System.out.println("  " + jugadors.get(i).getIdJugador());
+			}
 		}
 	}
 
 	public static void crearRegistre() {
 		if (reg != null)
-			System.out.println("Ja has creat un Registre");
+			System.out.println("Ja has creat un registre");
 		else {
 			reg = new Registre();
-			System.out.println("Registre creat.");
+			System.out.println("Registre creat");
 		}
 	}
 	
@@ -38,14 +43,18 @@ public class Driver2 {
 		System.out.print("Nom d'usuari del jugador: ");
 		String idJugador = lector.next();
 		Jugador jug = reg.getJugador(idJugador);
-		System.out.println("Nom Jugador: " + jug.getIdJugador());
-        System.out.println("Partides jugades: " + jug.getPartidesJugades());
-        System.out.println("Partides guanyades: " + jug.getPartidesGuanyades());
+		if (jug == null)
+			System.out.println("No existeix cap jugador amb el nom: " + idJugador);
+		else {
+			System.out.println("Nom jugador: " + jug.getIdJugador());
+	        System.out.println("Partides jugades: " + jug.getPartidesJugades());
+	        System.out.println("Partides guanyades: " + jug.getPartidesGuanyades());
+		}
 	}
 	
 	public static void crearRanking() {
 		if (r != null)
-			System.out.println("Ja existeix un Ranking");
+			System.out.println("Ja existeix un ranking");
 		else {
 			r = new Ranking();
 			System.out.println("Ranking creat correctament");
@@ -54,18 +63,18 @@ public class Driver2 {
 	
 	public static void consultarRanking() {
 		if (r == null)
-			System.out.println("Primer has de crear un Ranking");
+			System.out.println("Primer has de crear un ranking");
 		else {
 			if (r.ranking_buit(1))
-				System.out.println("Ranking fÃ¡cil vacio, aÃ±ade primero algun record");
+				System.out.println("Ranking fàcil buit, afegeix primer algun record");
 			else
 				r.mostra_ranking(1);
 			if (r.ranking_buit(2))
-				System.out.println("Ranking medio vacio, aÃ±ade primero algun record");
+				System.out.println("Ranking mitjà buit, afegeix primer algun record");
 			else
 				r.mostra_ranking(2);
 			if (r.ranking_buit(3))
-				System.out.println("Ranking difÃ­cil vacio, aÃ±ade primero algun record");
+				System.out.println("Ranking difícil buit, afegeix primer algun record");
 			else
 				r.mostra_ranking(3);
 		}
@@ -73,25 +82,25 @@ public class Driver2 {
 
 	public static void actualitzarRanking() {
 		if (r == null)
-			System.out.println("Primer has de crear un Ranking");
+			System.out.println("Primer has de crear un ranking");
 		else {
 			if (f == null)
-				System.out.println("Primer has de crear una fila Ranking");
+				System.out.println("Primer has de crear una fila del ranking");
 			else {
-				System.out.println("Escriu la dificultat entre 1(minima) y 3(maxima)");
+				System.out.println("Escriu la dificultat entre 1(mínima) y 3(màxima)");
 				int dif = lector.nextInt();
 				if(dif < 0 || dif > 3) {
-					System.out.println("Entre 1 y 3 si us plau");
+					System.out.println("Introdueix un valor entre 1 y 3 si us plau");
 					return;
 				}
 				r.afegeix_fila(f, dif);
-				System.out.println("FilaRanking actualitzada correctament");
+				System.out.println("La fila del ranking ha estat actualitzada correctament");
 			}
 		}
 	}
 
 	public static void crearFilaRanking() {
-		System.out.println("Escriu la puntuaciÃ³ entre 1 y 25");
+		System.out.println("Escriu la puntuació entre 1 y 25");
 		int puntuacio = lector.nextInt();
 		if(puntuacio <= 0 || puntuacio > 25) {
 			System.out.println("Entre 1 y 25 si us plau");
@@ -99,21 +108,26 @@ public class Driver2 {
 		}
 		System.out.println("Escriu el nom del jugador");
 		String nom = lector.next();
-		f = new FilaRanking(puntuacio, nom);
-		System.out.println("FilaRanking creada correctament");
+		Jugador jug = reg.getJugador(nom);
+		if (jug == null)
+			System.out.println("No existeix cap jugador amb el nom: " + nom);
+		else {
+			f = new FilaRanking(puntuacio, nom);
+			System.out.println("La fila del ranking ha estat creada correctament");
+		}
 	}
 	
 	public static void usage() {
 		System.out.println("*********************************************************************");
-		System.out.println("* Benvingut a Mastermind! Selecciona una de les segÃ¼ents opcions:");
-		System.out.println("*	0. Sortir del menÃº");
-		System.out.println("*	1. Registrar un Jugador");
-		System.out.println("*	2. Crear un Registre");
-		System.out.println("*	3. Consultar informaciÃ³ d'un jugador");
-		System.out.println("*	4. Crear un Ranking");
-		System.out.println("*	5. Consultar el Ranking");
-		System.out.println("*	6. Actualitzar el Ranking");
-		System.out.println("*	7. Crea una FilaRanking");
+		System.out.println("* Benvingut a Mastermind! Selecciona una de les següents opcions:");
+		System.out.println("*	0. Sortir del menú");
+		System.out.println("*	1. Registrar un jugador");
+		System.out.println("*	2. Crear un registre");
+		System.out.println("*	3. Consultar informació d'un jugador");
+		System.out.println("*	4. Crear un ranking");
+		System.out.println("*	5. Consultar el ranking");
+		System.out.println("*	6. Actualitzar el ranking");
+		System.out.println("*	7. Crea una fila del ranking");
 		System.out.println("*********************************************************************");
 	}
 	
@@ -125,29 +139,29 @@ public class Driver2 {
 		try {
 			while ((c = (char) System.in.read()) != '0') {
 				switch (c) {
-				case '1': // Registrar jugador
+				case '1': 
 					registrarJugador();
 					break;
-				case '2': // Crear un Registre
+				case '2': 
 					crearRegistre();
 					break;
-				case '3': // Consultar informaciÃ³ d'un jugador
+				case '3': 
 					consultarInfoJugador();
 					break;
-				case '4': // Crear un Ranking
+				case '4': 
 					crearRanking();
 					break;
-				case '5': // Consultar el Ranking
+				case '5': 
 					consultarRanking();
 					break;
-				case '6': // Actualitzar el Ranking
+				case '6': 
 					actualitzarRanking();
 					break;
-				case '7': // Crear una FilaRanking
+				case '7': 
 					crearFilaRanking();
 					break;
 				default:
-					if (c!='\n') usage();
+					
 					break;
 				}
 			}
