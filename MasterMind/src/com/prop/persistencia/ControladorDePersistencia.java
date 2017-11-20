@@ -1,0 +1,19 @@
+package com.prop.persistencia;
+
+import com.prop.domini.Jugador;
+public class ControladorDePersistencia {
+
+		public void emmagatzema(Jugador j) {};
+		
+		public void partides_no_finalitzades(String nomjugador) {};
+		
+		public String obteranking() {
+			String s = "";
+			return s;
+		};
+		
+		public String obtepartidesjugador(String nomjugador) {
+			String s = "";
+			return s;
+		};
+}
