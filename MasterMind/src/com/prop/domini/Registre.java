@@ -14,7 +14,7 @@ public class Registre {
 		-> String idJugador
 		<- Es crea el jugador i es retorna un ArrayList de jugadors. Si ja existia, no es crea.
 	*/
-	public ArrayList<Jugador> registrar(String idJugador) {
+	public Jugador registrar(String idJugador) {
 		boolean trobat = false;
 		for (int i = 0; i < jugadors.size() && !trobat; ++i) {
 			Jugador tmp = jugadors.get(i);
@@ -22,12 +22,13 @@ public class Registre {
 				trobat = true;
 			}
 		}
-		if (trobat) 
-			return jugadors;
+		if (trobat) {
+			return null;
+		}
 		else {
 			Jugador nou = new Jugador(idJugador, 0, 0);
 			jugadors.add(nou);
-			return jugadors;
+			return nou;
 		}
 	}
 
