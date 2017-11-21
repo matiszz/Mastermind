@@ -9,13 +9,9 @@ public class ControladorDePersistencia {
 		
 		public void partides_no_finalitzades(String nomjugador) {};
 		
-		public String obteranking() {
-			String s = "";
-			return s;
+		public String[] obteranking() {
 		};
 		
-		public String obtepartidesjugador(String nomjugador) {
-			String s = "";
-			return s;
+		public String[] obtepartidesjugador(String nomjugador) {
 		};
 }
