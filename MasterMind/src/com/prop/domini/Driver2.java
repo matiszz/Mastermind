@@ -1,5 +1,8 @@
 package com.prop.domini;
 
+import com.prop.persistencia.*;
+
+import java.io.File;
 import java.util.*;
 
 public class Driver2 {
@@ -10,6 +13,9 @@ public class Driver2 {
 	private static char c;
 	private static Ranking r = null;
 	private static FilaRanking f = null;
+	
+	public static RegistreDatabase registreDB = null;
+	private static File fileRegistreDB = null;
 	
 	public static void registrarJugador() {
 		if (reg == null)
@@ -31,10 +37,13 @@ public class Driver2 {
 	}
 
 	public static void crearRegistre() {
-		if (reg != null)
+		if ((reg != null) || (fileRegistreDB != null))
 			System.out.println("Ja has creat un registre");
 		else {
 			reg = new Registre();
+			registreDB = new RegistreDatabase("RegistreJugadors");
+			fileRegistreDB = registreDB.getRegistreDatabaseFile();
+			registreDB.crearDatabase();
 			System.out.println("Registre creat");
 		}
 	}
