@@ -3,6 +3,7 @@ package com.prop.domini;
 import java.util.ArrayList;
 
 import com.prop.persistencia.*;
+import com.prop.presentacio.*;
 
 public class ControladorDeDomini {
 		GeneradorJocs generador;
@@ -12,13 +13,15 @@ public class ControladorDeDomini {
 		Registre reg = null;
 		GeneradorJocs gen =  null;
 		Joc joc = null;
-		ControladorDePersistencia ctrladorpersistencia = null;
+		ControladorDePersistencia persistencia = null;
+		ControladorDePresentacio presentacio = null;
 		//Creadora 
 		
 		public ControladorDeDomini(GeneradorJocs generador, Ranking ranking) {
 			this.generador = generador;
 			this.ranking = ranking;
-			ctrladorpersistencia = new ControladorDePersistencia();
+			persistencia = new ControladorDePersistencia();
+			presentacio = new ControladorDePresentacio();
 		}
 		
 		//Setters
@@ -50,8 +53,10 @@ public class ControladorDeDomini {
 			jugador = reg.registrar(id); 
 			/*Ha de llançar una excepció si ja existeix un jugador amb mateix id, altrament retorna el jugador creat 
 			per poder emmagatemar-lo a la BD.*/
-			if(jugador != null) //El jugador es nou
-				ctrladorpersistencia.emmagatzema(jugador);
+			if(jugador != null) {
+				String j = jugador.converteixaString();
+				persistencia.emmagatzema(j,true);
+			}
 		}
 		
 		public void generar_joc(boolean codeMaker) {
@@ -64,7 +69,7 @@ public class ControladorDeDomini {
 				gen = new GeneradorJocs(20,4,4,codeMaker,1); //Per defecte dificultat facil
 			}
 			joc = gen.generaJocDefault();
-			joc.crearPartida(); //Aquí falta tractar el mode
+			partida = joc.crearPartida(); //Aquí falta tractar el mode
 		}
 		
 		
@@ -75,7 +80,8 @@ public class ControladorDeDomini {
 			 Inicia la partida segons si es codemaker o codebreaker.
 			 Inicia el clock
 			 */
-			
+			String s = partida.converteixaString(); //Falta implementar
+			presentacio.mostra_tauler(s);//Fem que el controlador de presentacio mostri la partida actual
 		}
 		
 		public void guardar_partida() {
@@ -83,6 +89,8 @@ public class ControladorDeDomini {
 			 Escriu en un fitxer totes les dades de la partida actual.
 			 Atura el clock
 			 */
+			String p = partida.converteixaString();
+			persistencia.emmagatzema(p,false);
 		}
 		
 		public void finalitzar_partida() {
@@ -94,9 +102,13 @@ public class ControladorDeDomini {
 			 b)torna a generar un nou joc
 			 Atura el clock
 			 */
+			partida.guardarPartida();
+			int res = partida.finalitzarPartida();
+			jugador.actualitzar_partides(res);
 			int dificultat = generador.getDificultat();
-			FilaRanking f = new FilaRanking(partida.jugades.size(),jugador.getIdJugador());
+			FilaRanking f = new FilaRanking(res,jugador.getIdJugador());
 			ranking.afegeix_fila(f, dificultat);
+			presentacio.mostra_menuprincipal();
 		}
 		
 		public ArrayList<Partida> converteixpartides(String info){
@@ -108,20 +120,43 @@ public class ControladorDeDomini {
 			/*
 			 Recupera del fitxer les partides guardades del jugador actual,
 			 */
-			String partides =ctrladorpersistencia.obtepartidesjugador(jugador.getIdJugador());
+			String partides = persistencia.obtepartidesjugador(jugador.getIdJugador());
 			ArrayList<Partida> pendents = converteixpartides(partides);
-			
+			int seleccionada = presentacio.mostra_partides_disponibles(partides);
+			partida = pendents.get(seleccionada);
+			this.jugar_partida();
 			//S'ha de cridar al controlador de domini per que obtingui les partides no finalitzades del jugador que te com atribut
 		}
 		
-		public void fer_jugada() {
+		private ArrayList<Integer> converteixcodi(String codi) {
+			ArrayList<Integer> res = new ArrayList<Integer>();
+			return res;
+		}
+		
+		private String converteixcodi(ArrayList<Integer> codi) {
+			String res = "";
+			return res;
+		}
+		public void fer_jugada(String codip) {
 			/*
 			 Evalua el codi proposat comparant-lo amb la solució i retorna el resultat segons les regles
 			 del joc. (Blanc color i la posició correcte, Negre si color correcte, posició incorrecte, 0 si
 			 no hi ha res bé).
 			 Anotación: 0 o cualquier otro valor, la idea es señalizar un espacio en blanco
 			 */
-			
+			ArrayList<Integer> codiproposat = converteixcodi(codip);
+			if(jugador != null && partida != null) {
+					int num = partida.getNumJugades(); //Devuelve el numero de la jugada
+					ArrayList<Integer> solucio = partida.getCodiamagat();
+					Jugada j = new Jugada(num,partida,jugador);
+					j.setcodiProposat(codiproposat);
+					partida.ferJugada(j);
+					Algorisme a = new Algorisme();
+					ArrayList<Integer> codiresp = a.aplica_logica(solucio, codiproposat);
+					j.setcodiRespost(codiresp);
+					String cod = converteixcodi(codiresp);
+					presentacio.afegeix_codi_respost(cod);
+			}
 		}
 		
 		private Ranking converteix_info(String info) { //Cal saber com pasarem la info
@@ -132,7 +167,7 @@ public class ControladorDeDomini {
 		public void consultar_ranking() { //OK
 			/* Crida a la funcion de ranking que retorna el ranking actual. */
 			if(ranking == null) { //S'ha de cridar al controlador de persistencia per que agafi del arxiu el ranking
-				String info = ctrladorpersistencia.obteranking();
+				String info = persistencia.obteranking();
 				ranking = converteix_info(info);
 			}
 			for(int i = 1; i <=3;++i)

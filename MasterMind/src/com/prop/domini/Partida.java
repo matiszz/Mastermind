@@ -16,9 +16,19 @@ public class Partida {
     int longCodi;
     boolean finalitzada;
     ArrayList<Jugada> jugades;
+    ArrayList<Integer> codiamagat; //Codi amagat añadido, revisar para actualizarlo,inicializarlo etc
     Rellotge clock;
     Tauler tauler;
 
+    public String converteixaString() { //Convierte a String la informacion de la partida
+    		String s = "";
+    		return s;
+    }
+    
+    public ArrayList<Integer> getCodiamagat(){
+    		return this.codiamagat;
+    }
+    
     public Partida(int idPartida, String mode, boolean fin, int numFiles, int longCodi) {
         this.idPartida = idPartida;
         this.mode = mode;
@@ -41,6 +51,7 @@ public class Partida {
 
     public void guardarPartida() {
         temps = clock.aturarRellotge();
+        finalitzada = false;
     }
 
     public void iniciarPartida() {

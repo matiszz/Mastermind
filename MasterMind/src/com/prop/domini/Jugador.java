@@ -7,6 +7,14 @@ public class Jugador {
 
     boolean CPU;
 
+    public String converteixaString() {
+    		String s = "";
+    		return s;
+    }
+    public void actualitzar_partides(int puntuacio) {
+    		
+    }
+    
     public Jugador(String idJugador, int partidesJugades, int partidesGuanyades) {
         this.idJugador = idJugador;
         this.partidesJugades = partidesJugades;
