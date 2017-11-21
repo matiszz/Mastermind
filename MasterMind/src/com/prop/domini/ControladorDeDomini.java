@@ -111,8 +111,12 @@ public class ControladorDeDomini {
 			presentacio.mostra_menuprincipal();
 		}
 		
-		public ArrayList<Partida> converteixpartides(String info){
+		public ArrayList<Partida> converteixpartides(String[] info){ //ULL hi ha parametres que no es tenen en compte
 			ArrayList<Partida> p = new ArrayList<Partida>();
+			for(int i = 0; i < info.length;i=i+13) {
+				Partida newp = new Partida(Integer.parseInt(info[i]), info[i+1],Boolean.parseBoolean(info[i+2]),Integer.parseInt(info[i+3]),Integer.parseInt(info[i+4]));
+				p.add(newp);
+			}
 			return p;
 		}
 		
@@ -120,7 +124,7 @@ public class ControladorDeDomini {
 			/*
 			 Recupera del fitxer les partides guardades del jugador actual,
 			 */
-			String partides = persistencia.obtepartidesjugador(jugador.getIdJugador());
+			String[] partides = persistencia.obtepartidesjugador(jugador.getIdJugador());
 			ArrayList<Partida> pendents = converteixpartides(partides);
 			int seleccionada = presentacio.mostra_partides_disponibles(partides);
 			partida = pendents.get(seleccionada);
@@ -128,16 +132,23 @@ public class ControladorDeDomini {
 			//S'ha de cridar al controlador de domini per que obtingui les partides no finalitzades del jugador que te com atribut
 		}
 		
-		private ArrayList<Integer> converteixcodi(String codi) {
+		private ArrayList<Integer> converteixcodi(int[] codi) { 
 			ArrayList<Integer> res = new ArrayList<Integer>();
+
+			for(int i = 0; i < codi.length;++i) {
+				res.add(codi[i]);
+			}
 			return res;
 		}
 		
-		private String converteixcodi(ArrayList<Integer> codi) {
-			String res = "";
+		private String[] converteixcodi(ArrayList<Integer> codi) {
+			String[] res = new String[codi.size()];
+			for(int i = 0; i < codi.size();++i)
+				res[i]=codi.get(i).toString();
 			return res;
 		}
-		public void fer_jugada(String codip) {
+		
+		public void fer_jugada(int[] codip) { //El controlador de presentacio ens pasa un vector d'enters que es el codi
 			/*
 			 Evalua el codi proposat comparant-lo amb la solució i retorna el resultat segons les regles
 			 del joc. (Blanc color i la posició correcte, Negre si color correcte, posició incorrecte, 0 si
@@ -154,20 +165,34 @@ public class ControladorDeDomini {
 					Algorisme a = new Algorisme();
 					ArrayList<Integer> codiresp = a.aplica_logica(solucio, codiproposat);
 					j.setcodiRespost(codiresp);
-					String cod = converteixcodi(codiresp);
+					String[] cod = converteixcodi(codiresp);
 					presentacio.afegeix_codi_respost(cod);
 			}
 		}
 		
-		private Ranking converteix_info(String info) { //Cal saber com pasarem la info
+		private Ranking converteix_info(String[] info) { //Cal saber com pasarem la info
 			Ranking r = new Ranking();
+			for(int j = 1; j < 4; ++j) {//Per cada dificultat
+				for(int i = 0; i < info.length;i+=3) {
+					FilaRanking fil = new FilaRanking();
+					int n = Integer.parseInt(info[i+1]); //Cal convertir a enter
+					fil.setintents(n);
+					fil.setjugador(info[i+2]);		
+					if(j == 1)
+						r.r_facil.add(fil);
+					else if (j == 2)
+						r.r_medio.add(fil);
+					else if (j == 3)
+						r.r_dificil.add(fil);
+				}
+			}
 			return r;
 		}
 		
 		public void consultar_ranking() { 
 			/* Crida a la funcion de ranking que retorna el ranking actual. */
 			if(ranking == null) { //S'ha de cridar al controlador de persistencia per que agafi del arxiu el ranking
-				String info = persistencia.obteranking();
+				String[] info = persistencia.obteranking();
 				ranking = converteix_info(info);
 			}
 			for(int i = 1; i <=3;++i)
