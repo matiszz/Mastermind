@@ -104,7 +104,7 @@ public class ControladorDeDomini {
 			 */
 			partida.guardarPartida();
 			int res = partida.finalitzarPartida();
-			jugador.actualitzar_partides(res);
+			jugador.actualitzar_partides(res,partida.getdificultat());
 			int dificultat = generador.getDificultat();
 			FilaRanking f = new FilaRanking(res,jugador.getIdJugador());
 			ranking.afegeix_fila(f, dificultat);
@@ -164,7 +164,7 @@ public class ControladorDeDomini {
 			return r;
 		}
 		
-		public void consultar_ranking() { //OK
+		public void consultar_ranking() { 
 			/* Crida a la funcion de ranking que retorna el ranking actual. */
 			if(ranking == null) { //S'ha de cridar al controlador de persistencia per que agafi del arxiu el ranking
 				String info = persistencia.obteranking();

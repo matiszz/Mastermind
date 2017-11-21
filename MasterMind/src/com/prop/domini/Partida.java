@@ -16,17 +16,22 @@ public class Partida {
     int longCodi;
     boolean finalitzada;
     ArrayList<Jugada> jugades;
-    ArrayList<Integer> codiamagat; //Codi amagat añadido, revisar para actualizarlo,inicializarlo etc
+    ArrayList<Integer> codiamagat; //Codi amagat a, cal revisar al actualizarlo,inicializarlo etc
+    int dificultat; //Cal mantenir la dificultat de la partida, inicialitzarla i actualitzarla
     Rellotge clock;
     Tauler tauler;
 
-    public String converteixaString() { //Convierte a String la informacion de la partida
+    public String converteixaString() { //Converteix a un vector d'String la informacio de la partida, cada posicio es un camp d'informacio de la partida per emmagatzemarla
     		String s = "";
     		return s;
     }
     
     public ArrayList<Integer> getCodiamagat(){
     		return this.codiamagat;
+    }
+    
+    public int getdificultat() {
+    		return this.dificultat;
     }
     
     public Partida(int idPartida, String mode, boolean fin, int numFiles, int longCodi) {
