@@ -16,14 +16,35 @@ public class Partida {
     int longCodi;
     boolean finalitzada;
     ArrayList<Jugada> jugades;
-    ArrayList<Integer> codiamagat; //Codi amagat a, cal revisar al actualizarlo,inicializarlo etc
+    ArrayList<Integer> codiamagat; //Codi amagat, cal revisar al actualizarlo,inicializarlo etc
     int dificultat; //Cal mantenir la dificultat de la partida, inicialitzarla i actualitzarla
+    boolean guanyada; //Cak inicialitzar i mantenir l'atribut, serà true si ha encertat en menys intents de les maximes
     Rellotge clock;
     Tauler tauler;
 
-    public String converteixaString() { //Converteix a un vector d'String la informacio de la partida, cada posicio es un camp d'informacio de la partida per emmagatzemarla
-    		String s = "";
-    		return s;
+    public String[] converteixaString() { //Converteix a un vector d'String la informacio de la partida, cada posicio es un camp d'informacio de la partida per emmagatzemarla
+    		String[] s = new String[12];
+    		s[0] = Integer.toString(this.idPartida);
+    		s[1] = mode;
+    		s[2] = Long.toString(temps);
+    		s[3] = Integer.toString(this.numJugades);
+    		s[4] = Integer.toString(this.puntuacio);
+    		s[5] = Integer.toString(this.numFiles);
+    		s[6] = Integer.toString(this.longCodi);
+    		s[7] = Boolean.toString(this.finalitzada);
+    		for(int i = 0; i < jugades.size();++i) {
+    			String l = (jugades.get(i)).converteix_a_string();
+    			s[8]+= l;  
+    		}
+    		for(int i = 0; i < longCodi;++i) {
+    			s[9]+= Integer.toString(codiamagat.get(i));
+    		}
+    		s[10] = Integer.toString(this.dificultat);
+    		s[11] = Boolean.toString(this.guanyada);
+     	return s;
+    }
+    public boolean getguanyada() {
+    		return this.guanyada;
     }
     
     public ArrayList<Integer> getCodiamagat(){
@@ -34,7 +55,7 @@ public class Partida {
     		return this.dificultat;
     }
     
-    public Partida(int idPartida, String mode, boolean fin, int numFiles, int longCodi) {
+    public Partida(int idPartida, String mode, boolean fin, int numFiles, int longCodi,int dificultat) {
         this.idPartida = idPartida;
         this.mode = mode;
         this.temps = 0;
@@ -46,6 +67,8 @@ public class Partida {
         clock = new Rellotge();
         jugades = new ArrayList<Jugada>();
         tauler = new Tauler(numFiles, longCodi);
+        guanyada = false;
+        this.dificultat = dificultat;
     }
     
     public void ferJugada(Jugada j) {
@@ -80,6 +103,10 @@ public class Partida {
     /* ############################# Getters i Setters ############################# */
     /* ############################################################################# */
 
+    public void setCodiAmagat(ArrayList<Integer> c) {
+    		this.codiamagat = c;
+    }
+    
     public int getIdPartida() {
         return idPartida;
     }

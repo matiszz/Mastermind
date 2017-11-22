@@ -12,6 +12,17 @@ public class Jugada {
 	Jugador jugador;
 	Partida partida;
 	
+	public String converteix_a_string() {
+		String s ="";
+		for(int i = 0; i < codiProposat.size();++i) {
+			s+= Integer.toString(codiProposat.get(i));
+		}
+		for(int i = 0; i < codiRespost.size();++i) {
+			s+= Integer.toString(codiRespost.get(i));
+		}
+		return s;
+	}
+	
 	public Jugada (int numJugada, Partida p, Jugador j) {
 		this.numJugada = numJugada;
 		this.encert = false;

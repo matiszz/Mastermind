@@ -53,8 +53,8 @@ public class ControladorDeDomini {
 			jugador = reg.registrar(id); 
 			/*Ha de llançar una excepció si ja existeix un jugador amb mateix id, altrament retorna el jugador creat 
 			per poder emmagatemar-lo a la BD.*/
-			if(jugador != null) {
-				String j = jugador.converteixaString();
+			if(jugador != null) { //El jugador s'ha creat
+				String[] j = jugador.converteixaString();
 				persistencia.emmagatzema(j,true);
 			}
 		}
@@ -80,7 +80,7 @@ public class ControladorDeDomini {
 			 Inicia la partida segons si es codemaker o codebreaker.
 			 Inicia el clock
 			 */
-			String s = partida.converteixaString(); //Falta implementar
+			String s[] = partida.converteixaString(); //Falta implementar
 			presentacio.mostra_tauler(s);//Fem que el controlador de presentacio mostri la partida actual
 		}
 		
@@ -89,7 +89,7 @@ public class ControladorDeDomini {
 			 Escriu en un fitxer totes les dades de la partida actual.
 			 Atura el clock
 			 */
-			String p = partida.converteixaString();
+			String[] p = partida.converteixaString();
 			persistencia.emmagatzema(p,false);
 		}
 		
@@ -104,7 +104,7 @@ public class ControladorDeDomini {
 			 */
 			partida.guardarPartida();
 			int res = partida.finalitzarPartida();
-			jugador.actualitzar_partides(res,partida.getdificultat());
+			jugador.actualitzar_partides(res,partida.getguanyada());
 			int dificultat = generador.getDificultat();
 			FilaRanking f = new FilaRanking(res,jugador.getIdJugador());
 			ranking.afegeix_fila(f, dificultat);
@@ -114,7 +114,7 @@ public class ControladorDeDomini {
 		public ArrayList<Partida> converteixpartides(String[] info){ //ULL hi ha parametres que no es tenen en compte
 			ArrayList<Partida> p = new ArrayList<Partida>();
 			for(int i = 0; i < info.length;i=i+13) {
-				Partida newp = new Partida(Integer.parseInt(info[i]), info[i+1],Boolean.parseBoolean(info[i+2]),Integer.parseInt(info[i+3]),Integer.parseInt(info[i+4]));
+				Partida newp = new Partida(Integer.parseInt(info[i]), info[i+1],Boolean.parseBoolean(info[i+2]),Integer.parseInt(info[i+3]),Integer.parseInt(info[i+4]),Integer.parseInt(info[i+10]));
 				p.add(newp);
 			}
 			return p;

@@ -7,13 +7,17 @@ public class Jugador {
 
     boolean CPU;
 
-    public String converteixaString() { //Converteix a un vector de String la informacio del jugador, cada posicio es un camp d'informacio del jugador
-    		String s = "";
+    public String[] converteixaString() { //Converteix a un vector de String la informacio del jugador, cada posicio es un camp d'informacio del jugador
+    		String[] s = new String[3]; 
+    		s[0]= this.idJugador;
+    		s[1] = Integer.toString(this.partidesJugades);
+    		s[2] = Integer.toString(this.partidesGuanyades);
     		return s;
     }
-    public void actualitzar_partides(int puntuacio,int dificultat) { 
+    public void actualitzar_partides(int puntuacio,boolean guanyat) { 
     	//Determina si la partida ha sigut guanyada o perduda segons la dificultat y la puntuacio(intents), actualiza partidasguanyades en cas necessari
-    		
+    		if(guanyat) this.partidesGuanyades++;
+    		this.partidesJugades++;
     }
     
     public Jugador(String idJugador, int partidesJugades, int partidesGuanyades) {
