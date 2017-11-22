@@ -2,7 +2,7 @@ package com.prop.presentacio;
 
 public class ControladorDePresentacio {
 	
-	public void mostra_tauler(String partida) {};
+	public void mostra_tauler(String[] partida) {};
 	
 	public void mostra_menuprincipal() {};
 	
