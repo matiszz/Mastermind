@@ -1,7 +1,5 @@
 package com.prop.persistencia;
 
-import com.prop.domini.Jugador;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,7 +22,7 @@ public class RegistreDatabase extends Database {
 	public void crearDatabase() {
 		file = new File(nom);
 		if (file.exists()) {
-			System.out.println("Ja existeix la Base de Dades");
+			System.out.println("Ja existeix la base de dades del registre de jugadors");
 		}
 		else {
 			try {
@@ -32,7 +30,7 @@ public class RegistreDatabase extends Database {
 				file.createNewFile();
 				FileWriter fw = new FileWriter(file);
 				BufferedWriter bw = new BufferedWriter(fw);
-				bw.write("Registre de Jugadors de MasterMind");
+				bw.write("Registre de jugadors de MasterMind");
 				bw.newLine();
 				bw.flush();
 				bw.close();
@@ -44,7 +42,7 @@ public class RegistreDatabase extends Database {
 				System.out.println(line);
 				br.close();
 				
-				System.out.println("Base de Dades creada correctament");
+				System.out.println("Base de dades creada correctament");
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -54,7 +52,7 @@ public class RegistreDatabase extends Database {
 	
 	/* Afegir un jugador al registre */
 	/* Si no existe el jugador lo añade a la BD, si existe no hace nada */
-	public void afegirJugador(Jugador j) {
+	public void emmagatzemaJugador(String[] info) { //info[0] = idJugador, info[1] = partidesJugades, info[2] = partidesGuanyades
 		FileWriter fw;
 		BufferedWriter bw;
 		try {
@@ -63,14 +61,14 @@ public class RegistreDatabase extends Database {
 			Boolean found = false;
 			while (sc.hasNextLine() && found.equals(false)) {
 				String line = sc.nextLine();
-				if (line.contains(j.getIdJugador()))
+				if (line.contains(info[0]))
 					found = true;
 			}
 			sc.close();
 			if (found.equals(false)) { //se puede hacer una excepción personalizada para que salte si ya existe el jugador pero que palo
 				fw = new FileWriter(file,true); //true es para activar el append para que no sobreescriba lo que había
 				bw = new BufferedWriter(fw);
-				bw.write(j.getIdJugador() + " " + j.getPartidesJugades() + " " + j.getPartidesGuanyades());
+				bw.write(info[0] + " " + info[1] + " " + info[2]);
 				bw.newLine(); //nueva línea
 				bw.flush();
 				bw.close();
@@ -78,8 +76,8 @@ public class RegistreDatabase extends Database {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
+	
 
 }
