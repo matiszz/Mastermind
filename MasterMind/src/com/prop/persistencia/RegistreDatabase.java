@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class RegistreDatabase extends Database {
 	private File file;
@@ -32,6 +33,7 @@ public class RegistreDatabase extends Database {
 				FileWriter fw = new FileWriter(file);
 				BufferedWriter bw = new BufferedWriter(fw);
 				bw.write("Registre de Jugadors de MasterMind");
+				bw.newLine();
 				bw.flush();
 				bw.close();
 				
@@ -50,17 +52,29 @@ public class RegistreDatabase extends Database {
 		}
 	}
 	
-	/* Afegir un jugador al registre */ 
-	public void afegirJugador(Jugador j) { //aun ha de comprobar bastantes cosas
+	/* Afegir un jugador al registre */
+	/* Si no existe el jugador lo añade a la BD, si existe no hace nada */
+	public void afegirJugador(Jugador j) {
 		FileWriter fw;
 		BufferedWriter bw;
 		try {
-			fw = new FileWriter(file);
-			bw = new BufferedWriter(fw);
-			
-			bw.write(j.getIdJugador() + " " + j.getPartidesJugades() + " " + j.getPartidesGuanyades());
-			bw.flush();
-			bw.close();
+			Scanner sc = new Scanner(file); //buscamos si existe el jugador en la base de datos
+			sc.nextLine(); //saltamos la primera línea ya que es el título
+			Boolean found = false;
+			while (sc.hasNextLine() && found.equals(false)) {
+				String line = sc.nextLine();
+				if (line.contains(j.getIdJugador()))
+					found = true;
+			}
+			sc.close();
+			if (found.equals(false)) { //se puede hacer una excepción personalizada para que salte si ya existe el jugador pero que palo
+				fw = new FileWriter(file,true); //true es para activar el append para que no sobreescriba lo que había
+				bw = new BufferedWriter(fw);
+				bw.write(j.getIdJugador() + " " + j.getPartidesJugades() + " " + j.getPartidesGuanyades());
+				bw.newLine(); //nueva línea
+				bw.flush();
+				bw.close();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
