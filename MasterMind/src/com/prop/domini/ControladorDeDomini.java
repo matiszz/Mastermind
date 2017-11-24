@@ -44,14 +44,10 @@ public class ControladorDeDomini {
 		}
 		
 		//Casos d'ús
-		public boolean registrar(String id) { //Cas d'us registrar usuari, retorna fals si l'id està en us
-			/*
-			Després registra el jugador i l'emmagatzema a la bd.
-			 */
+		public boolean registrar(String id) { //Cas d'us registrar usuari, retorna fals si l'id està en us. Altrament registra jugador i l'emmagatzema a la BD
+
 			boolean creat = false;; //Si creat = false vol dir que l'id ja esta en us
 			jugador = reg.registrar(id); 
-			/*Ha de llançar una excepció si ja existeix un jugador amb mateix id, altrament retorna el jugador creat 
-			per poder emmagatemar-lo a la BD.*/
 			if(jugador != null) { //El jugador s'ha creat
 				creat = true;
 				String[] j = jugador.converteixaString();
@@ -162,25 +158,6 @@ public class ControladorDeDomini {
 					String[] cod = converteixcodi(codiresp);
 					presentacio.afegeix_codi_respost(cod);
 			}
-		}
-		
-		private Ranking converteix_info(String[] info) { 
-			Ranking r = new Ranking();
-			for(int j = 1; j < 4; ++j) {//Per cada dificultat
-				for(int i = 0; i < info.length;i+=3) {
-					FilaRanking fil = new FilaRanking();
-					int n = Integer.parseInt(info[i+1]); //Cal convertir a enter
-					fil.setintents(n);
-					fil.setjugador(info[i+2]);		
-					if(j == 1)
-						r.r_facil.add(fil);
-					else if (j == 2)
-						r.r_medio.add(fil);
-					else if (j == 3)
-						r.r_dificil.add(fil);
-				}
-			}
-			return r;
 		}
 		
 		public String[][] consultar_ranking() { //Va a la capa de persistencia y retorna el ranking a la capa de presentacio.
