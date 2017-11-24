@@ -17,11 +17,12 @@ public class ControladorDeDomini {
 		ControladorDePresentacio presentacio = null;
 		//Creadora 
 		
-		public ControladorDeDomini(GeneradorJocs generador, Ranking ranking) {
-			this.generador = generador;
-			this.ranking = ranking;
+		public ControladorDeDomini() {
+			ranking = new Ranking();
 			persistencia = new ControladorDePersistencia();
 			presentacio = new ControladorDePresentacio();
+			reg = new Registre();
+			
 		}
 		
 		//Setters
@@ -43,91 +44,90 @@ public class ControladorDeDomini {
 		}
 		
 		//Casos d'ús
-		public void registrar(String id) { //OK
+		public boolean registrar(String id) { //Cas d'us registrar usuari, retorna fals si l'id està en us
 			/*
-			Primer comproba si hi ha algun registre, si no hi ha el crea.
 			Després registra el jugador i l'emmagatzema a la bd.
 			 */
-			if(reg == null) 
-				reg = new Registre();
+			boolean creat = false;; //Si creat = false vol dir que l'id ja esta en us
 			jugador = reg.registrar(id); 
 			/*Ha de llançar una excepció si ja existeix un jugador amb mateix id, altrament retorna el jugador creat 
 			per poder emmagatemar-lo a la BD.*/
 			if(jugador != null) { //El jugador s'ha creat
+				creat = true;
 				String[] j = jugador.converteixaString();
-				persistencia.emmagatzema(j,true);
+				persistencia.emmagatzema_jugador(j);
 			}
+			return creat;
 		}
 		
-		public void generar_joc(boolean codeMaker) {
-			/*
-			 Comproba que existeixi un generador de jocs, si no existeix el crea.
-			 Un cop sabe que existeix un generador de jocs, crea el joc segons el parametre,
-			 Que indica si es un joc amb els valor per defecte o bé personalitzats.
-			 */
+		public void generar_joc(int dificultat,boolean codeMaker) { //Genera generador de jocs, el joc i la partida segons la dificultat i el mode
 			if(gen == null) {
-				gen = new GeneradorJocs(20,4,4,codeMaker,1); //Per defecte dificultat facil
+				switch (dificultat) {
+				
+				case 1:
+					gen = new GeneradorJocs(20,4,5,codeMaker,dificultat); 
+				break;
+				case 2:
+					gen = new GeneradorJocs(15,4,5,codeMaker,dificultat); 
+				break;
+				case 3:
+					gen = new GeneradorJocs(10,4,5,codeMaker,dificultat); 
+				break;
+				}
 			}
 			joc = gen.generaJocDefault();
-			partida = joc.crearPartida(); //Aquí falta tractar el mode
+			partida = joc.crearPartida(); 
+			this.jugar_partida();
 		}
 		
-		
-		public void jugar_partida() {
+		public void jugar_partida() { //Converteix la partida al tipus per enviar entre capes i fa que el ctrlpresentacio mostri la vista
 			/*
-			 Comrpoba que existeix un joc i un generador de partides.
+			 Comproba que existeix un joc i un generador de partides.
 			 Crea la partida i l'assigna a joc.
 			 Inicia la partida segons si es codemaker o codebreaker.
 			 Inicia el clock
 			 */
-			String s[] = partida.converteixaString(); //Falta implementar
+			String s[] = partida.converteixaString();
 			presentacio.mostra_tauler(s);//Fem que el controlador de presentacio mostri la partida actual
 		}
 		
-		public void guardar_partida() {
+		public void guardar_partida() { //Converteix la partida en l'estructura per passar entre capes i la envia a la capa de persistencia.
 			/*
 			 Escriu en un fitxer totes les dades de la partida actual.
 			 Atura el clock
 			 */
 			String[] p = partida.converteixaString();
-			persistencia.emmagatzema(p,false);
+			partida.clock.aturarRellotge();
+			persistencia.emmagatzema_partida(p,jugador.getIdJugador());
 		}
 		
-		public void finalitzar_partida() {
-			/*
-			 Un cop s'ha encertat el codi o bé s'han acabat el numero d'intents finalitza la partida,
-			 és a dir, calcula la puntuació, comproba si s'ha dactualitzar el ranking, actualitza (si cal),
-			 les dades del jugador i:
-			 a)torna a iniciar una altra partida amb el mateix joc
-			 b)torna a generar un nou joc
-			 Atura el clock
-			 */
+		public void finalitzar_partida() {//Guarda la partida(NO a la BD), actualitza estadistiques jugador i actualitza ranking si cal.
 			partida.guardarPartida();
 			int res = partida.finalitzarPartida();
 			jugador.actualitzar_partides(res,partida.getguanyada());
 			int dificultat = generador.getDificultat();
 			FilaRanking f = new FilaRanking(res,jugador.getIdJugador());
-			ranking.afegeix_fila(f, dificultat);
+			boolean afegida = ranking.afegeix_fila(f, dificultat);
+			if(afegida) {
+				String[][] rank = ranking.converteix_Ranking();
+				persistencia.emmagatzema_ranking(rank);
+			}
 			presentacio.mostra_menuprincipal();
 		}
 		
-		public ArrayList<Partida> converteixpartides(String[] info){ //ULL hi ha parametres que no es tenen en compte
-			ArrayList<Partida> p = new ArrayList<Partida>();
-			for(int i = 0; i < info.length;i=i+13) {
-				Partida newp = new Partida(Integer.parseInt(info[i]), info[i+1],Boolean.parseBoolean(info[i+2]),Integer.parseInt(info[i+3]),Integer.parseInt(info[i+4]),Integer.parseInt(info[i+10]));
-				p.add(newp);
-			}
-			return p;
+		public Partida converteixpartida(String[] info){ //ULL hi ha parametres que no es tenen en compte
+			int i = 0;
+			Partida newp = new Partida(Integer.parseInt(info[i]), info[i+1],Boolean.parseBoolean(info[i+2]),Integer.parseInt(info[i+3]),Integer.parseInt(info[i+4]),Integer.parseInt(info[i+10]));
+			return newp;
 		}
 		
-		public void continuar_partida() {
+		public void continuar_partida() { //Primer obte totes les partides, se les pasa a la capa de presentació, espera una selecció i reanuda la partida seleccionada
 			/*
 			 Recupera del fitxer les partides guardades del jugador actual,
 			 */
-			String[] partides = persistencia.obtepartidesjugador(jugador.getIdJugador());
-			ArrayList<Partida> pendents = converteixpartides(partides);
-			int seleccionada = presentacio.mostra_partides_disponibles(partides);
-			partida = pendents.get(seleccionada);
+			String[][] partides = persistencia.obtepartidesjugador(jugador.getIdJugador());
+			String[] seleccionada = presentacio.mostra_partides_disponibles(partides);
+			partida = converteixpartida(seleccionada);
 			this.jugar_partida();
 			//S'ha de cridar al controlador de domini per que obtingui les partides no finalitzades del jugador que te com atribut
 		}
@@ -148,16 +148,10 @@ public class ControladorDeDomini {
 			return res;
 		}
 		
-		public void fer_jugada(int[] codip) { //El controlador de presentacio ens pasa un vector d'enters que es el codi
-			/*
-			 Evalua el codi proposat comparant-lo amb la solució i retorna el resultat segons les regles
-			 del joc. (Blanc color i la posició correcte, Negre si color correcte, posició incorrecte, 0 si
-			 no hi ha res bé).
-			 Anotación: 0 o cualquier otro valor, la idea es señalizar un espacio en blanco
-			 */
+		public void fer_jugada(int[] codip) { //Nomes te sentit en codebreaker i si juga la persona. Realitza la jugada que li pasen, actualitza el tauler, processa la jugada y retorna el codi respost a la capa de presentacio
 			ArrayList<Integer> codiproposat = converteixcodi(codip);
 			if(jugador != null && partida != null) {
-					int num = partida.getNumJugades(); //Devuelve el numero de la jugada
+					int num = partida.getNumJugades(); //Retorna el numero de la jugada
 					ArrayList<Integer> solucio = partida.getCodiamagat();
 					Jugada j = new Jugada(num,partida,jugador);
 					j.setcodiProposat(codiproposat);
@@ -170,7 +164,7 @@ public class ControladorDeDomini {
 			}
 		}
 		
-		private Ranking converteix_info(String[] info) { //Cal saber com pasarem la info
+		private Ranking converteix_info(String[] info) { 
 			Ranking r = new Ranking();
 			for(int j = 1; j < 4; ++j) {//Per cada dificultat
 				for(int i = 0; i < info.length;i+=3) {
@@ -189,14 +183,9 @@ public class ControladorDeDomini {
 			return r;
 		}
 		
-		public void consultar_ranking() { 
-			/* Crida a la funcion de ranking que retorna el ranking actual. */
-			if(ranking == null) { //S'ha de cridar al controlador de persistencia per que agafi del arxiu el ranking
-				String[] info = persistencia.obteranking();
-				ranking = converteix_info(info);
-			}
-			for(int i = 1; i <=3;++i)
-					ranking.mostra_ranking(i);
+		public String[][] consultar_ranking() { //Va a la capa de persistencia y retorna el ranking a la capa de presentacio.
+			String[][] rank = persistencia.obteranking();
+			return rank;
 		}	
 		
 		

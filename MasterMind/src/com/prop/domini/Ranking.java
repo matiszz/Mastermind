@@ -62,11 +62,12 @@ public class Ranking {
 		}
 	}
 	
-	public void afegeix_fila(FilaRanking f, int dificultat) { 
+	public boolean afegeix_fila(FilaRanking f, int dificultat) { 
 		//Afegeix la fila al ranking corresponent segons el paràmetre dificultat (1 = facil,2=mitjana,3=dificil)
+		boolean afegida = false;
 		
-		if((dificultat < 1) || (dificultat > 3) ) return;
-		else if(dificultat == 1) {
+		//if((dificultat < 1) || (dificultat > 3) ) //Ja s'haura comprovat a la capa de presentacio
+		if(dificultat == 1) {
 			if(r_facil.isEmpty()) r_facil.add(f); 
 			else { //Si no està buida
 				boolean trobat = false;
@@ -79,9 +80,13 @@ public class Ranking {
 						pos = i;
 					}
 				}
-				if(!trobat && (r_facil.size() <10) ) r_facil.add(f); //Afegeix al final
+				if(!trobat && (r_facil.size() <10) ) {
+					afegida = true;
+					r_facil.add(f); //Afegeix al final
+				}
 				else if(trobat) { //Aafageix al mig
 					r_facil.add(pos,f);
+					afegida = true;
 					if(r_facil.size() == 10) r_facil.remove(10);
 				}
 			}
@@ -99,9 +104,13 @@ public class Ranking {
 						pos = i;
 					}
 				}
-				if(!trobat && (r_medio.size() <10) ) r_medio.add(f); //Afegeix al final
+				if(!trobat && (r_medio.size() <10) ) {
+					afegida = true;
+					r_medio.add(f); //Afegeix al final
+				}
 				else if(trobat) { //Aafageix al mig
 					r_medio.add(pos,f);
+					afegida = true;
 					if(r_medio.size() == 10) r_medio.remove(10);
 				}
 			}
@@ -119,12 +128,36 @@ public class Ranking {
 						pos = i;
 					}
 				}
-				if(!trobat && (r_dificil.size() <10) ) r_dificil.add(f);  //Afegeix al final
+				if(!trobat && (r_dificil.size() <10) ) {
+					afegida = true;
+					r_dificil.add(f);  //Afegeix al final
+				}
 				else if(trobat) { //Aafageix al mig
 					r_dificil.add(pos,f);
+					afegida = true;
 					if(r_dificil.size() == 10) r_dificil.remove(10);
 				}
 			}
 		}
+	return afegida;
+	}
+	public String[][] converteix_Ranking(){
+		int longitud = r_facil.size() + r_medio.size() + r_dificil.size();
+		String[][] res = new String[longitud][2];
+		for(int i = 0; i < r_facil.size();++i) {
+			FilaRanking f = r_facil.get(i);
+			res[i]= f.converteix();
+		}
+		int j = r_facil.size();
+		for(int i = 0; i < r_medio.size();++i) {
+			FilaRanking f = r_medio.get(i);
+			res[j]= f.converteix();
+		}
+		j = r_facil.size()+r_medio.size();
+		for(int i = 0; i < r_dificil.size();++i) {
+			FilaRanking f = r_dificil.get(i);
+			res[j]= f.converteix();
+		}
+		return res;
 	}
 }

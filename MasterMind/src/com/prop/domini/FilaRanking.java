@@ -32,5 +32,10 @@ public class FilaRanking {
 	public String getjugador() {
 		return jugador;
 	}
-
+	public String[] converteix() {
+		String[] s = new String[2];
+		s[0] = Integer.toString(this.intents);
+		s[1] = this.jugador;
+		return s;
+	}
 }
