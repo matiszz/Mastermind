@@ -1,0 +1,14 @@
+Benvingut a Mastermind! Selecciona una de les següents opcions:
+0. Surt del driver
+1. Algorisme basic
+2. Algorisme five guess
+3. Crea CodebreakerPersona
+4. Crear Algorisme
+5. Crea CodebreakerCpu
+6. Crea CodemakerCpu
+7. Crea CodemakerPersona
+Introdueix el nombre de columnes
+El nombre de columnes ha de ser >=1, torna a començar
+Introdueix el nombre de columnes
+Introdueix el nombre de colors
+El nombre de colors ha de ser >=1, torna a començar

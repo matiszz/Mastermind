@@ -1,0 +1,12 @@
+Benvingut a Mastermind! Selecciona una de les següents opcions:
+0. Surt del driver
+1. Algorisme basic
+2. Algorisme five guess
+3. Crea CodebreakerPersona
+4. Crear Algorisme
+5. Crea CodebreakerCpu
+6. Crea CodemakerCpu
+7. Crea CodemakerPersona
+Primer has de crear un algorisme
+Algorisme creat correctament
+Nou CodeBreaker Cpu creat correctament
