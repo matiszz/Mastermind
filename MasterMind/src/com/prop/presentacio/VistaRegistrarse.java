@@ -6,10 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class VistaRegistrarse extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -35,8 +42,72 @@ public class VistaRegistrarse extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnMenPrincipal = new JButton("Menú Principal");
+		btnMenPrincipal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				VistaMenuPrincipal nv = new VistaMenuPrincipal();
+				nv.setVisible(true);
+				VistaRegistrarse.this.dispose();
+			}
+		});
+		btnMenPrincipal.setBounds(6, 6, 117, 29);
+		contentPane.add(btnMenPrincipal);
+		
+		textField = new JTextField();
+		textField.setBounds(143, 79, 130, 26);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblIntrodueixElTeu = new JLabel("Introdueix el teu alies");
+		lblIntrodueixElTeu.setBounds(143, 51, 146, 16);
+		contentPane.add(lblIntrodueixElTeu);
+		
+		JLabel labelSeleccionat = new JLabel("L'alies seleccionat ja existeix");
+		labelSeleccionat.setForeground(Color.RED);
+		labelSeleccionat.setBounds(118, 114, 202, 16);
+		labelSeleccionat.setVisible(false);
+		contentPane.add(labelSeleccionat);
+		
+		
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ControladorDePresentacio c = new ControladorDePresentacio();
+				boolean b = c.click_registrarse(lblIntrodueixElTeu.getText());
+				if(b) { //Sijugador existe -> VistaNovaPartidaoReanudar
+					VistaNovaPartidaoReanudar nova = new VistaNovaPartidaoReanudar();
+					nova.setVisible(true);
+					VistaRegistrarse.this.dispose();
+				}
+				else { //Si no s'ha creat vol dir que ja exitia
+					labelSeleccionat.setVisible(true);
+				}
+				
+			}
+		});
+		btnRegistrar.setBounds(260, 142, 117, 29);
+		contentPane.add(btnRegistrar);
+		
+		JButton btnIniciarSessi = new JButton("Iniciar sessió");
+		btnIniciarSessi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ControladorDePresentacio c = new ControladorDePresentacio();
+				boolean b = c.click_registrarse(lblIntrodueixElTeu.getText());
+				//Sempre anirà a la següent vista
+				VistaNovaPartidaoReanudar nova = new VistaNovaPartidaoReanudar();
+				nova.setVisible(true);
+				VistaRegistrarse.this.dispose();
+			}
+		});
+		btnIniciarSessi.setBounds(41, 142, 117, 29);
+		contentPane.add(btnIniciarSessi);
+		
+		
 	}
-
 }

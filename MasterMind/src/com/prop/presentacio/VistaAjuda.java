@@ -5,11 +5,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 public class VistaAjuda extends JFrame {
 
@@ -42,7 +45,7 @@ public class VistaAjuda extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton bback = new JButton("Menu Principal");
+		JButton bback = new JButton("Menú Principal");
 		bback.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VistaMenuPrincipal nv = new VistaMenuPrincipal();
@@ -53,9 +56,18 @@ public class VistaAjuda extends JFrame {
 		 bback.setBounds(21, 6, 117, 29);
 		contentPane.add( bback);
 		
-		JLabel lblNewLabel = new JLabel("Vista de ayuda");
-		lblNewLabel.setBounds(63, 47, 254, 74);
-		contentPane.add(lblNewLabel);
+		JTextArea text = new JTextArea();
+		text.setText("Vista d’ajuda");
+		text.setEditable(false);
+		text.setBounds(-1195, 61, 430, 156);
+		contentPane.add(text);
+		
+		JScrollPane scroll = new JScrollPane(text);
+		scroll.setLocation(21,47);
+		scroll.setSize(400, 198);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		contentPane.add(scroll);
 	}
 
 }
