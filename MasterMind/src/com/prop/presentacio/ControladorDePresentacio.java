@@ -22,4 +22,16 @@ public class ControladorDePresentacio {
 		boolean b = false;
 		return b;
 	};
+	
+	public void crear_partida(String mode, String dificultat) {
+		switch(dificultat) { //Crida al controlador de domini indicant el mode de partida i la dificultat de la partida
+			case "Facil":
+				
+			break;
+			case "Mitjana":
+				
+			break;
+			case "Dificil":
+		}
+	}
 }

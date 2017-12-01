@@ -52,10 +52,12 @@ public class VistaDificultatiMode extends JFrame {
 		
 		JRadioButton rdbtnCodebreaker = new JRadioButton("Code Breaker");
 		rdbtnCodebreaker.setBounds(170, 66, 141, 23);
+		rdbtnCodebreaker.setActionCommand("Codebreaker");
 		contentPane.add(rdbtnCodebreaker);
 		
 		JRadioButton rdbtnCodeMaker = new JRadioButton("Code Maker");
 		rdbtnCodeMaker.setBounds(170, 101, 141, 23);
+		rdbtnCodeMaker.setActionCommand("CodeMaker");
 		contentPane.add(rdbtnCodeMaker);
 		
 		ButtonGroup grupMode = new ButtonGroup();
@@ -68,14 +70,17 @@ public class VistaDificultatiMode extends JFrame {
 		
 		JRadioButton rdbtnFcil = new JRadioButton("Fàcil");
 		rdbtnFcil.setBounds(170, 164, 141, 23);
+		rdbtnFcil.setActionCommand("Facil");
 		contentPane.add(rdbtnFcil);
 		
 		JRadioButton rdbtnMitjana = new JRadioButton("Mitjana");
 		rdbtnMitjana.setBounds(170, 199, 141, 23);
+		rdbtnMitjana.setActionCommand("Mitjana");
 		contentPane.add(rdbtnMitjana);
 		
 		JRadioButton rdbtnDifcil = new JRadioButton("Difícil");
 		rdbtnDifcil.setBounds(170, 234, 141, 23);
+		rdbtnDifcil.setActionCommand("Dificil");
 		contentPane.add(rdbtnDifcil);
 		
 		ButtonGroup grupDificultat = new ButtonGroup();
@@ -103,11 +108,14 @@ public class VistaDificultatiMode extends JFrame {
 		btnComenar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				String mode = grupMode.getSelection().getActionCommand();
+				String dificultat = grupDificultat.getSelection().getActionCommand();
+				System.out.println(mode + " " + dificultat);
+				//ControladorDePresentacio c = new ControladorDePresentacio();
+				//c.crear_partida(mode,dificultat);
 			}
 		});
 		btnComenar.setBounds(323, 243, 117, 29);
 		contentPane.add(btnComenar);
-		
 	}
 }
