@@ -1,21 +1,17 @@
 # MasterMind
 
-##Vistas
--[x] **Menu Principal**
--[] **Vista Seleccion NUEVA PARTIDA/REANUDAR PARTIDA**
--[x] **Vista Selección Dificultad y Modo**
--[] **Vista Partidas Guardadas**
--[] **Vista PartidaDificultad Fàcil**
--[] **Vista PartidaDificultad Media**
--[] **Vista PartidaDificultad Dificil**
--[] **Vista Creación del código a descifrar** 
--[] **Vista Ranking**
--[x] **Vista Información**
--[x] **Vista Ayuda**
-
-
-
-
+## Vistas
+- [x] **Menu Principal**
+- [] **Vista Seleccion NUEVA PARTIDA/REANUDAR PARTIDA**
+- [x] **Vista Selección Dificultad y Modo**
+- [] **Vista Partidas Guardadas**
+- [] **Vista PartidaDificultad Fàcil**
+- [] **Vista PartidaDificultad Media**
+- [] **Vista PartidaDificultad Dificil**
+- [] **Vista Creación del código a descifrar** 
+- [] **Vista Ranking**
+- [x] **Vista Información**
+- [x] **Vista Ayuda**
 
 ## Repartición de clases
 - [x] **Ranking:** Sergi
