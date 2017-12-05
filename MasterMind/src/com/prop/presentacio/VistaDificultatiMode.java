@@ -88,21 +88,21 @@ public class VistaDificultatiMode extends JFrame {
 		grupDificultat.add(rdbtnMitjana);
 		grupDificultat.add(rdbtnDifcil);
 		
-		JButton btnNewButton = new JButton("Menú Principal");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton enrere = new JButton("Tornar");
+		enrere.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				VistaMenuPrincipal nv = new VistaMenuPrincipal();
+				VistaNovaPartidaoReanudar nv = new VistaNovaPartidaoReanudar();
 				nv.setVisible(true);
 				VistaDificultatiMode.this.dispose();
 			}
 		});
-		btnNewButton.addActionListener(new ActionListener() {
+		enrere.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(2, 6, 117, 29);
-		contentPane.add(btnNewButton);
+		enrere.setBounds(2, 6, 117, 29);
+		contentPane.add(enrere);
 		
 		JButton btnComenar = new JButton("Començar");
 		btnComenar.addMouseListener(new MouseAdapter() {
