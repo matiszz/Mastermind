@@ -1,9 +1,8 @@
 package com.prop.domini;
 
 import java.util.ArrayList;
-
-import com.prop.persistencia.*;
-import com.prop.presentacio.*;
+import com.prop.persistencia.ControladorDePersistencia;
+import com.prop.presentacio.ControladorDePresentacio;
 
 public class ControladorDeDomini {
 		GeneradorJocs generador;
@@ -51,7 +50,7 @@ public class ControladorDeDomini {
 			if(jugador != null) { //El jugador s'ha creat
 				creat = true;
 				String[] j = jugador.converteixaString();
-				persistencia.emmagatzema_jugador(j);
+				persistencia.emmagatzemaJugador(j);
 			}
 			return creat;
 		}
@@ -94,7 +93,7 @@ public class ControladorDeDomini {
 			 */
 			String[] p = partida.converteixaString();
 			partida.clock.aturarRellotge();
-			persistencia.emmagatzema_partida(p,jugador.getIdJugador());
+			persistencia.emmagatzemaPartida(p,jugador.getIdJugador());
 		}
 		
 		public void finalitzar_partida() {//Guarda la partida(NO a la BD), actualitza estadistiques jugador i actualitza ranking si cal.
@@ -106,7 +105,7 @@ public class ControladorDeDomini {
 			boolean afegida = ranking.afegeix_fila(f, dificultat);
 			if(afegida) {
 				String[][] rank = ranking.converteix_Ranking();
-				persistencia.emmagatzema_ranking(rank);
+				persistencia.emmagatzemaRanking(rank);
 			}
 			presentacio.mostra_menuprincipal();
 		}
@@ -121,7 +120,7 @@ public class ControladorDeDomini {
 			/*
 			 Recupera del fitxer les partides guardades del jugador actual,
 			 */
-			String[][] partides = persistencia.obtepartidesjugador(jugador.getIdJugador());
+			String[][] partides = persistencia.obtePartidesJugador(jugador.getIdJugador());
 			String[] seleccionada = presentacio.mostra_partides_disponibles(partides);
 			partida = converteixpartida(seleccionada);
 			this.jugar_partida();
@@ -161,9 +160,17 @@ public class ControladorDeDomini {
 		}
 		
 		public String[][] consultar_ranking() { //Va a la capa de persistencia y retorna el ranking a la capa de presentacio.
-			String[][] rank = persistencia.obteranking();
+			String[][] rank = persistencia.obteRanking();
 			return rank;
-		}	
+		}
 		
+		/* Main de prueba guarro para probar las funciones de la capa de persistencia, sudad de esto 
+		public static void main(String args[]) {
+			ControladorDePersistencia cP = new ControladorDePersistencia();
+			String[] info = new String[]{"idjugador", "2", "1"};
+			cP.inicialitzaDatabases();
+			cP.emmagatzemaJugador(info);
+		}
+		*/
 		
 }
