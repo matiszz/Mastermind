@@ -20,11 +20,12 @@ import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JRadioButton;
 
 public class VistaPartida extends JFrame {
 
 	private JPanel contentPane;
-	private Color c = new Color(255, 255, 255);
+	private Color c = new Color(238, 238, 238);
 
 	/**
 	 * Launch the application.
@@ -54,67 +55,46 @@ public class VistaPartida extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel Tauler = new JPanel();
-		Tauler.setBounds(10, 30, 100, 560);
+		Tauler.setBounds(10, 30, 165, 560);
 		contentPane.add(Tauler);
 		GridBagLayout gbl_Tauler = new GridBagLayout();
-		gbl_Tauler.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_Tauler.rowHeights = new int[] {30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
-		gbl_Tauler.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_Tauler.columnWidths = new int[]{30, 30, 30, 30, 30, 30, 30, 0};
+		gbl_Tauler.rowHeights = new int[] {30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
+		gbl_Tauler.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_Tauler.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		Tauler.setLayout(gbl_Tauler);
 		
-		JCheckBox c1 = new JCheckBox("");
-		c1.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				c1.setBackground(c);
-			}
-		});
-		GridBagConstraints gbc_c1 = new GridBagConstraints();
-		gbc_c1.insets = new Insets(0, 0, 5, 5);
-		gbc_c1.gridx = 0;
-		gbc_c1.gridy = 19;
-		Tauler.add(c1, gbc_c1);
+		for (int i = 0; i < 15; i++) {
+			GridBagLayout resposta = new GridBagLayout();
+			gbl_Tauler.columnWidths = new int[]{30, 30, 30};
+			gbl_Tauler.rowHeights = new int[] {30, 30};
+			gbl_Tauler.columnWeights = new double[]{0.0, 0.0, 0.0};
+			gbl_Tauler.rowWeights = new double[]{0.0, 0.0};
+			GridBagConstraints gbg = new GridBagConstraints();
+			gbg.insets = new Insets(0, 0, 5, 5);
+			gbg.gridx = 5;
+			gbg.gridy = i;
+			Tauler.add(resposta, gbg);
+		}
 		
-		JCheckBox c2 = new JCheckBox("");
-		c2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				c2.setBackground(c);
+		for (int i = 1; i < 5; i++) {
+			for (int j = 0; j < 15; j++) {
+				JRadioButton r1 = new JRadioButton("");
+				r1.setSize(140, 140);
+				r1.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (r1.isSelected()) r1.setBackground(c);
+						else r1.setBackground(new Color(238, 238, 238));
+					}
+				});
+				GridBagConstraints gbc_r1 = new GridBagConstraints();
+				gbc_r1.insets = new Insets(0, 0, 5, 5);
+				gbc_r1.gridx = i;
+				gbc_r1.gridy = j;
+				Tauler.add(r1, gbc_r1);
 			}
-		});
-		GridBagConstraints gbc_c2 = new GridBagConstraints();
-		gbc_c2.insets = new Insets(0, 0, 5, 5);
-		gbc_c2.gridx = 1;
-		gbc_c2.gridy = 19;
-		Tauler.add(c2, gbc_c2);
-		
-		JCheckBox c3 = new JCheckBox("");
-		c3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				c3.setBackground(c);
-			}
-		});
-		GridBagConstraints gbc_c3 = new GridBagConstraints();
-		gbc_c3.insets = new Insets(0, 0, 5, 5);
-		gbc_c3.gridx = 2;
-		gbc_c3.gridy = 19;
-		Tauler.add(c3, gbc_c3);
-		
-		JCheckBox c4 = new JCheckBox("");
-		c4.setForeground(Color.ORANGE);
-		c4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				c4.setBackground(c);
-			}
-		});
-		GridBagConstraints gbc_c4 = new GridBagConstraints();
-		gbc_c4.insets = new Insets(0, 0, 5, 0);
-		gbc_c4.gridx = 3;
-		gbc_c4.gridy = 19;
-		Tauler.add(c4, gbc_c4);
+		}
 		
 		JPanel Colors = new JPanel();
 		Colors.setBounds(234, 173, 152, 56);
@@ -147,8 +127,6 @@ public class VistaPartida extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				c = Color.GREEN;
-
-				verde.setBackground(Color.BLUE);
 			}
 		});
 		GridBagConstraints gbc_verde = new GridBagConstraints();
