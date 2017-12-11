@@ -26,6 +26,7 @@ public class VistaPartida extends JFrame {
 
 	private JPanel contentPane;
 	private Color c = new Color(238, 238, 238);
+	private int lastFila = 0;
 
 	/**
 	 * Launch the application.
@@ -55,27 +56,28 @@ public class VistaPartida extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel Tauler = new JPanel();
-		Tauler.setBounds(10, 30, 165, 560);
+		Tauler.setBounds(10, 30, 212, 450);
 		contentPane.add(Tauler);
 		GridBagLayout gbl_Tauler = new GridBagLayout();
-		gbl_Tauler.columnWidths = new int[]{30, 30, 30, 30, 30, 30, 30, 0};
+		gbl_Tauler.columnWidths = new int[]{30, 30, 30, 30, 30, 30, 0, 30, 0};
 		gbl_Tauler.rowHeights = new int[] {30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
-		gbl_Tauler.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_Tauler.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_Tauler.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		Tauler.setLayout(gbl_Tauler);
 		
-		for (int i = 0; i < 15; i++) {
-			GridBagLayout resposta = new GridBagLayout();
-			gbl_Tauler.columnWidths = new int[]{30, 30, 30};
-			gbl_Tauler.rowHeights = new int[] {30, 30};
-			gbl_Tauler.columnWeights = new double[]{0.0, 0.0, 0.0};
-			gbl_Tauler.rowWeights = new double[]{0.0, 0.0};
-			GridBagConstraints gbg = new GridBagConstraints();
-			gbg.insets = new Insets(0, 0, 5, 5);
-			gbg.gridx = 5;
-			gbg.gridy = i;
-			Tauler.add(resposta, gbg);
-		}
+		JButton btnCheck = new JButton("Check");
+		GridBagConstraints gbc_btnCheck = new GridBagConstraints();
+		btnCheck.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				++lastFila;
+				gbc_btnCheck.gridy = 4;
+			}
+		});
+		gbc_btnCheck.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCheck.gridx = 5;
+		gbc_btnCheck.gridy = lastFila;
+		Tauler.add(btnCheck, gbc_btnCheck);
 		
 		for (int i = 1; i < 5; i++) {
 			for (int j = 0; j < 15; j++) {
