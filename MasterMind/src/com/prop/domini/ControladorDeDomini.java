@@ -17,10 +17,10 @@ public class ControladorDeDomini {
 		ControladorDePresentacio presentacio = null;
 		//Creadora 
 		
-		public ControladorDeDomini() {
+		public ControladorDeDomini(ControladorDePresentacio ctrl) {
 			ranking = new Ranking();
 			persistencia = new ControladorDePersistencia();
-			presentacio = new ControladorDePresentacio();
+			presentacio = ctrl;
 			reg = new Registre();
 			
 		}
