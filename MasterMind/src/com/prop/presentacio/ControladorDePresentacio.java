@@ -7,7 +7,7 @@ public class ControladorDePresentacio {
 	String nom;
 	
 	public ControladorDePresentacio() {
-		this.c = new ControladorDeDomini();
+		this.c = new ControladorDeDomini(this);
 		nom = null;
 	}
 	
