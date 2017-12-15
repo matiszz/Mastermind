@@ -12,6 +12,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import java.awt.List;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VistaRanking extends JFrame {
 
@@ -58,8 +60,21 @@ public class VistaRanking extends JFrame {
 		for(int i = 0; i < ranking.length;++i) {
 			list.add(ranking[i]);
 		}
-		list.setBounds(24, 41, 390, 227);
+		list.setBounds(24, 41, 390, 204);
 		getContentPane().add(list);
+		
+		JButton btnNewButton = new JButton("Confirmar");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int index = list.getSelectedIndex();
+				String idpartida = ranking[index];
+				ctrl.obteseleccionada(idpartida);
+				
+			}
+		});
+		btnNewButton.setBounds(297, 251, 117, 29);
+		getContentPane().add(btnNewButton);
 		
 		
 	}
