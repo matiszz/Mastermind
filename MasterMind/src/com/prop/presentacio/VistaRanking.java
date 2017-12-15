@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
+import java.awt.List;
 
 public class VistaRanking extends JFrame {
 
@@ -36,32 +37,10 @@ public class VistaRanking extends JFrame {
 	 * Create the frame.
 	 */
 	public VistaRanking() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		getContentPane().setLayout(null);
 		
-		JLabel lblRanking = new JLabel("New label");
-		lblRanking.setBounds(16, 35, 414, 237);
-		contentPane.add(lblRanking);
-		
-		ControladorDePresentacio ctrl = new ControladorDePresentacio();
-		String[][]ranking = ctrl.demana_ranking();
-		String text = "";
-		for(int i = 0; i < ranking.length;++i) {
-			for(int j = 0; j < 3;++i) {
-				text += ranking[i][j];
-			}
-			text +="\n";
-		}
-		lblRanking.setText(text);
-		lblRanking.setVisible(true);
-		
-		
-		JButton btnMenPrincipal = new JButton("Menú Principal");
-		btnMenPrincipal.addMouseListener(new MouseAdapter() {
+		JButton btnTornar = new JButton("Tornar");
+		btnTornar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				VistaMenuPrincipal nv = new VistaMenuPrincipal();
@@ -69,8 +48,18 @@ public class VistaRanking extends JFrame {
 				VistaRanking.this.dispose();
 			}
 		});
-		btnMenPrincipal.setBounds(6, 6, 117, 29);
-		contentPane.add(btnMenPrincipal);
+		btnTornar.setBounds(16, 6, 117, 29);
+		getContentPane().add(btnTornar);
+		
+		String[] ranking;
+		ControladorDePresentacio ctrl = new ControladorDePresentacio();
+		ranking = ctrl.demana_ranking();
+		List list = new List();
+		for(int i = 0; i < ranking.length;++i) {
+			list.add(ranking[i]);
+		}
+		list.setBounds(24, 41, 390, 227);
+		getContentPane().add(list);
 		
 		
 	}
