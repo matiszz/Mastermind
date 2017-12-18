@@ -75,6 +75,17 @@ public class ControladorDeDomini {
 			partida = joc.crearPartida(); 
 			this.jugar_partida();
 		}
+		public void emmagatzemaCodi(int[] codi) {
+			ArrayList<Integer> c = new ArrayList<Integer>();
+			for(int i = 0; i < codi.length;++i) c.add(codi[i]);
+			partida.setCodiAmagat(c);
+		}
+		
+		public void acabaPartida() {
+			partida.finalitzarPartida();
+			String s[] = partida.converteixaString();
+			presentacio.mostra_tauler(s);
+		}
 		
 		public void jugar_partida() { //Converteix la partida al tipus per enviar entre capes i fa que el ctrlpresentacio mostri la vista
 			/*
@@ -83,8 +94,13 @@ public class ControladorDeDomini {
 			 Inicia la partida segons si es codemaker o codebreaker.
 			 Inicia el clock
 			 */
-			String s[] = partida.converteixaString();
-			presentacio.mostra_tauler(s);//Fem que el controlador de presentacio mostri la partida actual
+			if(partida.mode == "CodeMaker") {
+				Algorisme a = new Algorisme();
+				a.simulaPartida(partida,jugador,this);
+			}
+			else {
+				
+			}
 		}
 		
 		public void guardar_partida() { //Converteix la partida en l'estructura per passar entre capes i la envia a la capa de persistencia.

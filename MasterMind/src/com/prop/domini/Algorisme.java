@@ -168,4 +168,27 @@ public class Algorisme {
 			
 			return jugat;
 		}
+		
+		public boolean comprova(ArrayList<Integer> ar) {
+			boolean b = true;
+			for(int i = 0; i < ar.size() && b; ++i) 
+				if(ar.get(i) != 2) b = false;
+			return b;
+		}
+		
+		public void simulaPartida(Partida p, Jugador j,ControladorDeDomini c) {
+			for(int i = 1; i <= 10; ++i) {
+				ArrayList<Integer> combinacio = new ArrayList<Integer>();
+				ArrayList<Integer> respost = new ArrayList<Integer>();
+				combinacio = this.five_guess(p.longCodi, 4, respost);
+				respost = this.aplica_logica(p.codiamagat, combinacio);
+				Jugada jug = new Jugada(i,p,j);
+				jug.codiProposat = combinacio;
+				jug.codiRespost = respost;
+				jug.encert = this.comprova(respost);
+				if(jug.encert) {
+					i = 11;
+				}
+			}
+		}
 }
