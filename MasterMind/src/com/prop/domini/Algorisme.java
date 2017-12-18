@@ -185,6 +185,7 @@ public class Algorisme {
 				Jugada jug = new Jugada(i,p,j);
 				jug.codiProposat = combinacio;
 				jug.codiRespost = respost;
+				p.ferJugada(jug);
 				jug.encert = this.comprova(respost);
 				if(jug.encert) {
 					i = 11;
