@@ -53,4 +53,11 @@ public class ControladorDePresentacio {
 	public String[] getIdPartidesGuardades() {//Demana al controlador de domini els id's de les partides guardades.
 		return c.getIdPartidesGuardades(nom);
 	}
+	
+	public String [] ferJugada(int[] codi) { 
+		/*La vista li pasa la jugada proposada i el controlador avisa a la capa de domini per que computi la jugada i obtingui la
+		/* resposta a mostrar */
+		//vector de int's ja que el codi del domini ho demana aixi!!!!!!
+		
+	}
 }
