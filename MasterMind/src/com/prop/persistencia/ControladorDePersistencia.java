@@ -1,6 +1,7 @@
 package com.prop.persistencia;
 
 public class ControladorDePersistencia {
+
 	RegistreDatabase regDB;
 	PartidesDatabase partDB;
 	RankingDatabase rankDB;
@@ -43,5 +44,9 @@ public class ControladorDePersistencia {
 		String[][] asdf = null;
 		return asdf;
 	}
+
+	public String[] getIdPartidesGuardades(String alies) {
+	    return null;
+    }
 	
 }

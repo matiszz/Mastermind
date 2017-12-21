@@ -55,7 +55,7 @@ public class VistaRanking extends JFrame {
 		
 		String[] ranking;
 		ControladorDePresentacio ctrl = new ControladorDePresentacio();
-		ranking = ctrl.demana_ranking();
+		ranking = ctrl.demanaRanking();
 		List list = new List();
 		for(int i = 0; i < ranking.length;++i) {
 			list.add(ranking[i]);

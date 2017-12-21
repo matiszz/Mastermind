@@ -112,7 +112,7 @@ public class VistaDificultatiMode extends JFrame {
 				String dificultat = grupDificultat.getSelection().getActionCommand();
 				System.out.println(mode + " " + dificultat);
 				//ControladorDePresentacio c = new ControladorDePresentacio();
-				//c.crear_partida(mode,dificultat);
+				//c.crearPartida(mode,dificultat);
 			}
 		});
 		btnComenar.setBounds(323, 243, 117, 29);

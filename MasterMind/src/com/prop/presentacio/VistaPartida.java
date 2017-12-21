@@ -1,172 +1,188 @@
 package com.prop.presentacio;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.GridBagLayout;
-import javax.swing.JCheckBox;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JRadioButton;
+import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
 
-public class VistaPartida extends JFrame {
+public class VistaPartida {
+    private JButton checkButton;
+    private JButton btnRed;
+    private JButton btnGreen;
+    private JButton btnBlue;
+    private JButton btnOrange;
+    private JPanel selectorPanel;
+    private JPanel toolsPanel;
+    private JPanel playerPanel;
+    private JPanel fila0;
+    private JPanel fila1;
+    private JPanel panelMain;
+    private JButton b00;
+    private JButton b01;
+    private JButton b02;
+    private JButton b03;
 
-	private JPanel contentPane;
-	private Color c = new Color(238, 238, 238);
-	private int lastFila = 0;
+    private int editable = 10;
+    private Image selected;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaPartida frame = new VistaPartida();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("VistaPartida");
+        frame.setContentPane(new VistaPartida().panelMain);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 
-	/**
-	 * Create the frame.
-	 */
-	public VistaPartida() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 640);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JPanel Tauler = new JPanel();
-		Tauler.setBounds(10, 30, 212, 450);
-		contentPane.add(Tauler);
-		GridBagLayout gbl_Tauler = new GridBagLayout();
-		gbl_Tauler.columnWidths = new int[]{30, 30, 30, 30, 30, 30, 0, 30, 0};
-		gbl_Tauler.rowHeights = new int[] {30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
-		gbl_Tauler.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_Tauler.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		Tauler.setLayout(gbl_Tauler);
-		
-		JButton btnCheck = new JButton("Check");
-		GridBagConstraints gbc_btnCheck = new GridBagConstraints();
-		btnCheck.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				++lastFila;
-				gbc_btnCheck.gridy = 4;
-			}
-		});
-		gbc_btnCheck.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCheck.gridx = 5;
-		gbc_btnCheck.gridy = lastFila;
-		Tauler.add(btnCheck, gbc_btnCheck);
-		
-		for (int i = 1; i < 5; i++) {
-			for (int j = 0; j < 15; j++) {
-				JRadioButton r1 = new JRadioButton("");
-				r1.setSize(140, 140);
-				r1.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if (r1.isSelected()) r1.setBackground(c);
-						else r1.setBackground(new Color(238, 238, 238));
-					}
-				});
-				GridBagConstraints gbc_r1 = new GridBagConstraints();
-				gbc_r1.insets = new Insets(0, 0, 5, 5);
-				gbc_r1.gridx = i;
-				gbc_r1.gridy = j;
-				Tauler.add(r1, gbc_r1);
-			}
-		}
-		
-		JPanel Colors = new JPanel();
-		Colors.setBounds(234, 173, 152, 56);
-		contentPane.add(Colors);
-		GridBagLayout gbl_Colors = new GridBagLayout();
-		gbl_Colors.columnWidths = new int[]{30, 30, 30, 30};
-		gbl_Colors.rowHeights = new int[]{30};
-		gbl_Colors.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
-		gbl_Colors.rowWeights = new double[]{0.0};
-		Colors.setLayout(gbl_Colors);
-		
-		JButton rojo = new JButton("");
-		rojo.setBackground(Color.RED);
-		rojo.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				c = Color.RED;
-			}
-		});
-		GridBagConstraints gbc_rojo = new GridBagConstraints();
-		gbc_rojo.insets = new Insets(0, 0, 0, 5);
-		gbc_rojo.anchor = GridBagConstraints.NORTHWEST;
-		gbc_rojo.gridx = 0;
-		gbc_rojo.gridy = 0;
-		Colors.add(rojo, gbc_rojo);
-		
-		JButton verde = new JButton("");
-		verde.setBackground(Color.GREEN);
-		verde.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				c = Color.GREEN;
-			}
-		});
-		GridBagConstraints gbc_verde = new GridBagConstraints();
-		gbc_verde.insets = new Insets(0, 0, 0, 5);
-		gbc_verde.anchor = GridBagConstraints.NORTHWEST;
-		gbc_verde.gridx = 1;
-		gbc_verde.gridy = 0;
-		Colors.add(verde, gbc_verde);
-		
-		JButton amarillo = new JButton("");
-		amarillo.setBackground(Color.YELLOW);
-		amarillo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				c = Color.YELLOW;
-			}
-		});
-		GridBagConstraints gbc_amarillo = new GridBagConstraints();
-		gbc_amarillo.insets = new Insets(0, 0, 0, 5);
-		gbc_amarillo.anchor = GridBagConstraints.NORTHWEST;
-		gbc_amarillo.gridx = 2;
-		gbc_amarillo.gridy = 0;
-		Colors.add(amarillo, gbc_amarillo);
-		
-		JButton azul = new JButton("");
-		azul.setBackground(Color.BLUE);
-		azul.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				c = Color.BLUE;
-			}
-		});
-		GridBagConstraints gbc_azul = new GridBagConstraints();
-		gbc_azul.insets = new Insets(0, 0, 0, 5);
-		gbc_azul.anchor = GridBagConstraints.NORTHWEST;
-		gbc_azul.gridx = 3;
-		gbc_azul.gridy = 0;
-		Colors.add(azul, gbc_azul);
-		
-	}
+    public VistaPartida() {
+        $$$setupUI$$$();
+        checkButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                editable++;
+            }
+        });
+        b00.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                super.mouseClicked(mouseEvent);
+                Icon icon = Icon()
+                b00.setIcon(new ImageIcon());
+            }
+        });
+        btnRed.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                super.mouseClicked(mouseEvent);
+                try {
+                    selected = ImageIO.read(new File("images/red.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        btnGreen.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                super.mouseClicked(mouseEvent);
+                try {
+                    selected = ImageIO.read(new File("images/greem.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        btnBlue.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                super.mouseClicked(mouseEvent);
+                try {
+                    selected = ImageIO.read(new File("images/blue.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        btnOrange.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                super.mouseClicked(mouseEvent);
+                try {
+                    selected = ImageIO.read(getClass().getResource("images/orange.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Method generated by IntelliJ IDEA GUI Designer
+     * >>> IMPORTANT!! <<<
+     * DO NOT edit this method OR call it in your code!
+     *
+     * @noinspection ALL
+     */
+    private void $$$setupUI$$$() {
+        panelMain = new JPanel();
+        panelMain.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
+        toolsPanel = new JPanel();
+        toolsPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(20, 20, 20, 20), -1, -1));
+        panelMain.add(toolsPanel, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        checkButton = new JButton();
+        checkButton.setText("Check");
+        toolsPanel.add(checkButton, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        selectorPanel = new JPanel();
+        selectorPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
+        toolsPanel.add(selectorPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        btnRed = new JButton();
+        btnRed.setHorizontalTextPosition(0);
+        btnRed.setIcon(new ImageIcon(getClass().getResource("/images/red.png")));
+        btnRed.setText("");
+        selectorPanel.add(btnRed, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnGreen = new JButton();
+        btnGreen.setIcon(new ImageIcon(getClass().getResource("/images/green.png")));
+        btnGreen.setText("");
+        selectorPanel.add(btnGreen, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnBlue = new JButton();
+        btnBlue.setIcon(new ImageIcon(getClass().getResource("/images/blue.png")));
+        btnBlue.setText("");
+        selectorPanel.add(btnBlue, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnOrange = new JButton();
+        btnOrange.setIcon(new ImageIcon(getClass().getResource("/images/orange.png")));
+        btnOrange.setText("");
+        selectorPanel.add(btnOrange, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
+        toolsPanel.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final com.intellij.uiDesigner.core.Spacer spacer2 = new com.intellij.uiDesigner.core.Spacer();
+        panelMain.add(spacer2, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        playerPanel = new JPanel();
+        playerPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panelMain.add(playerPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        fila0 = new JPanel();
+        fila0.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(20, 20, 0, 20), -1, -1));
+        playerPanel.add(fila0, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        b00 = new JButton();
+        b00.setEnabled(true);
+        Font b00Font = this.$$$getFont$$$(null, -1, -1, b00.getFont());
+        if (b00Font != null) b00.setFont(b00Font);
+        b00.setHorizontalTextPosition(0);
+        b00.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
+        b00.setText("");
+        fila0.add(b00, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
+        final com.intellij.uiDesigner.core.Spacer spacer3 = new com.intellij.uiDesigner.core.Spacer();
+        playerPanel.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
+        if (currentFont == null) return null;
+        String resultName;
+        if (fontName == null) {
+            resultName = currentFont.getName();
+        } else {
+            Font testFont = new Font(fontName, Font.PLAIN, 10);
+            if (testFont.canDisplay('a') && testFont.canDisplay('1')) {
+                resultName = fontName;
+            } else {
+                resultName = currentFont.getName();
+            }
+        }
+        return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    public JComponent $$$getRootComponent$$$() {
+        return panelMain;
+    }
 }

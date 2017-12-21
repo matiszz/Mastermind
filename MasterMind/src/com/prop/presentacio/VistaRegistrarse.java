@@ -1,6 +1,5 @@
 package com.prop.presentacio;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -78,7 +77,7 @@ public class VistaRegistrarse extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ControladorDePresentacio c = new ControladorDePresentacio();
-				boolean b = c.click_registrarse(lblIntrodueixElTeu.getText());
+				boolean b = c.clickRegistrarse(lblIntrodueixElTeu.getText());
 				if(b) { //Sijugador existe -> VistaNovaPartidaoReanudar
 					VistaNovaPartidaoReanudar nova = new VistaNovaPartidaoReanudar();
 					nova.setVisible(true);
@@ -98,7 +97,7 @@ public class VistaRegistrarse extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ControladorDePresentacio c = new ControladorDePresentacio();
-				boolean b = c.click_registrarse(lblIntrodueixElTeu.getText());
+				boolean b = c.clickRegistrarse(lblIntrodueixElTeu.getText());
 				//Sempre anirà a la següent vista
 				VistaNovaPartidaoReanudar nova = new VistaNovaPartidaoReanudar();
 				nova.setVisible(true);

@@ -28,7 +28,7 @@ public class Driver2 {
 				System.out.println("Ja existeix cap jugador amb el nom: " + id);
 			else {
 				ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
-				jugadors = reg.registrar(id);
+				jugadors.add(reg.registrar(id));
 				System.out.println("Aquests son tots els jugadors registrats:");
 				for (int i = 0; i < jugadors.size(); i++)
 					System.out.println("  " + jugadors.get(i).getIdJugador());
@@ -75,15 +75,15 @@ public class Driver2 {
 			System.out.println("Primer has de crear un ranking");
 		else {
 			if (r.ranking_buit(1))
-				System.out.println("Ranking fàcil buit, afegeix primer algun record");
+				System.out.println("Ranking fï¿½cil buit, afegeix primer algun record");
 			else
 				r.mostra_ranking(1);
 			if (r.ranking_buit(2))
-				System.out.println("Ranking mitjà buit, afegeix primer algun record");
+				System.out.println("Ranking mitjï¿½ buit, afegeix primer algun record");
 			else
 				r.mostra_ranking(2);
 			if (r.ranking_buit(3))
-				System.out.println("Ranking difícil buit, afegeix primer algun record");
+				System.out.println("Ranking difï¿½cil buit, afegeix primer algun record");
 			else
 				r.mostra_ranking(3);
 		}
@@ -96,7 +96,7 @@ public class Driver2 {
 			if (f == null)
 				System.out.println("Primer has de crear una fila del ranking");
 			else {
-				System.out.println("Escriu la dificultat entre 1(mínima) y 3(màxima)");
+				System.out.println("Escriu la dificultat entre 1(mï¿½nima) y 3(mï¿½xima)");
 				int dif = lector.nextInt();
 				if(dif < 0 || dif > 3) {
 					System.out.println("Introdueix un valor entre 1 y 3 si us plau");
@@ -109,7 +109,7 @@ public class Driver2 {
 	}
 
 	public static void crearFilaRanking() {
-		System.out.println("Escriu la puntuació entre 1 y 25");
+		System.out.println("Escriu la puntuaciï¿½ entre 1 y 25");
 		int puntuacio = lector.nextInt();
 		if(puntuacio <= 0 || puntuacio > 25) {
 			System.out.println("Entre 1 y 25 si us plau");
@@ -128,11 +128,11 @@ public class Driver2 {
 	
 	public static void usage() {
 		System.out.println("*********************************************************************");
-		System.out.println("* Benvingut a Mastermind! Selecciona una de les següents opcions:");
-		System.out.println("*	0. Sortir del menú");
+		System.out.println("* Benvingut a Mastermind! Selecciona una de les segï¿½ents opcions:");
+		System.out.println("*	0. Sortir del menï¿½");
 		System.out.println("*	1. Registrar un jugador");
 		System.out.println("*	2. Crear un registre");
-		System.out.println("*	3. Consultar informació d'un jugador");
+		System.out.println("*	3. Consultar informaciï¿½ d'un jugador");
 		System.out.println("*	4. Crear un ranking");
 		System.out.println("*	5. Consultar el ranking");
 		System.out.println("*	6. Actualitzar el ranking");

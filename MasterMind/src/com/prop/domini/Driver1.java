@@ -156,7 +156,7 @@ public class Driver1 {
 		System.out.println("Identificador del jugador: ");
 		String id = lector.nextLine();
 		ArrayList<Jugador> jugs = new ArrayList<Jugador>();
-		jugs = reg.registrar(id);
+		jugs.add(reg.registrar(id));
 		jugador = jugs.get(0);
 		System.out.println("Jugador creat");
 	}
