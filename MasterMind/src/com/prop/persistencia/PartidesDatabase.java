@@ -33,10 +33,11 @@ public class PartidesDatabase extends Database {
 			try {
 				file = new File(nom);
 				file.createNewFile();
-				/*
+				
 				FileWriter fw = new FileWriter(file);
 				BufferedWriter bw = new BufferedWriter(fw);
 				bw.write("Partides guardades de MasterMind");
+				bw.newLine();
 				bw.newLine();
 				bw.flush();
 				bw.close();
@@ -47,7 +48,6 @@ public class PartidesDatabase extends Database {
 				line = br.readLine();
 				System.out.println(line);
 				br.close();
-				*/
 				
 				System.out.println("Base de dades creada correctament");
 				
@@ -63,13 +63,13 @@ public class PartidesDatabase extends Database {
 	public void emmagatzemaPartida(String[] info, String idJugador) {
 		FileWriter fw;
 		BufferedWriter bw;
-		//seekAndDestroy(info, info[0]);
 		try {
 			System.out.println("IDPartida a encontrar " + info[0]);
-			seekAndDestroy(info, info[0]);
+			seekAndDestroy(info, info[0]); //Buscamos y eliminamos la partida con el idPartida repetido para sobreescribirla
 			fw = new FileWriter(file,true); //true es para activar el append para que no sobreescriba lo que hab�a
 			bw = new BufferedWriter(fw);
 			
+			//Escribimos ahora la partida nueva a almacenar
 			bw.write(idJugador);
 			bw.newLine();
 			for (int i=0; i<11; i++) {
@@ -86,39 +86,47 @@ public class PartidesDatabase extends Database {
 		}
 	}
 	
+	/* Lo que hace es buscar la linea con el idPartida repetido, si la encuentra entonces localiza las lineas
+	 * que pertenecen a esa partida y las elimina. Como las elimino? Hago un fichero temporal para copiar todas
+	 * las líneas del fichero original menos las del idPartida repetido con las marcas de las lineas last y first
+	 * line. Entonces al final hago que temp sea el fichero original con el mismo nombre.
+	 */
 	public void seekAndDestroy(String info[], String idPartida) {
 		FileWriter fw3;
 		BufferedReader br;
 		boolean found = false;
 		try {
-			System.out.println("Entro1 con el idPartida " + info[0] + " " + idPartida);
 			fw3 = new FileWriter(file,true); //true es para activar el append para que no sobreescriba lo que hab�a
 			br = new BufferedReader(new FileReader(file));
 			String line = "";
+			String lineAux = ""; //auxiliar para saltar de idPartida en idPartida
+			lineAux = br.readLine();
+			lineAux = br.readLine(); 
+			lineAux = br.readLine(); //saltamos el titulo, el primer espacio en blanco y el primer idJugador
 			int mark = 0;
 			
+			//Buscamos la linea con el idPartida repetido, si no la encontramos pues se acaba la función
 			while(((line = br.readLine()) != null) && found == false) {
-				System.out.println(line);
+				System.out.println("Leyendo la linea " + mark+1 + ": " + line);
 				if (line.equals(idPartida)) {
 					found = true;
 					mark++;
-					System.out.println("id " + line + " trobat a la linia " + mark);
 				}
 				else
-					mark++;
+					for (int i=0; i<12; i++) { //saltamos hasta el proximo idPartida
+						lineAux = br.readLine();
+						System.out.println("Leyendo mierda: " + lineAux);
+						mark++;
+					}
 			}
 			fw3.flush();
 			fw3.close();
 			br.close();
 			
-			System.out.println("El booleano found es " + found);
-			
 			if (found) {
+				//Si la encontramos, copiamos en un fichero temporal todo lo demas menos ese idPartida repetido
 				int firstLine = mark - 1;
 				int lastLine = firstLine + 11;
-				System.out.println("FirstLine vale " + firstLine);
-				System.out.println("LastLine vale " + lastLine);
-				
 				File temp = new File("temp.txt");
 				FileWriter fw2 = new FileWriter(temp);
 				BufferedWriter bw = new BufferedWriter(fw2);
@@ -128,38 +136,20 @@ public class PartidesDatabase extends Database {
 				String line4 = "";
 				int lineReaded = 1;
 				while ((line4 = buff.readLine()) != null) {
-					System.out.println("Leyendo la linea " + lineReaded + " : " + line4);
 					if (lineReaded < firstLine -1 || lineReaded > lastLine) {
-						System.out.println("Escribiendo la linea " + lineReaded + " : " + line4);
 						bw.write(line4);
 						bw.newLine();
 					}
 					lineReaded++;
 				}
 				
-				/*
-				//Copiar el contenido de temp en Partides.txt
-				FileWriter fw4 = new FileWriter(file,true);
-				BufferedWriter bw4 = new BufferedWriter(fw4);
-				
-				BufferedReader buff2 = new BufferedReader(new FileReader(temp));
-				
-				System.out.println("Holaaaa: " + buff2.readLine());
-				
-				String line5 = "";
-				while ((line5 = buff2.readLine()) != null) {
-					System.out.println("Linea del temp que leo: " + line5);
-					bw4.write(line5);
-				}
-				*/
-				
 				bw.close();
 				buff.close();
 				fw2.close();
-				//buff2.close();
-				//fw4.close();
-				//bw4.close();
 				temp.renameTo(file);
+				/* esto es muy importante, al renombrar el fichero temp a file se elimina el fichero temp
+				 * y file se sustituye por temp. Es precioso.
+				 */
 			}
 			
 		} catch (IOException e) {
