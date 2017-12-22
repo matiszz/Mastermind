@@ -1,5 +1,7 @@
 package com.prop.domini;
 
+import java.util.ArrayList;
+
 public class Jugador {
     String idJugador; //identificador de la clase
     int partidesJugades;
@@ -7,11 +9,11 @@ public class Jugador {
 
     boolean CPU;
 
-    public String[] converteixaString() { //Converteix a un vector de String la informacio del jugador, cada posicio es un camp d'informacio del jugador
-    		String[] s = new String[3]; 
-    		s[0]= this.idJugador;
-    		s[1] = Integer.toString(this.partidesJugades);
-    		s[2] = Integer.toString(this.partidesGuanyades);
+    public ArrayList<String> converteixaString() { //Converteix a un vector de String la informacio del jugador, cada posicio es un camp d'informacio del jugador
+    		ArrayList<String> s = new ArrayList<String>(); 
+    		s.add(this.idJugador);
+    		s.add(Integer.toString(this.partidesJugades));
+    		s.add(Integer.toString(this.partidesGuanyades));
     		return s;
     }
     public void actualitzar_partides(int puntuacio,boolean guanyat) { 
