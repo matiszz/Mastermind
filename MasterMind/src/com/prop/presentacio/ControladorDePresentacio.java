@@ -37,6 +37,10 @@ public class ControladorDePresentacio {
 		
 	}
 	
+	public void restauraPartida(String idPartida) { //Obte tot el necessari per restaurar la partida i mostrar el tauler.
+		
+	}
+	
 	public void crearPartida(String mode, String dificultat) {
 		int dif;
 		if(dificultat == "facil") dif = 1;
@@ -46,16 +50,17 @@ public class ControladorDePresentacio {
 		c.generarJoc(dif,b);
 	}
 
-	public String[] demanaRanking() { //Demana el ranking a la capa de domini i dona el format necessari per mostrar-ho per pantalla
-		String[] ranking = new String[2];
-		ranking[0]="1.  Ro  23";
-		ranking[1]="2.  Pep 40";
-		
-		//ranking = c.consultar_ranking();
+	public ArrayList<String> demanaRanking() { //Demana el ranking a la capa de domini i dona el format necessari per mostrar-ho per pantalla
+		/*Pruebas 
+		 * String[] ranking = new String[2];
+		 ranking[0]="1.  Ro  23";
+		 ranking[1]="2.  Pep 40";
+		 */
+		ArrayList<String> ranking = c.consultar_ranking();
 		return ranking;
 	}
 
-	public String[] getIdPartidesGuardades() {//Demana al controlador de domini els id's de les partides guardades.
+	public ArrayList<String> getIdPartidesGuardades() {//Demana al controlador de domini els id's de les partides guardades.
 		return c.getIdPartidesGuardades(nom);
 	}
 	
