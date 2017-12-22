@@ -35,7 +35,8 @@ public class ControladorDePersistencia {
 		return partDB.partidesNoFinalitzades(idJugador);
 	}
 	
-	public List<String> getIdPartidesGuardades(String idJugador) {
+	/* Devuelve los idPartida de todas las partidas guardadas del jugador idJugador */
+	public static ArrayList<String> getIdPartidesGuardades(String idJugador) {
 		return partDB.getIdPartidesGuardades(idJugador);
 	}
 	
@@ -61,17 +62,15 @@ public class ControladorDePersistencia {
 	
 	public static void main(String[] args) {
 		ControladorDePersistencia cP = new ControladorDePersistencia();
-		//String id = "idJugador1";
+		String id = "idJugador1";
 		//String[] s = new String[] {"1234", "mode1yaempezamos", "temps1", "numJugades1", "puntuacio1", "numFiles1", "longCodi1", "false", "jugades1", "codiAmagat1", "dificultat1", "guanyada1"};
 		//String[] s = new String[] {"idPartida2", "mode2modificadooooooo", "temps2", "numJugades2", "puntuacio2", "numFiles2", "longCodi2", "true", "jugades2", "codiAmagat2", "dificultat2", "guanyada2"};
 		//String[] s = new String[] {"idPartida3", "mode3afull", "temps3", "numJugades3", "puntuacio3", "numFiles3", "longCodi3", "false", "jugades3", "codiAmagat3", "dificultat3", "guanyada3"};
 		//cP.emmagatzemaPartida(s, id);
-		List<String> l = cP.getInfoPartida("1233");
+		ArrayList<String> l = new ArrayList<String>();
+		l = getIdPartidesGuardades(id);
 		for (int i=0; i<l.size(); i++) {
 			System.out.print(l.get(i) + " ");
 		}
 	}
-	
-	
-	
 }

@@ -279,8 +279,36 @@ public class PartidesDatabase extends Database {
 		return l;
 	}
 	
-	public List<String> getIdPartidesGuardades(String idPartida) {
-		List<String> l = new ArrayList<String>();
+	/* Devuelve en un arraylist todos los idPartida del jugador pasado por parámetros */
+	public ArrayList<String> getIdPartidesGuardades(String idJugador) {
+		ArrayList<String> l = new ArrayList<String>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = "";
+			String lineAux = "";
+			lineAux = br.readLine(); //leo el titulo del fichero
+			lineAux = br.readLine(); //leo el espacio en blanco
+			while ((line = br.readLine()) != null) {
+				if (line.equals(idJugador)) {
+					l.add(br.readLine()); //añado el idPartida al arraylist si coincide el idJugador
+					for (int i=0; i<11; i++) {
+						lineAux = br.readLine(); //salto hasta el proximo idJugador
+					}
+				}
+				else {
+					for (int i=0; i<12; i++) {
+						lineAux = br.readLine(); //salto hasta el proximo idJugador
+					}
+				}
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return l;
 		//Continuar aqui
 	}
