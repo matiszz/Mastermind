@@ -1,4 +1,6 @@
 package com.prop.presentacio;
+import java.util.ArrayList;
+
 import com.prop.domini.ControladorDeDomini;
 
 public class ControladorDePresentacio {
@@ -9,38 +11,39 @@ public class ControladorDePresentacio {
 	public ControladorDePresentacio() {
 		this.c = new ControladorDeDomini(this);
 		nom = null;
+		VistaMenuPrincipal principal = new VistaMenuPrincipal();
 	}
 	
 	public void mostraTauler(String[] partida) {};
 	
-	public void mostraMenuprincipal() {};
-	
 	public void obteseleccionada(String idpartida) {//Obté la partida identificada per idpartida y mostra el tauler en l'estat guardat
-		
 		
 		//Obtiene los datos de la partida, instancia vista partida y le pasa la información para rellenar la vista.
 	};
-	
-	public void afegeixCodiRespost(String[] codirespost) {//Mostra el codi repost(vector d'strings) en la vista del tauler
-	
-	};
+		
+	public boolean clickIniciarSessio(String alies) { //Fals si no existeix, true si existeix.
+		return c.iniciasessio(alies);
+	}
 	
 	public boolean clickRegistrarse(String alies) { //retorna true si s'ha creat el jugador, retorna false si ja exiteix
-		nom = alies;
-		boolean b = false;
-		return b;
+		return c.registrar(alies);	
 	};
 	
+	public void mostraCodiRespost(String[] codi) {
+		
+	}
+	
+	public void jugadaCompleta(ArrayList<Integer> codirespost, ArrayList<Integer> codiproposat) {
+		
+	}
+	
 	public void crearPartida(String mode, String dificultat) {
-		switch(dificultat) { //Crida al controlador de domini indicant el mode de partida i la dificultat de la partida
-			case "Facil":
-				
-			break;
-			case "Mitjana":
-				
-			break;
-			case "Dificil":
-		}
+		int dif;
+		if(dificultat == "facil") dif = 1;
+		if(dificultat == "mitjana") dif = 2;
+		else dif = 3;
+		boolean b = (mode =="CodeMaker");
+		c.generarJoc(dif,b);
 	}
 
 	public String[] demanaRanking() { //Demana el ranking a la capa de domini i dona el format necessari per mostrar-ho per pantalla
@@ -56,10 +59,10 @@ public class ControladorDePresentacio {
 		return c.getIdPartidesGuardades(nom);
 	}
 	
-	public String [] ferJugada(int[] codi) { 
+	public void ferJugada(int[] codi) { 
 		/*La vista li pasa la jugada proposada i el controlador avisa a la capa de domini per que computi la jugada i obtingui la
 		/* resposta a mostrar */
 		//vector de int's ja que el codi del domini ho demana aixi!!!!!!
-		return null;
+		c.ferJugada(codi);
 	}
 }
