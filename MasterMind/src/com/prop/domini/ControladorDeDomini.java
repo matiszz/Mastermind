@@ -141,7 +141,7 @@ public class ControladorDeDomini {
         /*
          Recupera del fitxer les partides guardades del jugador actual,
          */
-        String[][] partides = persistencia.obtePartidesJugador(jugador.getIdJugador());
+        //String[][] partides = persistencia.obtePartidesJugador(jugador.getIdJugador());
         //String[] seleccionada = presentacio.mostra_partides_disponibles(partides);
         //partida = converteixpartida(seleccionada);
         this.jugarPartida();
@@ -186,7 +186,9 @@ public class ControladorDeDomini {
     }
 
     public String[] getIdPartidesGuardades(String alies) {//retorna el id de les partides guardades del jugador amb idjugador=alies
-        return persistencia.getIdPartidesGuardades(alies);
+//       return persistencia.getIdPartidesGuardades(alies);
+        String[] s = {};
+        return s;
     }
 
 }

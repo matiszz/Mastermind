@@ -62,20 +62,5 @@ public class VistaRanking extends JFrame {
 		}
 		list.setBounds(24, 41, 390, 204);
 		getContentPane().add(list);
-		
-		JButton btnNewButton = new JButton("Confirmar");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int index = list.getSelectedIndex();
-				String idpartida = ranking[index];
-				ctrl.obteseleccionada(idpartida);
-				
-			}
-		});
-		btnNewButton.setBounds(297, 251, 117, 29);
-		getContentPane().add(btnNewButton);
-		
-		
 	}
 }

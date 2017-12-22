@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class VistaPartida {
     private JButton checkButton;
@@ -17,60 +18,48 @@ public class VistaPartida {
     private JPanel toolsPanel;
     private JPanel playerPanel;
     private JPanel fila0;
-    private JPanel fila1;
     private JPanel panelMain;
     private JButton b00;
     private JButton b01;
     private JButton b02;
     private JButton b03;
-    private JButton b13;
+    private JButton b122;
     private JButton b11;
+    private JPanel fila1;
     private JButton b12;
-    private JButton b10;
-    private JPanel fila2;
-    private JButton b21;
+    private JButton b13;
+    private JButton b23;
     private JButton b22;
     private JButton b20;
-    private JButton b23;
+    private JButton b21;
+    private JPanel fila2;
+    private JButton b10;
+    private JButton b32;
     private JPanel fila3;
+    private JButton b33;
     private JButton b30;
     private JButton b31;
-    private JButton b32;
-    private JButton b33;
-    private JButton b42;
-    private JButton b40;
-    private JButton b41;
     private JPanel fila4;
+    private JButton b40;
     private JButton b43;
-    private JButton b50;
-    private JButton b53;
-    private JPanel fila5;
-    private JButton b52;
+    private JButton b41;
+    private JButton b42;
     private JButton b51;
-    private JPanel fila6;
+    private JButton b52;
+    private JButton b53;
+    private JButton b50;
+    private JPanel fila5;
     private JButton b63;
+    private JPanel fila6;
+    private JButton b61;
     private JButton b60;
     private JButton b62;
-    private JButton b61;
-    private JButton b71;
-    private JButton b72;
-    private JPanel fila7;
-    private JButton b70;
-    private JButton b73;
-    private JButton b81;
-    private JButton b80;
-    private JButton b83;
-    private JButton b82;
-    private JPanel fila8;
-    private JButton b91;
-    private JPanel fila9;
-    private JButton b92;
-    private JButton b90;
-    private JButton b93;
 
+    private ArrayList<JButton> btns = new ArrayList<JButton>();
     private int editable = 0;
-    private Image selected;
     private Color colorSelected;
+    private int filaActual;
+    private int botoActual;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("VistaPartida");
@@ -82,373 +71,59 @@ public class VistaPartida {
 
     public VistaPartida() {
         $$$setupUI$$$();
+        btns.add(b00);
+        btns.add(b01);
+        btns.add(b02);
+        btns.add(b03);
+        btns.add(b10);
+        btns.add(b11);
+        btns.add(b12);
+        btns.add(b13);
+        btns.add(b20);
+        btns.add(b21);
+        btns.add(b22);
+        btns.add(b23);
+        btns.add(b30);
+        btns.add(b31);
+        btns.add(b32);
+        btns.add(b33);
+        btns.add(b40);
+        btns.add(b41);
+        btns.add(b42);
+        btns.add(b43);
+        btns.add(b50);
+        btns.add(b51);
+        btns.add(b52);
+        btns.add(b53);
+        btns.add(b60);
+        btns.add(b61);
+        btns.add(b62);
+        btns.add(b63);
+
+        filaActual = botoActual = 0;
+        for (JButton b : btns) {
+            botoActual = botoActual + 1;
+            if (botoActual == 4) {
+                botoActual = 0;
+                filaActual = filaActual + 1;
+            }
+            b.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent mouseEvent) {
+                    super.mouseClicked(mouseEvent);
+                    b.get
+                    if (editable == filaActual) b.setBackground(colorSelected);
+                    System.out.println("Fila " + filaActual + ", Botó " + botoActual);
+                }
+            });
+        }
+
         checkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 editable++;
             }
         });
-        b00.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 0) {
-                    b00.setBackground(colorSelected);
-                }
-            }
-        });
-        b01.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 0) {
-                    b01.setBackground(colorSelected);
-                }
-            }
-        });
-        b02.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 0) {
-                    b02.setBackground(colorSelected);
-                }
-            }
-        });
-        b03.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 0) {
-                    b03.setBackground(colorSelected);
-                }
-            }
-        });
-        b10.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 1) {
-                    b10.setBackground(colorSelected);
-                }
-            }
-        });
-        b11.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 1) {
-                    b11.setBackground(colorSelected);
-                }
-            }
-        });
-        b12.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 1) {
-                    b12.setBackground(colorSelected);
-                }
-            }
-        });
-        b13.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 1) {
-                    b13.setBackground(colorSelected);
-                }
-            }
-        });
-        b20.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 2) {
-                    b20.setBackground(colorSelected);
-                }
-            }
-        });
-        b21.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 2) {
-                    b21.setBackground(colorSelected);
-                }
-            }
-        });
-        b22.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 2) {
-                    b22.setBackground(colorSelected);
-                }
-            }
-        });
-        b23.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 2) {
-                    b23.setBackground(colorSelected);
-                }
-            }
-        });
-        b30.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 3) {
-                    b30.setBackground(colorSelected);
-                }
-            }
-        });
-        b31.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 3) {
-                    b31.setBackground(colorSelected);
-                }
-            }
-        });
-        b32.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 3) {
-                    b32.setBackground(colorSelected);
-                }
-            }
-        });
-        b33.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 3) {
-                    b33.setBackground(colorSelected);
-                }
-            }
-        });
-        b40.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 4) {
-                    b40.setBackground(colorSelected);
-                }
-            }
-        });
-        b41.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 4) {
-                    b41.setBackground(colorSelected);
-                }
-            }
-        });
-        b42.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 4) {
-                    b42.setBackground(colorSelected);
-                }
-            }
-        });
-        b43.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 4) {
-                    b43.setBackground(colorSelected);
-                }
-            }
-        });
-        b50.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 5) {
-                    b50.setBackground(colorSelected);
-                }
-            }
-        });
-        b51.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 5) {
-                    b51.setBackground(colorSelected);
-                }
-            }
-        });
-        b52.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 5) {
-                    b52.setBackground(colorSelected);
-                }
-            }
-        });
-        b53.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 5) {
-                    b53.setBackground(colorSelected);
-                }
-            }
-        });
-        b60.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 6) {
-                    b60.setBackground(colorSelected);
-                }
-            }
-        });
-        b61.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 6) {
-                    b61.setBackground(colorSelected);
-                }
-            }
-        });
-        b62.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 6) {
-                    b62.setBackground(colorSelected);
-                }
-            }
-        });
-        b63.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 6) {
-                    b63.setBackground(colorSelected);
-                }
-            }
-        });
-        b70.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 7) {
-                    b70.setBackground(colorSelected);
-                }
-            }
-        });
-        b71.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 7) {
-                    b71.setBackground(colorSelected);
-                }
-            }
-        });
-        b72.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 7) {
-                    b72.setBackground(colorSelected);
-                }
-            }
-        });
-        b73.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 7) {
-                    b73.setBackground(colorSelected);
-                }
-            }
-        });
-        b80.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 8) {
-                    b80.setBackground(colorSelected);
-                }
-            }
-        });
-        b81.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 8) {
-                    b81.setBackground(colorSelected);
-                }
-            }
-        });
-        b82.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 8) {
-                    b82.setBackground(colorSelected);
-                }
-            }
-        });
-        b83.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 8) {
-                    b83.setBackground(colorSelected);
-                }
-            }
-        });
-        b90.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 9) {
-                    b90.setBackground(colorSelected);
-                }
-            }
-        });
-        b91.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 9) {
-                    b91.setBackground(colorSelected);
-                }
-            }
-        });
-        b92.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 9) {
-                    b92.setBackground(colorSelected);
-                }
-            }
-        });
-        b93.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                super.mouseClicked(mouseEvent);
-                if (editable == 9) {
-                    b93.setBackground(colorSelected);
-                }
-            }
-        });
-
 
         btnRed.addMouseListener(new MouseAdapter() {
             @Override
@@ -492,7 +167,6 @@ public class VistaPartida {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        createUIComponents();
         panelMain = new JPanel();
         panelMain.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         toolsPanel = new JPanel();
@@ -506,19 +180,15 @@ public class VistaPartida {
         toolsPanel.add(selectorPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         btnRed = new JButton();
         btnRed.setHorizontalTextPosition(0);
-        btnRed.setIcon(new ImageIcon(getClass().getResource("/images/red.png")));
         btnRed.setText("");
         selectorPanel.add(btnRed, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnGreen = new JButton();
-        btnGreen.setIcon(new ImageIcon(getClass().getResource("/images/green.png")));
         btnGreen.setText("");
         selectorPanel.add(btnGreen, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnBlue = new JButton();
-        btnBlue.setIcon(new ImageIcon(getClass().getResource("/images/blue.png")));
         btnBlue.setText("");
         selectorPanel.add(btnBlue, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnOrange = new JButton();
-        btnOrange.setIcon(new ImageIcon(getClass().getResource("/images/orange.png")));
         btnOrange.setText("");
         selectorPanel.add(btnOrange, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
@@ -526,7 +196,7 @@ public class VistaPartida {
         final com.intellij.uiDesigner.core.Spacer spacer2 = new com.intellij.uiDesigner.core.Spacer();
         panelMain.add(spacer2, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         playerPanel = new JPanel();
-        playerPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(11, 1, new Insets(0, 0, 0, 0), -1, -1));
+        playerPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(8, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelMain.add(playerPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         fila0 = new JPanel();
         fila0.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 4, new Insets(20, 20, 0, 20), -1, -1));
@@ -538,7 +208,6 @@ public class VistaPartida {
         if (b00Font != null) b00.setFont(b00Font);
         b00.setHideActionText(false);
         b00.setHorizontalTextPosition(0);
-        b00.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b00.setText("");
         fila0.add(b00, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b01 = new JButton();
@@ -547,7 +216,6 @@ public class VistaPartida {
         if (b01Font != null) b01.setFont(b01Font);
         b01.setHideActionText(false);
         b01.setHorizontalTextPosition(0);
-        b01.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b01.setText("");
         fila0.add(b01, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b02 = new JButton();
@@ -556,7 +224,6 @@ public class VistaPartida {
         if (b02Font != null) b02.setFont(b02Font);
         b02.setHideActionText(false);
         b02.setHorizontalTextPosition(0);
-        b02.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b02.setText("");
         fila0.add(b02, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b03 = new JButton();
@@ -565,7 +232,6 @@ public class VistaPartida {
         if (b03Font != null) b03.setFont(b03Font);
         b03.setHideActionText(false);
         b03.setHorizontalTextPosition(0);
-        b03.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b03.setText("");
         fila0.add(b03, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         fila1 = new JPanel();
@@ -578,7 +244,6 @@ public class VistaPartida {
         if (b10Font != null) b10.setFont(b10Font);
         b10.setHideActionText(false);
         b10.setHorizontalTextPosition(0);
-        b10.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b10.setText("");
         fila1.add(b10, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b11 = new JButton();
@@ -587,7 +252,6 @@ public class VistaPartida {
         if (b11Font != null) b11.setFont(b11Font);
         b11.setHideActionText(false);
         b11.setHorizontalTextPosition(0);
-        b11.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b11.setText("");
         fila1.add(b11, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b12 = new JButton();
@@ -596,7 +260,6 @@ public class VistaPartida {
         if (b12Font != null) b12.setFont(b12Font);
         b12.setHideActionText(false);
         b12.setHorizontalTextPosition(0);
-        b12.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b12.setText("");
         fila1.add(b12, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b13 = new JButton();
@@ -605,7 +268,6 @@ public class VistaPartida {
         if (b13Font != null) b13.setFont(b13Font);
         b13.setHideActionText(false);
         b13.setHorizontalTextPosition(0);
-        b13.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b13.setText("");
         fila1.add(b13, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         fila2 = new JPanel();
@@ -618,7 +280,6 @@ public class VistaPartida {
         if (b20Font != null) b20.setFont(b20Font);
         b20.setHideActionText(false);
         b20.setHorizontalTextPosition(0);
-        b20.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b20.setText("");
         fila2.add(b20, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b21 = new JButton();
@@ -627,7 +288,6 @@ public class VistaPartida {
         if (b21Font != null) b21.setFont(b21Font);
         b21.setHideActionText(false);
         b21.setHorizontalTextPosition(0);
-        b21.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b21.setText("");
         fila2.add(b21, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b22 = new JButton();
@@ -636,7 +296,6 @@ public class VistaPartida {
         if (b22Font != null) b22.setFont(b22Font);
         b22.setHideActionText(false);
         b22.setHorizontalTextPosition(0);
-        b22.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b22.setText("");
         fila2.add(b22, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b23 = new JButton();
@@ -645,7 +304,6 @@ public class VistaPartida {
         if (b23Font != null) b23.setFont(b23Font);
         b23.setHideActionText(false);
         b23.setHorizontalTextPosition(0);
-        b23.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b23.setText("");
         fila2.add(b23, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         fila3 = new JPanel();
@@ -658,7 +316,6 @@ public class VistaPartida {
         if (b30Font != null) b30.setFont(b30Font);
         b30.setHideActionText(false);
         b30.setHorizontalTextPosition(0);
-        b30.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b30.setText("");
         fila3.add(b30, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b31 = new JButton();
@@ -667,7 +324,6 @@ public class VistaPartida {
         if (b31Font != null) b31.setFont(b31Font);
         b31.setHideActionText(false);
         b31.setHorizontalTextPosition(0);
-        b31.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b31.setText("");
         fila3.add(b31, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b32 = new JButton();
@@ -676,7 +332,6 @@ public class VistaPartida {
         if (b32Font != null) b32.setFont(b32Font);
         b32.setHideActionText(false);
         b32.setHorizontalTextPosition(0);
-        b32.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b32.setText("");
         fila3.add(b32, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b33 = new JButton();
@@ -685,7 +340,6 @@ public class VistaPartida {
         if (b33Font != null) b33.setFont(b33Font);
         b33.setHideActionText(false);
         b33.setHorizontalTextPosition(0);
-        b33.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b33.setText("");
         fila3.add(b33, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         fila4 = new JPanel();
@@ -698,7 +352,6 @@ public class VistaPartida {
         if (b40Font != null) b40.setFont(b40Font);
         b40.setHideActionText(false);
         b40.setHorizontalTextPosition(0);
-        b40.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b40.setText("");
         fila4.add(b40, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b41 = new JButton();
@@ -707,7 +360,6 @@ public class VistaPartida {
         if (b41Font != null) b41.setFont(b41Font);
         b41.setHideActionText(false);
         b41.setHorizontalTextPosition(0);
-        b41.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b41.setText("");
         fila4.add(b41, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b42 = new JButton();
@@ -716,7 +368,6 @@ public class VistaPartida {
         if (b42Font != null) b42.setFont(b42Font);
         b42.setHideActionText(false);
         b42.setHorizontalTextPosition(0);
-        b42.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b42.setText("");
         fila4.add(b42, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b43 = new JButton();
@@ -725,7 +376,6 @@ public class VistaPartida {
         if (b43Font != null) b43.setFont(b43Font);
         b43.setHideActionText(false);
         b43.setHorizontalTextPosition(0);
-        b43.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b43.setText("");
         fila4.add(b43, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         fila5 = new JPanel();
@@ -738,7 +388,6 @@ public class VistaPartida {
         if (b50Font != null) b50.setFont(b50Font);
         b50.setHideActionText(false);
         b50.setHorizontalTextPosition(0);
-        b50.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b50.setText("");
         fila5.add(b50, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b51 = new JButton();
@@ -747,7 +396,6 @@ public class VistaPartida {
         if (b51Font != null) b51.setFont(b51Font);
         b51.setHideActionText(false);
         b51.setHorizontalTextPosition(0);
-        b51.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b51.setText("");
         fila5.add(b51, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b52 = new JButton();
@@ -756,7 +404,6 @@ public class VistaPartida {
         if (b52Font != null) b52.setFont(b52Font);
         b52.setHideActionText(false);
         b52.setHorizontalTextPosition(0);
-        b52.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b52.setText("");
         fila5.add(b52, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b53 = new JButton();
@@ -765,7 +412,6 @@ public class VistaPartida {
         if (b53Font != null) b53.setFont(b53Font);
         b53.setHideActionText(false);
         b53.setHorizontalTextPosition(0);
-        b53.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b53.setText("");
         fila5.add(b53, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         fila6 = new JPanel();
@@ -778,7 +424,6 @@ public class VistaPartida {
         if (b60Font != null) b60.setFont(b60Font);
         b60.setHideActionText(false);
         b60.setHorizontalTextPosition(0);
-        b60.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b60.setText("");
         fila6.add(b60, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b61 = new JButton();
@@ -787,7 +432,6 @@ public class VistaPartida {
         if (b61Font != null) b61.setFont(b61Font);
         b61.setHideActionText(false);
         b61.setHorizontalTextPosition(0);
-        b61.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b61.setText("");
         fila6.add(b61, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b62 = new JButton();
@@ -796,7 +440,6 @@ public class VistaPartida {
         if (b62Font != null) b62.setFont(b62Font);
         b62.setHideActionText(false);
         b62.setHorizontalTextPosition(0);
-        b62.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b62.setText("");
         fila6.add(b62, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         b63 = new JButton();
@@ -805,130 +448,10 @@ public class VistaPartida {
         if (b63Font != null) b63.setFont(b63Font);
         b63.setHideActionText(false);
         b63.setHorizontalTextPosition(0);
-        b63.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
         b63.setText("");
         fila6.add(b63, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        fila7 = new JPanel();
-        fila7.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 4, new Insets(0, 20, 0, 20), -1, -1));
-        fila7.setEnabled(true);
-        playerPanel.add(fila7, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        b70 = new JButton();
-        b70.setEnabled(true);
-        Font b70Font = this.$$$getFont$$$(null, -1, -1, b70.getFont());
-        if (b70Font != null) b70.setFont(b70Font);
-        b70.setHideActionText(false);
-        b70.setHorizontalTextPosition(0);
-        b70.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b70.setText("");
-        fila7.add(b70, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        b71 = new JButton();
-        b71.setEnabled(true);
-        Font b71Font = this.$$$getFont$$$(null, -1, -1, b71.getFont());
-        if (b71Font != null) b71.setFont(b71Font);
-        b71.setHideActionText(false);
-        b71.setHorizontalTextPosition(0);
-        b71.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b71.setText("");
-        fila7.add(b71, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        b72 = new JButton();
-        b72.setEnabled(true);
-        Font b72Font = this.$$$getFont$$$(null, -1, -1, b72.getFont());
-        if (b72Font != null) b72.setFont(b72Font);
-        b72.setHideActionText(false);
-        b72.setHorizontalTextPosition(0);
-        b72.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b72.setText("");
-        fila7.add(b72, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        b73 = new JButton();
-        b73.setEnabled(true);
-        Font b73Font = this.$$$getFont$$$(null, -1, -1, b73.getFont());
-        if (b73Font != null) b73.setFont(b73Font);
-        b73.setHideActionText(false);
-        b73.setHorizontalTextPosition(0);
-        b73.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b73.setText("");
-        fila7.add(b73, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        fila8 = new JPanel();
-        fila8.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 4, new Insets(0, 20, 0, 20), -1, -1));
-        fila8.setEnabled(true);
-        playerPanel.add(fila8, new com.intellij.uiDesigner.core.GridConstraints(8, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        b80 = new JButton();
-        b80.setEnabled(true);
-        Font b80Font = this.$$$getFont$$$(null, -1, -1, b80.getFont());
-        if (b80Font != null) b80.setFont(b80Font);
-        b80.setHideActionText(false);
-        b80.setHorizontalTextPosition(0);
-        b80.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b80.setText("");
-        fila8.add(b80, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        b81 = new JButton();
-        b81.setEnabled(true);
-        Font b81Font = this.$$$getFont$$$(null, -1, -1, b81.getFont());
-        if (b81Font != null) b81.setFont(b81Font);
-        b81.setHideActionText(false);
-        b81.setHorizontalTextPosition(0);
-        b81.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b81.setText("");
-        fila8.add(b81, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        b82 = new JButton();
-        b82.setEnabled(true);
-        Font b82Font = this.$$$getFont$$$(null, -1, -1, b82.getFont());
-        if (b82Font != null) b82.setFont(b82Font);
-        b82.setHideActionText(false);
-        b82.setHorizontalTextPosition(0);
-        b82.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b82.setText("");
-        fila8.add(b82, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        b83 = new JButton();
-        b83.setEnabled(true);
-        Font b83Font = this.$$$getFont$$$(null, -1, -1, b83.getFont());
-        if (b83Font != null) b83.setFont(b83Font);
-        b83.setHideActionText(false);
-        b83.setHorizontalTextPosition(0);
-        b83.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b83.setText("");
-        fila8.add(b83, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        fila9 = new JPanel();
-        fila9.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 4, new Insets(0, 20, 0, 20), -1, -1));
-        fila9.setEnabled(true);
-        playerPanel.add(fila9, new com.intellij.uiDesigner.core.GridConstraints(9, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        b90 = new JButton();
-        b90.setEnabled(true);
-        Font b90Font = this.$$$getFont$$$(null, -1, -1, b90.getFont());
-        if (b90Font != null) b90.setFont(b90Font);
-        b90.setHideActionText(false);
-        b90.setHorizontalTextPosition(0);
-        b90.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b90.setText("");
-        fila9.add(b90, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        b91 = new JButton();
-        b91.setEnabled(true);
-        Font b91Font = this.$$$getFont$$$(null, -1, -1, b91.getFont());
-        if (b91Font != null) b91.setFont(b91Font);
-        b91.setHideActionText(false);
-        b91.setHorizontalTextPosition(0);
-        b91.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b91.setText("");
-        fila9.add(b91, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        b92 = new JButton();
-        b92.setEnabled(true);
-        Font b92Font = this.$$$getFont$$$(null, -1, -1, b92.getFont());
-        if (b92Font != null) b92.setFont(b92Font);
-        b92.setHideActionText(false);
-        b92.setHorizontalTextPosition(0);
-        b92.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b92.setText("");
-        fila9.add(b92, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
-        b93.setEnabled(true);
-        Font b93Font = this.$$$getFont$$$(null, -1, -1, b93.getFont());
-        if (b93Font != null) b93.setFont(b93Font);
-        b93.setHideActionText(false);
-        b93.setHorizontalTextPosition(0);
-        b93.setIcon(new ImageIcon(getClass().getResource("/images/empty.png")));
-        b93.setText("");
-        fila9.add(b93, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(0, 0), new Dimension(40, 40), new Dimension(40, 40), 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer3 = new com.intellij.uiDesigner.core.Spacer();
-        playerPanel.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(10, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        playerPanel.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }
 
     /**
