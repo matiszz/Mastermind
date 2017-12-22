@@ -111,6 +111,7 @@ public class ControladorDeDomini {
             Algorisme a = new Algorisme(this);
             a.simulaPartida(partida,jugador);
         }
+        else presentacio.jugaCodeBreaker();
     }
 
     public void guardarPartida() { //Converteix la partida en l'estructura per passar entre capes i la envia a la capa de persistencia.
@@ -143,15 +144,13 @@ public class ControladorDeDomini {
         return newp;
     }
 
-    public void continuarPartida() { //Primer obte totes les partides, se les pasa a la capa de presentació, espera una selecció i reanuda la partida seleccionada
+    public void continuarPartida(String idPartida) { //Primer obte totes les partides, se les pasa a la capa de presentació, espera una selecció i reanuda la partida seleccionada
         /*
          Recupera del fitxer les partides guardades del jugador actual,
          */
-        //String[][] partides = persistencia.obtePartidesJugador(jugador.getIdJugador());
-        //String[] seleccionada = presentacio.mostra_partides_disponibles(partides);
-        //partida = converteixpartida(seleccionada);
-        this.jugarPartida();
-        //S'ha de cridar al controlador de domini per que obtingui les partides no finalitzades del jugador que te com atribut
+        ArrayList<String> partides = persistencia.getInfoPartida(idPartida)
+        partida = converteixPartida(partides);
+        presentacio.jugaCodeBreaker();
     }
 
     private ArrayList<Integer> converteixCodi(int[] codi) {
