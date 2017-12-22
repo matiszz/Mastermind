@@ -71,6 +71,11 @@ public class VistaRegistrarse extends JFrame {
 		labelSeleccionat.setVisible(false);
 		contentPane.add(labelSeleccionat);
 		
+		JLabel labelerror = new JLabel("L'alies seleccionat no existeix");
+		labelerror.setForeground(Color.RED);
+		labelerror.setBounds(118, 114, 202, 16);
+		labelerror.setVisible(false);
+		contentPane.add(labelerror);
 		
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addMouseListener(new MouseAdapter() {
@@ -78,12 +83,12 @@ public class VistaRegistrarse extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				ControladorDePresentacio c = new ControladorDePresentacio();
 				boolean b = c.clickRegistrarse(lblIntrodueixElTeu.getText());
-				if(b) { //Sijugador existe -> VistaNovaPartidaoReanudar
+				if(b) { //Sijugador creat
 					VistaNovaPartidaoReanudar nova = new VistaNovaPartidaoReanudar();
 					nova.setVisible(true);
 					VistaRegistrarse.this.dispose();
 				}
-				else { //Si no s'ha creat vol dir que ja exitia
+				else { //Si no s'ha creat vol dir que ja existia
 					labelSeleccionat.setVisible(true);
 				}
 				
@@ -97,8 +102,8 @@ public class VistaRegistrarse extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ControladorDePresentacio c = new ControladorDePresentacio();
-				boolean b = c.clickRegistrarse(lblIntrodueixElTeu.getText());
-				//Sempre anirà a la següent vista
+				boolean b = c.clickIniciarSessio(lblIntrodueixElTeu.getText());
+				if(!b) labelerror.setVisible(true);
 				VistaNovaPartidaoReanudar nova = new VistaNovaPartidaoReanudar();
 				nova.setVisible(true);
 				VistaRegistrarse.this.dispose();
