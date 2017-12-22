@@ -29,16 +29,20 @@ public class ControladorDePresentacio {
 		return c.registrar(alies);	
 	};
 	
-	public void mostraCodiRespost(String[] codi) {
+	public void mostraCodiRespost(String[] codi) {//Afegeix a la vista actual la resposta al codiproposat en la ultima jugada computada
 		
 	}
 	
-	public void jugadaCompleta(ArrayList<Integer> codirespost, ArrayList<Integer> codiproposat) {
+	public void jugadaCompleta(ArrayList<Integer> codirespost, ArrayList<Integer> codiproposat) { 
+		//Afegeix una nova jugada computada a la vista de la partida quan es juga en mode codeMaker(automàtic)
 		
 	}
 	
+	public void jugaCodeBreaker() { // es la funcion que va interactuando con el usuario, va esperandoa a que juegue y desencadena el procesmiento de la jugada
+		
+	}
 	public void restauraPartida(String idPartida) { //Obte tot el necessari per restaurar la partida i mostrar el tauler.
-		
+		c.continuarPartida(idPartida);
 	}
 	
 	public void crearPartida(String mode, String dificultat) {
