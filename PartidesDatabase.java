@@ -200,4 +200,42 @@ public class PartidesDatabase extends Database {
 		return l;
 	}
 	
+	
+	public List< List<String> > obtePartidesJugador(String idJugador) {
+		List< List<String> > l = new ArrayList< List<String> >();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = "";
+			String lineAux = "";
+			lineAux = br.readLine(); 
+			lineAux = br.readLine(); //saltamos hasta el primer idJugador
+			while ((line = br.readLine()) != null) {
+				if (line.equals(idJugador)) {
+					List<String> ll = new ArrayList<String>();
+					ll.add(line); //meto el idJugador
+					for (int i=0; i<12; i++) { //meto la demas info de esa partida de ese jugador
+						line = br.readLine();
+						ll.add(line);
+					}
+					l.add(ll);	
+					lineAux = br.readLine();
+				}
+				else {
+					for (int i=0; i<11; i++) { //salto hasta el proximo idJugador
+						lineAux = br.readLine();
+					}
+				}
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return l;
+		
+	}
+	
 }
