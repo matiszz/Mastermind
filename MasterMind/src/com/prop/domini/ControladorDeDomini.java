@@ -25,7 +25,6 @@ public class ControladorDeDomini {
 
     }
 
-
     //Setters
     public void setGenerador(GeneradorJocs generador) {
         this.generador = generador;
@@ -34,7 +33,6 @@ public class ControladorDeDomini {
     public void setrRnking(Ranking ranking) {
         this.ranking = ranking;
     }
-
 
     //Getters
     public Ranking getRanking() {
@@ -45,11 +43,10 @@ public class ControladorDeDomini {
         return this.generador;
     }
 
-
     //Casos d'ús
-    public boolean registrar(String id) { //Cas d'us registrar usuari, retorna fals si l'id està en us. Altrament registra jugador i l'emmagatzema a la BD
+    public boolean registrar(String id) {//Cas d'us registrar usuari, retorna fals si l'id està en us. Altrament registra jugador i l'emmagatzema a la BD
 
-        boolean creat = false;; //Si creat = false vol dir que l'id ja esta en us
+        boolean creat = false; //Si creat = false vol dir que l'id ja esta en us
         jugador = reg.registrar(id);
         if(jugador != null) { //El jugador s'ha creat
             creat = true;
@@ -59,10 +56,15 @@ public class ControladorDeDomini {
         return creat;
     }
 
+    public boolean iniciasessio(String alies) {
+    		jugador = reg.registrar(alies);
+    		if(jugador == null) return false;
+    		else return true;
+    }
+    
     public void generarJoc(int dificultat,boolean codeMaker) { //Genera generador de jocs, el joc i la partida segons la dificultat i el mode
         if(gen == null) {
             switch (dificultat) {
-
             case 1:
                 gen = new GeneradorJocs(20,4,5,codeMaker,dificultat);
             break;
@@ -91,6 +93,10 @@ public class ControladorDeDomini {
         presentacio.mostraTauler(s);
     }
 
+    public void jugadaCompleta(ArrayList<Integer> codiproposat, ArrayList<Integer> codirespost) {
+    		presentacio.jugadaCompleta(codiproposat,codirespost);
+    }
+    
     public void jugarPartida() { //Converteix la partida al tipus per enviar entre capes i fa que el ctrlpresentacio mostri la vista
         /*
          Comproba que existeix un joc i un generador de partides.
@@ -99,11 +105,8 @@ public class ControladorDeDomini {
          Inicia el clock
          */
         if(partida.mode == "CodeMaker") {
-            Algorisme a = new Algorisme();
-            a.simulaPartida(partida,jugador,this);
-        }
-        else {
-
+            Algorisme a = new Algorisme(this);
+            a.simulaPartida(partida,jugador);
         }
     }
 
@@ -141,7 +144,7 @@ public class ControladorDeDomini {
         /*
          Recupera del fitxer les partides guardades del jugador actual,
          */
-        String[][] partides = persistencia.obtePartidesJugador(jugador.getIdJugador());
+        //String[][] partides = persistencia.obtePartidesJugador(jugador.getIdJugador());
         //String[] seleccionada = presentacio.mostra_partides_disponibles(partides);
         //partida = converteixpartida(seleccionada);
         this.jugarPartida();
@@ -172,11 +175,11 @@ public class ControladorDeDomini {
                 Jugada j = new Jugada(num,partida,jugador);
                 j.setcodiProposat(codiproposat);
                 partida.ferJugada(j);
-                Algorisme a = new Algorisme();
+                Algorisme a = new Algorisme(this);
                 ArrayList<Integer> codiresp = a.aplica_logica(solucio, codiproposat);
                 j.setcodiRespost(codiresp);
                 String[] cod = converteixCodi(codiresp);
-                presentacio.afegeixCodiRespost(cod);
+                presentacio.mostraCodiRespost(cod);
         }
     }
 
@@ -188,5 +191,5 @@ public class ControladorDeDomini {
     public String[] getIdPartidesGuardades(String alies) {//retorna el id de les partides guardades del jugador amb idjugador=alies
         return persistencia.getIdPartidesGuardades(alies);
     }
-
+    	
 }
