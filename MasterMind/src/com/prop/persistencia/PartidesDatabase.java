@@ -3,6 +3,7 @@ package com.prop.persistencia;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -157,4 +158,46 @@ public class PartidesDatabase extends Database {
 			e.printStackTrace();
 		}
 	}
+	
+	/* Devuelve los idPartida que tenga el bool finalitzada a false y que sean de idJugador */
+	public List<Integer> partidesNoFinalitzades(String idJugador) {
+		List<Integer> l = new ArrayList<Integer>();
+		int idPartida;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = "";
+			String lineAux = "";
+			lineAux = br.readLine(); 
+			lineAux = br.readLine(); //saltamos hasta el primer idJugador
+			while ((line = br.readLine()) != null) {
+				if (line.equals(idJugador)) {
+					idPartida = Integer.parseInt(br.readLine()); //cojo el idPartida y lo transformo a entero
+					for (int i=0; i<6; i++) {
+						lineAux = br.readLine(); //saltamos hasta el bool finalitzada
+					}
+					String fin = br.readLine(); //leemos el string bool finalitzada
+					if (fin.equals("false") || fin.equals("0")) { //no se si al pasar a string un booleano lo pasa como true/false o como 1/0
+						l.add(idPartida);
+					}
+					for (int i=0; i<4 ;i++) {
+						lineAux = br.readLine(); //saltamos hasta el proximo idJugador
+					}
+				}
+				else { //saltamos hasta el proximo idJugador
+					for (int i=0; i<12; i++) {
+						lineAux = br.readLine();
+					}
+				}
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return l;
+	}
+	
 }
