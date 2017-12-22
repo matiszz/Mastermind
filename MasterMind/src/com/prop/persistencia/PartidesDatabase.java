@@ -278,4 +278,11 @@ public class PartidesDatabase extends Database {
 		}
 		return l;
 	}
+	
+	public List<String> getIdPartidesGuardades(String idPartida) {
+		List<String> l = new ArrayList<String>();
+		return l;
+		//Continuar aqui
+	}
+	
 }
