@@ -10,6 +10,8 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JLabel;
 import java.awt.List;
 import java.awt.event.ActionListener;
@@ -53,12 +55,12 @@ public class VistaRanking extends JFrame {
 		btnTornar.setBounds(16, 6, 117, 29);
 		getContentPane().add(btnTornar);
 		
-		String[] ranking;
+		ArrayList<String> ranking;
 		ControladorDePresentacio ctrl = new ControladorDePresentacio();
 		ranking = ctrl.demanaRanking();
 		List list = new List();
-		for(int i = 0; i < ranking.length;++i) {
-			list.add(ranking[i]);
+		for(int i = 0; i < ranking.size();++i) {
+			list.add(ranking.get(i));
 		}
 		list.setBounds(24, 41, 390, 204);
 		getContentPane().add(list);
