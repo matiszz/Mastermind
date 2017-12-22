@@ -8,12 +8,14 @@ public class Algorisme {
 	ArrayList< ArrayList< ArrayList<Integer> > > matriu;
 	ArrayList<Integer> jugat;
 	ArrayList<Integer> valid; //Per cada posició i, si valid[i]==1 llavors la fila matrix[i] es valida, si valid[i] == 0 matri[i] invalida
+	ControladorDeDomini ctrl;
 	
-		public Algorisme() {
+		public Algorisme(ControladorDeDomini c) {
 			combinacions = new ArrayList<ArrayList<Integer>>();
 			jugat = new ArrayList<Integer>();
 			matriu = new ArrayList< ArrayList< ArrayList<Integer> > >();
 			valid = new ArrayList<Integer>();
+			ctrl = c;
 		};
 		
 		public void printa(ArrayList<Integer> a) {
@@ -176,12 +178,13 @@ public class Algorisme {
 			return b;
 		}
 		
-		public void simulaPartida(Partida p, Jugador j,ControladorDeDomini c) {
+		public void simulaPartida(Partida p, Jugador j) {
 			for(int i = 1; i <= 10; ++i) {
 				ArrayList<Integer> combinacio = new ArrayList<Integer>();
 				ArrayList<Integer> respost = new ArrayList<Integer>();
 				combinacio = this.five_guess(p.longCodi, 4, respost);
 				respost = this.aplica_logica(p.codiamagat, combinacio);
+				ctrl.jugadaCompleta(combinacio,respost);
 				Jugada jug = new Jugada(i,p,j);
 				jug.codiProposat = combinacio;
 				jug.codiRespost = respost;
