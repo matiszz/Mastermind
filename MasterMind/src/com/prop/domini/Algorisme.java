@@ -179,7 +179,8 @@ public class Algorisme {
 		}
 		
 		public void simulaPartida(Partida p, Jugador j) {
-			for(int i = 1; i <= 10; ++i) {
+			boolean correcte = false;
+			for(int i = 1; !correcte && i <= p.numFiles; ++i) {
 				ArrayList<Integer> combinacio = new ArrayList<Integer>();
 				ArrayList<Integer> respost = new ArrayList<Integer>();
 				combinacio = this.five_guess(p.longCodi, 4, respost);
@@ -190,9 +191,7 @@ public class Algorisme {
 				jug.codiRespost = respost;
 				p.ferJugada(jug);
 				jug.encert = this.comprova(respost);
-				if(jug.encert) {
-					i = 11;
-				}
+				if(jug.encert) correcte = true;
 			}
 		}
 }

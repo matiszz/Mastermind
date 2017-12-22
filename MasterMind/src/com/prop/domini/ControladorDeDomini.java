@@ -50,7 +50,7 @@ public class ControladorDeDomini {
         jugador = reg.registrar(id);
         if(jugador != null) { //El jugador s'ha creat
             creat = true;
-            String[] j = jugador.converteixaString();
+           ArrayList<String> j = jugador.converteixaString();
             persistencia.emmagatzemaJugador(j);
         }
         return creat;
@@ -58,8 +58,11 @@ public class ControladorDeDomini {
 
     public boolean iniciasessio(String alies) {
     		jugador = reg.registrar(alies);
-    		if(jugador == null) return false;
-    		else return true;
+    		if(jugador == null) {
+    			jugador = reg.getJugador(alies);
+    			return true; //El jugador existeix
+    		}
+    		else return false; //El jugador no existeix
     }
     
     public void generarJoc(int dificultat,boolean codeMaker) { //Genera generador de jocs, el joc i la partida segons la dificultat i el mode
@@ -134,9 +137,9 @@ public class ControladorDeDomini {
         presentacio.mostraMenuprincipal();
     }
 
-    public Partida converteixPartida(String[] info){ //ULL hi ha parametres que no es tenen en compte
+    public Partida converteixPartida(ArrayList<String> info){ //ULL hi ha parametres que no es tenen en compte
         int i = 0;
-        Partida newp = new Partida(Integer.parseInt(info[i]), info[i+1],Boolean.parseBoolean(info[i+2]),Integer.parseInt(info[i+3]),Integer.parseInt(info[i+4]),Integer.parseInt(info[i+10]));
+        Partida newp = new Partida(Integer.parseInt(info.get(i)), info.get(i+1),Boolean.parseBoolean(info.get(i+2)),Integer.parseInt(info.get(i+3)),Integer.parseInt(info.get(i+4)),Integer.parseInt(info.get(i+10)));
         return newp;
     }
 
@@ -183,15 +186,13 @@ public class ControladorDeDomini {
         }
     }
 
-    public String[][] consultarRanking() { //Va a la capa de persistencia y retorna el ranking a la capa de presentacio.
-        String[][] rank = persistencia.obteRanking();
+    public ArrayList< String> consultarRanking() { //Va a la capa de persistencia y retorna el ranking a la capa de presentacio.
+        ArrayList< String> rank = persistencia.obteRanking();
         return rank;
     }
 
-    public String[] getIdPartidesGuardades(String alies) {//retorna el id de les partides guardades del jugador amb idjugador=alies
-//       return persistencia.getIdPartidesGuardades(alies);
-        String[] s = {};
-        return s;
+    public ArrayList<String> getIdPartidesGuardades(String alies) {//retorna el id de les partides guardades del jugador amb idjugador=alies
+    		return persistencia.getIdPartidesGuardades(alies);
     }
     	
 }
