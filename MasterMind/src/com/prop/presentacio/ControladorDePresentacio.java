@@ -14,7 +14,7 @@ public class ControladorDePresentacio {
 		VistaMenuPrincipal principal = new VistaMenuPrincipal();
 	}
 	
-	public void mostraTauler(String[] partida) {};
+	
 	
 	public void obteseleccionada(String idpartida) {//Obté la partida identificada per idpartida y mostra el tauler en l'estat guardat
 		
@@ -32,7 +32,14 @@ public class ControladorDePresentacio {
 	public void mostraCodiRespost(String[] codi) {//Afegeix a la vista actual la resposta al codiproposat en la ultima jugada computada
 		
 	}
-	
+	public void mostraTauler(ArrayList<String> partida) {//Se li pasa tota la partida i selecciona les jugadas per restaurar-les (mostrar-les per pantalla)
+		
+	};
+	public void mostraMenuPrincipal() {
+		
+		
+		
+	}
 	public void jugadaCompleta(ArrayList<Integer> codirespost, ArrayList<Integer> codiproposat) { 
 		//Afegeix una nova jugada computada a la vista de la partida quan es juga en mode codeMaker(automàtic)
 		
