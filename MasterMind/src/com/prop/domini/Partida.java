@@ -22,25 +22,25 @@ public class Partida {
     Rellotge clock;
     Tauler tauler;
 
-    public String[] converteixaString() { //Converteix a un vector d'String la informacio de la partida, cada posicio es un camp d'informacio de la partida per emmagatzemarla
-    		String[] s = new String[12];
-    		s[0] = Integer.toString(this.idPartida);
-    		s[1] = mode;
-    		s[2] = Long.toString(temps);
-    		s[3] = Integer.toString(this.numJugades);
-    		s[4] = Integer.toString(this.puntuacio);
-    		s[5] = Integer.toString(this.numFiles);
-    		s[6] = Integer.toString(this.longCodi);
-    		s[7] = Boolean.toString(this.finalitzada);
+    public ArrayList<String> converteixaString() { //Converteix a un vector d'String la informacio de la partida, cada posicio es un camp d'informacio de la partida per emmagatzemarla
+    		ArrayList<String> s = new ArrayList<String>();
+    		s.add(Integer.toString(this.idPartida));
+    		s.add(mode);
+    		s.add(Long.toString(temps));
+    		s.add(Integer.toString(this.numJugades));
+    		s.add(Integer.toString(this.puntuacio));
+    		s.add(Integer.toString(this.numFiles));
+    		s.add(Integer.toString(this.longCodi));
+    		s.add(Boolean.toString(this.finalitzada));
     		for(int i = 0; i < jugades.size();++i) {
     			String l = (jugades.get(i)).converteix_a_string();
-    			s[8]+= l;  
+    			s.add(l);  
     		}
     		for(int i = 0; i < longCodi;++i) {
-    			s[9]+= Integer.toString(codiamagat.get(i));
+    			s.add(Integer.toString(codiamagat.get(i)));
     		}
-    		s[10] = Integer.toString(this.dificultat);
-    		s[11] = Boolean.toString(this.guanyada);
+    		s.add(Integer.toString(this.dificultat));
+    		s.add(Boolean.toString(this.guanyada));
      	return s;
     }
     public boolean getguanyada() {

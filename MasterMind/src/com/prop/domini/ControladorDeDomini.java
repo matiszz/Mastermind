@@ -92,7 +92,7 @@ public class ControladorDeDomini {
 
     public void acabaPartida() {
         partida.finalitzarPartida();
-        String s[] = partida.converteixaString();
+        ArrayList<String> s = partida.converteixaString();
         presentacio.mostraTauler(s);
     }
 
@@ -119,7 +119,7 @@ public class ControladorDeDomini {
          Escriu en un fitxer totes les dades de la partida actual.
          Atura el clock
          */
-        String[] p = partida.converteixaString();
+        ArrayList<String> p = partida.converteixaString();
         partida.clock.aturarRellotge();
         persistencia.emmagatzemaPartida(p,jugador.getIdJugador());
     }
@@ -132,10 +132,10 @@ public class ControladorDeDomini {
         FilaRanking f = new FilaRanking(res,jugador.getIdJugador());
         boolean afegida = ranking.afegeix_fila(f, dificultat);
         if(afegida) {
-            String[][] rank = ranking.converteix_Ranking();
+            ArrayList<String> rank = ranking.converteix_Ranking();
             persistencia.emmagatzemaRanking(rank);
         }
-        presentacio.mostraMenuprincipal();
+        presentacio.mostraMenuPrincipal();
     }
 
     public Partida converteixPartida(ArrayList<String> info){ //ULL hi ha parametres que no es tenen en compte

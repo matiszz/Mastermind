@@ -141,22 +141,35 @@ public class Ranking {
 		}
 	return afegida;
 	}
-	public String[][] converteix_Ranking(){
-		int longitud = r_facil.size() + r_medio.size() + r_dificil.size();
-		String[][] res = new String[longitud][2];
-		for(int i = 0; i < r_facil.size();++i) {
+	public ArrayList<String> converteix_Ranking(){
+		ArrayList<String> res = new ArrayList<String>();
+		int i ;
+		for(i = 0; i < r_facil.size();++i) {
 			FilaRanking f = r_facil.get(i);
-			res[i]= f.converteix();
+			String elem = (i+1) + f.converteix();
+			res.add(elem);
 		}
-		int j = r_facil.size();
-		for(int i = 0; i < r_medio.size();++i) {
+		while(i < 10) {
+			res.add((i+1) + "    ----     ---- ");
+			i++;
+		}
+		for(i = 0; i < r_medio.size();++i) {
 			FilaRanking f = r_medio.get(i);
-			res[j]= f.converteix();
+			String elem = (i+1) + f.converteix();
+			res.add(elem);
 		}
-		j = r_facil.size()+r_medio.size();
-		for(int i = 0; i < r_dificil.size();++i) {
+		while(i <= 10) {
+			res.add((i+1) + "    ----     ---- ");
+			i++;
+		}
+		for(i = 0; i < r_dificil.size();++i) {
 			FilaRanking f = r_dificil.get(i);
-			res[j]= f.converteix();
+			String elem = (i+1) + f.converteix();
+			res.add(elem);
+		}
+		while(i < 10) {
+			res.add((i+1) + "    ----     ---- ");
+			i++;
 		}
 		return res;
 	}
