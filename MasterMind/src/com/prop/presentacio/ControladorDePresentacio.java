@@ -1,84 +1,102 @@
 package com.prop.presentacio;
 import java.util.ArrayList;
-
 import com.prop.domini.ControladorDeDomini;
 
 public class ControladorDePresentacio {
 	
-	ControladorDeDomini c;
-	String nom;
-	
+	private ControladorDeDomini c;
+	private String nom;
+        public static ControladorDePresentacio controller = new ControladorDePresentacio();
+        
+        // Constructor
 	public ControladorDePresentacio() {
-		this.c = new ControladorDeDomini(this);
-		nom = null;
-		VistaMenuPrincipal principal = new VistaMenuPrincipal();
+            this.c = new ControladorDeDomini(this);
+            nom = null;
+            MenuPrincipal principal = new MenuPrincipal();
 	}
 	
-	
-	
-	public void obteseleccionada(String idpartida) {//Obté la partida identificada per idpartida y mostra el tauler en l'estat guardat
-		
-		//Obtiene los datos de la partida, instancia vista partida y le pasa la información para rellenar la vista.
-	};
-		
-	public boolean clickIniciarSessio(String alies) { //Fals si no existeix, true si existeix.
-		return c.iniciasessio(alies);
+        //Obté la partida identificada per idPartida y mostra el tauler en l'estat guardat.
+	public void obtePartidaSeleccionada(String idPartida) {
+            //Obtiene los datos de la partida, instancia vista partida y le pasa la información para rellenar la vista.
 	}
 	
-	public boolean clickRegistrarse(String alies) { //retorna true si s'ha creat el jugador, retorna false si ja exiteix
-		return c.registrar(alies);	
-	};
-	
-	public void mostraCodiRespost(String[] codi) {//Afegeix a la vista actual la resposta al codiproposat en la ultima jugada computada
-		
+        // Retorna true si alies existeix, i false en cas contrari.
+	public boolean clickIniciarSessio(String alies) {
+            return c.iniciasessio(alies);
 	}
-	public void mostraTauler(ArrayList<String> partida) {//Se li pasa tota la partida i selecciona les jugadas per restaurar-les (mostrar-les per pantalla)
-		
-	};
+	
+        // Si s'ha creat retorna true. Si alies ja existeix, retorna false.
+	public boolean clickRegistrarse(String alies) { 
+            return c.registrar(alies);	
+	}
+	
+        // Afegeix a la vista la resposta lògica al codi que s'ha proposat.
+	public void mostraCodiRespost(String[] codi) {
+            
+	}
+        
+        // Posa les combinacions d'una partida guardada al tauler gràfic.
+	public void mostraTauler(ArrayList<String> partida) {
+            
+	}
+        
+        // Mostra el Menú Principal.
 	public void mostraMenuPrincipal() {
-		
-		
-		
+            
 	}
-	public void jugadaCompleta(ArrayList<Integer> codirespost, ArrayList<Integer> codiproposat) { 
-		//Afegeix una nova jugada computada a la vista de la partida quan es juga en mode codeMaker(automàtic)
-		
-	}
-	
-	public void jugaCodeBreaker() { // es la funcion que va interactuando con el usuario, va esperandoa a que juegue y desencadena el procesmiento de la jugada
-		
-	}
-	public void restauraPartida(String idPartida) { //Obte tot el necessari per restaurar la partida i mostrar el tauler.
-		c.continuarPartida(idPartida);
+        
+        // Afegeix una nova jugada a la vista de la partida en mode codeMaker (automàtic).
+	public void jugadaCompleta(ArrayList<Integer> codirespost, ArrayList<Integer> codiproposat) {
+            
 	}
 	
+        // Interactua amb l'usuari. Espera a que jugui, i desencadena el processament de la jugada.
+	public void jugaCodeBreaker() {
+            
+	}
+        
+        // Obté les dades per restaurar una partida, i la mostra al tauler.
+	public void restauraPartida(String idPartida) { 
+            c.continuarPartida(idPartida);
+	}
+	
+        // Crea una partida amb Mode = mode y Dificultat = dificultat
 	public void crearPartida(String mode, String dificultat) {
-		int dif;
-		if(dificultat == "facil") dif = 1;
-		if(dificultat == "mitjana") dif = 2;
-		else dif = 3;
-		boolean b = (mode =="CodeMaker");
-		c.generarJoc(dif,b);
+            int dif;
+           
+            if ("facil".equals(dificultat))         dif = 1;
+            else if ("mitjana".equals(dificultat))  dif = 2;
+            else dif = 3;
+            
+            boolean b = ("CodeMaker".equals(mode));
+            
+            c.generarJoc(dif, b);
 	}
 
-	public ArrayList<String> demanaRanking() { //Demana el ranking a la capa de domini i dona el format necessari per mostrar-ho per pantalla
-		/*Pruebas 
-		 * String[] ranking = new String[2];
-		 ranking[0]="1.  Ro  23";
-		 ranking[1]="2.  Pep 40";
-		 */
-		ArrayList<String> ranking = c.consultar_ranking();
-		return ranking;
+        // Obté el Ranking de la capa de domini i el formateja.
+	public ArrayList<String> demanaRanking() {
+            /*Pruebas 
+             * String[] ranking = new String[2];
+             ranking[0]="1.  Ro  23";
+             ranking[1]="2.  Pep 40";
+             */
+            ArrayList<String> ranking = c.consultarRanking();
+            return ranking;
 	}
-
-	public ArrayList<String> getIdPartidesGuardades() {//Demana al controlador de domini els id's de les partides guardades.
-		return c.getIdPartidesGuardades(nom);
+        
+        // Obté les els IDs de les partides guardades de la capa de domini.
+	public ArrayList<String> getIdPartidesGuardades() {
+            return c.getIdPartidesGuardades(nom);
 	}
 	
-	public void ferJugada(int[] codi) { 
-		/*La vista li pasa la jugada proposada i el controlador avisa a la capa de domini per que computi la jugada i obtingui la
-		/* resposta a mostrar */
-		//vector de int's ja que el codi del domini ho demana aixi!!!!!!
-		c.ferJugada(codi);
+        // Desde la vista s'envia el codi proposat (en forma d'INTs) i avisa a la 
+        // capa de domini per computar la jugada i obtenir la resposta a mostrar
+	public void ferJugada(int[] codi) {
+            c.ferJugada(codi);
 	}
+        
+        // Per al mode CodeMaker, estableix el codi a endevnar.
+        public void setCodi(int[] codi) {
+            c.emmagatzemaCodi(codi);
+        }
 }
