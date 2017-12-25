@@ -16,8 +16,11 @@ import javax.swing.JButton;
  */
 public class Partida extends javax.swing.JFrame {
     
+    private ControladorDePresentacio p = new ControladorDePresentacio();
     private String selectedColor = "/images/empty.png";
+    private int selectedInt = 0;
     private int editable = 0;
+    private int[] codi = new int[4];
 
     /**
      * Creates new form VistaTauler
@@ -875,171 +878,181 @@ public class Partida extends javax.swing.JFrame {
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
        editable++;
+       p.controller.setCodi(codi);
+       codi[0] = 0;
+       codi[1] = 0;
+       codi[2] = 0;
+       codi[3] = 0;
     }//GEN-LAST:event_btnCheckActionPerformed
 
     private void btnRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedActionPerformed
         selectedColor = "/images/red.png";
+        selectedInt = 1;
     }//GEN-LAST:event_btnRedActionPerformed
 
     private void btnGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGreenActionPerformed
         selectedColor = "/images/green.png";
+        selectedInt = 2;
     }//GEN-LAST:event_btnGreenActionPerformed
 
     private void btnBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBlueActionPerformed
         selectedColor = "/images/blue.png";
+        selectedInt = 3;
     }//GEN-LAST:event_btnBlueActionPerformed
 
     private void btnOrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrangeActionPerformed
         selectedColor = "/images/orange.png";
+        selectedInt = 4;
     }//GEN-LAST:event_btnOrangeActionPerformed
 
     private void b20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b20ActionPerformed
-        clickHecho(b20, 2);
+        clickHecho(b20, 2, 0);
     }//GEN-LAST:event_b20ActionPerformed
 
     private void b21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b21ActionPerformed
-        clickHecho(b21, 2);
+        clickHecho(b21, 2, 1);
     }//GEN-LAST:event_b21ActionPerformed
 
     private void b22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b22ActionPerformed
-        clickHecho(b22, 2);
+        clickHecho(b22, 2, 2);
     }//GEN-LAST:event_b22ActionPerformed
 
     private void b23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b23ActionPerformed
-        clickHecho(b23, 2);
+        clickHecho(b23, 2, 3);
     }//GEN-LAST:event_b23ActionPerformed
 
     private void b30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b30ActionPerformed
-        clickHecho(b30, 3);
+        clickHecho(b30, 3, 0);
     }//GEN-LAST:event_b30ActionPerformed
 
     private void b31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b31ActionPerformed
-        clickHecho(b31, 3);
+        clickHecho(b31, 3, 1);
     }//GEN-LAST:event_b31ActionPerformed
 
     private void b32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b32ActionPerformed
-        clickHecho(b32, 3);
+        clickHecho(b32, 3, 2);
     }//GEN-LAST:event_b32ActionPerformed
 
     private void b33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b33ActionPerformed
-        clickHecho(b33, 3);
+        clickHecho(b33, 3, 3);
     }//GEN-LAST:event_b33ActionPerformed
 
     private void b40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b40ActionPerformed
-        clickHecho(b40, 4);
+        clickHecho(b40, 4, 0);
     }//GEN-LAST:event_b40ActionPerformed
 
     private void b41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b41ActionPerformed
-        clickHecho(b41, 4);
+        clickHecho(b41, 4, 1);
     }//GEN-LAST:event_b41ActionPerformed
 
     private void b42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b42ActionPerformed
-        clickHecho(b42, 4);
+        clickHecho(b42, 4, 2);
     }//GEN-LAST:event_b42ActionPerformed
 
     private void b43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b43ActionPerformed
-        clickHecho(b43, 4);
+        clickHecho(b43, 4, 3);
     }//GEN-LAST:event_b43ActionPerformed
 
     private void b50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b50ActionPerformed
-        clickHecho(b50, 5);
+        clickHecho(b50, 5, 0);
     }//GEN-LAST:event_b50ActionPerformed
 
     private void b51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b51ActionPerformed
-        clickHecho(b51, 5);
+        clickHecho(b51, 5, 1);
     }//GEN-LAST:event_b51ActionPerformed
 
     private void b52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b52ActionPerformed
-        clickHecho(b52, 5);
+        clickHecho(b52, 5, 2);
     }//GEN-LAST:event_b52ActionPerformed
 
     private void b53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b53ActionPerformed
-        clickHecho(b53, 5);
+        clickHecho(b53, 5, 3);
     }//GEN-LAST:event_b53ActionPerformed
 
     private void b60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b60ActionPerformed
-        clickHecho(b60, 6);
+        clickHecho(b60, 6, 0);
     }//GEN-LAST:event_b60ActionPerformed
 
     private void b61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b61ActionPerformed
-        clickHecho(b61, 6);
+        clickHecho(b61, 6, 1);
     }//GEN-LAST:event_b61ActionPerformed
 
     private void b62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b62ActionPerformed
-        clickHecho(b62, 6);
+        clickHecho(b62, 6, 2);
     }//GEN-LAST:event_b62ActionPerformed
 
     private void b63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b63ActionPerformed
-        clickHecho(b63, 6);
+        clickHecho(b63, 6, 3);
     }//GEN-LAST:event_b63ActionPerformed
 
     private void b70ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b70ActionPerformed
-        clickHecho(b70, 7);
+        clickHecho(b70, 7, 0);
     }//GEN-LAST:event_b70ActionPerformed
 
     private void b71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b71ActionPerformed
-        clickHecho(b71, 7);
+        clickHecho(b71, 7, 1);
     }//GEN-LAST:event_b71ActionPerformed
 
     private void b72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b72ActionPerformed
-        clickHecho(b72, 7);
+        clickHecho(b72, 7, 2);
     }//GEN-LAST:event_b72ActionPerformed
 
     private void b73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b73ActionPerformed
-        clickHecho(b73, 7);
+        clickHecho(b73, 7, 3);
     }//GEN-LAST:event_b73ActionPerformed
 
     private void b80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b80ActionPerformed
-        clickHecho(b80, 8);
+        clickHecho(b80, 8, 0);
     }//GEN-LAST:event_b80ActionPerformed
 
     private void b81ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b81ActionPerformed
-        clickHecho(b81, 8);
+        clickHecho(b81, 8, 1);
     }//GEN-LAST:event_b81ActionPerformed
 
     private void b82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b82ActionPerformed
-        clickHecho(b82, 8);
+        clickHecho(b82, 8, 2);
     }//GEN-LAST:event_b82ActionPerformed
 
     private void b83ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b83ActionPerformed
-        clickHecho(b83, 8);
+        clickHecho(b83, 8, 3);
     }//GEN-LAST:event_b83ActionPerformed
 
     private void b03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b03ActionPerformed
-        clickHecho(b03, 0);
+        clickHecho(b03, 0, 3);
     }//GEN-LAST:event_b03ActionPerformed
 
     private void b02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b02ActionPerformed
-        clickHecho(b02, 0);
+        clickHecho(b02, 0, 2);
     }//GEN-LAST:event_b02ActionPerformed
 
     private void b01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b01ActionPerformed
-        clickHecho(b01, 0);
+        clickHecho(b01, 0, 1);
     }//GEN-LAST:event_b01ActionPerformed
 
     private void b00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b00ActionPerformed
-        clickHecho(b00, 0);
+        clickHecho(b00, 0, 0);
     }//GEN-LAST:event_b00ActionPerformed
 
     private void b13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b13ActionPerformed
-        clickHecho(b13, 1);
+        clickHecho(b13, 1, 3);
     }//GEN-LAST:event_b13ActionPerformed
 
     private void b12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b12ActionPerformed
-        clickHecho(b12, 1);
+        clickHecho(b12, 1, 2);
     }//GEN-LAST:event_b12ActionPerformed
 
     private void b11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b11ActionPerformed
-        clickHecho(b11, 1);
+        clickHecho(b11, 1, 1);
     }//GEN-LAST:event_b11ActionPerformed
 
     private void b10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b10ActionPerformed
-        clickHecho(b10, 1);
+        clickHecho(b10, 1, 0);
     }//GEN-LAST:event_b10ActionPerformed
 
-    private void clickHecho(JButton btn, int fila) {
+    private void clickHecho(JButton btn, int fila, int pos) {
         if (editable == fila) {
             btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(selectedColor)));
+            codi[pos] = selectedInt;
         }
     }
     /**

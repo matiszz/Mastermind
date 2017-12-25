@@ -22,7 +22,7 @@ public class Ranking extends javax.swing.JFrame {
     public Ranking() {
         initComponents();
         
-        rankGuardat = p.controller.demanaRanking();
+        rankGuardat = p.controller.getRanking();
         for (int i = 0; i < rankGuardat.size(); ++i) 
             model.add(i, rankGuardat.get(i));
     }

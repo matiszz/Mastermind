@@ -16,7 +16,7 @@ public class ControladorDePresentacio {
 	}
 	
         //Obté la partida identificada per idPartida y mostra el tauler en l'estat guardat.
-	public void obtePartidaSeleccionada(String idPartida) {
+	public void getPartidaSeleccionada(String idPartida) {
             //Obtiene los datos de la partida, instancia vista partida y le pasa la información para rellenar la vista.
 	}
 	
@@ -74,7 +74,7 @@ public class ControladorDePresentacio {
 	}
 
         // Obté el Ranking de la capa de domini i el formateja.
-	public ArrayList<String> demanaRanking() {
+	public ArrayList<String> getRanking() {
             ArrayList<String> ranking = new ArrayList<String>();// = c.consultarRanking();
             ranking.add("1.   Pep 23");
             ranking.add("2.   Joan 45");
