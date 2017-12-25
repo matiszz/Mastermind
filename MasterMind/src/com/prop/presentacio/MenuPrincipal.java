@@ -145,7 +145,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJugarActionPerformed
 
     private void btnRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRankingActionPerformed
-        VistaRanking nova = new VistaRanking();
+        Ranking nova = new Ranking();
         nova.setVisible(true);
         MenuPrincipal.this.dispose();
     }//GEN-LAST:event_btnRankingActionPerformed

@@ -75,12 +75,10 @@ public class ControladorDePresentacio {
 
         // Obté el Ranking de la capa de domini i el formateja.
 	public ArrayList<String> demanaRanking() {
-            /*Pruebas 
-             * String[] ranking = new String[2];
-             ranking[0]="1.  Ro  23";
-             ranking[1]="2.  Pep 40";
-             */
-            ArrayList<String> ranking = c.consultarRanking();
+            ArrayList<String> ranking = new ArrayList<String>();// = c.consultarRanking();
+            ranking.add("1.   Pep 23");
+            ranking.add("2.   Joan 45");
+            ranking.add("3.   Mati 60");
             return ranking;
 	}
         

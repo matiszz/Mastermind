@@ -55,8 +55,8 @@ public class ControladorDePersistencia {
 			
 	}
 	
-	public String[][] obteRanking() {
-		String[][] asdf = null;
+	public ArrayList<String> obteRanking() {
+		ArrayList<String> asdf = null;
 		return asdf;
 	}
 	

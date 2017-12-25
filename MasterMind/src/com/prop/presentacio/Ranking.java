@@ -7,27 +7,24 @@ package com.prop.presentacio;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 
 /**
  *
  * @author mati
  */
-public class PartidesGuardades extends javax.swing.JFrame {
+public class Ranking extends javax.swing.JFrame {
     
     private ControladorDePresentacio p = new ControladorDePresentacio();
-    ArrayList<String> partidesGuardades;
-    
-
+    ArrayList<String> rankGuardat;
     /**
      * Creates new form MenuPrincipal
      */
-    public PartidesGuardades() {
+    public Ranking() {
         initComponents();
         
-        partidesGuardades = p.controller.getIdPartidesGuardades();
-        for (int i = 0; i < partidesGuardades.size(); ++i)
-            model.add(i, partidesGuardades.get(i));
+        rankGuardat = p.controller.demanaRanking();
+        for (int i = 0; i < rankGuardat.size(); ++i) 
+            model.add(i, rankGuardat.get(i));
     }
 
     /**
@@ -45,16 +42,14 @@ public class PartidesGuardades extends javax.swing.JFrame {
         btnMenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         model = new DefaultListModel();
-        partides = new javax.swing.JList<>();
-        btnJugar = new javax.swing.JButton();
-        txtError = new javax.swing.JLabel();
+        ranking = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MasterMind");
         setMinimumSize(new java.awt.Dimension(600, 500));
 
         jLabel1.setFont(new java.awt.Font("Ani", 0, 36)); // NOI18N
-        jLabel1.setText("MasterMind");
+        jLabel1.setText("Ranking");
 
         btnInfo.setText("Informació");
         btnInfo.addActionListener(new java.awt.event.ActionListener() {
@@ -78,21 +73,8 @@ public class PartidesGuardades extends javax.swing.JFrame {
             }
         });
 
-        partides.setModel(model);
-        jScrollPane1.setViewportView(partides);
-
-        btnJugar.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        btnJugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons-land-vista-multimedia-play-1-hot.png"))); // NOI18N
-        btnJugar.setText("Jugar");
-        btnJugar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnJugarActionPerformed(evt);
-            }
-        });
-
-        txtError.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        txtError.setForeground(new java.awt.Color(218, 0, 0));
-        txtError.setText(" ");
+        ranking.setModel(model);
+        jScrollPane1.setViewportView(ranking);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,45 +84,33 @@ public class PartidesGuardades extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnInfo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAjuda))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnJugar))))
+                        .addComponent(btnInfo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAjuda))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnMenu))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(210, 210, 210)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))))
-                        .addGap(0, 201, Short.MAX_VALUE)))
+                                .addGap(236, 236, 236)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(139, 139, 139)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 139, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(184, 184, 184)
-                .addComponent(txtError)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnMenu)
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(txtError)
-                .addGap(3, 3, 3)
-                .addComponent(btnJugar)
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInfo)
                     .addComponent(btnAjuda))
@@ -153,33 +123,20 @@ public class PartidesGuardades extends javax.swing.JFrame {
     private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
         Informacio nova = new Informacio();
         nova.setVisible(true);
-        PartidesGuardades.this.dispose();
+        Ranking.this.dispose();
     }//GEN-LAST:event_btnInfoActionPerformed
 
     private void btnAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjudaActionPerformed
         Ajuda nova = new Ajuda();
         nova.setVisible(true);
-        PartidesGuardades.this.dispose();
+        Ranking.this.dispose();
     }//GEN-LAST:event_btnAjudaActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         MenuPrincipal nova = new MenuPrincipal();
         nova.setVisible(true);
-        PartidesGuardades.this.dispose();
+        Ranking.this.dispose();
     }//GEN-LAST:event_btnMenuActionPerformed
-
-    private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
-        if (partides.getSelectedIndex() == -1) {
-            txtError.setText("Has de seleccionar una partida.");
-        } else {
-            String idPartida = partidesGuardades.get(partides.getSelectedIndex());
-            p.restauraPartida(idPartida);
-
-            Partida nova = new Partida();
-            nova.setVisible(true);
-            PartidesGuardades.this.dispose();
-        }
-    }//GEN-LAST:event_btnJugarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,13 +155,13 @@ public class PartidesGuardades extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PartidesGuardades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PartidesGuardades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PartidesGuardades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PartidesGuardades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ranking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -214,7 +171,7 @@ public class PartidesGuardades extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PartidesGuardades().setVisible(true);
+                new Ranking().setVisible(true);
             }
         });
     }
@@ -222,12 +179,10 @@ public class PartidesGuardades extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAjuda;
     private javax.swing.JButton btnInfo;
-    private javax.swing.JButton btnJugar;
     private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> partides;
+    private javax.swing.JList<String> ranking;
     private DefaultListModel model;
-    private javax.swing.JLabel txtError;
     // End of variables declaration//GEN-END:variables
 }

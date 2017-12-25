@@ -131,7 +131,7 @@ public class JugarPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovaPartidaActionPerformed
 
     private void btnContinuarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarPartidaActionPerformed
-        VistaPartidesGuardades nova = new VistaPartidesGuardades();
+        PartidesGuardades nova = new PartidesGuardades();
         nova.setVisible(true);
         JugarPartida.this.dispose();
     }//GEN-LAST:event_btnContinuarPartidaActionPerformed
