@@ -1,6 +1,7 @@
 package com.prop.persistencia;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ControladorDePersistencia {
@@ -51,13 +52,16 @@ public class ControladorDePersistencia {
 		return l;
 	}
 	
-	public void emmagatzemaRanking(String[][] ranking) {
-			
+	/* Guarda en la BBDD el ranking pasado por parámetro, una posición del array por línea */
+	public void emmagatzemaRanking(ArrayList<String> ranking) {
+		rankDB.emmagatzemaRanking(ranking);
 	}
 	
-	public ArrayList<String> obteRanking() {
-		ArrayList<String> asdf = null;
-		return asdf;
+	/* Devuelve en un arraylist el ranking a partir de la BBDD en el mismo formato que se le pasa cuando se quiere
+	 * almacenar
+	 */
+	public ArrayList<String> obtenirRanking() {
+		return rankDB.obtenirRanking();
 	}
 	
 	public static void main(String[] args) {
@@ -67,10 +71,17 @@ public class ControladorDePersistencia {
 		//String[] s = new String[] {"idPartida2", "mode2modificadooooooo", "temps2", "numJugades2", "puntuacio2", "numFiles2", "longCodi2", "true", "jugades2", "codiAmagat2", "dificultat2", "guanyada2"};
 		//String[] s = new String[] {"idPartida3", "mode3afull", "temps3", "numJugades3", "puntuacio3", "numFiles3", "longCodi3", "false", "jugades3", "codiAmagat3", "dificultat3", "guanyada3"};
 		//cP.emmagatzemaPartida(s, id);
-		ArrayList<String> l = new ArrayList<String>();
-		l = getIdPartidesGuardades(id);
+		//ArrayList<String> l =  new ArrayList<String>(
+		//	    Arrays.asList("Juanito 100", "Manolito 200", "Pepito 300"));
+		//l = getIdPartidesGuardades(id);
+		/*
 		for (int i=0; i<l.size(); i++) {
 			System.out.print(l.get(i) + " ");
-		}
+		} */
+		ArrayList<String> l = cP.obtenirRanking();
+		for (int i=0; i<l.size(); i++) {
+			System.out.println(l.get(i));
+		} 
+		
 	}
 }
