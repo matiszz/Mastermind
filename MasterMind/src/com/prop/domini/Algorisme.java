@@ -195,17 +195,17 @@ public class Algorisme {
 
     public void simulaPartida(Partida p, Jugador j) {
         boolean correcte = false;
+        ArrayList<Integer> combinacio = new ArrayList<Integer>();
+        ArrayList<Integer> respost = new ArrayList<Integer>();
+        
         for (int i = 0; !correcte && i < p.numFiles; ++i) {
-            ArrayList<Integer> combinacio = new ArrayList<Integer>();
-            ArrayList<Integer> respost = new ArrayList<Integer>();
-            
             combinacio = this.five_guess(p.longCodi, 4, respost);
             respost = this.aplica_logica(p.codiamagat, combinacio);
             
             System.out.println("Combinacio: " + combinacio);
             System.out.println("Resposta: " + respost);
             
-            ctrl.jugadaCompleta(combinacio, respost);
+            ctrl.jugadaCompleta(respost, combinacio);
             Jugada jug = new Jugada(i, p, j);
             jug.codiProposat = combinacio;
             jug.codiRespost = respost;

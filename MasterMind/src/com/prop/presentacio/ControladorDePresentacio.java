@@ -71,8 +71,14 @@ public class ControladorDePresentacio {
             System.out.println("Jugada: " + numJugada);
             
             ArrayList<String> codiR = new ArrayList<String>();
-            for (int i = 0; i < codiRespost.size(); i++)
-                codiR.add(colorsEspigues[codiRespost.get(i)]);
+            for (int i = 0; i < codiRespost.size(); i++) {
+                int tmp1 = codiRespost.get(i);
+                System.out.println("tmp1 = " + tmp1);
+                String lel = colorsEspigues[tmp1];
+                System.out.println("lel = " + lel);
+                codiR.add(lel);
+                System.out.println("i = " + i);
+            }
             System.out.println("CodiR: " + codiR);
             
             ArrayList<String> codiP = new ArrayList<String>();
@@ -92,7 +98,13 @@ public class ControladorDePresentacio {
         
         // Obté les dades per restaurar una partida, i la mostra al tauler.
 	public void restauraPartida(String idPartida) { 
-            c.continuarPartida(idPartida);
+            ArrayList<ArrayList<ArrayList<Integer>>> tauler = c.continuarPartida(idPartida);
+            for (int i = 0; i < tauler.size(); ++i) {
+                ArrayList<ArrayList<Integer>> fila = tauler.get(i);
+                ArrayList<Integer> codiR = fila.get(0);
+                ArrayList<Integer> codiP = fila.get(1);
+                
+            }
 	}
 	
         // Crea una partida amb Mode = mode y Dificultat = dificultat

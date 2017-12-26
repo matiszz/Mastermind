@@ -155,13 +155,25 @@ public class ControladorDeDomini {
         return newp;
     }
 
-    public void continuarPartida(String idPartida) { //Primer obte totes les partides, se les pasa a la capa de presentació, espera una selecció i reanuda la partida seleccionada
+    public ArrayList<ArrayList<ArrayList<Integer>>> continuarPartida(String idPartida) { //Primer obte totes les partides, se les pasa a la capa de presentació, espera una selecció i reanuda la partida seleccionada
         /*
          Recupera del fitxer les partides guardades del jugador actual,
          */
-        ArrayList<String> partides = persistencia.getInfoPartida(idPartida)
+        ArrayList<String> partides = persistencia.getInfoPartida(idPartida);
         partida = converteixPartida(partides);
-        presentacio.jugaCodeBreaker();
+        
+        ArrayList<ArrayList<Integer>> fila = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<ArrayList<Integer>>> tauler = new ArrayList<ArrayList<ArrayList<Integer>>>();
+        for (int i = 0; i < partida.numJugades; ++i) {
+            ArrayList<Integer> jugada = new ArrayList<Integer>();
+            ArrayList<Integer> resposta = new ArrayList<Integer>();
+            jugada = partida.jugades.get(i).codiProposat;
+            resposta = partida.jugades.get(i).codiRespost;
+            fila.add(jugada);
+            fila.add(resposta);
+            tauler.add(fila);
+        }
+        return tauler;
     }
 
     private ArrayList<Integer> converteixCodi(int[] codi) {
@@ -211,6 +223,6 @@ public class ControladorDeDomini {
 
     // Retorna true si el mode es CodeMaker
     public boolean esCodeMaker() {
-        return partida.mode.equals("CodeMaker");
+        return true;// partida.mode.equals("CodeMaker");
     }
 }
