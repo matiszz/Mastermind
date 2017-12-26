@@ -283,6 +283,7 @@ public class Preferencies extends javax.swing.JFrame {
             if (mode == null) txtError.setText("Has d'escollir un mode de joc.");
         } else {
             if (mode.equals("CodeBreaker")) {   // En cas CodeBreaker
+                p.controller.setRandomCodi();
                 Partida nova = new Partida();
                 nova.setVisible(true);
                 Preferencies.this.dispose();

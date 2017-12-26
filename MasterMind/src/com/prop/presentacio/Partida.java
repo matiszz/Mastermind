@@ -7,8 +7,10 @@ package com.prop.presentacio;
 
 import java.awt.Cursor;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -21,12 +23,45 @@ public class Partida extends javax.swing.JFrame {
     private int selectedInt = 0;
     private int editable = 0;
     private int[] codi = new int[4];
+    
+    private ArrayList<JLabel> res0;
+    private ArrayList<JLabel> res1;
+    private ArrayList<JLabel> res2;
+    private ArrayList<JLabel> res3;
+    private ArrayList<JLabel> res4;
+    private ArrayList<JLabel> res5;
+    private ArrayList<JLabel> res6;
+    private ArrayList<JLabel> res7;
+    private ArrayList<JLabel> res8;
+    private ArrayList<ArrayList<JLabel>> respostes;
+    
+    private ArrayList<JButton> comb0;
+    private ArrayList<JButton> comb1;
+    private ArrayList<JButton> comb2;
+    private ArrayList<JButton> comb3;
+    private ArrayList<JButton> comb4;
+    private ArrayList<JButton> comb5;
+    private ArrayList<JButton> comb6;
+    private ArrayList<JButton> comb7;
+    private ArrayList<JButton> comb8;
+    private ArrayList<ArrayList<JButton>> combinacions;
 
     /**
      * Creates new form VistaTauler
      */
     public Partida() {
         initComponents();
+        
+        ferGrupsRespostes();
+        ferGrupsCombinacions();
+        
+        p.controller.setTauler(this);
+        if (p.controller.esCodeMaker()) {
+            Controles.setVisible(false);
+            //btnCheck.setVisible(false);
+            txtColores.setVisible(false);
+            //p.controller.jugaCodeMaker();
+        }
     }
 
     /**
@@ -43,6 +78,7 @@ public class Partida extends javax.swing.JFrame {
         btnGreen = new javax.swing.JButton();
         btnBlue = new javax.swing.JButton();
         btnOrange = new javax.swing.JButton();
+        btnPurple = new javax.swing.JButton();
         fila0 = new javax.swing.JPanel();
         b00 = new javax.swing.JButton();
         b01 = new javax.swing.JButton();
@@ -54,54 +90,92 @@ public class Partida extends javax.swing.JFrame {
         r02 = new javax.swing.JLabel();
         r03 = new javax.swing.JLabel();
         fila1 = new javax.swing.JPanel();
+        b12 = new javax.swing.JButton();
         b10 = new javax.swing.JButton();
         b11 = new javax.swing.JButton();
         b13 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        resp1 = new javax.swing.JPanel();
+        r10 = new javax.swing.JLabel();
         r11 = new javax.swing.JLabel();
         r12 = new javax.swing.JLabel();
         r13 = new javax.swing.JLabel();
-        r14 = new javax.swing.JLabel();
-        b12 = new javax.swing.JButton();
         fila2 = new javax.swing.JPanel();
         b20 = new javax.swing.JButton();
         b21 = new javax.swing.JButton();
         b22 = new javax.swing.JButton();
         b23 = new javax.swing.JButton();
+        resp2 = new javax.swing.JPanel();
+        r20 = new javax.swing.JLabel();
+        r21 = new javax.swing.JLabel();
+        r22 = new javax.swing.JLabel();
+        r23 = new javax.swing.JLabel();
         fila3 = new javax.swing.JPanel();
         b30 = new javax.swing.JButton();
         b31 = new javax.swing.JButton();
         b32 = new javax.swing.JButton();
         b33 = new javax.swing.JButton();
+        resp3 = new javax.swing.JPanel();
+        r30 = new javax.swing.JLabel();
+        r31 = new javax.swing.JLabel();
+        r32 = new javax.swing.JLabel();
+        r33 = new javax.swing.JLabel();
         fila4 = new javax.swing.JPanel();
         b40 = new javax.swing.JButton();
         b41 = new javax.swing.JButton();
         b42 = new javax.swing.JButton();
         b43 = new javax.swing.JButton();
+        resp4 = new javax.swing.JPanel();
+        r40 = new javax.swing.JLabel();
+        r41 = new javax.swing.JLabel();
+        r42 = new javax.swing.JLabel();
+        r43 = new javax.swing.JLabel();
         fila5 = new javax.swing.JPanel();
         b50 = new javax.swing.JButton();
         b51 = new javax.swing.JButton();
         b52 = new javax.swing.JButton();
         b53 = new javax.swing.JButton();
+        resp5 = new javax.swing.JPanel();
+        r50 = new javax.swing.JLabel();
+        r51 = new javax.swing.JLabel();
+        r52 = new javax.swing.JLabel();
+        r53 = new javax.swing.JLabel();
         fila6 = new javax.swing.JPanel();
         b60 = new javax.swing.JButton();
         b61 = new javax.swing.JButton();
         b62 = new javax.swing.JButton();
         b63 = new javax.swing.JButton();
+        resp6 = new javax.swing.JPanel();
+        r60 = new javax.swing.JLabel();
+        r61 = new javax.swing.JLabel();
+        r62 = new javax.swing.JLabel();
+        r63 = new javax.swing.JLabel();
         fila7 = new javax.swing.JPanel();
+        b73 = new javax.swing.JButton();
+        b72 = new javax.swing.JButton();
+        resp7 = new javax.swing.JPanel();
+        r70 = new javax.swing.JLabel();
+        r71 = new javax.swing.JLabel();
+        r72 = new javax.swing.JLabel();
+        r73 = new javax.swing.JLabel();
         b70 = new javax.swing.JButton();
         b71 = new javax.swing.JButton();
-        b72 = new javax.swing.JButton();
-        b73 = new javax.swing.JButton();
         fila8 = new javax.swing.JPanel();
         b80 = new javax.swing.JButton();
         b81 = new javax.swing.JButton();
         b82 = new javax.swing.JButton();
         b83 = new javax.swing.JButton();
+        resp8 = new javax.swing.JPanel();
+        r80 = new javax.swing.JLabel();
+        r81 = new javax.swing.JLabel();
+        r82 = new javax.swing.JLabel();
+        r83 = new javax.swing.JLabel();
         btnCheck = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        txtColores = new javax.swing.JLabel();
+        btnGuardar = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(600, 500));
 
         Controles.setBackground(new java.awt.Color(177, 177, 177));
         Controles.setAlignmentX(0.0F);
@@ -147,28 +221,43 @@ public class Partida extends javax.swing.JFrame {
             }
         });
 
+        btnPurple.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/purple.png"))); // NOI18N
+        btnPurple.setBorderPainted(false);
+        btnPurple.setContentAreaFilled(false);
+        btnPurple.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPurple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPurpleActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ControlesLayout = new javax.swing.GroupLayout(Controles);
         Controles.setLayout(ControlesLayout);
         ControlesLayout.setHorizontalGroup(
-            ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ControlesLayout.createSequentialGroup()
+            ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ControlesLayout.createSequentialGroup()
                 .addComponent(btnRed)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGreen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBlue)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnOrange))
+                .addComponent(btnOrange)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPurple, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         ControlesLayout.setVerticalGroup(
             ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ControlesLayout.createSequentialGroup()
+            .addGroup(ControlesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRed)
-                    .addComponent(btnGreen)
-                    .addComponent(btnBlue)
-                    .addComponent(btnOrange))
+                .addGroup(ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnGreen, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnBlue, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnOrange, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnRed))
+                    .addComponent(btnPurple, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -270,6 +359,16 @@ public class Partida extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        b12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
+        b12.setBorderPainted(false);
+        b12.setContentAreaFilled(false);
+        b12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        b12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b12ActionPerformed(evt);
+            }
+        });
+
         b10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
         b10.setBorderPainted(false);
         b10.setContentAreaFilled(false);
@@ -300,49 +399,39 @@ public class Partida extends javax.swing.JFrame {
             }
         });
 
+        r10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
         r11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
 
         r12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
 
         r13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
 
-        r14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout resp1Layout = new javax.swing.GroupLayout(resp1);
+        resp1.setLayout(resp1Layout);
+        resp1Layout.setHorizontalGroup(
+            resp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp1Layout.createSequentialGroup()
+                .addComponent(r10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r12))
+            .addGroup(resp1Layout.createSequentialGroup()
                 .addComponent(r11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(r13))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(r12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(r14))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        resp1Layout.setVerticalGroup(
+            resp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp1Layout.createSequentialGroup()
+                .addGroup(resp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r10)
+                    .addComponent(r12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(r11)
                     .addComponent(r13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(r12)
-                    .addComponent(r14))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-
-        b12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
-        b12.setBorderPainted(false);
-        b12.setContentAreaFilled(false);
-        b12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        b12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b12ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout fila1Layout = new javax.swing.GroupLayout(fila1);
         fila1.setLayout(fila1Layout);
@@ -357,11 +446,11 @@ public class Partida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(resp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         fila1Layout.setVerticalGroup(
             fila1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(resp1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fila1Layout.createSequentialGroup()
                 .addGroup(fila1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fila1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -412,6 +501,39 @@ public class Partida extends javax.swing.JFrame {
             }
         });
 
+        r20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        javax.swing.GroupLayout resp2Layout = new javax.swing.GroupLayout(resp2);
+        resp2.setLayout(resp2Layout);
+        resp2Layout.setHorizontalGroup(
+            resp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp2Layout.createSequentialGroup()
+                .addComponent(r20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r22))
+            .addGroup(resp2Layout.createSequentialGroup()
+                .addComponent(r21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r23))
+        );
+        resp2Layout.setVerticalGroup(
+            resp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp2Layout.createSequentialGroup()
+                .addGroup(resp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r20)
+                    .addComponent(r22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r21)
+                    .addComponent(r23)))
+        );
+
         javax.swing.GroupLayout fila2Layout = new javax.swing.GroupLayout(fila2);
         fila2.setLayout(fila2Layout);
         fila2Layout.setHorizontalGroup(
@@ -423,7 +545,10 @@ public class Partida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(b23))
+                .addComponent(b23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fila2Layout.setVerticalGroup(
             fila2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,6 +557,7 @@ public class Partida extends javax.swing.JFrame {
                 .addComponent(b21)
                 .addComponent(b22)
                 .addComponent(b23))
+            .addComponent(resp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         b30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
@@ -474,6 +600,39 @@ public class Partida extends javax.swing.JFrame {
             }
         });
 
+        r30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        javax.swing.GroupLayout resp3Layout = new javax.swing.GroupLayout(resp3);
+        resp3.setLayout(resp3Layout);
+        resp3Layout.setHorizontalGroup(
+            resp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp3Layout.createSequentialGroup()
+                .addComponent(r30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r32))
+            .addGroup(resp3Layout.createSequentialGroup()
+                .addComponent(r31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r33))
+        );
+        resp3Layout.setVerticalGroup(
+            resp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp3Layout.createSequentialGroup()
+                .addGroup(resp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r30)
+                    .addComponent(r32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r31)
+                    .addComponent(r33)))
+        );
+
         javax.swing.GroupLayout fila3Layout = new javax.swing.GroupLayout(fila3);
         fila3.setLayout(fila3Layout);
         fila3Layout.setHorizontalGroup(
@@ -485,11 +644,14 @@ public class Partida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b32)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(b33))
+                .addComponent(b33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resp3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         fila3Layout.setVerticalGroup(
             fila3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fila3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(resp3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fila3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(b30)
                 .addComponent(b31)
                 .addComponent(b32)
@@ -536,6 +698,39 @@ public class Partida extends javax.swing.JFrame {
             }
         });
 
+        r40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        javax.swing.GroupLayout resp4Layout = new javax.swing.GroupLayout(resp4);
+        resp4.setLayout(resp4Layout);
+        resp4Layout.setHorizontalGroup(
+            resp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp4Layout.createSequentialGroup()
+                .addComponent(r40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r42))
+            .addGroup(resp4Layout.createSequentialGroup()
+                .addComponent(r41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r43))
+        );
+        resp4Layout.setVerticalGroup(
+            resp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp4Layout.createSequentialGroup()
+                .addGroup(resp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r40)
+                    .addComponent(r42))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r41)
+                    .addComponent(r43)))
+        );
+
         javax.swing.GroupLayout fila4Layout = new javax.swing.GroupLayout(fila4);
         fila4.setLayout(fila4Layout);
         fila4Layout.setHorizontalGroup(
@@ -547,15 +742,18 @@ public class Partida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b42)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(b43))
+                .addComponent(b43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resp4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         fila4Layout.setVerticalGroup(
-            fila4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            fila4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(fila4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(b40)
                 .addComponent(b41)
                 .addComponent(b42)
                 .addComponent(b43))
+            .addComponent(resp4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         b50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
@@ -598,6 +796,39 @@ public class Partida extends javax.swing.JFrame {
             }
         });
 
+        r50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        javax.swing.GroupLayout resp5Layout = new javax.swing.GroupLayout(resp5);
+        resp5.setLayout(resp5Layout);
+        resp5Layout.setHorizontalGroup(
+            resp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp5Layout.createSequentialGroup()
+                .addComponent(r50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r52))
+            .addGroup(resp5Layout.createSequentialGroup()
+                .addComponent(r51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r53))
+        );
+        resp5Layout.setVerticalGroup(
+            resp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp5Layout.createSequentialGroup()
+                .addGroup(resp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r50)
+                    .addComponent(r52))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r51)
+                    .addComponent(r53)))
+        );
+
         javax.swing.GroupLayout fila5Layout = new javax.swing.GroupLayout(fila5);
         fila5.setLayout(fila5Layout);
         fila5Layout.setHorizontalGroup(
@@ -609,7 +840,9 @@ public class Partida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b52)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(b53))
+                .addComponent(b53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resp5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         fila5Layout.setVerticalGroup(
             fila5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -618,6 +851,7 @@ public class Partida extends javax.swing.JFrame {
                 .addComponent(b51)
                 .addComponent(b52)
                 .addComponent(b53))
+            .addComponent(resp5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         b60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
@@ -660,6 +894,39 @@ public class Partida extends javax.swing.JFrame {
             }
         });
 
+        r60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r63.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        javax.swing.GroupLayout resp6Layout = new javax.swing.GroupLayout(resp6);
+        resp6.setLayout(resp6Layout);
+        resp6Layout.setHorizontalGroup(
+            resp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp6Layout.createSequentialGroup()
+                .addComponent(r60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r62))
+            .addGroup(resp6Layout.createSequentialGroup()
+                .addComponent(r61)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r63))
+        );
+        resp6Layout.setVerticalGroup(
+            resp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp6Layout.createSequentialGroup()
+                .addGroup(resp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r60)
+                    .addComponent(r62))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resp6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r61)
+                    .addComponent(r63)))
+        );
+
         javax.swing.GroupLayout fila6Layout = new javax.swing.GroupLayout(fila6);
         fila6.setLayout(fila6Layout);
         fila6Layout.setHorizontalGroup(
@@ -671,7 +938,9 @@ public class Partida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b62)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(b63))
+                .addComponent(b63)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resp6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         fila6Layout.setVerticalGroup(
             fila6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -680,6 +949,60 @@ public class Partida extends javax.swing.JFrame {
                 .addComponent(b61)
                 .addComponent(b62)
                 .addComponent(b63))
+            .addComponent(resp6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        b73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
+        b73.setBorderPainted(false);
+        b73.setContentAreaFilled(false);
+        b73.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        b73.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b73ActionPerformed(evt);
+            }
+        });
+
+        b72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
+        b72.setBorderPainted(false);
+        b72.setContentAreaFilled(false);
+        b72.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        b72.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b72ActionPerformed(evt);
+            }
+        });
+
+        r70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        javax.swing.GroupLayout resp7Layout = new javax.swing.GroupLayout(resp7);
+        resp7.setLayout(resp7Layout);
+        resp7Layout.setHorizontalGroup(
+            resp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp7Layout.createSequentialGroup()
+                .addComponent(r70)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r72))
+            .addGroup(resp7Layout.createSequentialGroup()
+                .addComponent(r71)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r73))
+        );
+        resp7Layout.setVerticalGroup(
+            resp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp7Layout.createSequentialGroup()
+                .addGroup(resp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r70)
+                    .addComponent(r72))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resp7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r71)
+                    .addComponent(r73)))
         );
 
         b70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
@@ -702,26 +1025,6 @@ public class Partida extends javax.swing.JFrame {
             }
         });
 
-        b72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
-        b72.setBorderPainted(false);
-        b72.setContentAreaFilled(false);
-        b72.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        b72.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b72ActionPerformed(evt);
-            }
-        });
-
-        b73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
-        b73.setBorderPainted(false);
-        b73.setContentAreaFilled(false);
-        b73.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        b73.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b73ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout fila7Layout = new javax.swing.GroupLayout(fila7);
         fila7.setLayout(fila7Layout);
         fila7Layout.setHorizontalGroup(
@@ -733,15 +1036,17 @@ public class Partida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b72)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(b73))
+                .addComponent(b73)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resp7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         fila7Layout.setVerticalGroup(
             fila7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fila7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(b70)
-                .addComponent(b71)
-                .addComponent(b72)
-                .addComponent(b73))
+            .addComponent(b73)
+            .addComponent(b72)
+            .addComponent(resp7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(b70)
+            .addComponent(b71)
         );
 
         b80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empty.png"))); // NOI18N
@@ -784,6 +1089,39 @@ public class Partida extends javax.swing.JFrame {
             }
         });
 
+        r80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r81.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r82.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        r83.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/espigaVacia.png"))); // NOI18N
+
+        javax.swing.GroupLayout resp8Layout = new javax.swing.GroupLayout(resp8);
+        resp8.setLayout(resp8Layout);
+        resp8Layout.setHorizontalGroup(
+            resp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp8Layout.createSequentialGroup()
+                .addComponent(r80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r82))
+            .addGroup(resp8Layout.createSequentialGroup()
+                .addComponent(r81)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(r83))
+        );
+        resp8Layout.setVerticalGroup(
+            resp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resp8Layout.createSequentialGroup()
+                .addGroup(resp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r80)
+                    .addComponent(r82))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resp8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(r81)
+                    .addComponent(r83)))
+        );
+
         javax.swing.GroupLayout fila8Layout = new javax.swing.GroupLayout(fila8);
         fila8.setLayout(fila8Layout);
         fila8Layout.setHorizontalGroup(
@@ -795,7 +1133,9 @@ public class Partida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b82)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(b83))
+                .addComponent(b83)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resp8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         fila8Layout.setVerticalGroup(
             fila8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -804,6 +1144,7 @@ public class Partida extends javax.swing.JFrame {
                 .addComponent(b81)
                 .addComponent(b82)
                 .addComponent(b83))
+            .addComponent(resp8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         btnCheck.setText("Check");
@@ -813,40 +1154,77 @@ public class Partida extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Colores disponibles");
+        txtColores.setText("Colores disponibles");
+
+        btnGuardar.setText("Guardar partida");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        btnMenu.setText("Sortir");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fila8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fila6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fila7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fila2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fila0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fila1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fila5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fila3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fila4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(fila2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(fila0, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fila1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Controles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(64, 64, 64))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(fila5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(fila7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(fila8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(fila6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(139, 139, 139))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fila3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(133, 133, 133))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fila4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtColores)
+                        .addGap(95, 95, 95))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Controles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(fila0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fila0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fila1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fila1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenu))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fila2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -857,20 +1235,20 @@ public class Partida extends javax.swing.JFrame {
                         .addComponent(fila4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fila5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addComponent(fila6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fila7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fila8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(28, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(txtColores)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Controles, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCheck)
-                        .addGap(11, 11, 11)))
-                .addComponent(fila6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fila7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fila8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 75, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -878,32 +1256,13 @@ public class Partida extends javax.swing.JFrame {
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
        editable++;
-       p.controller.setCodi(codi);
+       p.controller.ferJugada(codi);
+       System.out.println("Chekeando");
        codi[0] = 0;
        codi[1] = 0;
        codi[2] = 0;
        codi[3] = 0;
     }//GEN-LAST:event_btnCheckActionPerformed
-
-    private void btnRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedActionPerformed
-        selectedColor = "/images/red.png";
-        selectedInt = 1;
-    }//GEN-LAST:event_btnRedActionPerformed
-
-    private void btnGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGreenActionPerformed
-        selectedColor = "/images/green.png";
-        selectedInt = 2;
-    }//GEN-LAST:event_btnGreenActionPerformed
-
-    private void btnBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBlueActionPerformed
-        selectedColor = "/images/blue.png";
-        selectedInt = 3;
-    }//GEN-LAST:event_btnBlueActionPerformed
-
-    private void btnOrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrangeActionPerformed
-        selectedColor = "/images/orange.png";
-        selectedInt = 4;
-    }//GEN-LAST:event_btnOrangeActionPerformed
 
     private void b20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b20ActionPerformed
         clickHecho(b20, 2, 0);
@@ -1049,12 +1408,201 @@ public class Partida extends javax.swing.JFrame {
         clickHecho(b10, 1, 0);
     }//GEN-LAST:event_b10ActionPerformed
 
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        MenuPrincipal nova = new MenuPrincipal();
+        nova.setVisible(true);
+        Partida.this.dispose();
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        //p.controller.guardarPartida();
+        if (p.controller.esCodeMaker()) {
+            p.controller.jugaCodeMaker();
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnPurpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurpleActionPerformed
+        selectedColor = "/images/purple.png";
+        selectedInt = 4;
+    }//GEN-LAST:event_btnPurpleActionPerformed
+
+    private void btnOrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrangeActionPerformed
+        selectedColor = "/images/orange.png";
+        selectedInt = 3;
+    }//GEN-LAST:event_btnOrangeActionPerformed
+
+    private void btnBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBlueActionPerformed
+        selectedColor = "/images/blue.png";
+        selectedInt = 2;
+    }//GEN-LAST:event_btnBlueActionPerformed
+
+    private void btnGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGreenActionPerformed
+        selectedColor = "/images/green.png";
+        selectedInt = 1;
+    }//GEN-LAST:event_btnGreenActionPerformed
+
+    private void btnRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedActionPerformed
+        selectedColor = "/images/red.png";
+        selectedInt = 0;
+    }//GEN-LAST:event_btnRedActionPerformed
+
     private void clickHecho(JButton btn, int fila, int pos) {
         if (editable == fila) {
             btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(selectedColor)));
             codi[pos] = selectedInt;
         }
     }
+    
+    public void mostraCodiRespost(ArrayList<String> codiR, int numJugada) {
+        int i = 0;
+        for (JLabel r : respostes.get(numJugada)) {
+            r.setIcon(new javax.swing.ImageIcon(getClass().getResource(codiR.get(i))));
+            ++i;
+        }
+    }
+    
+    public void pintaJugada(ArrayList<String> codiR, int numJugada) {
+        int i = 0;
+        for (JButton b : combinacions.get(numJugada)) {
+            b.setIcon(new javax.swing.ImageIcon(getClass().getResource(codiR.get(i))));
+            ++i;
+        }
+    }
+    
+    private void ferGrupsRespostes() {
+        respostes = new ArrayList<ArrayList<JLabel>>();
+        
+        res0 = new ArrayList<JLabel>();
+        res0.add(r00);
+        res0.add(r01);
+        res0.add(r02);
+        res0.add(r03);
+        respostes.add(res0);
+        
+        res1 = new ArrayList<JLabel>();
+        res1.add(r10);
+        res1.add(r11);
+        res1.add(r12);
+        res1.add(r13);
+        respostes.add(res1);
+        
+        res2 = new ArrayList<JLabel>();
+        res2.add(r20);
+        res2.add(r21);
+        res2.add(r22);
+        res2.add(r23);
+        respostes.add(res2);
+        
+        res3 = new ArrayList<JLabel>();
+        res3.add(r30);
+        res3.add(r31);
+        res3.add(r32);
+        res3.add(r33);
+        respostes.add(res3);
+        
+        res4 = new ArrayList<JLabel>();
+        res4.add(r40);
+        res4.add(r41);
+        res4.add(r42);
+        res4.add(r43);
+        respostes.add(res4);
+        
+        res5 = new ArrayList<JLabel>();
+        res5.add(r50);
+        res5.add(r51);
+        res5.add(r52);
+        res5.add(r53);
+        respostes.add(res5);
+        
+        res6 = new ArrayList<JLabel>();
+        res6.add(r60);
+        res6.add(r61);
+        res6.add(r62);
+        res6.add(r63);
+        respostes.add(res6);
+        
+        res7 = new ArrayList<JLabel>();
+        res7.add(r70);
+        res7.add(r71);
+        res7.add(r72);
+        res7.add(r73);
+        respostes.add(res7);
+        
+        res8 = new ArrayList<JLabel>();
+        res8.add(r80);
+        res8.add(r81);
+        res8.add(r82);
+        res8.add(r83);
+        respostes.add(res8);
+    }
+    
+    private void ferGrupsCombinacions() {
+        combinacions = new ArrayList<ArrayList<JButton>>();
+        
+        comb0 = new ArrayList<JButton>();
+        comb0.add(b00);
+        comb0.add(b01);
+        comb0.add(b02);
+        comb0.add(b03);
+        combinacions.add(comb0);
+        
+        comb1 = new ArrayList<JButton>();
+        comb1.add(b10);
+        comb1.add(b11);
+        comb1.add(b12);
+        comb1.add(b13);
+        combinacions.add(comb1);
+        
+        comb2 = new ArrayList<JButton>();
+        comb2.add(b20);
+        comb2.add(b21);
+        comb2.add(b22);
+        comb2.add(b23);
+        combinacions.add(comb2);
+        
+        comb3 = new ArrayList<JButton>();
+        comb3.add(b30);
+        comb3.add(b31);
+        comb3.add(b32);
+        comb3.add(b33);
+        combinacions.add(comb3);
+        
+        comb4 = new ArrayList<JButton>();
+        comb4.add(b40);
+        comb4.add(b41);
+        comb4.add(b42);
+        comb4.add(b43);
+        combinacions.add(comb4);
+        
+        comb5 = new ArrayList<JButton>();
+        comb5.add(b50);
+        comb5.add(b51);
+        comb5.add(b52);
+        comb5.add(b53);
+        combinacions.add(comb5);
+        
+        comb6 = new ArrayList<JButton>();
+        comb6.add(b60);
+        comb6.add(b61);
+        comb6.add(b62);
+        comb6.add(b63);
+        combinacions.add(comb6);
+        
+        comb7 = new ArrayList<JButton>();
+        comb7.add(b70);
+        comb7.add(b71);
+        comb7.add(b72);
+        comb7.add(b73);
+        combinacions.add(comb7);
+        
+        comb8 = new ArrayList<JButton>();
+        comb8.add(b80);
+        comb8.add(b81);
+        comb8.add(b82);
+        comb8.add(b83);
+        combinacions.add(comb8);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1132,7 +1680,10 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JButton btnBlue;
     private javax.swing.JButton btnCheck;
     private javax.swing.JButton btnGreen;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnOrange;
+    private javax.swing.JButton btnPurple;
     private javax.swing.JButton btnRed;
     private javax.swing.JPanel fila0;
     private javax.swing.JPanel fila1;
@@ -1143,16 +1694,52 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JPanel fila6;
     private javax.swing.JPanel fila7;
     private javax.swing.JPanel fila8;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel r00;
     private javax.swing.JLabel r01;
     private javax.swing.JLabel r02;
     private javax.swing.JLabel r03;
+    private javax.swing.JLabel r10;
     private javax.swing.JLabel r11;
     private javax.swing.JLabel r12;
     private javax.swing.JLabel r13;
-    private javax.swing.JLabel r14;
+    private javax.swing.JLabel r20;
+    private javax.swing.JLabel r21;
+    private javax.swing.JLabel r22;
+    private javax.swing.JLabel r23;
+    private javax.swing.JLabel r30;
+    private javax.swing.JLabel r31;
+    private javax.swing.JLabel r32;
+    private javax.swing.JLabel r33;
+    private javax.swing.JLabel r40;
+    private javax.swing.JLabel r41;
+    private javax.swing.JLabel r42;
+    private javax.swing.JLabel r43;
+    private javax.swing.JLabel r50;
+    private javax.swing.JLabel r51;
+    private javax.swing.JLabel r52;
+    private javax.swing.JLabel r53;
+    private javax.swing.JLabel r60;
+    private javax.swing.JLabel r61;
+    private javax.swing.JLabel r62;
+    private javax.swing.JLabel r63;
+    private javax.swing.JLabel r70;
+    private javax.swing.JLabel r71;
+    private javax.swing.JLabel r72;
+    private javax.swing.JLabel r73;
+    private javax.swing.JLabel r80;
+    private javax.swing.JLabel r81;
+    private javax.swing.JLabel r82;
+    private javax.swing.JLabel r83;
+    private javax.swing.JPanel resp1;
+    private javax.swing.JPanel resp2;
+    private javax.swing.JPanel resp3;
+    private javax.swing.JPanel resp4;
+    private javax.swing.JPanel resp5;
+    private javax.swing.JPanel resp6;
+    private javax.swing.JPanel resp7;
+    private javax.swing.JPanel resp8;
+    private javax.swing.JLabel txtColores;
     // End of variables declaration//GEN-END:variables
+
 }

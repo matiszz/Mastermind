@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.prop.persistencia.*;
 import com.prop.presentacio.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ControladorDeDomini {
 
@@ -46,7 +47,7 @@ public class ControladorDeDomini {
 
     //Casos d'ús
     public boolean registrar(String id) {//Cas d'us registrar usuari, retorna fals si l'id està en us. Altrament registra jugador i l'emmagatzema a la BD
-
+        
         boolean creat = false; //Si creat = false vol dir que l'id ja esta en us
         jugador = reg.registrar(id);
         if (jugador != null) { //El jugador s'ha creat
@@ -58,16 +59,14 @@ public class ControladorDeDomini {
     }
 
     public boolean iniciasessio(String alies) {
-        jugador = reg.registrar(alies);
-        if (jugador == null) {
-            jugador = reg.getJugador(alies);
-            return true; //El jugador existeix
-        } else {
-            return false; //El jugador no existeix
-        }
+        jugador = reg.getJugador(alies);
+        if (jugador == null)
+            return false; // El jugador existeix
+        else
+            return true;  // El jugador no existeix
     }
 
-    public void generarJoc(int dificultat, boolean codeMaker) { //Genera generador de jocs, el joc i la partida segons la dificultat i el mode
+    public Partida generarJoc(int dificultat, boolean codeMaker) { //Genera generador de jocs, el joc i la partida segons la dificultat i el mode
         if (gen == null) {
             switch (dificultat) {
                 case 1:
@@ -83,7 +82,7 @@ public class ControladorDeDomini {
         }
         joc = gen.generaJocDefault();
         partida = joc.crearPartida();
-        this.jugarPartida();
+        return partida;
     }
 
     public void emmagatzemaCodi(int[] codi) {
@@ -91,6 +90,14 @@ public class ControladorDeDomini {
         for (int i = 0; i < codi.length; ++i) {
             c.add(codi[i]);
         }
+        partida.setCodiAmagat(c);
+    }
+    
+    public void setRandomCodi() {
+        ArrayList<Integer> c = new ArrayList<Integer>();
+        for (int i = 0; i < 4; ++i)
+            c.add(ThreadLocalRandom.current().nextInt(0, 6));
+        
         partida.setCodiAmagat(c);
     }
 
@@ -101,6 +108,7 @@ public class ControladorDeDomini {
     }
 
     public void jugadaCompleta(ArrayList<Integer> codiproposat, ArrayList<Integer> codirespost) {
+        System.out.println("Jugada completa");
         presentacio.jugadaCompleta(codiproposat, codirespost);
     }
 
@@ -112,10 +120,9 @@ public class ControladorDeDomini {
          Inicia el clock
          */
         if (partida.mode == "CodeMaker") {
+            System.out.println("A simular partida");
             Algorisme a = new Algorisme(this);
             a.simulaPartida(partida, jugador);
-        } else {
-            presentacio.jugaCodeBreaker();
         }
     }
 
@@ -140,7 +147,6 @@ public class ControladorDeDomini {
             ArrayList<String> rank = ranking.converteix_Ranking();
             persistencia.emmagatzemaRanking(rank);
         }
-        presentacio.mostraMenuPrincipal();
     }
 
     public Partida converteixPartida(ArrayList<String> info) { //ULL hi ha parametres que no es tenen en compte
@@ -177,17 +183,20 @@ public class ControladorDeDomini {
 
     public void ferJugada(int[] codip) { //Nomes te sentit en codebreaker i si juga la persona. Realitza la jugada que li pasen, actualitza el tauler, processa la jugada y retorna el codi respost a la capa de presentacio
         ArrayList<Integer> codiproposat = converteixCodi(codip);
+        
         if (jugador != null && partida != null) {
             int num = partida.getNumJugades(); //Retorna el numero de la jugada
             ArrayList<Integer> solucio = partida.getCodiamagat();
+            
             Jugada j = new Jugada(num, partida, jugador);
             j.setcodiProposat(codiproposat);
             partida.ferJugada(j);
+            
             Algorisme a = new Algorisme(this);
             ArrayList<Integer> codiresp = a.aplica_logica(solucio, codiproposat);
+            
             j.setcodiRespost(codiresp);
-            String[] cod = converteixCodi(codiresp);
-            presentacio.mostraCodiRespost(cod);
+            presentacio.mostraCodiRespost(codiresp);
         }
     }
 
@@ -200,4 +209,8 @@ public class ControladorDeDomini {
         return persistencia.getIdPartidesGuardades(alies);
     }
 
+    // Retorna true si el mode es CodeMaker
+    public boolean esCodeMaker() {
+        return partida.mode.equals("CodeMaker");
+    }
 }

@@ -75,6 +75,7 @@ public class Partida {
     	jugades.add(j);
     	tauler.afegirCombinacio(j.codiProposat);
     	puntuacio++;
+        numJugades++;
     }
 
     public void guardarPartida() {
@@ -104,7 +105,7 @@ public class Partida {
     /* ############################################################################# */
 
     public void setCodiAmagat(ArrayList<Integer> c) {
-    		this.codiamagat = c;
+        this.codiamagat = c;
     }
     
     public int getIdPartida() {
