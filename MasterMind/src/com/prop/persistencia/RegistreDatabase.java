@@ -51,13 +51,13 @@ public class RegistreDatabase extends Database {
 	}
 	
 	/* Afegir un jugador al registre */
-	/* Si no existe el jugador lo añade a la BD, si existe no hace nada */
+	/* Si no existe el jugador lo aÃ±ade a la BD, si existe no hace nada */
 	public void emmagatzemaJugador(String[] info) { //info[0] = idJugador, info[1] = partidesJugades, info[2] = partidesGuanyades
 		FileWriter fw;
 		BufferedWriter bw;
 		try {
 			Scanner sc = new Scanner(file); //buscamos si existe el jugador en la base de datos
-			sc.nextLine(); //saltamos la primera línea ya que es el título
+			sc.nextLine(); //saltamos la primera linea ya que es el titulo
 			Boolean found = false;
 			while (sc.hasNextLine() && found.equals(false)) {
 				String line = sc.nextLine();
@@ -65,11 +65,11 @@ public class RegistreDatabase extends Database {
 					found = true;
 			}
 			sc.close();
-			if (found.equals(false)) { //se puede hacer una excepción personalizada para que salte si ya existe el jugador pero que palo
-				fw = new FileWriter(file,true); //true es para activar el append para que no sobreescriba lo que había
+			if (found.equals(false)) { //se puede hacer una excepcion personalizada para que salte si ya existe el jugador pero que palo
+				fw = new FileWriter(file,true); //true es para activar el append para que no sobreescriba lo que habï¿½a
 				bw = new BufferedWriter(fw);
 				bw.write(info[0] + " " + info[1] + " " + info[2]);
-				bw.newLine(); //nueva línea
+				bw.newLine(); //nueva linea
 				bw.flush();
 				bw.close();
 			}

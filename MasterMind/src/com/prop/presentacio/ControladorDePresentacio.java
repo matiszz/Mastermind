@@ -53,11 +53,7 @@ public class ControladorDePresentacio {
 	
         // Afegeix a la vista la resposta lògica al codi que s'ha proposat.
 	public void mostraCodiRespost(ArrayList<Integer> codi) {
-            ArrayList<String> codiR = new ArrayList<String>();
-            
-            for (int i = 0; i < codi.size(); i++)
-                codiR.add(colorsEspigues[codi.get(i)]);
-            
+            ArrayList<String> codiR = transformaColors(colorsEspigues, codi);
             tauler.mostraCodiRespost(codiR, numJugada);
 	}
         
@@ -66,25 +62,20 @@ public class ControladorDePresentacio {
             
 	}
         
+        private ArrayList<String> transformaColors(String[] tipus, ArrayList<Integer> codi) {
+            ArrayList<String> codiR = new ArrayList<String>();
+            for (int i = 0; i < codi.size(); i++) {
+                codiR.add(tipus[codi.get(i)]);
+                //System.out.println("codi["+i+"] és " + codi.get(i) + " que es el color " + tipus[codi.get(i)]);
+            }
+            
+            return codiR;
+        }
+        
         // Afegeix una nova jugada a la vista de la partida en mode codeMaker (automàtic).
 	public void jugadaCompleta(ArrayList<Integer> codiRespost, ArrayList<Integer> codiProposat) {
-            System.out.println("Jugada: " + numJugada);
-            
-            ArrayList<String> codiR = new ArrayList<String>();
-            for (int i = 0; i < codiRespost.size(); i++) {
-                int tmp1 = codiRespost.get(i);
-                System.out.println("tmp1 = " + tmp1);
-                String lel = colorsEspigues[tmp1];
-                System.out.println("lel = " + lel);
-                codiR.add(lel);
-                System.out.println("i = " + i);
-            }
-            System.out.println("CodiR: " + codiR);
-            
-            ArrayList<String> codiP = new ArrayList<String>();
-            for (int i = 0; i < codiProposat.size(); i++)
-                codiP.add(colorsJugada[codiProposat.get(i)]);
-            System.out.println("CodiP: " + codiR);
+            ArrayList<String> codiR = transformaColors(colorsEspigues, codiRespost);
+            ArrayList<String> codiP = transformaColors(colorsJugada, codiProposat);
             
             tauler.pintaJugada(codiP, numJugada);
             tauler.mostraCodiRespost(codiR, numJugada);
@@ -103,7 +94,6 @@ public class ControladorDePresentacio {
                 ArrayList<ArrayList<Integer>> fila = tauler.get(i);
                 ArrayList<Integer> codiR = fila.get(0);
                 ArrayList<Integer> codiP = fila.get(1);
-                
             }
 	}
 	
@@ -122,10 +112,10 @@ public class ControladorDePresentacio {
 
         // Obté el Ranking de la capa de domini i el formateja.
 	public ArrayList<String> getRanking() {
-            ArrayList<String> ranking = new ArrayList<String>();// = c.consultarRanking();
-            ranking.add("1.   Pep 23");
-            ranking.add("2.   Joan 45");
-            ranking.add("3.   Mati 60");
+            ArrayList<String> ranking = c.consultarRanking();//new ArrayList<String>();// = 
+//            ranking.add("1.   Pep 23");
+//            ranking.add("2.   Joan 45");
+//            ranking.add("3.   Mati 60");
             return ranking;
 	}
         
@@ -146,15 +136,23 @@ public class ControladorDePresentacio {
             c.emmagatzemaCodi(codi);
         }
         
+        // Guarda la partida.
         public void guardarPartida() {
             c.guardarPartida();
         }
         
+        // Estableix un codi aleatori per la partida
         public void setRandomCodi() {
             c.setRandomCodi();
         }
         
+        // Retorna true si el mode de la partida és CodeMaker
         public boolean esCodeMaker() {
             return c.esCodeMaker();
+        }
+        
+        // Retorna el codi proposat en forma de URLs a les imatges
+        public ArrayList<String> getSolucio() {
+            return transformaColors(colorsJugada, c.getSolucio());
         }
 }

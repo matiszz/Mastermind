@@ -96,7 +96,7 @@ public class ControladorDeDomini {
     public void setRandomCodi() {
         ArrayList<Integer> c = new ArrayList<Integer>();
         for (int i = 0; i < 4; ++i)
-            c.add(ThreadLocalRandom.current().nextInt(0, 6));
+            c.add(ThreadLocalRandom.current().nextInt(0, 5));
         
         partida.setCodiAmagat(c);
     }
@@ -223,6 +223,10 @@ public class ControladorDeDomini {
 
     // Retorna true si el mode es CodeMaker
     public boolean esCodeMaker() {
-        return true;// partida.mode.equals("CodeMaker");
+        return partida.mode.equals("CodeMaker");
+    }
+    
+    public ArrayList<Integer> getSolucio() {
+        return partida.getCodiamagat();
     }
 }

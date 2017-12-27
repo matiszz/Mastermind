@@ -277,11 +277,11 @@ public class Preferencies extends javax.swing.JFrame {
     }//GEN-LAST:event_rbMitjaActionPerformed
 
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
-        p.controller.crearPartida(mode, dificultat);
         if (dificultat == null || mode == null) {
             if (dificultat == null) txtError.setText("Has d'escollir una dificultat de joc.");
             if (mode == null) txtError.setText("Has d'escollir un mode de joc.");
         } else {
+            p.controller.crearPartida(mode, dificultat);
             if (mode.equals("CodeBreaker")) {   // En cas CodeBreaker
                 p.controller.setRandomCodi();
                 Partida nova = new Partida();

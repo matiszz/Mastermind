@@ -20,6 +20,7 @@ public class CrearCodi extends javax.swing.JFrame {
     private String selectedColor = "/images/empty.png";
     private int selectedInt;
     private int[] codi = new int[4];
+    private boolean[] pintat = new boolean[4];
     
     /**
      * Creates new form MenuPrincipal
@@ -45,8 +46,9 @@ public class CrearCodi extends javax.swing.JFrame {
         Controles = new javax.swing.JPanel();
         btnRed = new javax.swing.JButton();
         btnGreen = new javax.swing.JButton();
-        btnBlue = new javax.swing.JButton();
         btnOrange = new javax.swing.JButton();
+        btnBlue = new javax.swing.JButton();
+        btnPurple = new javax.swing.JButton();
         fila4 = new javax.swing.JPanel();
         btn1 = new javax.swing.JButton();
         btn2 = new javax.swing.JButton();
@@ -113,6 +115,16 @@ public class CrearCodi extends javax.swing.JFrame {
             }
         });
 
+        btnOrange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/orange.png"))); // NOI18N
+        btnOrange.setBorderPainted(false);
+        btnOrange.setContentAreaFilled(false);
+        btnOrange.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnOrange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrangeActionPerformed(evt);
+            }
+        });
+
         btnBlue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blue.png"))); // NOI18N
         btnBlue.setBorderPainted(false);
         btnBlue.setContentAreaFilled(false);
@@ -123,13 +135,13 @@ public class CrearCodi extends javax.swing.JFrame {
             }
         });
 
-        btnOrange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/orange.png"))); // NOI18N
-        btnOrange.setBorderPainted(false);
-        btnOrange.setContentAreaFilled(false);
-        btnOrange.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnOrange.addActionListener(new java.awt.event.ActionListener() {
+        btnPurple.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/purple.png"))); // NOI18N
+        btnPurple.setBorderPainted(false);
+        btnPurple.setContentAreaFilled(false);
+        btnPurple.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPurple.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOrangeActionPerformed(evt);
+                btnPurpleActionPerformed(evt);
             }
         });
 
@@ -144,17 +156,21 @@ public class CrearCodi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBlue)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPurple, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOrange))
         );
         ControlesLayout.setVerticalGroup(
             ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ControlesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRed)
-                    .addComponent(btnGreen)
+                .addContainerGap()
+                .addGroup(ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPurple, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBlue)
-                    .addComponent(btnOrange))
+                    .addGroup(ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnRed)
+                        .addComponent(btnGreen)
+                        .addComponent(btnOrange)))
                 .addContainerGap())
         );
 
@@ -249,65 +265,58 @@ public class CrearCodi extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAjuda))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnMenu)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(218, 218, 218)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(34, 34, 34)
+                                                .addComponent(jLabel3)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                                 .addComponent(btnJugar))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(210, 210, 210)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnMenu))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(230, 230, 230)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(210, 210, 210)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(54, 54, 54)
-                                        .addComponent(jLabel3))
-                                    .addComponent(fila4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 227, Short.MAX_VALUE)))
+                        .addGap(172, 172, 172)
+                        .addComponent(fila4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(150, 150, 150)
+                        .addComponent(txtError)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(184, 184, 184)
-                .addComponent(txtError)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(211, 211, 211)
-                    .addComponent(Controles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(238, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Controles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(169, 169, 169))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(btnMenu)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addGap(38, 38, 38)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fila4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtError)
-                .addGap(31, 31, 31)
+                .addComponent(Controles, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addComponent(txtError)
+                        .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fila4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)))
                 .addComponent(btnJugar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInfo)
                     .addComponent(btnAjuda))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(193, 193, 193)
-                    .addComponent(Controles, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(255, Short.MAX_VALUE)))
         );
 
         pack();
@@ -333,46 +342,50 @@ public class CrearCodi extends javax.swing.JFrame {
 
     private void btnRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedActionPerformed
         selectedColor = "/images/red.png";
-        selectedInt = 1;
+        selectedInt = 0;
     }//GEN-LAST:event_btnRedActionPerformed
 
     private void btnGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGreenActionPerformed
         selectedColor = "/images/green.png";
-        selectedInt = 2;
+        selectedInt = 1;
     }//GEN-LAST:event_btnGreenActionPerformed
 
     private void btnBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBlueActionPerformed
         selectedColor = "/images/blue.png";
-        selectedInt = 3;
+        selectedInt = 2;
     }//GEN-LAST:event_btnBlueActionPerformed
 
     private void btnOrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrangeActionPerformed
         selectedColor = "/images/orange.png";
-        selectedInt = 4;
+        selectedInt = 3;
     }//GEN-LAST:event_btnOrangeActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         btn1.setIcon(new javax.swing.ImageIcon(getClass().getResource(selectedColor)));
         codi[0] = selectedInt;
+        pintat[0] = true;
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         btn2.setIcon(new javax.swing.ImageIcon(getClass().getResource(selectedColor)));
         codi[1] = selectedInt;
+        pintat[1] = true;
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         btn3.setIcon(new javax.swing.ImageIcon(getClass().getResource(selectedColor)));
         codi[2] = selectedInt;
+        pintat[2] = true;
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         btn4.setIcon(new javax.swing.ImageIcon(getClass().getResource(selectedColor)));
         codi[3] = selectedInt;
+        pintat[3] = true;
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
-        if (codi[0] == 0 || codi[1] == 0 || codi[2] == 0 || codi[3] == 0) {
+        if (pintat[0] == false || pintat[1] == false || pintat[2] == false || pintat[3] == false) {
             txtError.setText("No poden quedar espais en blanc");
         } else {
             p.controller.setCodi(codi);
@@ -381,6 +394,11 @@ public class CrearCodi extends javax.swing.JFrame {
             CrearCodi.this.dispose();
         }
     }//GEN-LAST:event_btnJugarActionPerformed
+
+    private void btnPurpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurpleActionPerformed
+        selectedColor = "/images/purple.png";
+        selectedInt = 4;
+    }//GEN-LAST:event_btnPurpleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,6 +451,7 @@ public class CrearCodi extends javax.swing.JFrame {
     private javax.swing.JButton btnJugar;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnOrange;
+    private javax.swing.JButton btnPurple;
     private javax.swing.JButton btnRed;
     private javax.swing.JPanel fila4;
     private javax.swing.JLabel jLabel1;
