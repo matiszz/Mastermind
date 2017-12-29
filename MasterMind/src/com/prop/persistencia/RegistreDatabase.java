@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegistreDatabase extends Database {
@@ -51,28 +52,29 @@ public class RegistreDatabase extends Database {
 	}
 	
 	/* Afegir un jugador al registre */
-	/* Si no existe el jugador lo añade a la BD, si existe no hace nada */
-	public void emmagatzemaJugador(String[] info) { //info[0] = idJugador, info[1] = partidesJugades, info[2] = partidesGuanyades
+	/* Si no existe el jugador lo a�ade a la BD, si existe no hace nada y printa que ya existe el jugador */
+	public void emmagatzemaJugador(ArrayList<String> info) { //info[0] = idJugador, info[1] = partidesJugades, info[2] = partidesGuanyades
 		FileWriter fw;
 		BufferedWriter bw;
 		try {
 			Scanner sc = new Scanner(file); //buscamos si existe el jugador en la base de datos
-			sc.nextLine(); //saltamos la primera linea ya que es el titulo
+			sc.nextLine(); //saltamos la primera l�nea ya que es el t�tulo
 			Boolean found = false;
 			while (sc.hasNextLine() && found.equals(false)) {
 				String line = sc.nextLine();
-				if (line.contains(info[0]))
+				if (line.contains(info.get(0)))
 					found = true;
 			}
 			sc.close();
-			if (found.equals(false)) { //se puede hacer una excepcion personalizada para que salte si ya existe el jugador pero que palo
+			if (found.equals(false)) { //se puede hacer una excepci�n personalizada para que salte si ya existe el jugador pero que palo
 				fw = new FileWriter(file,true); //true es para activar el append para que no sobreescriba lo que hab�a
 				bw = new BufferedWriter(fw);
-				bw.write(info[0] + " " + info[1] + " " + info[2]);
-				bw.newLine(); //nueva linea
+				bw.write(info.get(0) + " " + info.get(1) + " " + info.get(2));
+				bw.newLine(); //nueva l�nea
 				bw.flush();
 				bw.close();
 			}
+			else System.out.println("Ja existeix el jugador");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

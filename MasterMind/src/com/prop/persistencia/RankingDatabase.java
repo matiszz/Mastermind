@@ -51,7 +51,7 @@ public class RankingDatabase extends Database {
 		}
 	}
 	
-	public ArrayList<String> obtenirRanking() {
+	public ArrayList<String> obteRanking() {
 		ArrayList<String> l = new ArrayList<String>();
 		BufferedReader br;
 		try {

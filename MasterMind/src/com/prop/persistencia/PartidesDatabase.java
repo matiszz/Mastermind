@@ -61,12 +61,12 @@ public class PartidesDatabase extends Database {
 	/* Busca primero si existe el idPartida que se le pasa, si esta, borra esa partida
 	 * y almacena la nueva que se le pasa, sino, solo almacena la nueva que se le pasa
 	 */
-	public void emmagatzemaPartida(String[] info, String idJugador) {
+	public void emmagatzemaPartida(ArrayList<String> info, String idJugador) {
 		FileWriter fw;
 		BufferedWriter bw;
 		try {
-			System.out.println("IDPartida a encontrar " + info[0]);
-			seekAndDestroy(info, info[0]); //Buscamos y eliminamos la partida con el idPartida repetido para sobreescribirla
+			System.out.println("IDPartida a encontrar " + info.get(0));
+			seekAndDestroy(info, info.get(0)); //Buscamos y eliminamos la partida con el idPartida repetido para sobreescribirla
 			fw = new FileWriter(file,true); //true es para activar el append para que no sobreescriba lo que hab�a
 			bw = new BufferedWriter(fw);
 			
@@ -74,7 +74,7 @@ public class PartidesDatabase extends Database {
 			bw.write(idJugador);
 			bw.newLine();
 			for (int i=0; i<11; i++) {
-				bw.write(info[i]);
+				bw.write(info.get(i));
 				bw.newLine();
 			}
 			bw.newLine();
@@ -92,7 +92,7 @@ public class PartidesDatabase extends Database {
 	 * las líneas del fichero original menos las del idPartida repetido con las marcas de las lineas last y first
 	 * line. Entonces al final hago que temp sea el fichero original con el mismo nombre.
 	 */
-	public void seekAndDestroy(String info[], String idPartida) {
+	public void seekAndDestroy(ArrayList<String> info, String idPartida) {
 		FileWriter fw3;
 		BufferedReader br;
 		boolean found = false;
@@ -239,9 +239,9 @@ public class PartidesDatabase extends Database {
 	
 	/* A partir de un idPartida busca en el fichero y si lo encuentra devuelve en una lista todos los campos
 	 * relacionados con esa partida en concreto */
-	public List<String> getInfoPartida(String idPartida) {
+	public ArrayList<String> getInfoPartida(String idPartida) {
 		boolean found = false;
-		List<String> l = new ArrayList<String>();
+		ArrayList<String> l = new ArrayList<String>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -310,7 +310,6 @@ public class PartidesDatabase extends Database {
 			e.printStackTrace();
 		}
 		return l;
-		//Continuar aqui
 	}
 	
 }

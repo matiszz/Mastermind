@@ -20,14 +20,14 @@ public class ControladorDePersistencia {
 	
 	/* Guarda en la BBDD toda la info del jugador pasada por parámetros en el vector info solo si no existía
 	 * ese jugador, sino no hace nada */
-	public void emmagatzemaJugador(String[] info) {
+	public void emmagatzemaJugador(ArrayList<String> info) {
 		regDB.emmagatzemaJugador(info);
 	}
 	
 	/* Guarda en la BBDD toda la info de una partida en concreto, si exístia ya esa partida, se borra la partida
 	 * antigua con toda su info y se guarda la info actualizada
 	 */
-	public void emmagatzemaPartida(String[] partida, String idJugador) {
+	public void emmagatzemaPartida(ArrayList<String> partida, String idJugador) {
 		partDB.emmagatzemaPartida(partida,idJugador);
 	}
 	
@@ -37,12 +37,12 @@ public class ControladorDePersistencia {
 	}
 	
 	/* Devuelve los idPartida de todas las partidas guardadas del jugador idJugador */
-	public static ArrayList<String> getIdPartidesGuardades(String idJugador) {
+	public ArrayList<String> getIdPartidesGuardades(String idJugador) {
 		return partDB.getIdPartidesGuardades(idJugador);
 	}
 	
 	/* Devuelve la info de la partida idPartida a partir del parámetro idPartida que le pasamos */
-	public List<String> getInfoPartida(String idPartida) {
+	public ArrayList<String> getInfoPartida(String idPartida) {
 		return partDB.getInfoPartida(idPartida);
 	}
 	
@@ -60,8 +60,8 @@ public class ControladorDePersistencia {
 	/* Devuelve en un arraylist el ranking a partir de la BBDD en el mismo formato que se le pasa cuando se quiere
 	 * almacenar
 	 */
-	public ArrayList<String> obtenirRanking() {
-		return rankDB.obtenirRanking();
+	public ArrayList<String> obteRanking() {
+		return rankDB.obteRanking();
 	}
 	
 	public static void main(String[] args) {
@@ -78,7 +78,7 @@ public class ControladorDePersistencia {
 		for (int i=0; i<l.size(); i++) {
 			System.out.print(l.get(i) + " ");
 		} */
-		ArrayList<String> l = cP.obtenirRanking();
+		ArrayList<String> l = cP.obteRanking();
 		for (int i=0; i<l.size(); i++) {
 			System.out.println(l.get(i));
 		} 
