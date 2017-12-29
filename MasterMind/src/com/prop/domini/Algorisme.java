@@ -148,8 +148,9 @@ public class Algorisme {
     }
 
     public ArrayList<Integer> five_guess(int columnes, int colors, ArrayList<Integer> resposta) {
-        ArrayList<Integer> intermig = new ArrayList<Integer>();
+        
         if (resposta.isEmpty()) {
+            ArrayList<Integer> intermig = new ArrayList<Integer>();
             genera_combinacions(0, columnes, colors, intermig);
             genera_matriu(combinacions);
             jugat = combinacions.get(0);
@@ -199,7 +200,7 @@ public class Algorisme {
         ArrayList<Integer> respost = new ArrayList<Integer>();
         
         for (int i = 0; !correcte && i < p.numFiles; ++i) {
-            combinacio = this.five_guess(p.longCodi, 4, respost);
+            combinacio = this.five_guess(p.longCodi, 5, respost);
             respost = this.aplica_logica(p.codiamagat, combinacio);
             
             System.out.println("Combinacio: " + combinacio);
