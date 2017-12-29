@@ -48,7 +48,7 @@ public class ControladorDeDomini {
     //Casos d'ús
     public boolean registrar(String id) {//Cas d'us registrar usuari, retorna fals si l'id està en us. Altrament registra jugador i l'emmagatzema a la BD
         
-        boolean creat = false; //Si creat = false vol dir que l'id ja esta en us
+        boolean creat = false; //Si creat = true s'ha creat correctament
         jugador = reg.registrar(id);
         if (jugador != null) { //El jugador s'ha creat
             creat = true;
@@ -104,7 +104,6 @@ public class ControladorDeDomini {
     public void acabaPartida() {
         partida.finalitzarPartida();
         ArrayList<String> s = partida.converteixaString();
-        presentacio.mostraTauler(s);
     }
 
     public void jugadaCompleta(ArrayList<Integer> codiproposat, ArrayList<Integer> codirespost) {
@@ -120,7 +119,6 @@ public class ControladorDeDomini {
          Inicia el clock
          */
         if (partida.mode == "CodeMaker") {
-            System.out.println("A simular partida");
             Algorisme a = new Algorisme(this);
             a.simulaPartida(partida, jugador);
         }

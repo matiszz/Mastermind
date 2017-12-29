@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,6 +51,8 @@ public class Partida extends javax.swing.JFrame {
      * Creates new form VistaTauler
      */
     public Partida() {
+        editable = 0;
+        
         initComponents();
         
         ferGrupsRespostes();
@@ -1548,6 +1551,19 @@ public class Partida extends javax.swing.JFrame {
             r.setIcon(new javax.swing.ImageIcon(getClass().getResource(codiR.get(i))));
             ++i;
         }
+        
+        // Si guanya
+        if (codiR.get(0) == "/images/espigaNegra.png" && codiR.get(1) == "/images/espigaNegra.png" && 
+            codiR.get(2) == "/images/espigaNegra.png" && codiR.get(3) == "/images/espigaNegra.png") {
+            JOptionPane.showMessageDialog(null, "Has guanyat!");
+            editable = 500;
+            ArrayList<String> sols = p.controller.getSolucio();
+            sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(0))));
+            sol1.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(1))));
+            sol2.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(2))));
+            sol3.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(3))));
+            p.controller.acabaPartida();
+        }
     }
     
     public void pintaJugada(ArrayList<String> codiR, int numJugada) {
@@ -1690,6 +1706,10 @@ public class Partida extends javax.swing.JFrame {
         comb8.add(b82);
         comb8.add(b83);
         combinacions.add(comb8);
+    }
+    
+    public void setEditable(int e) {
+        editable = e;
     }
     
     /**

@@ -56,18 +56,11 @@ public class ControladorDePresentacio {
             ArrayList<String> codiR = transformaColors(colorsEspigues, codi);
             tauler.mostraCodiRespost(codiR, numJugada);
 	}
-        
-        // Posa les combinacions d'una partida guardada al tauler gràfic.
-	public void mostraTauler(ArrayList<String> partida) {
-            
-	}
-        
+                
         private ArrayList<String> transformaColors(String[] tipus, ArrayList<Integer> codi) {
             ArrayList<String> codiR = new ArrayList<String>();
-            for (int i = 0; i < codi.size(); i++) {
+            for (int i = 0; i < codi.size(); i++)
                 codiR.add(tipus[codi.get(i)]);
-                //System.out.println("codi["+i+"] és " + codi.get(i) + " que es el color " + tipus[codi.get(i)]);
-            }
             
             return codiR;
         }
@@ -92,13 +85,27 @@ public class ControladorDePresentacio {
             ArrayList<ArrayList<ArrayList<Integer>>> tauler = c.continuarPartida(idPartida);
             for (int i = 0; i < tauler.size(); ++i) {
                 ArrayList<ArrayList<Integer>> fila = tauler.get(i);
-                ArrayList<Integer> codiR = fila.get(0);
-                ArrayList<Integer> codiP = fila.get(1);
+                ArrayList<Integer> codiP = fila.get(0);
+                ArrayList<Integer> codiR = fila.get(1);
+                
+                ArrayList<String> proposta = transformaColors(colorsJugada, codiP);
+                ArrayList<String> resposta = transformaColors(colorsEspigues, codiR);
+                
+                this.tauler.pintaJugada(proposta, i);
+                this.tauler.mostraCodiRespost(resposta, i);
+                this.tauler.setEditable(i);
             }
 	}
+        
+        // Acaba la partida
+        public void acabaPartida() {
+            c.acabaPartida();
+            c.finalitzarPartida();
+        }
 	
         // Crea una partida amb Mode = mode y Dificultat = dificultat
 	public void crearPartida(String mode, String dificultat) {
+            numJugada = 0;
             int dif;
             
             if ("facil".equals(dificultat))         dif = 1;
@@ -112,10 +119,7 @@ public class ControladorDePresentacio {
 
         // Obté el Ranking de la capa de domini i el formateja.
 	public ArrayList<String> getRanking() {
-            ArrayList<String> ranking = c.consultarRanking();//new ArrayList<String>();// = 
-//            ranking.add("1.   Pep 23");
-//            ranking.add("2.   Joan 45");
-//            ranking.add("3.   Mati 60");
+            ArrayList<String> ranking = c.consultarRanking();
             return ranking;
 	}
         

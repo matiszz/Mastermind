@@ -187,7 +187,7 @@ public class Registrar extends javax.swing.JFrame {
             txtError.setText("Has d'introduir un àlies.");
         }
         else {
-            if(!p.controller.clickRegistrarse(alies)) {
+            if(p.controller.clickRegistrarse(alies)) {
                 JugarPartida nova = new JugarPartida();
                 nova.setVisible(true);
                 Registrar.this.dispose();
