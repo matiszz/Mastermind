@@ -160,8 +160,8 @@ public class PartidesDatabase extends Database {
 	}
 	
 	/* Devuelve los idPartida que tenga el bool finalitzada a false y que sean de idJugador */
-	public List<Integer> partidesNoFinalitzades(String idJugador) {
-		List<Integer> l = new ArrayList<Integer>();
+	public ArrayList<Integer> partidesNoFinalitzades(String idJugador) {
+		ArrayList<Integer> l = new ArrayList<Integer>();
 		int idPartida;
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));

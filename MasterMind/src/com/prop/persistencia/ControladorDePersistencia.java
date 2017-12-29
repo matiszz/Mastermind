@@ -32,7 +32,7 @@ public class ControladorDePersistencia {
 	}
 	
 	/* Devuelve los idPartida de las partidas no finalizadas del jugador idJugador */	
-	public List<Integer> partidesNoFinalitzades(String idJugador) {
+	public ArrayList<Integer> partidesNoFinalitzades(String idJugador) {
 		return partDB.partidesNoFinalitzades(idJugador);
 	}
 	
