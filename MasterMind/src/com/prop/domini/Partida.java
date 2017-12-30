@@ -37,9 +37,11 @@ public class Partida {
     			String l = (jugades.get(i)).converteix_a_string();
     			s.add(l);  
     		}
+    		String codi = "";
     		for(int i = 0; i < longCodi;++i) {
-    			s.add(Integer.toString(codiamagat.get(i)));
+    			codi+=Integer.toString(codiamagat.get(i));
     		}
+    		s.add(codi);
     		s.add(Boolean.toString(this.guanyada));
      	return s;
     }

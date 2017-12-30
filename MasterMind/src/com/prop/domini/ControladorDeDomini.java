@@ -144,7 +144,7 @@ public class ControladorDeDomini {
         int n;
         int numJugades = Integer.parseInt(info.get(4));
         for(n = 0; n < numJugades;++n) {//Recorro totes les jugades
-        		String codis = info.get(i+n-1);
+        		String codis = info.get(i+n);
         		ArrayList<Integer> codiProposat = new ArrayList<Integer>();
         		ArrayList<Integer> codiRespost = new ArrayList<Integer>();
         		
@@ -167,7 +167,7 @@ public class ControladorDeDomini {
         		ljugades.add(j); //Añado la jugada nueva	
         		
         }
-        String codiAmagat = info.get(i+n-1);
+        String codiAmagat = info.get(i+n);
         ArrayList<Integer> ca = new ArrayList<Integer>();
         for(int k = 0; k <codiAmagat.length();++k) {
         		ca.add(codiAmagat.charAt(k)-'0');
