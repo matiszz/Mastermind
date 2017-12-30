@@ -194,7 +194,7 @@ public class Algorisme {
         return b;
     }
 
-    public boolean simulaPartida(Partida p, Jugador j) {
+    public void simulaPartida(Partida p, Jugador j) {
         boolean correcte = false;
         ArrayList<Integer> combinacio = new ArrayList<Integer>();
         ArrayList<Integer> respost = new ArrayList<Integer>();
@@ -213,10 +213,9 @@ public class Algorisme {
             jug.encert = this.comprova(respost);
             
             if (jug.encert)
-                correcte = true;
+                ctrl.partidaGuanyada = true;
             
             ctrl.jugadaCompleta(respost, combinacio);
         }
-        return correcte;
     }
 }

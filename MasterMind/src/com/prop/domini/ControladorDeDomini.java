@@ -97,7 +97,7 @@ public class ControladorDeDomini {
          */
         if (partida.mode == "CodeMaker") {
             Algorisme a = new Algorisme(this);
-            partidaGuanyada = a.simulaPartida(partida, jugador);
+            a.simulaPartida(partida, jugador);
         }
     }
 
