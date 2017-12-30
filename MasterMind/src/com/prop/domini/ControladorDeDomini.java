@@ -137,7 +137,35 @@ public class ControladorDeDomini {
 
     public Partida converteixPartida(ArrayList<String> info) { //ULL hi ha parametres que no es tenen en compte
         int i = 0;
+        //Creo la partida pasandole idPArtida,mode,finalitzada,numFiles,longCodi,dificultat
         Partida newp = new Partida(Integer.parseInt(info.get(i)), info.get(i + 1), Boolean.parseBoolean(info.get(i + 7)), Integer.parseInt(info.get(i + 5)), Integer.parseInt(info.get(i + 6)), Integer.parseInt(info.get(i + 8)));
+        i=9;
+        ArrayList<Jugada> ljugades = new ArrayList<Jugada>();
+        for(int n = 0; n < newp.numFiles;++n) {//Recorro totes les jugades
+        		String codis = info.get(i+n);
+        		ArrayList<Integer> codiProposat = new ArrayList<Integer>();
+        		ArrayList<Integer> codiRespost = new ArrayList<Integer>();
+        		
+        		//La jugada que estem tractant 
+        		Jugada j = new Jugada(n,newp,jugador);
+    			
+        		for(int l = 0 ; l < codis.length();++l) {//Lleno codiproposat i codiRespost
+        			int numero = codis.charAt(l)-'0';
+        			if(l < codis.length()/2) {//CodiProposat
+        				codiProposat.add(numero);
+        			}
+        			else {//CodiRespost	
+        				codiRespost.add(numero);
+        			}
+        		}
+        		//Lleno la jugada
+        		j.setcodiProposat(codiProposat);
+        		j.setcodiRespost(codiRespost);
+        		j.encert = false;
+        		ljugades.add(j); //Añado la jugada nueva	
+        		
+        }
+        newp.setJugades(ljugades);
         return newp;
     }
 

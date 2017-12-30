@@ -55,6 +55,9 @@ public class Partida {
     		return this.dificultat;
     }
     
+    public void setJugades(ArrayList<Jugada> r) {
+    		this.jugades = r;
+    }
     public Partida(int idPartida, String mode, boolean fin, int numFiles, int longCodi,int dificultat) {
         this.idPartida = idPartida;
         this.mode = mode;
