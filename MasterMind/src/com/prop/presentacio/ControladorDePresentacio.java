@@ -99,7 +99,6 @@ public class ControladorDePresentacio {
         
         // Acaba la partida
         public void acabaPartida() {
-            c.acabaPartida();
             c.finalitzarPartida();
         }
 	

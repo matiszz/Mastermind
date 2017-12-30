@@ -1545,16 +1545,24 @@ public class Partida extends javax.swing.JFrame {
         }
     }
     
+    private boolean haGuanyat(ArrayList<String> codiR) {
+        return (codiR.get(0) == "/images/espigaNegra.png" && codiR.get(1) == "/images/espigaNegra.png" &&
+            codiR.get(2) == "/images/espigaNegra.png" && codiR.get(3) == "/images/espigaNegra.png");
+    }
+    
     public void mostraCodiRespost(ArrayList<String> codiR, int numJugada) {
         int i = 0;
         for (JLabel r : respostes.get(numJugada)) {
             r.setIcon(new javax.swing.ImageIcon(getClass().getResource(codiR.get(i))));
             ++i;
         }
-        
+        // Si perd
+        if (editable == 9 && !haGuanyat(codiR)) {
+            JOptionPane.showMessageDialog(null, "Has perdut!");
+            p.controller.acabaPartida();
+        }
         // Si guanya
-        if (codiR.get(0) == "/images/espigaNegra.png" && codiR.get(1) == "/images/espigaNegra.png" && 
-            codiR.get(2) == "/images/espigaNegra.png" && codiR.get(3) == "/images/espigaNegra.png") {
+        else if (haGuanyat(codiR)) {
             JOptionPane.showMessageDialog(null, "Has guanyat!");
             editable = 500;
             ArrayList<String> sols = p.controller.getSolucio();
