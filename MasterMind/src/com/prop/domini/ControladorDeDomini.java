@@ -7,8 +7,7 @@ import com.prop.presentacio.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ControladorDeDomini {
-
-    GeneradorJocs generador;
+	boolean partidaGuanyada = false;
     Ranking ranking;
     Partida partida;
     Jugador jugador;
@@ -26,25 +25,6 @@ public class ControladorDeDomini {
         reg = new Registre();
 
     }
-
-    //Setters
-    public void setGenerador(GeneradorJocs generador) {
-        this.generador = generador;
-    }
-
-    public void setrRnking(Ranking ranking) {
-        this.ranking = ranking;
-    }
-
-    //Getters
-    public Ranking getRanking() {
-        return this.ranking;
-    }
-
-    public GeneradorJocs getGenerador() {
-        return this.generador;
-    }
-
     //Casos d'ús
     public boolean registrar(String id) {//Cas d'us registrar usuari, retorna fals si l'id està en us. Altrament registra jugador i l'emmagatzema a la BD
         
@@ -57,7 +37,9 @@ public class ControladorDeDomini {
         }
         return creat;
     }
-
+    
+    
+    
     public boolean iniciasessio(String alies) {
         jugador = reg.getJugador(alies);
         if (jugador == null)
@@ -65,18 +47,18 @@ public class ControladorDeDomini {
         else
             return true;  // El jugador no existeix
     }
-
+    
     public Partida generarJoc(int dificultat, boolean codeMaker) { //Genera generador de jocs, el joc i la partida segons la dificultat i el mode
         if (gen == null) {
             switch (dificultat) {
                 case 1:
-                    gen = new GeneradorJocs(20, 4, 5, codeMaker, dificultat);
+                    gen = new GeneradorJocs(12, 4, 5, codeMaker, dificultat);
                     break;
                 case 2:
-                    gen = new GeneradorJocs(15, 4, 5, codeMaker, dificultat);
+                    gen = new GeneradorJocs(9, 4, 5, codeMaker, dificultat);
                     break;
                 case 3:
-                    gen = new GeneradorJocs(10, 4, 5, codeMaker, dificultat);
+                    gen = new GeneradorJocs(7, 4, 5, codeMaker, dificultat);
                     break;
             }
         }
@@ -100,12 +82,7 @@ public class ControladorDeDomini {
         
         partida.setCodiAmagat(c);
     }
-
-    public void acabaPartida() {
-        partida.finalitzarPartida();
-        ArrayList<String> s = partida.converteixaString();
-    }
-
+    
     public void jugadaCompleta(ArrayList<Integer> codiproposat, ArrayList<Integer> codirespost) {
         System.out.println("Jugada completa");
         presentacio.jugadaCompleta(codiproposat, codirespost);
@@ -120,10 +97,18 @@ public class ControladorDeDomini {
          */
         if (partida.mode == "CodeMaker") {
             Algorisme a = new Algorisme(this);
-            a.simulaPartida(partida, jugador);
+            partidaGuanyada = a.simulaPartida(partida, jugador);
         }
     }
 
+    public boolean hasGuanyat() {
+    		return partidaGuanyada;
+    }
+    public boolean hasPerdut() {
+    		if((partida.numJugades == partida.numFiles) && !partidaGuanyada) return true;
+    		else return false;
+    }
+    
     public void guardarPartida() { //Converteix la partida en l'estructura per passar entre capes i la envia a la capa de persistencia.
         /*
          Escriu en un fitxer totes les dades de la partida actual.
@@ -190,6 +175,13 @@ public class ControladorDeDomini {
         }
         return res;
     }
+    
+    public boolean correcte(ArrayList<Integer> a) {
+    		boolean correcte = true;
+    		for(int i = 0; correcte && i < a.size();++i)
+    			if(a.get(i) != 2) correcte = false;
+    		return correcte;
+    }
 
     public void ferJugada(int[] codip) { //Nomes te sentit en codebreaker i si juga la persona. Realitza la jugada que li pasen, actualitza el tauler, processa la jugada y retorna el codi respost a la capa de presentacio
         ArrayList<Integer> codiproposat = converteixCodi(codip);
@@ -206,6 +198,7 @@ public class ControladorDeDomini {
             ArrayList<Integer> codiresp = a.aplica_logica(solucio, codiproposat);
             
             j.setcodiRespost(codiresp);
+            partidaGuanyada = correcte(codiresp);
             presentacio.mostraCodiRespost(codiresp);
         }
     }
