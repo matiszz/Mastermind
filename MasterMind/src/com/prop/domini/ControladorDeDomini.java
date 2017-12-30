@@ -49,18 +49,18 @@ public class ControladorDeDomini {
     }
     
     public Partida generarJoc(int dificultat, boolean codeMaker) { //Genera generador de jocs, el joc i la partida segons la dificultat i el mode
-        if (gen == null) {
-            switch (dificultat) {
-                case 1:
-                    gen = new GeneradorJocs(12, 4, 5, codeMaker, dificultat);
-                    break;
-                case 2:
-                    gen = new GeneradorJocs(9, 4, 5, codeMaker, dificultat);
-                    break;
-                case 3:
-                    gen = new GeneradorJocs(7, 4, 5, codeMaker, dificultat);
-                    break;
-            }
+        partidaGuanyada = false;
+        
+        switch (dificultat) {
+            case 1:
+                gen = new GeneradorJocs(12, 4, 5, codeMaker, dificultat);
+                break;
+            case 2:
+                gen = new GeneradorJocs(9, 4, 5, codeMaker, dificultat);
+                break;
+            case 3:
+                gen = new GeneradorJocs(7, 4, 5, codeMaker, dificultat);
+                break;
         }
         joc = gen.generaJocDefault();
         partida = joc.crearPartida();
@@ -101,9 +101,12 @@ public class ControladorDeDomini {
         }
     }
 
+    // Retorna true si la partida està guanyada
     public boolean hasGuanyat() {
     		return partidaGuanyada;
     }
+    
+    // Retorna true si ha perdut i no pot jugar 
     public boolean hasPerdut() {
     		if((partida.numJugades == partida.numFiles) && !partidaGuanyada) return true;
     		else return false;

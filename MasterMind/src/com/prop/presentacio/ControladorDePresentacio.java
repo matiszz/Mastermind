@@ -158,4 +158,14 @@ public class ControladorDePresentacio {
         public ArrayList<String> getSolucio() {
             return transformaColors(colorsJugada, c.getSolucio());
         }
+        
+        // Retorna true si la partida està guanyada
+        public boolean haGuanyat() {
+            return c.hasGuanyat();
+        }
+        
+        // Retorna true si ha perdut la partida
+        public boolean haPerdut() {
+            return c.hasPerdut();
+        }
 }

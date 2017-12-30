@@ -1346,7 +1346,6 @@ public class Partida extends javax.swing.JFrame {
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
        editable++;
        p.controller.ferJugada(codi);
-       System.out.println("Chekeando");
        codi[0] = 0;
        codi[1] = 0;
        codi[2] = 0;
@@ -1547,7 +1546,7 @@ public class Partida extends javax.swing.JFrame {
     
     private boolean haGuanyat(ArrayList<String> codiR) {
         return (codiR.get(0) == "/images/espigaNegra.png" && codiR.get(1) == "/images/espigaNegra.png" &&
-            codiR.get(2) == "/images/espigaNegra.png" && codiR.get(3) == "/images/espigaNegra.png");
+                codiR.get(2) == "/images/espigaNegra.png" && codiR.get(3) == "/images/espigaNegra.png");
     }
     
     public void mostraCodiRespost(ArrayList<String> codiR, int numJugada) {
@@ -1557,12 +1556,12 @@ public class Partida extends javax.swing.JFrame {
             ++i;
         }
         // Si perd
-        if (editable == 9 && !haGuanyat(codiR)) {
+        if (p.controller.haPerdut()) {
             JOptionPane.showMessageDialog(null, "Has perdut!");
             p.controller.acabaPartida();
         }
         // Si guanya
-        else if (haGuanyat(codiR)) {
+        else if (p.controller.haGuanyat()) {
             JOptionPane.showMessageDialog(null, "Has guanyat!");
             editable = 500;
             ArrayList<String> sols = p.controller.getSolucio();

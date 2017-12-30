@@ -206,16 +206,16 @@ public class Algorisme {
             System.out.println("Combinacio: " + combinacio);
             System.out.println("Resposta: " + respost);
             
-            ctrl.jugadaCompleta(respost, combinacio);
             Jugada jug = new Jugada(i, p, j);
             jug.codiProposat = combinacio;
             jug.codiRespost = respost;
             p.ferJugada(jug);
             jug.encert = this.comprova(respost);
-            if (jug.encert) {
+            
+            if (jug.encert)
                 correcte = true;
-                
-            }
+            
+            ctrl.jugadaCompleta(respost, combinacio);
         }
         return correcte;
     }
