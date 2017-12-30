@@ -136,15 +136,15 @@ public class ControladorDeDomini {
     }
 
     public Partida converteixPartida(ArrayList<String> info) { //ULL hi ha parametres que no es tenen en compte
-        int i = 0;
+        int i = 1;
         //Creo la partida pasandole idPArtida,mode,finalitzada,numFiles,longCodi,dificultat
         Partida newp = new Partida(Integer.parseInt(info.get(i)), info.get(i + 1), Boolean.parseBoolean(info.get(i + 7)), Integer.parseInt(info.get(i + 5)), Integer.parseInt(info.get(i + 6)), Integer.parseInt(info.get(i + 8)));
-        i=9;
+        i = 10;
         ArrayList<Jugada> ljugades = new ArrayList<Jugada>();
         int n;
-        int numJugades = Integer.parseInt(info.get(3));
+        int numJugades = Integer.parseInt(info.get(4));
         for(n = 0; n < numJugades;++n) {//Recorro totes les jugades
-        		String codis = info.get(i+n);
+        		String codis = info.get(i+n-1);
         		ArrayList<Integer> codiProposat = new ArrayList<Integer>();
         		ArrayList<Integer> codiRespost = new ArrayList<Integer>();
         		
@@ -167,7 +167,7 @@ public class ControladorDeDomini {
         		ljugades.add(j); //Añado la jugada nueva	
         		
         }
-        String codiAmagat = info.get(i+n);
+        String codiAmagat = info.get(i+n-1);
         ArrayList<Integer> ca = new ArrayList<Integer>();
         for(int k = 0; k <codiAmagat.length();++k) {
         		ca.add(codiAmagat.charAt(k)-'0');

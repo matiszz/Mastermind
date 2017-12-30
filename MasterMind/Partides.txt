@@ -1,0 +1,15 @@
+Partides guardades de MasterMind
+
+juanito
+0
+CodeBreaker
+0
+4
+4
+7
+4
+false
+3
+00000000
+11111211
+

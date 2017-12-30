@@ -34,11 +34,6 @@ public class ControladorDePresentacio {
             tauler = t;
         }
 	
-        //Obté la partida identificada per idPartida y mostra el tauler en l'estat guardat.
-	public void getPartidaSeleccionada(String idPartida) {
-            //Obtiene los datos de la partida, instancia vista partida y le pasa la información para rellenar la vista.
-	}
-	
         // Retorna true si alies existeix, i false en cas contrari.
 	public boolean clickIniciarSessio(String alies) {
             nomJugador = alies;
@@ -90,6 +85,10 @@ public class ControladorDePresentacio {
                 
                 ArrayList<String> proposta = transformaColors(colorsJugada, codiP);
                 ArrayList<String> resposta = transformaColors(colorsEspigues, codiR);
+                
+                System.out.println("Proposta Pr: " + proposta);
+                System.out.println("Resposta Pr: " + resposta);
+                
                 
                 this.tauler.pintaJugada(proposta, i);
                 this.tauler.mostraCodiRespost(resposta, i);
