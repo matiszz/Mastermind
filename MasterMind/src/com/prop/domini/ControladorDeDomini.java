@@ -137,7 +137,7 @@ public class ControladorDeDomini {
 
     public Partida converteixPartida(ArrayList<String> info) { //ULL hi ha parametres que no es tenen en compte
         int i = 0;
-        Partida newp = new Partida(Integer.parseInt(info.get(i)), info.get(i + 1), Boolean.parseBoolean(info.get(i + 2)), Integer.parseInt(info.get(i + 3)), Integer.parseInt(info.get(i + 4)), Integer.parseInt(info.get(i + 10)));
+        Partida newp = new Partida(Integer.parseInt(info.get(i)), info.get(i + 1), Boolean.parseBoolean(info.get(i + 7)), Integer.parseInt(info.get(i + 5)), Integer.parseInt(info.get(i + 6)), Integer.parseInt(info.get(i + 8)));
         return newp;
     }
 

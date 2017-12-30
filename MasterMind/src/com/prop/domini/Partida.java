@@ -15,9 +15,9 @@ public class Partida {
     int numFiles;
     int longCodi;
     boolean finalitzada;
+    int dificultat; //Cal mantenir la dificultat de la partida, inicialitzarla i actualitzarla
     ArrayList<Jugada> jugades;
     ArrayList<Integer> codiamagat; //Codi amagat, cal revisar al actualizarlo,inicializarlo etc
-    int dificultat; //Cal mantenir la dificultat de la partida, inicialitzarla i actualitzarla
     boolean guanyada; //Cak inicialitzar i mantenir l'atribut, serà true si ha encertat en menys intents de les maximes
     Rellotge clock;
     Tauler tauler;
@@ -32,6 +32,7 @@ public class Partida {
     		s.add(Integer.toString(this.numFiles));
     		s.add(Integer.toString(this.longCodi));
     		s.add(Boolean.toString(this.finalitzada));
+    		s.add(Integer.toString(this.dificultat));
     		for(int i = 0; i < jugades.size();++i) {
     			String l = (jugades.get(i)).converteix_a_string();
     			s.add(l);  
@@ -39,7 +40,6 @@ public class Partida {
     		for(int i = 0; i < longCodi;++i) {
     			s.add(Integer.toString(codiamagat.get(i)));
     		}
-    		s.add(Integer.toString(this.dificultat));
     		s.add(Boolean.toString(this.guanyada));
      	return s;
     }
