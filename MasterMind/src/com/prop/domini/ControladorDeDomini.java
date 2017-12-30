@@ -141,7 +141,9 @@ public class ControladorDeDomini {
         Partida newp = new Partida(Integer.parseInt(info.get(i)), info.get(i + 1), Boolean.parseBoolean(info.get(i + 7)), Integer.parseInt(info.get(i + 5)), Integer.parseInt(info.get(i + 6)), Integer.parseInt(info.get(i + 8)));
         i=9;
         ArrayList<Jugada> ljugades = new ArrayList<Jugada>();
-        for(int n = 0; n < newp.numFiles;++n) {//Recorro totes les jugades
+        int n;
+        int numJugades = Integer.parseInt(info.get(3));
+        for(n = 0; n < numJugades;++n) {//Recorro totes les jugades
         		String codis = info.get(i+n);
         		ArrayList<Integer> codiProposat = new ArrayList<Integer>();
         		ArrayList<Integer> codiRespost = new ArrayList<Integer>();
@@ -165,7 +167,15 @@ public class ControladorDeDomini {
         		ljugades.add(j); //Añado la jugada nueva	
         		
         }
+        String codiAmagat = info.get(i+n);
+        ArrayList<Integer> ca = new ArrayList<Integer>();
+        for(int k = 0; k <codiAmagat.length();++k) {
+        		ca.add(codiAmagat.charAt(k)-'0');
+        }
+        newp.setCodiAmagat(ca);
         newp.setJugades(ljugades);
+        newp.guanyada=false;
+        newp.setNumJugades(numJugades);
         return newp;
     }
 
