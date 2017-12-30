@@ -59,10 +59,10 @@ public class Partida extends javax.swing.JFrame {
         ferGrupsCombinacions();
         
         p.controller.setTauler(this);
-        if (p.controller.esCodeMaker()) {
-            Controles.setVisible(false);
-            btnCheck.setVisible(false);
-            txtColores.setVisible(false);
+        //if (p.controller.esCodeMaker()) {
+           // Controles.setVisible(false);
+           // btnCheck.setVisible(false);
+           // txtColores.setVisible(false);
             
             ArrayList<String> sols = p.controller.getSolucio();
             sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(0))));
@@ -71,16 +71,16 @@ public class Partida extends javax.swing.JFrame {
             sol3.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(3))));
             
             //p.controller.jugaCodeMaker();
-        } else {
-            Controles.setVisible(true);
-            btnCheck.setVisible(true);
-            txtColores.setVisible(true);
-            
-            sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
-            sol1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
-            sol2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
-            sol3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
-        }
+        //} else {
+//            Controles.setVisible(true);
+//            btnCheck.setVisible(true);
+//            txtColores.setVisible(true);
+//            
+//            sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
+//            sol1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
+//            sol2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
+//            sol3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
+//        }
     }
 
     /**

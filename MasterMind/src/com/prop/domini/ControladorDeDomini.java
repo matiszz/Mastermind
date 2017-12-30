@@ -138,7 +138,7 @@ public class ControladorDeDomini {
         partida.guardarPartida();
         int res = partida.finalitzarPartida();
         jugador.actualitzar_partides(res, partida.getguanyada());
-        int dificultat = generador.getDificultat();
+        int dificultat = gen.getDificultat();
         FilaRanking f = new FilaRanking(res, jugador.getIdJugador());
         boolean afegida = ranking.afegeix_fila(f, dificultat);
         if (afegida) {
