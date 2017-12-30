@@ -212,8 +212,10 @@ public class Algorisme {
             p.ferJugada(jug);
             jug.encert = this.comprova(respost);
             
-            if (jug.encert)
+            if (jug.encert) {
                 ctrl.partidaGuanyada = true;
+                correcte = true;
+            }
             
             ctrl.jugadaCompleta(respost, combinacio);
         }
