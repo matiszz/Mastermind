@@ -24,6 +24,13 @@ public class ControladorDePersistencia {
 		regDB.emmagatzemaJugador(info);
 	}
 	
+	/* Devuelve en una matriz toda la info de todos los jugadores del juego registrados hasta el momento. Cada
+	 * fila es la info de cada jugador, idJugador, partidas jugadas y partidas ganadas en ese orden.
+	 */
+	public ArrayList< ArrayList<String> > getJugadors() {
+		return regDB.getJugadors();
+	}
+	
 	/* Guarda en la BBDD toda la info de una partida en concreto, si exístia ya esa partida, se borra la partida
 	 * antigua con toda su info y se guarda la info actualizada
 	 */
@@ -78,9 +85,13 @@ public class ControladorDePersistencia {
 		for (int i=0; i<l.size(); i++) {
 			System.out.print(l.get(i) + " ");
 		} */
-		ArrayList<String> l = cP.obteRanking();
-		for (int i=0; i<l.size(); i++) {
-			System.out.println(l.get(i));
+		ArrayList<String> l = new ArrayList<>(Arrays.asList("idjugador2", "5", "6"));
+		ArrayList< ArrayList<String> > jugadors = cP.getJugadors();
+		for (int i=0; i<jugadors.size(); i++) {
+			for (int j=0; j<jugadors.get(0).size(); j++) {
+				System.out.println(jugadors.get(i).get(j) +" ");
+			}
+			System.out.println(" ");
 		} 
 		
 	}

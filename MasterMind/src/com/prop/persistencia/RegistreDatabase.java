@@ -3,6 +3,7 @@ package com.prop.persistencia;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -79,6 +80,35 @@ public class RegistreDatabase extends Database {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+	}
+	
+	/* Devuelve en una matriz toda la info de todos los jugadores del juego registrados hasta el momento. Cada
+	 * fila es la info de cada jugador, idJugador, partidas jugadas y partidas ganadas en ese orden.
+	 */
+	public ArrayList< ArrayList<String> > getJugadors() {
+		ArrayList< ArrayList<String> > l = new ArrayList< ArrayList<String> >();
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader(file));
+			br.readLine(); //Leemos el titulo
+			String line = "";
+			while ((line = br.readLine()) != null) {
+				ArrayList<String> ll = new ArrayList<String>();
+				String[] llsplit = line.split("\\s+");
+				for (int i=0; i<3; i++) {
+					ll.add(llsplit[i]);
+				}
+				l.add(ll);
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return l;
 	}
 	
 
