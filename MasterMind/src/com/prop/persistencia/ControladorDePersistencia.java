@@ -24,6 +24,11 @@ public class ControladorDePersistencia {
 		regDB.emmagatzemaJugador(info);
 	}
 	
+	/* Actualiza el jugador con idJugador info[0] con la información que se le pasa por parámetros */
+	public void actualitzaJugador(ArrayList<String> info) {
+		regDB.actualitzaJugador(info);
+	}
+	
 	/* Devuelve en una matriz toda la info de todos los jugadores del juego registrados hasta el momento. Cada
 	 * fila es la info de cada jugador, idJugador, partidas jugadas y partidas ganadas en ese orden.
 	 */
@@ -71,28 +76,60 @@ public class ControladorDePersistencia {
 		return rankDB.obteRanking();
 	}
 	
+	/*
 	public static void main(String[] args) {
 		ControladorDePersistencia cP = new ControladorDePersistencia();
 		String id = "idJugador1";
-//		String[] s = new String[] {"1234", "mode1yaempezamos", "temps1", "numJugades1", "puntuacio1", "numFiles1", "longCodi1", "false", "jugades1", "codiAmagat1", "dificultat1", "guanyada1"};
-//		String[] s = new String[] {"idPartida2", "mode2modificadooooooo", "temps2", "numJugades2", "puntuacio2", "numFiles2", "longCodi2", "true", "jugades2", "codiAmagat2", "dificultat2", "guanyada2"};
-//		String[] s = new String[] {"idPartida3", "mode3afull", "temps3", "numJugades3", "puntuacio3", "numFiles3", "longCodi3", "false", "jugades3", "codiAmagat3", "dificultat3", "guanyada3"};
-//		cP.emmagatzemaPartida(s, id);
-//		ArrayList<String> l =  new ArrayList<String>(
-//			    Arrays.asList("Juanito 100", "Manolito 200", "Pepito 300"));
-//		l = getIdPartidesGuardades(id);
-//		/*
-//		for (int i=0; i<l.size(); i++) {
-//			System.out.print(l.get(i) + " ");
-//		} */
-//		ArrayList<String> l = new ArrayList<>(Arrays.asList("idjugador2", "5", "6"));
-//		ArrayList< ArrayList<String> > jugadors = cP.getJugadors();
-//		for (int i=0; i<jugadors.size(); i++) {
-//			for (int j=0; j<jugadors.get(0).size(); j++) {
-//				System.out.println(jugadors.get(i).get(j) +" ");
-//			}
-//			System.out.println(" ");
-//		} 
+		String id2 = "idJugador2";
+		String id3 = "idJugador3";
+		ArrayList<String> s = new ArrayList<>(
+				Arrays.asList("idJugador3", "123", "1"));
+		ArrayList<String> s2 = new ArrayList<>(
+				Arrays.asList("idJugador2", "2", "2"));
+		ArrayList<String> s3 = new ArrayList<>(
+				Arrays.asList("idJugador3", "3", "3"));
 		
-	}
+		//regDB.emmagatzemaJugador(s3);
+		//regDB.actualitzaJugador(s);
+		/*
+		ArrayList<String> s = new ArrayList<>(
+				Arrays.asList("1", "mode1", "temps1", "numJugades1", "puntuacio1", 
+						"numFiles1", "longCodi1", "false", "dificultat1", "jugades1", 
+						"codiAmagat1", "guanyada1"));
+		ArrayList<String> s2 = new ArrayList<>(
+				Arrays.asList("2", "mode2", "temps2", "numJugades2", "puntuacio2", 
+						"numFiles2", "longCodi2", "false", "dificultat2", "jugades2", 
+						"codiAmagat2", "guanyada2"));
+		ArrayList<String> s3 = new ArrayList<>(
+				Arrays.asList("3", "mode3", "temps3", "numJugades3", "puntuacio3", 
+						"numFiles3", "longCodi3", "false", "dificultat3", "jugades3", 
+						"codiAmagat3", "guanyada3"));
+		cP.emmagatzemaPartida(s3, id3);
+		/*ArrayList<String> l = cP.getIdPartidesGuardades("idJugador1");
+		for (int i=0; i<l.size(); i++) {
+			System.out.println(l.get(i));
+		}*/
+		/*ArrayList<String> l = cP.getInfoPartida("1");
+		for (int i=0; i<l.size(); i++) {
+			System.out.println(l.get(i));
+		}*/
+		//ArrayList<String> l =  new ArrayList<String>(
+		//	    Arrays.asList("Juanito 100", "Manolito 200", "Pepito 300"));
+		//l = getIdPartidesGuardades(id);
+		/*
+		for (int i=0; i<l.size(); i++) {
+			System.out.print(l.get(i) + " ");
+		}
+		
+		//ArrayList<String> l = new ArrayList<>(Arrays.asList("idjugador2", "5", "6"));
+		ArrayList< ArrayList<String> > jugadors = cP.getJugadors();
+		for (int i=0; i<jugadors.size(); i++) {
+			for (int j=0; j<jugadors.get(0).size(); j++) {
+				System.out.println(jugadors.get(i).get(j) +" ");
+			}
+			System.out.println(" ");
+		} 
+		
+		
+	} */
 }

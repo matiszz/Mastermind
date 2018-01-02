@@ -111,5 +111,63 @@ public class RegistreDatabase extends Database {
 		return l;
 	}
 	
+	public void actualitzaJugador(ArrayList<String> info) {
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader(file));
+			br.readLine(); // leemos el titulo del fichero
+			String idtofound = info.get(0);
+			String line = "";
+			int mark = 1;
+			boolean found = false;
+			while (((line = br.readLine()) != null) && found == false) {
+				String[] llsplit = line.split("\\s+");
+				if (llsplit[0].equals(info.get(0))) {
+					found = true;
+				}
+				mark++;
+			}
+			
+			System.out.println("idJugador en la línea " + mark);
+			
+			File temp = new File("temp.txt");
+			FileWriter fw2 = new FileWriter(temp);
+			BufferedWriter bw = new BufferedWriter(fw2);
+			
+			BufferedReader buff = new BufferedReader(new FileReader(file));
+		
+			System.out.println("Quiero eliminar la línea " + mark);
+			int lineReaded = 1;
+			while ((line = buff.readLine()) != null) {
+				System.out.println("Leyendo línea " + lineReaded + " " + line);
+				if (lineReaded != mark) {
+					System.out.println("Escribiendo línea " + lineReaded + " " + line);
+					bw.write(line);
+					bw.newLine();
+				}
+				lineReaded++;
+			}
+			
+			bw.write(info.get(0) + " " + info.get(1) + " " + info.get(2));
+			
+			bw.close();
+			buff.close();
+			fw2.close();
+			temp.renameTo(file);
+			/* esto es muy importante, al renombrar el fichero temp a file se elimina el fichero temp
+			 * y file se sustituye por temp. Es precioso.
+			 */
+			
+			
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 }

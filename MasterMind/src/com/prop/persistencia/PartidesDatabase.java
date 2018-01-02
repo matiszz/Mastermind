@@ -105,7 +105,6 @@ public class PartidesDatabase extends Database {
 				mark++;
 				if (line.equals(idPartida)) {
 					found = true;
-					System.out.println("idPartida encontrado en la línea " + mark);
 				}
 				else
 					for (int i=0; i<12; i++) { //saltamos hasta el proximo idPartida
@@ -118,7 +117,6 @@ public class PartidesDatabase extends Database {
 			br.close();
 			
 			if (found) {
-				System.out.println("Found");
 				//Si la encontramos, copiamos en un fichero temporal todo lo demas menos ese idPartida repetido
 				int firstLine = mark - 1; //borramos el id partida, idjugador
 				int lastLine = firstLine + 12; //borramos hasta bool guanyada
@@ -130,11 +128,8 @@ public class PartidesDatabase extends Database {
 				
 				String line4 = "";
 				int lineReaded = 1;
-				System.out.println("Quiero eliminar desde la línea " + firstLine + " hasta la línea " + lastLine);
 				while ((line4 = buff.readLine()) != null) {
-					System.out.println("Leyendo línea " + lineReaded + " " + line4);
 					if (lineReaded < firstLine || lineReaded > lastLine) {
-						System.out.println("Escribiendo línea " + lineReaded + " " + line4);
 						bw.write(line4);
 						bw.newLine();
 					}
