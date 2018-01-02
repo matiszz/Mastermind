@@ -71,6 +71,7 @@ public class ControladorDePresentacio {
             numJugada++;
 	}
 	
+        // Juga una partida com a Code Maker.
 	public void jugaCodeMaker() {
             c.jugarPartida();
 	}
@@ -166,5 +167,9 @@ public class ControladorDePresentacio {
         // Retorna true si ha perdut la partida
         public boolean haPerdut() {
             return c.hasPerdut();
+        }
+        
+        public int getDificultat() {
+            return c.getDificultat();
         }
 }

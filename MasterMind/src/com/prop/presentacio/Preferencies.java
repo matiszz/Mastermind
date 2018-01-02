@@ -284,11 +284,19 @@ public class Preferencies extends javax.swing.JFrame {
             p.controller.crearPartida(mode, dificultat);
             if (mode.equals("CodeBreaker")) {   // En cas CodeBreaker
                 p.controller.setRandomCodi();
-                Partida nova = new Partida();
-                nova.setVisible(true);
+                if (dificultat.equals("dificil")) {
+                    PartidaDificil nova = new PartidaDificil();
+                    nova.setVisible(true);
+                } else if (dificultat.equals("mitjana")) {
+                    PartidaMitjana nova = new PartidaMitjana();
+                    nova.setVisible(true);
+                } else if (dificultat.equals("facil")) {
+                    PartidaFacil nova = new PartidaFacil();
+                    nova.setVisible(true);
+                }
                 Preferencies.this.dispose();
             } else {                            // En cas CodeMaker
-                CrearCodi nova = new CrearCodi();
+                CrearCodi nova = new CrearCodi(dificultat);
                 nova.setVisible(true);
                 Preferencies.this.dispose();
             }

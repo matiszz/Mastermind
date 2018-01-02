@@ -21,12 +21,14 @@ public class CrearCodi extends javax.swing.JFrame {
     private int selectedInt;
     private int[] codi = new int[4];
     private boolean[] pintat = new boolean[4];
+    private String dificultat;
     
     /**
      * Creates new form MenuPrincipal
      */
-    public CrearCodi() {
+    public CrearCodi(String d) {
         initComponents();
+        dificultat = d;
     }
 
     /**
@@ -167,10 +169,10 @@ public class CrearCodi extends javax.swing.JFrame {
                 .addGroup(ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnPurple, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBlue)
+                    .addComponent(btnOrange)
                     .addGroup(ControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnRed)
-                        .addComponent(btnGreen)
-                        .addComponent(btnOrange)))
+                        .addComponent(btnGreen)))
                 .addContainerGap())
         );
 
@@ -389,9 +391,23 @@ public class CrearCodi extends javax.swing.JFrame {
             txtError.setText("No poden quedar espais en blanc");
         } else {
             p.controller.setCodi(codi);
-            Partida nova = new Partida();
-            nova.setVisible(true);
-            CrearCodi.this.dispose();
+            System.out.println("dificultat " + dificultat);
+            if (dificultat.equals("facil")) {
+                PartidaFacil nova = new PartidaFacil();
+                nova.setVisible(true);
+                CrearCodi.this.dispose();
+                System.out.println("Yiiiiii");
+            } else if (dificultat.equals("mitjana")) {
+                System.out.println("Yi");
+                PartidaMitjana nova = new PartidaMitjana();
+                nova.setVisible(true);
+                CrearCodi.this.dispose();
+            } else if (dificultat.equals("dificil")) {
+                System.out.println("Que macho");
+                PartidaDificil nova = new PartidaDificil();
+                nova.setVisible(true);
+                CrearCodi.this.dispose();
+            }
         }
     }//GEN-LAST:event_btnJugarActionPerformed
 
@@ -433,7 +449,7 @@ public class CrearCodi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearCodi().setVisible(true);
+                new CrearCodi("").setVisible(true);
             }
         });
     }
