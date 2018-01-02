@@ -1,6 +1,7 @@
 package com.prop.presentacio;
 import java.util.ArrayList;
 import com.prop.domini.ControladorDeDomini;
+import java.util.Arrays;
 import java.util.Dictionary;
 import javax.swing.JLabel;
 
@@ -115,11 +116,29 @@ public class ControladorDePresentacio {
             
             c.generarJoc(dif, b);
 	}
-
-        // Obté el Ranking de la capa de domini i el formateja.
-	public ArrayList<String> getRanking() {
-            ArrayList<String> ranking = c.consultarRanking();
-            return ranking;
+        
+        // Retorna el Ranking Fàcil
+        public ArrayList<String> getRankingFacil() {
+            ArrayList<String> facil = new ArrayList<String>();
+            ArrayList<String> rank = c.consultarRanking();
+            for (int i = 0; i < 10; ++i) facil.add(rank.get(i));
+            return facil;
+	}
+        
+        // Retorna el Ranking Mitja
+        public ArrayList<String> getRankingMitja() {
+            ArrayList<String> mitja = new ArrayList<String>();
+            ArrayList<String> rank = c.consultarRanking();
+            for (int i = 10; i < 20; ++i) mitja.add(rank.get(i));
+            return mitja;
+	}
+        
+        // Retorna el Ranking Difícil
+        public ArrayList<String> getRankingDificil() {
+            ArrayList<String> dificil = new ArrayList<String>();
+            ArrayList<String> rank = c.consultarRanking();
+            for (int i = 20; i < 30; ++i) dificil.add(rank.get(i));
+            return dificil;
 	}
         
         // Obté les els IDs de les partides guardades de la capa de domini.
