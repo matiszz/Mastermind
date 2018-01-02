@@ -98,12 +98,14 @@ public class PartidesDatabase extends Database {
 			String lineAux = ""; //auxiliar para saltar de idPartida en idPartida
 			lineAux = br.readLine();
 			lineAux = br.readLine(); //saltamos el titulo, y el primer idJugador
-			int mark = 3; //numeroLinea
+			int mark = 2; //numeroLinea
 			
 			//Buscamos la linea con el idPartida repetido, si no la encontramos pues se acaba la función
 			while(((line = br.readLine()) != null) && found == false) {
+				mark++;
 				if (line.equals(idPartida)) {
 					found = true;
+					System.out.println("idPartida encontrado en la línea " + mark);
 				}
 				else
 					for (int i=0; i<12; i++) { //saltamos hasta el proximo idPartida
@@ -116,9 +118,10 @@ public class PartidesDatabase extends Database {
 			br.close();
 			
 			if (found) {
+				System.out.println("Found");
 				//Si la encontramos, copiamos en un fichero temporal todo lo demas menos ese idPartida repetido
 				int firstLine = mark - 1; //borramos el id partida, idjugador
-				int lastLine = firstLine + 13; //borramos hasta bool guanyada
+				int lastLine = firstLine + 12; //borramos hasta bool guanyada
 				File temp = new File("temp.txt");
 				FileWriter fw2 = new FileWriter(temp);
 				BufferedWriter bw = new BufferedWriter(fw2);
@@ -126,11 +129,12 @@ public class PartidesDatabase extends Database {
 				BufferedReader buff = new BufferedReader(new FileReader(file));
 				
 				String line4 = "";
-				bw.write("Partides guardades de MasterMind");
-				bw.newLine();
-				int lineReaded = 2;
+				int lineReaded = 1;
+				System.out.println("Quiero eliminar desde la línea " + firstLine + " hasta la línea " + lastLine);
 				while ((line4 = buff.readLine()) != null) {
-					if ((lineReaded < firstLine || lineReaded > lastLine) && (line4 != null)) {
+					System.out.println("Leyendo línea " + lineReaded + " " + line4);
+					if (lineReaded < firstLine || lineReaded > lastLine) {
+						System.out.println("Escribiendo línea " + lineReaded + " " + line4);
 						bw.write(line4);
 						bw.newLine();
 					}
