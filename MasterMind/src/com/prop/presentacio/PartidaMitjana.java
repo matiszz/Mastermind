@@ -1565,6 +1565,7 @@ public class PartidaMitjana extends Partida {
     
     public void pintaJugada(ArrayList<String> codiR, int numJugada) {
         int i = 0;
+        numJugada = MAX_LINES-numJugada;
         for (JButton b : combinacions.get(numJugada)) {
             b.setIcon(new javax.swing.ImageIcon(getClass().getResource(codiR.get(i))));
             ++i;

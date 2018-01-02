@@ -391,19 +391,15 @@ public class CrearCodi extends javax.swing.JFrame {
             txtError.setText("No poden quedar espais en blanc");
         } else {
             p.controller.setCodi(codi);
-            System.out.println("dificultat " + dificultat);
             if (dificultat.equals("facil")) {
                 PartidaFacil nova = new PartidaFacil();
                 nova.setVisible(true);
                 CrearCodi.this.dispose();
-                System.out.println("Yiiiiii");
             } else if (dificultat.equals("mitjana")) {
-                System.out.println("Yi");
                 PartidaMitjana nova = new PartidaMitjana();
                 nova.setVisible(true);
                 CrearCodi.this.dispose();
             } else if (dificultat.equals("dificil")) {
-                System.out.println("Que macho");
                 PartidaDificil nova = new PartidaDificil();
                 nova.setVisible(true);
                 CrearCodi.this.dispose();
