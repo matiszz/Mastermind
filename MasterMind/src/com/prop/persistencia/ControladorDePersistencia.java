@@ -71,32 +71,28 @@ public class ControladorDePersistencia {
 		return rankDB.obteRanking();
 	}
 	
-	public ArrayList<ArrayList<String>> getJugadors() {
-		
-	}
-	
 	public static void main(String[] args) {
 		ControladorDePersistencia cP = new ControladorDePersistencia();
 		String id = "idJugador1";
-		//String[] s = new String[] {"1234", "mode1yaempezamos", "temps1", "numJugades1", "puntuacio1", "numFiles1", "longCodi1", "false", "jugades1", "codiAmagat1", "dificultat1", "guanyada1"};
-		//String[] s = new String[] {"idPartida2", "mode2modificadooooooo", "temps2", "numJugades2", "puntuacio2", "numFiles2", "longCodi2", "true", "jugades2", "codiAmagat2", "dificultat2", "guanyada2"};
-		//String[] s = new String[] {"idPartida3", "mode3afull", "temps3", "numJugades3", "puntuacio3", "numFiles3", "longCodi3", "false", "jugades3", "codiAmagat3", "dificultat3", "guanyada3"};
-		//cP.emmagatzemaPartida(s, id);
-		//ArrayList<String> l =  new ArrayList<String>(
-		//	    Arrays.asList("Juanito 100", "Manolito 200", "Pepito 300"));
-		//l = getIdPartidesGuardades(id);
-		/*
-		for (int i=0; i<l.size(); i++) {
-			System.out.print(l.get(i) + " ");
-		} */
-		ArrayList<String> l = new ArrayList<>(Arrays.asList("idjugador2", "5", "6"));
-		ArrayList< ArrayList<String> > jugadors = cP.getJugadors();
-		for (int i=0; i<jugadors.size(); i++) {
-			for (int j=0; j<jugadors.get(0).size(); j++) {
-				System.out.println(jugadors.get(i).get(j) +" ");
-			}
-			System.out.println(" ");
-		} 
+//		String[] s = new String[] {"1234", "mode1yaempezamos", "temps1", "numJugades1", "puntuacio1", "numFiles1", "longCodi1", "false", "jugades1", "codiAmagat1", "dificultat1", "guanyada1"};
+//		String[] s = new String[] {"idPartida2", "mode2modificadooooooo", "temps2", "numJugades2", "puntuacio2", "numFiles2", "longCodi2", "true", "jugades2", "codiAmagat2", "dificultat2", "guanyada2"};
+//		String[] s = new String[] {"idPartida3", "mode3afull", "temps3", "numJugades3", "puntuacio3", "numFiles3", "longCodi3", "false", "jugades3", "codiAmagat3", "dificultat3", "guanyada3"};
+//		cP.emmagatzemaPartida(s, id);
+//		ArrayList<String> l =  new ArrayList<String>(
+//			    Arrays.asList("Juanito 100", "Manolito 200", "Pepito 300"));
+//		l = getIdPartidesGuardades(id);
+//		/*
+//		for (int i=0; i<l.size(); i++) {
+//			System.out.print(l.get(i) + " ");
+//		} */
+//		ArrayList<String> l = new ArrayList<>(Arrays.asList("idjugador2", "5", "6"));
+//		ArrayList< ArrayList<String> > jugadors = cP.getJugadors();
+//		for (int i=0; i<jugadors.size(); i++) {
+//			for (int j=0; j<jugadors.get(0).size(); j++) {
+//				System.out.println(jugadors.get(i).get(j) +" ");
+//			}
+//			System.out.println(" ");
+//		} 
 		
 	}
 }

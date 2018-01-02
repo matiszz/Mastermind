@@ -23,7 +23,7 @@ public class ControladorDeDomini {
         persistencia = new ControladorDePersistencia();
         presentacio = ctrl;
         reg = new Registre();
-        //obtenirJugadors();
+        obtenirJugadors();
     }
     //Casos d'ús
     public boolean registrar(String id) {//Cas d'us registrar usuari, retorna fals si l'id està en us. Altrament registra jugador i l'emmagatzema a la BD
