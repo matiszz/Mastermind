@@ -64,6 +64,10 @@ public class ControladorDePersistencia {
 		return rankDB.obteRanking();
 	}
 	
+	public ArrayList<ArrayList<String>> getJugadors() {
+		
+	}
+	
 	public static void main(String[] args) {
 		ControladorDePersistencia cP = new ControladorDePersistencia();
 		String id = "idJugador1";

@@ -23,7 +23,7 @@ public class ControladorDeDomini {
         persistencia = new ControladorDePersistencia();
         presentacio = ctrl;
         reg = new Registre();
-
+        //obtenirJugadors();
     }
     //Casos d'ús
     public boolean registrar(String id) {//Cas d'us registrar usuari, retorna fals si l'id està en us. Altrament registra jugador i l'emmagatzema a la BD
@@ -110,6 +110,17 @@ public class ControladorDeDomini {
     public boolean hasPerdut() {
     		if((partida.numJugades == partida.numFiles) && !partidaGuanyada) return true;
     		else return false;
+    }
+    
+    // Llegeix dades dels jugadors i les guarda a la classe Registre
+    public void obtenirJugadors() {
+    	ArrayList<ArrayList<String>> jugs = persistencia.getJugadors();
+    	ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
+    	for (ArrayList<String> j : jugs) {
+    		Jugador jTmp = new Jugador(j.get(0), Integer.parseInt(j.get(1)), Integer.parseInt(j.get(2)));
+    		jugadors.add(jTmp);
+    	}
+    	reg.setJugadors(jugadors);
     }
     
     public void guardarPartida() { //Converteix la partida en l'estructura per passar entre capes i la envia a la capa de persistencia.

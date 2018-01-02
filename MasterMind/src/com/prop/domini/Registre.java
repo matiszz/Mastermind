@@ -50,4 +50,8 @@ public class Registre {
             return null;
         }
     }
+    
+    public void setJugadors(ArrayList<Jugador> j) {
+    	jugadors = j;
+    }
 }
