@@ -39,7 +39,6 @@ public class PartidesDatabase extends Database {
 				BufferedWriter bw = new BufferedWriter(fw);
 				bw.write("Partides guardades de MasterMind");
 				bw.newLine();
-				bw.newLine();
 				bw.flush();
 				bw.close();
 				
@@ -65,20 +64,16 @@ public class PartidesDatabase extends Database {
 		FileWriter fw;
 		BufferedWriter bw;
 		try {
-			System.out.println("IDPartida a encontrar " + info.get(0));
 			seekAndDestroy(info, info.get(0)); //Buscamos y eliminamos la partida con el idPartida repetido para sobreescribirla
 			fw = new FileWriter(file,true); //true es para activar el append para que no sobreescriba lo que hab�a
 			bw = new BufferedWriter(fw);
-			
 			//Escribimos ahora la partida nueva a almacenar
 			bw.write(idJugador);
 			bw.newLine();
-			for (int i=0; i<11; i++) {
+			for (int i=0; i<12; i++) {
 				bw.write(info.get(i));
 				bw.newLine();
 			}
-			bw.newLine();
-			
 			bw.flush();
 			bw.close();
 		} catch (IOException e) {
@@ -102,21 +97,17 @@ public class PartidesDatabase extends Database {
 			String line = "";
 			String lineAux = ""; //auxiliar para saltar de idPartida en idPartida
 			lineAux = br.readLine();
-			lineAux = br.readLine(); 
-			lineAux = br.readLine(); //saltamos el titulo, el primer espacio en blanco y el primer idJugador
-			int mark = 0;
+			lineAux = br.readLine(); //saltamos el titulo, y el primer idJugador
+			int mark = 3; //numeroLinea
 			
 			//Buscamos la linea con el idPartida repetido, si no la encontramos pues se acaba la función
 			while(((line = br.readLine()) != null) && found == false) {
-				System.out.println("Leyendo la linea " + mark+1 + ": " + line);
 				if (line.equals(idPartida)) {
 					found = true;
-					mark++;
 				}
 				else
 					for (int i=0; i<12; i++) { //saltamos hasta el proximo idPartida
 						lineAux = br.readLine();
-						System.out.println("Leyendo mierda: " + lineAux);
 						mark++;
 					}
 			}
@@ -126,8 +117,8 @@ public class PartidesDatabase extends Database {
 			
 			if (found) {
 				//Si la encontramos, copiamos en un fichero temporal todo lo demas menos ese idPartida repetido
-				int firstLine = mark - 1;
-				int lastLine = firstLine + 11;
+				int firstLine = mark - 1; //borramos el id partida, idjugador
+				int lastLine = firstLine + 13; //borramos hasta bool guanyada
 				File temp = new File("temp.txt");
 				FileWriter fw2 = new FileWriter(temp);
 				BufferedWriter bw = new BufferedWriter(fw2);
@@ -135,9 +126,11 @@ public class PartidesDatabase extends Database {
 				BufferedReader buff = new BufferedReader(new FileReader(file));
 				
 				String line4 = "";
-				int lineReaded = 1;
+				bw.write("Partides guardades de MasterMind");
+				bw.newLine();
+				int lineReaded = 2;
 				while ((line4 = buff.readLine()) != null) {
-					if (lineReaded < firstLine -1 || lineReaded > lastLine) {
+					if ((lineReaded < firstLine || lineReaded > lastLine) && (line4 != null)) {
 						bw.write(line4);
 						bw.newLine();
 					}
@@ -166,8 +159,7 @@ public class PartidesDatabase extends Database {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
-			String lineAux = "";
-			lineAux = br.readLine(); 
+			String lineAux = ""; 
 			lineAux = br.readLine(); //saltamos hasta el primer idJugador
 			while ((line = br.readLine()) != null) {
 				if (line.equals(idJugador)) {
@@ -200,7 +192,7 @@ public class PartidesDatabase extends Database {
 		return l;
 	}
 	
-	
+	/* Deprecated, no usar, si se usa primero hay que cambiar la gestion de espacios, ahora no hay */
 	public List< List<String> > obtePartidesJugador(String idJugador) {
 		List< List<String> > l = new ArrayList< List<String> >();
 		try {
@@ -246,25 +238,22 @@ public class PartidesDatabase extends Database {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
 			String lineAux = "";
-			lineAux = br.readLine();
 			lineAux = br.readLine(); //leemos hasta el primer idJugador
 			while((line = br.readLine()) != null && !found) {
 				String idJugador = line;
-				line = br.readLine(); //leemos el idPartida 
-				if (line != null) { //esto es por si llegamos a final de fichero sin haber encontrado aun nada para que no lo compare con null
-					if (line.equals(idPartida)) {
-						found = true;
-						l.add(idJugador); //añadimos el idJugador
-						l.add(line); //añadimos el idPartida
-						for (int i=0; i<10; i++) {
-							line = br.readLine();
-							l.add(line); //añadimos el resto de los campos
-						}
+				line = br.readLine(); //leemos el idPartida
+				if (line.equals(idPartida)) {
+					found = true;
+					l.add(idJugador); //añadimos el idJugador
+					l.add(line); //añadimos el idPartida
+					for (int i=0; i<11; i++) {
+						line = br.readLine();
+						l.add(line); //añadimos el resto de los campos
 					}
 				}
 				else {
 					for (int i=0; i<11; i++) {
-						lineAux = br.readLine(); //leemos hasta el proximo idPartida
+						lineAux = br.readLine(); //leemos hasta el proximo idJugador
 					}
 				}
 			}
@@ -287,7 +276,6 @@ public class PartidesDatabase extends Database {
 			String line = "";
 			String lineAux = "";
 			lineAux = br.readLine(); //leo el titulo del fichero
-			lineAux = br.readLine(); //leo el espacio en blanco
 			while ((line = br.readLine()) != null) {
 				if (line.equals(idJugador)) {
 					l.add(br.readLine()); //añado el idPartida al arraylist si coincide el idJugador
