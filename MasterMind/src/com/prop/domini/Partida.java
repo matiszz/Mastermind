@@ -33,10 +33,13 @@ public class Partida {
     		s.add(Integer.toString(this.longCodi));
     		s.add(Boolean.toString(this.finalitzada));
     		s.add(Integer.toString(this.dificultat));
+    		String l = "";
     		for(int i = 0; i < jugades.size();++i) {
-    			String l = (jugades.get(i)).converteix_a_string();
-    			s.add(l);  
+    			l += (jugades.get(i)).converteix_a_string();
+    			if (i != jugades.size()-1) //para que no se escriba el espacio final
+    				l += " "; 
     		}
+    		s.add(l); 
     		String codi = "";
     		for(int i = 0; i < longCodi;++i) {
     			codi+=Integer.toString(codiamagat.get(i));
