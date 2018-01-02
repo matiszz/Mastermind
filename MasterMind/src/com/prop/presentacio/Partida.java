@@ -5,6 +5,7 @@
  */
 package com.prop.presentacio;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,10 +21,12 @@ import javax.swing.JOptionPane;
  */
 public class Partida extends javax.swing.JFrame {
     
+    private int MAX_LINES = 6;
+    
     private ControladorDePresentacio p = new ControladorDePresentacio();
     private String selectedColor = "/images/empty.png";
     private int selectedInt = 0;
-    private int editable = 0;
+    private int editable = MAX_LINES;
     private int[] codi = new int[4];
     
     private ArrayList<JLabel> res0;
@@ -51,7 +55,7 @@ public class Partida extends javax.swing.JFrame {
      * Creates new form VistaTauler
      */
     public Partida() {
-        editable = 0;
+        editable = MAX_LINES;
         
         initComponents();
         
@@ -59,10 +63,10 @@ public class Partida extends javax.swing.JFrame {
         ferGrupsCombinacions();
         
         p.controller.setTauler(this);
-        //if (p.controller.esCodeMaker()) {
-           // Controles.setVisible(false);
-           // btnCheck.setVisible(false);
-           // txtColores.setVisible(false);
+        if (p.controller.esCodeMaker()) {
+            Controles.setVisible(false);
+            btnCheck.setVisible(false);
+            txtColores.setVisible(false);
             
             ArrayList<String> sols = p.controller.getSolucio();
             sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(0))));
@@ -70,17 +74,17 @@ public class Partida extends javax.swing.JFrame {
             sol2.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(2))));
             sol3.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(3))));
             
-            //p.controller.jugaCodeMaker();
-        //} else {
-//            Controles.setVisible(true);
-//            btnCheck.setVisible(true);
-//            txtColores.setVisible(true);
-//            
-//            sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
-//            sol1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
-//            sol2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
-//            sol3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
-//        }
+            p.controller.jugaCodeMaker();
+        } else {
+            Controles.setVisible(true);
+            btnCheck.setVisible(true);
+            txtColores.setVisible(true);
+            
+            sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
+            sol1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
+            sol2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
+            sol3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
+        }
     }
 
     /**
@@ -1344,7 +1348,7 @@ public class Partida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
-       editable++;
+       editable--;
        p.controller.ferJugada(codi);
        codi[0] = 0;
        codi[1] = 0;
@@ -1551,18 +1555,26 @@ public class Partida extends javax.swing.JFrame {
     
     public void mostraCodiRespost(ArrayList<String> codiR, int numJugada) {
         int i = 0;
+        numJugada = MAX_LINES-numJugada;
         for (JLabel r : respostes.get(numJugada)) {
             r.setIcon(new javax.swing.ImageIcon(getClass().getResource(codiR.get(i))));
             ++i;
         }
         // Si perd
         if (p.controller.haPerdut()) {
-            JOptionPane.showMessageDialog(null, "Has perdut!");
+            if (p.controller.esCodeMaker()) JOptionPane.showMessageDialog(null, "Has guanyat contra la CPU!");
+            else JOptionPane.showMessageDialog(null, "Has perdut :(");
+            editable = 500;
+            ArrayList<String> sols = p.controller.getSolucio();
+            sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(0))));
+            sol1.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(1))));
+            sol2.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(2))));
+            sol3.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(3))));
             p.controller.acabaPartida();
         }
         // Si guanya
         else if (p.controller.haGuanyat()) {
-            JOptionPane.showMessageDialog(null, "Has guanyat!");
+            JOptionPane.showMessageDialog(null, "Felicitats, has guanyat!");
             editable = 500;
             ArrayList<String> sols = p.controller.getSolucio();
             sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(0))));
@@ -1714,9 +1726,9 @@ public class Partida extends javax.swing.JFrame {
         comb8.add(b83);
         combinacions.add(comb8);
     }
-    
+     
     public void setEditable(int e) {
-        editable = e;
+        editable = MAX_LINES-e;
     }
     
     /**
@@ -1744,6 +1756,12 @@ public class Partida extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Partida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -1863,5 +1881,6 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JPanel solucio;
     private javax.swing.JLabel txtColores;
     // End of variables declaration//GEN-END:variables
+
 
 }

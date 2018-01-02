@@ -1,15 +1,15 @@
 Partides guardades de MasterMind
 
-juanito
+mati
 0
 CodeBreaker
 0
-4
-4
+5
+5
 7
 4
 false
 3
-00000000
-11111211
+10000112
+33230020
 
