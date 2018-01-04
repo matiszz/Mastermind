@@ -22,7 +22,8 @@ public class Ranking {
 		for(int i = 0; i < RankingDB.size();++i) {
 			String fila = RankingDB.get(i);
 			String[] campos = fila.split(" ");
-			FilaRanking f = new FilaRanking(Integer.parseInt(campos[1]),campos[2]);
+			if((campos[1] != "----") && (campos[2] != "----")){
+				FilaRanking f = new FilaRanking(Integer.parseInt(campos[1]),campos[2]);
 				if(i < 10) { //Facil
 					this.afegeix_fila(f, 1);
 				}
@@ -32,6 +33,7 @@ public class Ranking {
 				else {//Dificil
 					this.afegeix_fila(f, 3);
 				}
+			}
 		}
 	}
 	
