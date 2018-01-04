@@ -277,4 +277,8 @@ public class ControladorDeDomini {
     public ArrayList<String> recuperaRanking(){
     		return persistencia.obteRanking();
     }
+    
+    public int getDificultat() {
+        return partida.getdificultat();
+    }
 }

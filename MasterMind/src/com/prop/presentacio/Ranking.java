@@ -56,13 +56,13 @@ public class Ranking extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         modelM = new DefaultListModel();
-        ranking2 = new javax.swing.JList<>();
+        rankingM = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         modelD = new DefaultListModel();
-        ranking = new javax.swing.JList<>();
+        rankingD = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         modelF = new DefaultListModel();
-        ranking1 = new javax.swing.JList<>();
+        rankingF = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MasterMind");
@@ -99,14 +99,14 @@ public class Ranking extends javax.swing.JFrame {
 
         jLabel4.setText("Difícil");
 
-        ranking.setModel(modelM);
-        jScrollPane3.setViewportView(ranking2);
+        rankingM.setModel(modelM);
+        jScrollPane3.setViewportView(rankingM);
 
-        ranking.setModel(modelD);
-        jScrollPane1.setViewportView(ranking);
+        rankingD.setModel(modelD);
+        jScrollPane1.setViewportView(rankingD);
 
-        ranking.setModel(modelF);
-        jScrollPane2.setViewportView(ranking1);
+        rankingF.setModel(modelF);
+        jScrollPane2.setViewportView(rankingF);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -255,11 +255,11 @@ public class Ranking extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList<String> ranking;
+    private javax.swing.JList<String> rankingD;
     private DefaultListModel modelD;
-    private javax.swing.JList<String> ranking1;
+    private javax.swing.JList<String> rankingF;
     private DefaultListModel modelF;
-    private javax.swing.JList<String> ranking2;
+    private javax.swing.JList<String> rankingM;
     private DefaultListModel modelM;
     // End of variables declaration//GEN-END:variables
 }

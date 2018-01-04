@@ -178,7 +178,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="ranking2">
+            <Component class="javax.swing.JList" name="rankingM">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="0"/>
@@ -187,7 +187,7 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="modelM = new DefaultListModel();"/>
                 <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private DefaultListModel modelM;"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ranking.setModel(modelM);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="rankingM.setModel(modelM);"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
@@ -200,7 +200,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="ranking">
+            <Component class="javax.swing.JList" name="rankingD">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="0"/>
@@ -209,7 +209,7 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="modelD = new DefaultListModel();"/>
                 <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private DefaultListModel modelD;"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ranking.setModel(modelD);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="rankingD.setModel(modelD);"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
@@ -222,7 +222,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="ranking1">
+            <Component class="javax.swing.JList" name="rankingF">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="0"/>
@@ -231,7 +231,7 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="modelF = new DefaultListModel();"/>
                 <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private DefaultListModel modelF;"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ranking.setModel(modelF);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="rankingF.setModel(modelF);"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
