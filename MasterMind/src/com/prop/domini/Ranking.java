@@ -68,7 +68,10 @@ public class Ranking {
 		
 		//if((dificultat < 1) || (dificultat > 3) ) //Ja s'haura comprovat a la capa de presentacio
 		if(dificultat == 1) {
-			if(r_facil.isEmpty()) r_facil.add(f); 
+			if(r_facil.isEmpty()) {
+				r_facil.add(f); 
+				afegida = true;
+			}
 			else { //Si no està buida
 				boolean trobat = false;
 				int i,pos;
@@ -92,7 +95,10 @@ public class Ranking {
 			}
 		}
 		else if (dificultat == 2) {
-			if(r_medio.isEmpty()) r_medio.add(f); 
+			if(r_medio.isEmpty()) {
+				r_medio.add(f); 
+				afegida = true;
+			}
 			else { //Si no està buida
 				boolean trobat = false;
 				int pos,i;
@@ -116,7 +122,10 @@ public class Ranking {
 			}
 		}
 		else {
-			if(r_dificil.isEmpty())	r_dificil.add(f);
+			if(r_dificil.isEmpty()) {
+				r_dificil.add(f);
+				afegida = true;
+			}
 			else { //Si no està buida
 				boolean trobat = false;
 				int pos, i;
