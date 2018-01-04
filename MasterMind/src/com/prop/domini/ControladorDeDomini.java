@@ -281,4 +281,12 @@ public class ControladorDeDomini {
     public int getDificultat() {
         return partida.getdificultat();
     }
+    
+    public void CpuVsCpu(int i) {
+    	
+    	 	Algorisme a = new Algorisme(this);
+    	 	if(i%2 == 0) a.cpuVsCpu(partida, true);
+    	 	else a.cpuVsCpu(partida,false);
+  
+    }
 }
