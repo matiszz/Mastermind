@@ -1,0 +1,14 @@
+Partides guardades de MasterMind
+mati
+0
+CodeBreaker
+0
+3
+3
+7
+4
+false
+3
+00001211 23320120 31131001
+4034
+false
