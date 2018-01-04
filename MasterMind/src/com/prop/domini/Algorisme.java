@@ -25,7 +25,7 @@ public class Algorisme {
         }
 
     }
-
+    
     public void copiar(ArrayList<Integer> ori, ArrayList<Integer> dest) {
 
         for (int i = 0; i < ori.size(); ++i) {
@@ -146,6 +146,18 @@ public class Algorisme {
             matriu.add(fila);
         }
     }
+    
+    public ArrayList<Integer> basic(int columnes, int colors, ArrayList<Integer> resposta) {
+        if (resposta.isEmpty()) {
+            ArrayList<Integer> intermig = new ArrayList<Integer>();
+            genera_combinacions(0, columnes, colors, intermig);
+            genera_matriu(combinacions);
+            jugat = combinacions.get(0);
+        } else { //Five Guess
+            jugat = this.genera_random(combinacions);
+        }
+        return jugat;
+    }
 
     public ArrayList<Integer> five_guess(int columnes, int colors, ArrayList<Integer> resposta) {
         
@@ -193,6 +205,13 @@ public class Algorisme {
         }
         return b;
     }
+    
+    public void cpuVsCpu(Partida p, boolean basic) {
+    		this.genera_random(combinacions);
+    		Jugador j = new Jugador(true);
+    		if(basic) simulaPartidaBasic(p,j);
+    		else this.simulaPartida(p, j);
+    }
 
     public void simulaPartida(Partida p, Jugador j) {
         boolean correcte = false;
@@ -201,6 +220,33 @@ public class Algorisme {
         
         for (int i = 0; !correcte && i < p.numFiles; ++i) {
             combinacio = this.five_guess(p.longCodi, 5, respost);
+            respost = this.aplica_logica(p.codiamagat, combinacio);
+            
+            System.out.println("Combinacio: " + combinacio);
+            System.out.println("Resposta: " + respost);
+            
+            Jugada jug = new Jugada(i, p, j);
+            jug.codiProposat = combinacio;
+            jug.codiRespost = respost;
+            p.ferJugada(jug);
+            jug.encert = this.comprova(respost);
+            
+            if (jug.encert) {
+                ctrl.partidaGuanyada = true;
+                correcte = true;
+            }
+            
+            ctrl.jugadaCompleta(respost, combinacio);
+        }
+    }
+    
+    public void simulaPartidaBasic(Partida p, Jugador j) {
+        boolean correcte = false;
+        ArrayList<Integer> combinacio = new ArrayList<Integer>();
+        ArrayList<Integer> respost = new ArrayList<Integer>();
+        
+        for (int i = 0; !correcte && i < p.numFiles; ++i) {
+            combinacio = this.basic(p.longCodi, 5, respost);
             respost = this.aplica_logica(p.codiamagat, combinacio);
             
             System.out.println("Combinacio: " + combinacio);
