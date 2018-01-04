@@ -21,8 +21,13 @@ public class Ranking {
 		ArrayList<String> RankingDB = ctrl.recuperaRanking();
 		for(int i = 0; i < RankingDB.size();++i) {
 			String fila = RankingDB.get(i);
+<<<<<<< HEAD
 			String[] campos = fila.split("\\s+");
 			if((!campos[1].equals("-")) && (!campos[2].equals("-"))){
+=======
+			String[] campos = fila.split(" ");
+			if((campos[1] != "-") && (campos[2] != "")){
+>>>>>>> 3e10b9c122a1e64128ab9f46d874fe5ac87a31e0
 				FilaRanking f = new FilaRanking(Integer.parseInt(campos[1]),campos[2]);
 				if(i < 10) { //Facil
 					this.afegeix_fila(f, 1);
@@ -173,6 +178,13 @@ public class Ranking {
 		}
 	return afegida;
 	}
+	
+	public boolean existeixRanking() {
+		boolean buit;
+		buit = ((r_facil.size() == 0) && (r_medio.size() == 0) && (r_dificil.size() == 0));
+		return buit;
+	}
+	
 	public ArrayList<String> converteix_Ranking(){
 		ArrayList<String> res = new ArrayList<String>();
 		int i ;
