@@ -33,7 +33,7 @@ public class FilaRanking {
 		return jugador;
 	}
 	public String converteix() {
-		String s = Integer.toString(this.intents) + "      " + this.jugador;
+		String s = " " + Integer.toString(this.intents) + " " + this.jugador;
 		return s;
 	}
 }

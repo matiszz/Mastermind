@@ -19,7 +19,7 @@ public class ControladorDeDomini {
 
     //Creadora
     public ControladorDeDomini(ControladorDePresentacio ctrl) {
-        ranking = new Ranking();
+        ranking = new Ranking(this);
         persistencia = new ControladorDePersistencia();
         presentacio = ctrl;
         reg = new Registre();
@@ -272,5 +272,9 @@ public class ControladorDeDomini {
     
     public ArrayList<Integer> getSolucio() {
         return partida.getCodiamagat();
+    }
+    
+    public ArrayList<String> recuperaRanking(){
+    		return persistencia.obteRanking();
     }
 }

@@ -7,13 +7,34 @@ public class Ranking {
 	ArrayList<FilaRanking> r_facil;
 	ArrayList<FilaRanking> r_medio;
 	ArrayList<FilaRanking> r_dificil;
+	ControladorDeDomini ctrl;
 	
-	public Ranking() {
+	public Ranking(ControladorDeDomini ctrl) {
 		r_facil = new ArrayList<FilaRanking>();
 		r_medio = new ArrayList<FilaRanking>();
 		r_dificil = new ArrayList<FilaRanking>();
+		this.ctrl = ctrl;
+		this.recuperaRanking();
 	}
 
+	public void recuperaRanking() {
+		ArrayList<String> RankingDB = ctrl.recuperaRanking();
+		for(int i = 0; i < RankingDB.size();++i) {
+			String fila = RankingDB.get(i);
+			String[] campos = fila.split(" ");
+			FilaRanking f = new FilaRanking(Integer.parseInt(campos[1]),campos[2]);
+				if(i < 10) { //Facil
+					this.afegeix_fila(f, 1);
+				}
+				else if(i >= 10 && i < 20) { //Medio
+					this.afegeix_fila(f, 2);
+				}
+				else {//Dificil
+					this.afegeix_fila(f, 3);
+				}
+		}
+	}
+	
 	public void getrankings(ArrayList<FilaRanking>facil, ArrayList<FilaRanking>medio, ArrayList<FilaRanking>dificil) {
 		facil = r_facil;
 		medio = r_medio;
@@ -159,7 +180,7 @@ public class Ranking {
 			res.add(elem);
 		}
 		while(i < 10) {
-			res.add((i+1) + "    ----     ---- ");
+			res.add((i+1) + " ----  ----");
 			i++;
 		}
 		for(i = 0; i < r_medio.size();++i) {
@@ -168,7 +189,7 @@ public class Ranking {
 			res.add(elem);
 		}
 		while(i <= 10) {
-			res.add((i+1) + "    ----     ---- ");
+			res.add((i+1) + " ----  ----");
 			i++;
 		}
 		for(i = 0; i < r_dificil.size();++i) {
@@ -177,7 +198,7 @@ public class Ranking {
 			res.add(elem);
 		}
 		while(i < 10) {
-			res.add((i+1) + "    ----     ---- ");
+			res.add((i+1) +" ----  ----");
 			i++;
 		}
 		return res;
