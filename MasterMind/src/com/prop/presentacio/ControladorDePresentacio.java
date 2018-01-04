@@ -24,6 +24,7 @@ public class ControladorDePresentacio {
         // Constructor
 	public ControladorDePresentacio() {
             c = new ControladorDeDomini(this);
+            c.instanciaRanking();
             nomJugador = null;
 	}
         
