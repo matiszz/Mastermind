@@ -19,11 +19,14 @@ public class ControladorDeDomini {
 
     //Creadora
     public ControladorDeDomini(ControladorDePresentacio ctrl) {
-        ranking = new Ranking(this);
         persistencia = new ControladorDePersistencia();
         presentacio = ctrl;
         reg = new Registre();
         obtenirJugadors();
+    }
+    
+    public void instanciaRanking() {
+    	 	ranking = new Ranking(this);
     }
     //Casos d'ús
     public boolean registrar(String id) {//Cas d'us registrar usuari, retorna fals si l'id està en us. Altrament registra jugador i l'emmagatzema a la BD
