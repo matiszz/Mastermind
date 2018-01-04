@@ -22,7 +22,7 @@ public class Ranking {
 		for(int i = 0; i < RankingDB.size();++i) {
 			String fila = RankingDB.get(i);
 			String[] campos = fila.split(" ");
-			if((campos[1] != "----") && (campos[2] != "----")){
+			if((campos[1] != "-") && (campos[2] != "")){
 				FilaRanking f = new FilaRanking(Integer.parseInt(campos[1]),campos[2]);
 				if(i < 10) { //Facil
 					this.afegeix_fila(f, 1);
@@ -173,6 +173,13 @@ public class Ranking {
 		}
 	return afegida;
 	}
+	
+	public boolean existeixRanking() {
+		boolean buit;
+		buit = ((r_facil.size() == 0) && (r_medio.size() == 0) && (r_dificil.size() == 0));
+		return buit;
+	}
+	
 	public ArrayList<String> converteix_Ranking(){
 		ArrayList<String> res = new ArrayList<String>();
 		int i ;
@@ -182,7 +189,7 @@ public class Ranking {
 			res.add(elem);
 		}
 		while(i < 10) {
-			res.add((i+1) + " ----  ----");
+			res.add((i+1) + " - -");
 			i++;
 		}
 		for(i = 0; i < r_medio.size();++i) {
@@ -190,8 +197,8 @@ public class Ranking {
 			String elem = (i+1) + f.converteix();
 			res.add(elem);
 		}
-		while(i <= 10) {
-			res.add((i+1) + " ----  ----");
+		while(i < 10) {
+			res.add((i+1) + " - -");
 			i++;
 		}
 		for(i = 0; i < r_dificil.size();++i) {
@@ -200,7 +207,7 @@ public class Ranking {
 			res.add(elem);
 		}
 		while(i < 10) {
-			res.add((i+1) +" ----  ----");
+			res.add((i+1) +" - -");
 			i++;
 		}
 		return res;
