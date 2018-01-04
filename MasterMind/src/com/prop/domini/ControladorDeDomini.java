@@ -137,7 +137,7 @@ public class ControladorDeDomini {
         partida.guardarPartida();
         int res = partida.finalitzarPartida();
         jugador.actualitzar_partides(res, partida.getguanyada());
-        //persistencia.actualitzaJugador(jugador.converteixaString());
+        persistencia.actualitzaJugador(jugador.converteixaString());
         int dificultat = gen.getDificultat();
         FilaRanking f = new FilaRanking(res, jugador.getIdJugador());
         boolean afegida = ranking.afegeix_fila(f, dificultat);
@@ -154,16 +154,16 @@ public class ControladorDeDomini {
         i = 10;
         ArrayList<Jugada> ljugades = new ArrayList<Jugada>();
         int n;
+        String codis = info.get(i);
         int numJugades = Integer.parseInt(info.get(4));
         for(n = 0; n < numJugades;++n) {//Recorro totes les jugades
-        		String codis = info.get(i+n);
         		ArrayList<Integer> codiProposat = new ArrayList<Integer>();
         		ArrayList<Integer> codiRespost = new ArrayList<Integer>();
         		
         		//La jugada que estem tractant 
         		Jugada j = new Jugada(n,newp,jugador);
     			
-        		for(int l = 0 ; l < codis.length();++l) {//Lleno codiproposat i codiRespost
+        		for(int l = 2*n*(partida.longCodi) ; l < (partida.longCodi)*2;++l) {//Lleno codiproposat i codiRespost
         			int numero = codis.charAt(l)-'0';
         			if(l < codis.length()/2) {//CodiProposat
         				codiProposat.add(numero);
@@ -179,7 +179,7 @@ public class ControladorDeDomini {
         		ljugades.add(j); //Añado la jugada nueva	
         		
         }
-        String codiAmagat = info.get(i+n);
+        String codiAmagat = info.get(i+1);
         ArrayList<Integer> ca = new ArrayList<Integer>();
         for(int k = 0; k <codiAmagat.length();++k) {
         		ca.add(codiAmagat.charAt(k)-'0');
@@ -272,9 +272,5 @@ public class ControladorDeDomini {
     
     public ArrayList<Integer> getSolucio() {
         return partida.getCodiamagat();
-    }
-    
-    public int getDificultat() {
-        return partida.getdificultat();
     }
 }
