@@ -10,7 +10,7 @@ Ranking de MasterMind
 9 - -
 10 - -
 1 5 mati
-2 - -
+2 9 mati
 3 - -
 4 - -
 5 - -
@@ -20,7 +20,7 @@ Ranking de MasterMind
 9 - -
 10 - -
 1 4 mati
-2 - -
+2 4 mati
 3 - -
 4 - -
 5 - -

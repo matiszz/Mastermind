@@ -22,8 +22,8 @@ public class Ranking {
 		for(int i = 0; i < RankingDB.size();++i) {
 			String fila = RankingDB.get(i);
 			
-			String[] campos = fila.split(" ");
-			if((campos[1] != "-") && (campos[2] != "")){
+			String[] campos = fila.split("\\s+");
+			if((!campos[1].equals("-")) && (!campos[2].equals("-"))){
 
 				FilaRanking f = new FilaRanking(Integer.parseInt(campos[1]),campos[2]);
 				if(i < 10) { //Facil

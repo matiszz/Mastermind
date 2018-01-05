@@ -1,2 +1,2 @@
 Registre de jugadors de MasterMind
-mati 6 0
+mati 8 0

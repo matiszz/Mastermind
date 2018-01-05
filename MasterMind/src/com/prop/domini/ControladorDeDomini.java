@@ -285,6 +285,11 @@ public class ControladorDeDomini {
         return partida.getdificultat();
     }
     
+    public int getDificultatPartida(String idPartida) {
+        ArrayList<String> par = persistencia.getInfoPartida(idPartida);
+        return Integer.parseInt(par.get(8));
+    }
+    
     public void CpuVsCpu(int i) {
     	
     	 	Algorisme a = new Algorisme(this);
