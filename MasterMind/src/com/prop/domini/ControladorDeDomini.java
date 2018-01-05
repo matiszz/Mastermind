@@ -156,19 +156,23 @@ public class ControladorDeDomini {
         Partida newp = new Partida(Integer.parseInt(info.get(i)), info.get(i + 1), Boolean.parseBoolean(info.get(i + 7)), Integer.parseInt(info.get(i + 5)), Integer.parseInt(info.get(i + 6)), Integer.parseInt(info.get(i + 8)));
         i = 10;
         ArrayList<Jugada> ljugades = new ArrayList<Jugada>();
-        int n;
+        
         String codis = info.get(i);
         int numJugades = Integer.parseInt(info.get(4));
-        for(n = 0; n < numJugades;++n) {//Recorro totes les jugades
+        int longitudJugada = 2*partida.longCodi;
+        
+        for(int j = 0; j < numJugades;++j) {//Recorro cadaJugada
         		ArrayList<Integer> codiProposat = new ArrayList<Integer>();
         		ArrayList<Integer> codiRespost = new ArrayList<Integer>();
         		
-        		//La jugada que estem tractant 
-        		Jugada j = new Jugada(n,newp,jugador);
-    			
-        		for(int l = 2*n*(partida.longCodi) ; l < (partida.longCodi)*2;++l) {//Lleno codiproposat i codiRespost
+        		//Creem la jugada que estem tractant 
+        		Jugada jugada = new Jugada(j,newp,jugador);
+    			int inici = j*longitudJugada;
+    			int fin = inici+longitudJugada;
+    			int meitat = ((inici+fin)/2);
+        		for(int l = inici ; l < fin ;++l) {//Jugada va [j*longitudJugada - j*longitudJugada+longitudJugada)
         			int numero = codis.charAt(l)-'0';
-        			if(l < codis.length()/2) {//CodiProposat
+        			if(l < meitat) {//CodiProposat
         				codiProposat.add(numero);
         			}
         			else {//CodiRespost	
@@ -176,10 +180,10 @@ public class ControladorDeDomini {
         			}
         		}
         		//Lleno la jugada
-        		j.setcodiProposat(codiProposat);
-        		j.setcodiRespost(codiRespost);
-        		j.encert = false;
-        		ljugades.add(j); //Añado la jugada nueva	
+        		jugada.setcodiProposat(codiProposat);
+        		jugada.setcodiRespost(codiRespost);
+        		jugada.encert = false;
+        		ljugades.add(jugada); //Añado la jugada nueva	
         		
         }
         String codiAmagat = info.get(i+1);
