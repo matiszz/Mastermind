@@ -1251,6 +1251,7 @@ public class PartidaDificil extends Partida {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         p.controller.guardarPartida();
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnPurpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurpleActionPerformed
@@ -1438,7 +1439,7 @@ public class PartidaDificil extends Partida {
     }
      
     public void setEditable(int e) {
-        editable = MAX_LINES-e;
+        editable = e;//MAX_LINES-e;
     }
     
     /**

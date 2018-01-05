@@ -36,8 +36,6 @@ public class Partida {
     		String l = "";
     		for(int i = 0; i < jugades.size();++i) {
     			l += (jugades.get(i)).converteix_a_string();
-    			if (i != jugades.size()-1) //para que no se escriba el espacio final
-    				l += " "; 
     		}
     		s.add(l); 
     		String codi = "";

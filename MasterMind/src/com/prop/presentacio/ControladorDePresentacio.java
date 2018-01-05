@@ -28,10 +28,12 @@ public class ControladorDePresentacio {
             nomJugador = null;
 	}
         
+        // Obté el nom del jugador.
         public String getNomJugador() {
             return nomJugador;
         }
         
+        // Estableix el tauler-
         public void setTauler(Partida t) {
             tauler = t;
         }
@@ -53,7 +55,8 @@ public class ControladorDePresentacio {
             ArrayList<String> codiR = transformaColors(colorsEspigues, codi);
             tauler.mostraCodiRespost(codiR, numJugada);
 	}
-                
+        
+        // Transforma el codi en ints a les URLs on estàn les imatges de colors.
         private ArrayList<String> transformaColors(String[] tipus, ArrayList<Integer> codi) {
             ArrayList<String> codiR = new ArrayList<String>();
             for (int i = 0; i < codi.size(); i++)
@@ -83,6 +86,7 @@ public class ControladorDePresentacio {
             return c.getDificultatPartida(idPartida);
         }
         
+        // Crea una instància de la partida que volem restaurar.
         public void crearPartidaRestaurada(String idPartida) {
             c.continuarPartida(idPartida);
         }
@@ -101,14 +105,14 @@ public class ControladorDePresentacio {
                 System.out.println("Proposta Pr: " + proposta);
                 System.out.println("Resposta Pr: " + resposta);
                 
-                
                 this.tauler.pintaJugada(proposta, i);
                 this.tauler.mostraCodiRespost(resposta, i);
-                this.tauler.setEditable(i);
+                this.tauler.setEditable(i-1);
             }
+            numJugada = tauler.size();
 	}
         
-        // Acaba la partida
+        // Acaba la partida.
         public void acabaPartida() {
             c.finalitzarPartida();
         }
@@ -118,7 +122,7 @@ public class ControladorDePresentacio {
             numJugada = 0;
             int dif;
             
-            if ("facil".equals(dificultat))         dif = 1;
+            if      ("facil".equals(dificultat))    dif = 1;
             else if ("mitjana".equals(dificultat))  dif = 2;
             else dif = 3;
             

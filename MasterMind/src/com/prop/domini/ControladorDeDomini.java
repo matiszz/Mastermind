@@ -205,9 +205,9 @@ public class ControladorDeDomini {
         ArrayList<String> partides = persistencia.getInfoPartida(idPartida);
         partida = converteixPartida(partides);
         
-        ArrayList<ArrayList<Integer>> fila = new ArrayList<ArrayList<Integer>>();
         ArrayList<ArrayList<ArrayList<Integer>>> tauler = new ArrayList<ArrayList<ArrayList<Integer>>>();
         for (int i = 0; i < partida.numJugades; ++i) {
+            ArrayList<ArrayList<Integer>> fila = new ArrayList<ArrayList<Integer>>();
             ArrayList<Integer> jugada = new ArrayList<Integer>();
             ArrayList<Integer> resposta = new ArrayList<Integer>();
             jugada = partida.jugades.get(i).codiProposat;

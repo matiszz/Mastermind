@@ -1,8 +1,8 @@
 Ranking de MasterMind
 1 5 mati
 2 7 mati
-3 11 mati
-4 - -
+3 10 pepe
+4 11 mati
 5 - -
 6 - -
 7 - -
