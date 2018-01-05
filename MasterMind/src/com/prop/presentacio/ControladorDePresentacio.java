@@ -83,6 +83,10 @@ public class ControladorDePresentacio {
             return c.getDificultatPartida(idPartida);
         }
         
+        public void crearPartidaRestaurada(String idPartida) {
+            c.continuarPartida(idPartida);
+        }
+        
         // Obté les dades per restaurar una partida, i la mostra al tauler.
 	public void restauraPartida(String idPartida) { 
             ArrayList<ArrayList<ArrayList<Integer>>> tauler = c.continuarPartida(idPartida);

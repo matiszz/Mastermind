@@ -158,7 +158,7 @@ public class ControladorDeDomini {
         ArrayList<Jugada> ljugades = new ArrayList<Jugada>();
         
         String codis = info.get(i);
-        int numJugades = Integer.parseInt(info.get(3));
+        int numJugades = Integer.parseInt(info.get(4));
         int longitudJugada = 2*newp.longCodi;
         
         for(int j = 0; j < numJugades;++j) {//Recorro cadaJugada

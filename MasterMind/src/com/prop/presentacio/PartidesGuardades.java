@@ -175,18 +175,21 @@ public class PartidesGuardades extends javax.swing.JFrame {
             String idPartida = partidesGuardades.get(partides.getSelectedIndex());
             int dificultat = p.controller.getDificultatPartida(idPartida);
             if (dificultat == 1) {
+                p.controller.crearPartidaRestaurada(idPartida);
                 PartidaFacil nova = new PartidaFacil();
-                p.controller.setTauler(nova);
+//                p.controller.setTauler(nova);
                 p.controller.restauraPartida(idPartida);
                 nova.setVisible(true);
             } else if (dificultat == 2) {
+                p.controller.crearPartidaRestaurada(idPartida);
                 PartidaMitjana nova = new PartidaMitjana();
-                p.controller.setTauler(nova);
+//                p.controller.setTauler(nova);
                 p.controller.restauraPartida(idPartida);
                 nova.setVisible(true);
             } else if (dificultat == 3) {
+                p.controller.crearPartidaRestaurada(idPartida);
                 PartidaDificil nova = new PartidaDificil();
-                p.controller.setTauler(nova);
+//                p.controller.setTauler(nova);
                 p.controller.restauraPartida(idPartida);
                 nova.setVisible(true);
             }
