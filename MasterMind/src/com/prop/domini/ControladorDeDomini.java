@@ -158,8 +158,8 @@ public class ControladorDeDomini {
         ArrayList<Jugada> ljugades = new ArrayList<Jugada>();
         
         String codis = info.get(i);
-        int numJugades = Integer.parseInt(info.get(4));
-        int longitudJugada = 2*partida.longCodi;
+        int numJugades = Integer.parseInt(info.get(3));
+        int longitudJugada = 2*newp.longCodi;
         
         for(int j = 0; j < numJugades;++j) {//Recorro cadaJugada
         		ArrayList<Integer> codiProposat = new ArrayList<Integer>();
@@ -291,7 +291,7 @@ public class ControladorDeDomini {
     
     public int getDificultatPartida(String idPartida) {
         ArrayList<String> par = persistencia.getInfoPartida(idPartida);
-        return Integer.parseInt(par.get(8));
+        return Integer.parseInt(par.get(9));
     }
     
     public void CpuVsCpu(int i) {

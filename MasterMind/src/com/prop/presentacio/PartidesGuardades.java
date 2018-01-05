@@ -173,10 +173,23 @@ public class PartidesGuardades extends javax.swing.JFrame {
             txtError.setText("Has de seleccionar una partida.");
         } else {
             String idPartida = partidesGuardades.get(partides.getSelectedIndex());
-            p.restauraPartida(idPartida);
-
-            Partida nova = new Partida();
-            nova.setVisible(true);
+            int dificultat = p.controller.getDificultatPartida(idPartida);
+            if (dificultat == 1) {
+                PartidaFacil nova = new PartidaFacil();
+                p.controller.setTauler(nova);
+                p.controller.restauraPartida(idPartida);
+                nova.setVisible(true);
+            } else if (dificultat == 2) {
+                PartidaMitjana nova = new PartidaMitjana();
+                p.controller.setTauler(nova);
+                p.controller.restauraPartida(idPartida);
+                nova.setVisible(true);
+            } else if (dificultat == 3) {
+                PartidaDificil nova = new PartidaDificil();
+                p.controller.setTauler(nova);
+                p.controller.restauraPartida(idPartida);
+                nova.setVisible(true);
+            }
             PartidesGuardades.this.dispose();
         }
     }//GEN-LAST:event_btnJugarActionPerformed

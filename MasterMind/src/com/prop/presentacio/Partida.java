@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  *
  * @author mati
  */
-public class Partida extends javax.swing.JFrame {
+public abstract class Partida extends javax.swing.JFrame {
     
        /**
      * This method is called from within the constructor to initialize the form.
@@ -95,7 +95,7 @@ public class Partida extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Partida().setVisible(true);
+                //new Partida().setVisible(true);
             }
         });
     }
