@@ -150,10 +150,14 @@ public class ControladorDeDomini {
         }
     }
 
+    public ArrayList<String> obtenirTotIdPartida(){
+    		return persistencia.obtenirTotIdPartida();
+    }
+    
     public Partida converteixPartida(ArrayList<String> info) { //ULL hi ha parametres que no es tenen en compte
         int i = 1;
         //Creo la partida pasandole idPArtida,mode,finalitzada,numFiles,longCodi,dificultat
-        Partida newp = new Partida(Integer.parseInt(info.get(i)), info.get(i + 1), Boolean.parseBoolean(info.get(i + 7)), Integer.parseInt(info.get(i + 5)), Integer.parseInt(info.get(i + 6)), Integer.parseInt(info.get(i + 8)));
+        Partida newp = new Partida(info.get(i + 1), Boolean.parseBoolean(info.get(i + 7)), Integer.parseInt(info.get(i + 5)), Integer.parseInt(info.get(i + 6)), Integer.parseInt(info.get(i + 8)),this);
         i = 10;
         ArrayList<Jugada> ljugades = new ArrayList<Jugada>();
         

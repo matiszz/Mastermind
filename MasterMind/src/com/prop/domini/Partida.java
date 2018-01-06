@@ -21,7 +21,8 @@ public class Partida {
     boolean guanyada; //Cak inicialitzar i mantenir l'atribut, serà true si ha encertat en menys intents de les maximes
     Rellotge clock;
     Tauler tauler;
-
+    ControladorDeDomini c;
+    
     public ArrayList<String> converteixaString() { //Converteix a un vector d'String la informacio de la partida, cada posicio es un camp d'informacio de la partida per emmagatzemarla
     		ArrayList<String> s = new ArrayList<String>();
     		s.add(Integer.toString(this.idPartida));
@@ -61,8 +62,22 @@ public class Partida {
     public void setJugades(ArrayList<Jugada> r) {
     		this.jugades = r;
     }
-    public Partida(int idPartida, String mode, boolean fin, int numFiles, int longCodi,int dificultat) {
-        this.idPartida = idPartida;
+    
+    public int calculaMaxId(ArrayList<String> a) {
+    		int max = Integer.parseInt(a.get(0));
+    		for(int i = 1; i < a.size();++i) {
+    			String s = a.get(i);
+    			int actual = Integer.parseInt(s);
+    			if(max < actual) max = actual;
+    		}
+    		return max;
+    }
+    
+    public Partida(String mode, boolean fin, int numFiles, int longCodi,int dificultat, ControladorDeDomini c) {
+    		ArrayList<String> idsusats = c.obtenirTotIdPartida();
+    		if(idsusats.size()== 0) this.idPartida = 0;
+    		else this.idPartida = (this.calculaMaxId(idsusats))+1;
+    		this.c = c;
         this.mode = mode;
         this.temps = 0;
         this.numJugades = 0;
