@@ -63,8 +63,10 @@ public class RegistreDatabase extends Database {
 			Boolean found = false;
 			while (sc.hasNextLine() && found.equals(false)) {
 				String line = sc.nextLine();
-				if (line.contains(info.get(0)))
+				String[] split = line.split("\\+s");
+				if (split[0].equals(info.get(0))) {
 					found = true;
+				}
 			}
 			sc.close();
 			if (found.equals(false)) { //se puede hacer una excepci�n personalizada para que salte si ya existe el jugador pero que palo

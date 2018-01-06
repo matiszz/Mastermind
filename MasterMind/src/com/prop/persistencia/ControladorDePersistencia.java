@@ -81,16 +81,33 @@ public class ControladorDePersistencia {
 		return rankDB.obteRanking();
 	}
 	
-	/*
+	
 	public static void main(String[] args) {
 		ControladorDePersistencia cP = new ControladorDePersistencia();
 		String id = "idJugador1";
 		String id2 = "idJugador2";
 		String id3 = "idJugador3";
+	
 		
-		//regDB.emmagatzemaJugador(s3);
+		ArrayList<String> s = new ArrayList<>(
+				Arrays.asList("Juanito", "1", "2"));
+		ArrayList<String> s2 = new ArrayList<>(
+				Arrays.asList("Pepito", "2", "3"));
+		ArrayList<String> s3 = new ArrayList<>(
+				Arrays.asList("ElSergiLaoEsUnTonto", "2", "0"));
+		
+		regDB.emmagatzemaJugador(s2);
 		//regDB.actualitzaJugador(s);
 		
+		ArrayList< ArrayList<String> > jugadors = cP.getJugadors();
+		
+		for (int i=0; i<jugadors.size(); i++) {
+			for (int j=0; j<jugadors.get(0).size(); j++) {
+				System.out.println(jugadors.get(i).get(j));
+			}
+		}
+		
+		/*
 		ArrayList<String> s = new ArrayList<>(
 				Arrays.asList("1", "mode1", "temps1", "numJugades1", "puntuacio1", 
 						"numFiles1", "longCodi1", "false", "dificultat1", "jugades1", 
@@ -103,7 +120,10 @@ public class ControladorDePersistencia {
 				Arrays.asList("3", "mode3", "temps3", "numJugades3", "puntuacio3", 
 						"numFiles3", "longCodi3", "false", "dificultat3", "jugades3", 
 						"codiAmagat3", "guanyada3"));
-		cP.emmagatzemaPartida(s3, id3);
+		*/
+		
+		
+		//cP.emmagatzemaPartida(s3, id3);
 		/*ArrayList<String> l = cP.getIdPartidesGuardades("idJugador1");
 		for (int i=0; i<l.size(); i++) {
 			System.out.println(l.get(i));
@@ -119,7 +139,7 @@ public class ControladorDePersistencia {
 		ArrayList<String> l = cP.getIdPartides();
 		for (int i=0; i<l.size(); i++) {
 			System.out.println(l.get(i));
-		}
+		}*/
 	}
-	*/
+	
 }
