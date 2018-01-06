@@ -194,7 +194,6 @@ public class PartidaDificil extends Partida {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(650, 650));
         setMinimumSize(new java.awt.Dimension(650, 650));
-        setPreferredSize(new java.awt.Dimension(650, 650));
 
         Controles.setBackground(new java.awt.Color(177, 177, 177));
         Controles.setAlignmentX(0.0F);
@@ -1321,7 +1320,8 @@ public class PartidaDificil extends Partida {
         }
         // Si guanya
         else if (p.controller.haGuanyat()) {
-            JOptionPane.showMessageDialog(null, "Felicitats, has guanyat!");
+            if (p.controller.esCodeMaker()) JOptionPane.showMessageDialog(null, "Ha guanyat la CPU :(");
+            else JOptionPane.showMessageDialog(null, "Felicitats, has guanyat!");
             editable = 500;
             ArrayList<String> sols = p.controller.getSolucio();
             sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(0))));

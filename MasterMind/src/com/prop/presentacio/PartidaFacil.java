@@ -1973,7 +1973,8 @@ public class PartidaFacil extends Partida {
         }
         // Si guanya
         else if (p.controller.haGuanyat()) {
-            JOptionPane.showMessageDialog(null, "Felicitats, has guanyat!");
+            if (p.controller.esCodeMaker()) JOptionPane.showMessageDialog(null, "Ha guanyat la CPU :(");
+            else JOptionPane.showMessageDialog(null, "Felicitats, has guanyat!");
             editable = 500;
             ArrayList<String> sols = p.controller.getSolucio();
             sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(0))));
