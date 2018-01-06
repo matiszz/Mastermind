@@ -24,12 +24,11 @@ public class Joc {
 		this.lastId = 0;
 	}
 	
-	public Partida crearPartida() {
+	public Partida crearPartida(int id) {
 		String mode;
 		if(this.mostraCodi) mode = "CodeMaker";
 		else mode = "CodeBreaker";
-		Partida p = new Partida(lastId, mode, false, numFiles, longCodi, dificultat);
-		lastId++;
+		Partida p = new Partida(id, mode, false, numFiles, longCodi, dificultat);
 		partides.add(p);
 		return p;
 	}

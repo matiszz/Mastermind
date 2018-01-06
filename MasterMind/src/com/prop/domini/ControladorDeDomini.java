@@ -16,7 +16,8 @@ public class ControladorDeDomini {
     Joc joc = null;
     ControladorDePersistencia persistencia = null;
     ControladorDePresentacio presentacio = null;
-
+    int id;
+    
     //Creadora
     public ControladorDeDomini(ControladorDePresentacio ctrl) {
         persistencia = new ControladorDePersistencia();
@@ -41,8 +42,6 @@ public class ControladorDeDomini {
         return creat;
     }
     
-    
-    
     public boolean iniciasessio(String alies) {
         jugador = reg.getJugador(alies);
         if (jugador == null)
@@ -53,7 +52,6 @@ public class ControladorDeDomini {
     
     public Partida generarJoc(int dificultat, boolean codeMaker) { //Genera generador de jocs, el joc i la partida segons la dificultat i el mode
         partidaGuanyada = false;
-        
         switch (dificultat) {
             case 1:
                 gen = new GeneradorJocs(12, 4, 5, codeMaker, dificultat);
@@ -66,7 +64,11 @@ public class ControladorDeDomini {
                 break;
         }
         joc = gen.generaJocDefault();
-        partida = joc.crearPartida();
+        ArrayList<String> idUsat = this.obtenirTotIdPartida();
+        this.id = this.calculaMaxId(idUsat);
+        id++;
+        partida = joc.crearPartida(id);
+        ++id;
         return partida;
     }
 
@@ -170,9 +172,8 @@ public class ControladorDeDomini {
     public Partida converteixPartida(ArrayList<String> info) { //ULL hi ha parametres que no es tenen en compte
         int i = 1;
         //Creo la partida pasandole idPArtida,mode,finalitzada,numFiles,longCodi,dificultat
-        ArrayList<String> idsusats = this.obtenirTotIdPartida();
-		int id = this.calculaMaxId(idsusats); 
-        Partida newp = new Partida(id,info.get(i + 1), Boolean.parseBoolean(info.get(i + 7)), Integer.parseInt(info.get(i + 5)), Integer.parseInt(info.get(i + 6)), Integer.parseInt(info.get(i + 8)));
+        
+        Partida newp = new Partida(Integer.parseInt(info.get(i)),info.get(i + 1), Boolean.parseBoolean(info.get(i + 7)), Integer.parseInt(info.get(i + 5)), Integer.parseInt(info.get(i + 6)), Integer.parseInt(info.get(i + 8)));
         i = 10;
         ArrayList<Jugada> ljugades = new ArrayList<Jugada>();
         
