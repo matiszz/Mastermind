@@ -1,34 +1,22 @@
 # MasterMind
 
-## Vistas
-- [x] **Menu Principal**
-- [x] **Vista Seleccion NUEVA PARTIDA/REANUDAR PARTIDA**
-- [x] **Vista Selección Dificultad y Modo**
-- [ ] **Vista Partidas Guardadas**
-- [ ] **Vista PartidaDificultad Fàcil**
-- [ ] **Vista PartidaDificultad Media**
-- [ ] **Vista PartidaDificultad Dificil**
-- [ ] **Vista Creación del código a descifrar** 
-- [ ] **Vista Ranking**
-- [x] **Vista Información**
-- [x] **Vista Ayuda**
+  __  __                 _                   __  __   _               _ 
+ |  \/  |               | |                 |  \/  | (_)             | |
+ | \  / |   __ _   ___  | |_    ___   _ __  | \  / |  _   _ __     __| |
+ | |\/| |  / _` | / __| | __|  / _ \ | '__| | |\/| | | | | '_ \   / _` |
+ | |  | | | (_| | \__ \ | |_  |  __/ | |    | |  | | | | | | | | | (_| |
+ |_|  |_|  \__,_| |___/  \__|  \___| |_|    |_|  |_| |_| |_| |_|  \__,_|
 
-## Repartición de clases
-- [x] **Ranking:** Sergi
-- [x] **Registre:** Mati
-- [x] **Jugador:** Raul
-  - [x] **CodeBreaker:** Sergi
-    - [x] **Persona:** Sergi
-    - [x] **CPU:** Sergi
-      - [ ] **Algorisme:** 
-  - [x] **CodeMaker:** Raul
-    - [x] **Persona:** Raul
-    - [x] **CPU:** Raul
-- [x] **Jugada:** Sergi
-- [x] **Partida:** Mati
-- [x] **Resultat:** Mati
-- [x] **Tauler:** Mati
-- [x] **GeneradorPartides:** Raul
-- [x] **Clock:** Mati
-- [x] **Joc:** Mati
-- [ ] **ControladorDeDomin:**
+ 
+Juego del MasterMind creado para PROP.
+
+## Ejecutar
+```bash
+cd Executable/
+java -jar MasterMind.jar
+```
+
+## Equipo
+**Raul:** Persistència i salvar el culo
+**Sergi:** Domini
+**Mati:** Presentacio
