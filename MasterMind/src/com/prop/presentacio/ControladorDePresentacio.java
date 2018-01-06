@@ -100,7 +100,7 @@ public class ControladorDePresentacio {
         
         // Obté les dades per restaurar una partida, i la mostra al tauler.
 	public void restauraPartida(String idPartida) { 
-            tauler.setEditableAux(0);
+            //tauler.setEditableAux(0);
             ArrayList<ArrayList<ArrayList<Integer>>> tauler = c.continuarPartida(idPartida);
             for (int i = 0; i < tauler.size(); ++i) {
                 ArrayList<ArrayList<Integer>> fila = tauler.get(i);

@@ -252,7 +252,9 @@ public class PartidaFacil extends Partida {
         txtError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(600, 500));
+        setMaximumSize(new java.awt.Dimension(650, 700));
+        setMinimumSize(new java.awt.Dimension(650, 700));
+        setPreferredSize(new java.awt.Dimension(650, 700));
 
         Controles.setBackground(new java.awt.Color(177, 177, 177));
         Controles.setAlignmentX(0.0F);
@@ -1625,7 +1627,7 @@ public class PartidaFacil extends Partida {
                                                 .addComponent(fila10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(fila11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(124, 124, 124))
+                                .addGap(46, 46, 46))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(fila3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1639,7 +1641,7 @@ public class PartidaFacil extends Partida {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(12, 12, 12)
                                     .addComponent(txtColores))))))
-                .addGap(64, 64, 64))
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1682,9 +1684,9 @@ public class PartidaFacil extends Partida {
                 .addComponent(fila10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fila11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(solucio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -1696,12 +1698,12 @@ public class PartidaFacil extends Partida {
             txtError.setText("");
             filesPanels.get(editable).setBorder(BorderFactory.createEmptyBorder());
             editable--;
+            filesPanels.get(editable).setBorder(BorderFactory.createRaisedBevelBorder());
             p.controller.ferJugada(codi);
             codi[0] = 5;
             codi[1] = 5;
             codi[2] = 5;
             codi[3] = 5;
-            filesPanels.get(editable).setBorder(BorderFactory.createRaisedBevelBorder());
         }
     }//GEN-LAST:event_btnCheckActionPerformed
 
@@ -2168,6 +2170,7 @@ public class PartidaFacil extends Partida {
     }
     
     private void ferGrupsFiles() {
+        editable = MAX_LINES;
         filesPanels = new ArrayList<JPanel>();
         
         filesPanels.add(fila0);
@@ -2189,7 +2192,7 @@ public class PartidaFacil extends Partida {
     }
      
     public void setEditable(int e) {
-        filesPanels.get(editable).setBorder(BorderFactory.createEmptyBorder());
+        if (editable < filesPanels.size()) filesPanels.get(editable).setBorder(BorderFactory.createEmptyBorder());
         editable = MAX_LINES-e;
         filesPanels.get(editable).setBorder(BorderFactory.createRaisedBevelBorder());
     }

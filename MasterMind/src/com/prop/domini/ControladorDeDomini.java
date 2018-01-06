@@ -223,6 +223,7 @@ public class ControladorDeDomini {
         /*
          Recupera del fitxer les partides guardades del jugador actual,
          */
+    	partidaGuanyada = false;
         ArrayList<String> partides = persistencia.getInfoPartida(idPartida);
         partida = converteixPartida(partides);
         
