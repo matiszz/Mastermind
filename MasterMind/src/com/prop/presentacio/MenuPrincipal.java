@@ -195,6 +195,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         nova.setVisible(true);
         MenuPrincipal.this.dispose();    }//GEN-LAST:event_btnAjudaActionPerformed
 
+    public void setErrorText(String msg) {
+        txtError.setText(msg);
+    }
+    
     /**
      * @param args the command line arguments
      */

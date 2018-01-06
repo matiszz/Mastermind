@@ -1847,7 +1847,12 @@ public class PartidaFacil extends Partida {
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        p.controller.guardarPartida();
+        if (editable == MAX_LINES) txtError.setText("Has de fer alguna jugada.");
+        else if (p.controller.haGuanyat()) txtError.setText("No pots guardar partides guanyades.");
+        else {
+            p.controller.guardarPartida();
+            JOptionPane.showMessageDialog(null, "Partida " + p.controller.getIdPartida() + " guardada!");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnPurpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurpleActionPerformed

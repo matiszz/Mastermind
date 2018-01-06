@@ -20,6 +20,7 @@ public class ControladorDePresentacio {
 	private ControladorDeDomini c;
 	private String nomJugador;
         private int numJugada;
+        private MenuPrincipal menu;
         
         // Constructor
 	public ControladorDePresentacio() {
@@ -33,11 +34,16 @@ public class ControladorDePresentacio {
             return nomJugador;
         }
         
-        // Estableix el tauler-
+        // Estableix el tauler.
         public void setTauler(Partida t) {
             tauler = t;
         }
 	
+        // Estableix el menu;
+        public void setMenu(MenuPrincipal m) {
+            this.menu = m;
+        }
+        
         // Retorna true si alies existeix, i false en cas contrari.
 	public boolean clickIniciarSessio(String alies) {
             nomJugador = alies;
@@ -107,7 +113,7 @@ public class ControladorDePresentacio {
                 
                 this.tauler.pintaJugada(proposta, i);
                 this.tauler.mostraCodiRespost(resposta, i);
-                this.tauler.setEditable(i-1);
+                this.tauler.setEditable(i+1);
             }
             numJugada = tauler.size();
 	}
@@ -135,7 +141,12 @@ public class ControladorDePresentacio {
         public ArrayList<String> getRankingFacil() {
             ArrayList<String> facil = new ArrayList<String>();
             ArrayList<String> rank = c.consultarRanking();
-            for (int i = 0; i < 10; ++i) facil.add(rank.get(i));
+            if (rank.size() == 0)
+                for (int i = 0; i < 10; ++i)
+                    facil.add(i+" - -");
+            else
+                for (int i = 0; i < 10; ++i)
+                    facil.add(rank.get(i));
             return facil;
 	}
         
@@ -143,7 +154,12 @@ public class ControladorDePresentacio {
         public ArrayList<String> getRankingMitja() {
             ArrayList<String> mitja = new ArrayList<String>();
             ArrayList<String> rank = c.consultarRanking();
-            for (int i = 10; i < 20; ++i) mitja.add(rank.get(i));
+            if (rank.isEmpty())
+                for (int i = 10; i < 20; ++i)
+                    mitja.add(i+" - -");
+            else
+                for (int i = 10; i < 20; ++i)
+                    mitja.add(rank.get(i));
             return mitja;
 	}
         
@@ -151,7 +167,12 @@ public class ControladorDePresentacio {
         public ArrayList<String> getRankingDificil() {
             ArrayList<String> dificil = new ArrayList<String>();
             ArrayList<String> rank = c.consultarRanking();
-            for (int i = 20; i < 30; ++i) dificil.add(rank.get(i));
+            if (rank.size() == 0)
+                for (int i = 20; i < 30; ++i)
+                    dificil.add(i+" - -");
+            else
+                for (int i = 20; i < 30; ++i)
+                    dificil.add(rank.get(i));
             return dificil;
 	}
         
@@ -202,7 +223,12 @@ public class ControladorDePresentacio {
             return c.hasPerdut();
         }
         
+        // Retorna un int amb la dificultat
         public int getDificultat() {
             return c.getDificultat();
+        }
+
+        public String getIdPartida() {
+            return c.getIdPartidaActual();
         }
 }
