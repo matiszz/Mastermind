@@ -151,7 +151,7 @@ public class ControladorDeDomini {
     }
 
     public ArrayList<String> obtenirTotIdPartida(){
-    		return persistencia.obtenirTotIdPartida();
+    		return persistencia.getIdPartides();
     }
     
     public Partida converteixPartida(ArrayList<String> info) { //ULL hi ha parametres que no es tenen en compte
