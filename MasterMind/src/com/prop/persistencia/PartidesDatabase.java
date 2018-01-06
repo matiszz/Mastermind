@@ -299,4 +299,30 @@ public class PartidesDatabase extends Database {
 		return l;
 	}
 	
+	/* Devuelve los idPartida de todas las partidas guardadas */
+	public ArrayList<String> getIdPartides() {
+		ArrayList<String> l = new ArrayList<String>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = "";
+			String lineAux = "";
+			lineAux = br.readLine(); //leo el titulo del fichero
+			lineAux = br.readLine(); //leo el primer idJugador
+			while ((line = br.readLine()) != null) {
+				l.add(line);
+				for (int i=0; i<12; i++) { //leo hasta el proximo idPartida
+					lineAux = br.readLine();
+				}
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return l;
+	}
+	
 }
