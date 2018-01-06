@@ -1,4 +1,5 @@
 Registre de jugadors de MasterMind
 juan 0 0
 jose 0 0
-mati 1 0
+lel 8 0
+mati 2 0

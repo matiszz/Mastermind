@@ -85,9 +85,10 @@ public class ControladorDePresentacio {
         // Juga una partida com a Code Maker.
 	public void jugaCodeMaker() {
             c.jugarPartida();
+            numJugada = 0;
 	}
         
-        // Retorna la dificultat de la partida
+        // Retorna la dificultat de la partida.
         public int getDificultatPartida(String idPartida) {
             return c.getDificultatPartida(idPartida);
         }
@@ -99,6 +100,7 @@ public class ControladorDePresentacio {
         
         // Obté les dades per restaurar una partida, i la mostra al tauler.
 	public void restauraPartida(String idPartida) { 
+            tauler.setEditableAux(0);
             ArrayList<ArrayList<ArrayList<Integer>>> tauler = c.continuarPartida(idPartida);
             for (int i = 0; i < tauler.size(); ++i) {
                 ArrayList<ArrayList<Integer>> fila = tauler.get(i);
@@ -123,7 +125,7 @@ public class ControladorDePresentacio {
             c.finalitzarPartida();
         }
 	
-        // Crea una partida amb Mode = mode y Dificultat = dificultat
+        // Crea una partida amb Mode = mode y Dificultat = dificultat.
 	public void crearPartida(String mode, String dificultat) {
             numJugada = 0;
             int dif;
@@ -137,7 +139,7 @@ public class ControladorDePresentacio {
             c.generarJoc(dif, b);
 	}
         
-        // Retorna el Ranking Fàcil
+        // Retorna el Ranking Fàcil.
         public ArrayList<String> getRankingFacil() {
             ArrayList<String> facil = new ArrayList<String>();
             ArrayList<String> rank = c.consultarRanking();
@@ -150,7 +152,7 @@ public class ControladorDePresentacio {
             return facil;
 	}
         
-        // Retorna el Ranking Mitja
+        // Retorna el Ranking Mitja.
         public ArrayList<String> getRankingMitja() {
             ArrayList<String> mitja = new ArrayList<String>();
             ArrayList<String> rank = c.consultarRanking();
@@ -163,7 +165,7 @@ public class ControladorDePresentacio {
             return mitja;
 	}
         
-        // Retorna el Ranking Difícil
+        // Retorna el Ranking Difícil.
         public ArrayList<String> getRankingDificil() {
             ArrayList<String> dificil = new ArrayList<String>();
             ArrayList<String> rank = c.consultarRanking();
@@ -182,13 +184,13 @@ public class ControladorDePresentacio {
 	}
 	
         // Desde la vista s'envia el codi proposat (en forma d'INTs) i avisa a la 
-        // capa de domini per computar la jugada i obtenir la resposta a mostrar
+        // capa de domini per computar la jugada i obtenir la resposta a mostrar.
 	public void ferJugada(int[] codi) {
             c.ferJugada(codi);
             numJugada++;
 	}
         
-        // Per al mode CodeMaker, estableix el codi a endevnar.
+        // Per al mode CodeMaker, estableix el codi a endevinar.
         public void setCodi(int[] codi) {
             c.emmagatzemaCodi(codi);
         }
@@ -198,36 +200,37 @@ public class ControladorDePresentacio {
             c.guardarPartida();
         }
         
-        // Estableix un codi aleatori per la partida
+        // Estableix un codi aleatori per la partida.
         public void setRandomCodi() {
             c.setRandomCodi();
         }
         
-        // Retorna true si el mode de la partida és CodeMaker
+        // Retorna true si el mode de la partida és CodeMaker.
         public boolean esCodeMaker() {
             return c.esCodeMaker();
         }
         
-        // Retorna el codi proposat en forma de URLs a les imatges
+        // Retorna el codi proposat en forma de URLs a les imatges.
         public ArrayList<String> getSolucio() {
             return transformaColors(colorsJugada, c.getSolucio());
         }
         
-        // Retorna true si la partida està guanyada
+        // Retorna true si la partida està guanyada.
         public boolean haGuanyat() {
             return c.hasGuanyat();
         }
         
-        // Retorna true si ha perdut la partida
+        // Retorna true si ha perdut la partida.
         public boolean haPerdut() {
             return c.hasPerdut();
         }
         
-        // Retorna un int amb la dificultat
+        // Retorna un int amb la dificultat.
         public int getDificultat() {
             return c.getDificultat();
         }
-
+        
+        // Retorna el ID de la partida actual.
         public String getIdPartida() {
             return c.getIdPartidaActual();
         }

@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -56,6 +57,8 @@ public class PartidaFacil extends Partida {
     private ArrayList<JButton> comb10;
     private ArrayList<JButton> comb11;
     private ArrayList<ArrayList<JButton>> combinacions;
+    
+    private ArrayList<JPanel> filesPanels;
 
     /**
      * Creates new form VistaTauler
@@ -71,6 +74,7 @@ public class PartidaFacil extends Partida {
         
         ferGrupsRespostes();
         ferGrupsCombinacions();
+        ferGrupsFiles();
         
         p.controller.setTauler(this);
         if (p.controller.esCodeMaker()) {
@@ -96,6 +100,8 @@ public class PartidaFacil extends Partida {
             sol1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
             sol2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
             sol3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
+            
+            filesPanels.get(editable).setBorder(BorderFactory.createRaisedBevelBorder());
         }
     }
 
@@ -1688,12 +1694,14 @@ public class PartidaFacil extends Partida {
        if (codi[0] == 5 || codi[1] == 5 || codi[2] == 5 || codi[3] == 5) txtError.setText("No poden quedar espais en blanc.");
         else {
             txtError.setText("");
+            filesPanels.get(editable).setBorder(BorderFactory.createEmptyBorder());
             editable--;
             p.controller.ferJugada(codi);
             codi[0] = 5;
             codi[1] = 5;
             codi[2] = 5;
             codi[3] = 5;
+            filesPanels.get(editable).setBorder(BorderFactory.createRaisedBevelBorder());
         }
     }//GEN-LAST:event_btnCheckActionPerformed
 
@@ -2158,9 +2166,32 @@ public class PartidaFacil extends Partida {
         comb11.add(b113);
         combinacions.add(comb11);
     }
+    
+    private void ferGrupsFiles() {
+        filesPanels = new ArrayList<JPanel>();
+        
+        filesPanels.add(fila0);
+        filesPanels.add(fila1);
+        filesPanels.add(fila2);
+        filesPanels.add(fila3);
+        filesPanels.add(fila4);
+        filesPanels.add(fila5);
+        filesPanels.add(fila6);
+        filesPanels.add(fila7);
+        filesPanels.add(fila8);
+        filesPanels.add(fila9);
+        filesPanels.add(fila10);
+        filesPanels.add(fila11);
+    }
+    
+    public void setEditableAux(int e) {
+        editable = MAX_LINES-e;
+    }
      
     public void setEditable(int e) {
+        filesPanels.get(editable).setBorder(BorderFactory.createEmptyBorder());
         editable = MAX_LINES-e;
+        filesPanels.get(editable).setBorder(BorderFactory.createRaisedBevelBorder());
     }
     
     /**

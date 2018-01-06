@@ -53,6 +53,10 @@ public abstract class Partida extends javax.swing.JFrame {
     public void pintaJugada(ArrayList<String> codiR, int numJugada) {
         
     }
+    
+    public void setEditableAux(int e) {
+        
+    }
      
     public void setEditable(int e) {
         
