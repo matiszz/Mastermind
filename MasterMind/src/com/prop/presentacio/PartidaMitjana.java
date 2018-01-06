@@ -71,6 +71,7 @@ public class PartidaMitjana extends Partida {
             Controles.setVisible(false);
             btnCheck.setVisible(false);
             txtColores.setVisible(false);
+            btnGuardar.setVisible(false);
             
             ArrayList<String> sols = p.controller.getSolucio();
             sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource(sols.get(0))));
@@ -83,6 +84,7 @@ public class PartidaMitjana extends Partida {
             Controles.setVisible(true);
             btnCheck.setVisible(true);
             txtColores.setVisible(true);
+            btnGuardar.setVisible(true);
             
             sol0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
             sol1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png")));
@@ -1192,7 +1194,7 @@ public class PartidaMitjana extends Partida {
         });
 
         txtColores.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        txtColores.setText("Colores disponibles");
+        txtColores.setText("Colors disponibles");
 
         btnGuardar.setText("Guardar partida");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -1275,12 +1277,6 @@ public class PartidaMitjana extends Partida {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(fila3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(118, 118, 118))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(fila4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(fila5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -1291,7 +1287,12 @@ public class PartidaMitjana extends Partida {
                                                 .addComponent(fila6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(solucio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(124, 124, 124)))
+                                .addGap(124, 124, 124))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(fila3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(fila4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtError)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1511,6 +1512,7 @@ public class PartidaMitjana extends Partida {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (editable == MAX_LINES) txtError.setText("Has de fer alguna jugada.");
         else if (p.controller.haGuanyat()) txtError.setText("No pots guardar partides guanyades.");
+        else if (p.controller.haPerdut()) txtError.setText("No pots guardar partides perdudes.");
         else {
             p.controller.guardarPartida();
             JOptionPane.showMessageDialog(null, "Partida " + p.controller.getIdPartida() + " guardada!");

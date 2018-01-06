@@ -24,7 +24,7 @@ java -jar MasterMind.jar
 **Mati:** Presentacio
 
 ## Screenshots
-![Screenshot](https://github.com/matiszz/mastermind/tree/master/Executable/screen1.png)
+![Screenshot](https://github.com/matiszz/mastermind/blob/master/Executable/screen1.png)
 
 
 ![Screenshot](https://github.com/matiszz/mastermind/tree/master/Executable/screen2.png)

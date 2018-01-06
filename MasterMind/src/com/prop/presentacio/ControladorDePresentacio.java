@@ -143,7 +143,7 @@ public class ControladorDePresentacio {
             ArrayList<String> rank = c.consultarRanking();
             if (rank.size() == 0)
                 for (int i = 0; i < 10; ++i)
-                    facil.add(i+" - -");
+                    facil.add(i+1+" - -");
             else
                 for (int i = 0; i < 10; ++i)
                     facil.add(rank.get(i));
@@ -156,7 +156,7 @@ public class ControladorDePresentacio {
             ArrayList<String> rank = c.consultarRanking();
             if (rank.isEmpty())
                 for (int i = 10; i < 20; ++i)
-                    mitja.add(i+" - -");
+                    mitja.add(i-9+" - -");
             else
                 for (int i = 10; i < 20; ++i)
                     mitja.add(rank.get(i));
@@ -169,7 +169,7 @@ public class ControladorDePresentacio {
             ArrayList<String> rank = c.consultarRanking();
             if (rank.size() == 0)
                 for (int i = 20; i < 30; ++i)
-                    dificil.add(i+" - -");
+                    dificil.add(i-19+" - -");
             else
                 for (int i = 20; i < 30; ++i)
                     dificil.add(rank.get(i));

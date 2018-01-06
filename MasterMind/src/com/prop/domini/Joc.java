@@ -28,7 +28,7 @@ public class Joc {
 		String mode;
 		if(this.mostraCodi) mode = "CodeMaker";
 		else mode = "CodeBreaker";
-		Partida p = new Partida(lastId, mode, false, numFiles, longCodi,dificultat);
+		Partida p = new Partida(lastId, mode, false, numFiles, longCodi, dificultat);
 		lastId++;
 		partides.add(p);
 		return p;
