@@ -63,21 +63,10 @@ public class Partida {
     		this.jugades = r;
     }
     
-    public int calculaMaxId(ArrayList<String> a) {
-    		int max = Integer.parseInt(a.get(0));
-    		for(int i = 1; i < a.size();++i) {
-    			String s = a.get(i);
-    			int actual = Integer.parseInt(s);
-    			if(max < actual) max = actual;
-    		}
-    		return max;
-    }
+   
     
-    public Partida(String mode, boolean fin, int numFiles, int longCodi,int dificultat, ControladorDeDomini c) {
-    		ArrayList<String> idsusats = c.obtenirTotIdPartida();
-    		if(idsusats.size()== 0) this.idPartida = 0;
-    		else this.idPartida = (this.calculaMaxId(idsusats))+1;
-    		this.c = c;
+    public Partida(int idPartida,String mode, boolean fin, int numFiles, int longCodi,int dificultat) {
+        this.idPartida=idPartida;
         this.mode = mode;
         this.temps = 0;
         this.numJugades = 0;
