@@ -68,7 +68,6 @@ public class ControladorDeDomini {
         this.id = this.calculaMaxId(idUsat);
         id++;
         partida = joc.crearPartida(id);
-        ++id;
         return partida;
     }
 
