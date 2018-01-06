@@ -140,14 +140,16 @@ public class ControladorDeDomini {
     public void finalitzarPartida() {//Guarda la partida(NO a la BD), actualitza estadistiques jugador i actualitza ranking si cal.
         partida.guardarPartida();
         int res = partida.finalitzarPartida();
-        jugador.actualitzar_partides(res, partida.getguanyada());
-        persistencia.actualitzaJugador(jugador.converteixaString());
-        int dificultat = partida.getdificultat();
-        FilaRanking f = new FilaRanking(res, jugador.getIdJugador());
-        boolean afegida = ranking.afegeix_fila(f, dificultat);
-        if (afegida) {
-            ArrayList<String> rank = ranking.converteix_Ranking();
-            persistencia.emmagatzemaRanking(rank);
+        if(partida.mode != "CodeMaker") {
+        		jugador.actualitzar_partides(res, partida.getguanyada());
+        		persistencia.actualitzaJugador(jugador.converteixaString());
+        		int dificultat = partida.getdificultat();
+        		FilaRanking f = new FilaRanking(res, jugador.getIdJugador());
+        		boolean afegida = ranking.afegeix_fila(f, dificultat);
+        		if (afegida) {
+        			ArrayList<String> rank = ranking.converteix_Ranking();
+        			persistencia.emmagatzemaRanking(rank);
+        		}
         }
     }
 
