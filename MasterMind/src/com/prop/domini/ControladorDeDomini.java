@@ -128,6 +128,7 @@ public class ControladorDeDomini {
     		jugadors.add(jTmp);
     		}
     	}
+    	reg.setJugadors(jugadors);
     }
     
     public void guardarPartida() { //Converteix la partida en l'estructura per passar entre capes i la envia a la capa de persistencia.
