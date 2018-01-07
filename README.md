@@ -24,7 +24,22 @@ java -jar MasterMind.jar
 **Mati:** Presentacio
 
 ## Screenshots
-![Screenshot](https://github.com/matiszz/mastermind/blob/master/Executable/screen1.png)
+![Ajuda](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Ajuda.png)
 
+![Guardades](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Guardades.png)
 
-![Screenshot](https://github.com/matiszz/mastermind/tree/master/Executable/screen2.png)
+![Informacio](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Informacio.png)
+
+![Jugar](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Jugar.png)
+
+![Menu](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Menu.png)
+
+![Partida Guanyada](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Partida_guanyada.png)
+
+![Partida Jugant](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Partida_jugant.png)
+
+![Preferències](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Preferencies.png)
+
+![Ranking](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Ranking.png)
+
+![Registrar](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Registrar.png)

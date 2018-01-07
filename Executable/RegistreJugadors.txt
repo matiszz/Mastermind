@@ -1,4 +1,0 @@
-Registre de jugadors de MasterMind
-mati 0 0
-juanete 0 0
-raulgay 0 0

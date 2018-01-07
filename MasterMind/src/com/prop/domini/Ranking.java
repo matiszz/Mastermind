@@ -116,7 +116,7 @@ public class Ranking {
 				else if(trobat) { //Aafageix al mig
 					r_facil.add(pos,f);
 					afegida = true;
-					if(r_facil.size() == 10) r_facil.remove(10);
+					if(r_facil.size() == 11) r_facil.remove(10);
 				}
 			}
 		}
@@ -143,7 +143,7 @@ public class Ranking {
 				else if(trobat) { //Aafageix al mig
 					r_medio.add(pos,f);
 					afegida = true;
-					if(r_medio.size() == 10) r_medio.remove(10);
+					if(r_medio.size() == 11) r_medio.remove(10);
 				}
 			}
 		}
@@ -170,7 +170,7 @@ public class Ranking {
 				else if(trobat) { //Aafageix al mig
 					r_dificil.add(pos,f);
 					afegida = true;
-					if(r_dificil.size() == 10) r_dificil.remove(10);
+					if(r_dificil.size() == 11) r_dificil.remove(10);
 				}
 			}
 		}
