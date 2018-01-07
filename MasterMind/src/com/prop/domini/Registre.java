@@ -13,10 +13,23 @@ public class Registre {
     /*
 	Registra un jugador i l'afegeix al ArrayList de Jugadors.
      */
+    
+    public boolean cercaJugador(String idJugador) {
+    		boolean trobat = false;
+    		for(int i = 0; !trobat && i < jugadors.size();++i) {
+    			Jugador j = jugadors.get(i);
+    			trobat = (j.idJugador == idJugador);
+    		}
+    		return trobat;
+    }
     public Jugador registrar(String idJugador) {
-        Jugador nou = new Jugador(idJugador, 0, 0);
-        jugadors.add(nou);
-        return nou;
+    		boolean trobat = cercaJugador(idJugador);
+    		if(!trobat) { //Si no l'ha trobat es crea un nou jugador
+    			Jugador nou = new Jugador(idJugador, 0, 0);
+    			jugadors.add(nou);
+    			return nou;
+    		}
+    		else return null; //Si l'ha tobat retorna null, ja que no el crea
     }
 
     /*
