@@ -123,10 +123,11 @@ public class ControladorDeDomini {
     	ArrayList<ArrayList<String>> jugs = persistencia.getJugadors();
     	ArrayList<Jugador> jugadors = new ArrayList<Jugador>();
     	for (ArrayList<String> j : jugs) {
+    		if(j.get(0) != null && j.get(1) != null && j.get(2) != null) {
     		Jugador jTmp = new Jugador(j.get(0), Integer.parseInt(j.get(1)), Integer.parseInt(j.get(2)));
     		jugadors.add(jTmp);
+    		}
     	}
-    	reg.setJugadors(jugadors);
     }
     
     public void guardarPartida() { //Converteix la partida en l'estructura per passar entre capes i la envia a la capa de persistencia.
