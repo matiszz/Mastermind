@@ -140,7 +140,7 @@ public class ControladorDeDomini {
     public void finalitzarPartida() {//Guarda la partida(NO a la BD), actualitza estadistiques jugador i actualitza ranking si cal.
         partida.guardarPartida();
         int res = partida.finalitzarPartida();
-        if(partida.mode != "CodeMaker") {
+        if(partida.mode != "CodeMaker" && partidaGuanyada) {
         		jugador.actualitzar_partides(res, partida.getguanyada());
         		persistencia.actualitzaJugador(jugador.converteixaString());
         		int dificultat = partida.getdificultat();
