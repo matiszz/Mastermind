@@ -1125,7 +1125,7 @@ public class PartidaDificil extends Partida {
             txtError.setText("");
             filesPanels.get(editable).setBorder(BorderFactory.createEmptyBorder());
             editable--;
-            filesPanels.get(editable).setBorder(BorderFactory.createRaisedBevelBorder());
+            if (editable >= 0) filesPanels.get(editable).setBorder(BorderFactory.createRaisedBevelBorder());
             p.controller.ferJugada(codi);
             codi[0] = 5;
             codi[1] = 5;

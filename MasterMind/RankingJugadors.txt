@@ -23,7 +23,7 @@ Ranking de MasterMind
 2 0 mati
 3 0 mati
 4 0 mati
-5 - -
+5 7 mati
 6 - -
 7 - -
 8 - -
