@@ -1,0 +1,2 @@
+Registre de jugadors de MasterMind
+stallman 0 0

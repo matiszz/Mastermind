@@ -17,14 +17,17 @@ java -jar MasterMind.jar
 ```
 
 ## Equipo
-**Raul:** Persistència i salvar el culo
+**Raul:** Persistencia i salvar el culo
 
-**Sergi:** Domini
+**Sergi:** Dominio
 
-**Mati:** Presentacio
+**Mati:** Presentación
+
+## Guia de usuario
+[Descargar guia de usuario](https://github.com/matiszz/mastermind/blob/master/Guia-d%E2%80%99usuari-MasterMind-Grup-8.1.pdf)
 
 ## Screenshots
-![Ajuda](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Ajuda.png)
+![Partida Jugant](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Partida_jugant.png)
 
 ![Guardades](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Guardades.png)
 
@@ -35,8 +38,6 @@ java -jar MasterMind.jar
 ![Menu](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Menu.png)
 
 ![Partida Guanyada](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Partida_guanyada.png)
-
-![Partida Jugant](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Partida_jugant.png)
 
 ![Preferències](https://github.com/matiszz/mastermind/blob/master/Executable/screenshots/Preferencies.png)
 
