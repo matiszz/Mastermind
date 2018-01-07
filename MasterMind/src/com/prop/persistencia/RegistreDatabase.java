@@ -33,7 +33,6 @@ public class RegistreDatabase extends Database {
 				FileWriter fw = new FileWriter(file);
 				BufferedWriter bw = new BufferedWriter(fw);
 				bw.write("Registre de jugadors de MasterMind");
-				bw.newLine();
 				bw.flush();
 				bw.close();
 				
