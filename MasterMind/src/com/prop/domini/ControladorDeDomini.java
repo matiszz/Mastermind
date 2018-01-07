@@ -24,6 +24,7 @@ public class ControladorDeDomini {
         presentacio = ctrl;
         reg = new Registre();
         obtenirJugadors();
+        partidaGuanyada = false;
     }
     
     public void instanciaRanking() {
@@ -99,6 +100,7 @@ public class ControladorDeDomini {
          Inicia la partida segons si es codemaker o codebreaker.
          Inicia el clock
          */
+    		partidaGuanyada = false;
         if (partida.mode == "CodeMaker") {
             Algorisme a = new Algorisme(this);
             a.simulaPartida(partida, jugador);
@@ -175,6 +177,7 @@ public class ControladorDeDomini {
         //Creo la partida pasandole idPArtida,mode,finalitzada,numFiles,longCodi,dificultat
         
         Partida newp = new Partida(Integer.parseInt(info.get(i)),info.get(i + 1), Boolean.parseBoolean(info.get(i + 7)), Integer.parseInt(info.get(i + 5)), Integer.parseInt(info.get(i + 6)), Integer.parseInt(info.get(i + 8)));
+        partidaGuanyada = false;
         i = 10;
         ArrayList<Jugada> ljugades = new ArrayList<Jugada>();
         
@@ -212,6 +215,7 @@ public class ControladorDeDomini {
         for(int k = 0; k <codiAmagat.length();++k) {
         		ca.add(codiAmagat.charAt(k)-'0');
         }
+        newp.mode = "CodeBreaker";
         newp.setCodiAmagat(ca);
         newp.setJugades(ljugades);
         newp.guanyada=false;
@@ -223,7 +227,7 @@ public class ControladorDeDomini {
         /*
          Recupera del fitxer les partides guardades del jugador actual,
          */
-    	partidaGuanyada = false;
+      	partidaGuanyada = false;
         ArrayList<String> partides = persistencia.getInfoPartida(idPartida);
         partida = converteixPartida(partides);
         

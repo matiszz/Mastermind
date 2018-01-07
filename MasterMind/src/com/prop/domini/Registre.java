@@ -18,7 +18,9 @@ public class Registre {
     		boolean trobat = false;
     		for(int i = 0; !trobat && i < jugadors.size();++i) {
     			Jugador j = jugadors.get(i);
-    			trobat = (j.idJugador == idJugador);
+    			if (j.idJugador.equals(idJugador)) {
+    				trobat = true;
+    			}
     		}
     		return trobat;
     }
