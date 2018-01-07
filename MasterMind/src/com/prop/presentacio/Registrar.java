@@ -41,7 +41,6 @@ public class Registrar extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(650, 650));
         setMinimumSize(new java.awt.Dimension(650, 650));
-        setPreferredSize(new java.awt.Dimension(650, 650));
 
         txtAlies.setToolTipText("Introdueix àlies");
 
@@ -181,9 +180,10 @@ public class Registrar extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String alies = txtAlies.getText();
-        if (alies.equals("")) {
+        if (alies.equals(""))
             txtError.setText("Has d'introduir un àlies.");
-        }
+        else if (alies.contains(" "))
+            txtError.setText("No pot haver espais");
         else {
             if(p.controller.clickRegistrarse(alies)) {
                 JugarPartida nova = new JugarPartida();
