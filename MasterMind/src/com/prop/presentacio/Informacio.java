@@ -56,7 +56,7 @@ public class Informacio extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel2.setText("<html>\n<p>\nAplicació en Java desenvolupada per l'assignatura de PROP de la\n<br>\nFacultat d'Informàtica de Barcelona. \n<br><br>\nFeta per Sergi Lao, Raul Valverde y Matias Szarfer. \n</p>\n</html>");
+        jLabel2.setText("<html>\n<p>\nAplicació en Java desenvolupada per l'assignatura de PROP de la\n<br>\nFacultat d'Informàtica de Barcelona. \n<br><br>\nFeta per Sergi Lao, Raul Valverde i Matias Szarfer. \n</p>\n</html>");
         jLabel2.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
