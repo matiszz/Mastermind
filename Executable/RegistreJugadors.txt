@@ -1,3 +1,0 @@
-Registre de jugadors de MasterMind
-m 0 0
-l 0 0
