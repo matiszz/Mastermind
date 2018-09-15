@@ -17,7 +17,7 @@ java -jar MasterMind.jar
 ```
 
 ## Equipo
-**Raul:** Persistencia i salvar el culo
+**Raul:** Persistencia
 
 **Sergi:** Dominio
 
